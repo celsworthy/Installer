@@ -2,11 +2,11 @@
     <shortName>Configurator</shortName>
     <fullName>CEL Configurator</fullName>
     <version>0.10.07</version>
-    <readmeFile>D:/Development/RoboxResources/PrintSoftware/installer/README_Configurator.txt</readmeFile>
-    <licenseFile>D:/Development/RoboxResources/PrintSoftware/installer/EULA_Configurator.txt</licenseFile>
-    <leftImage>D:/Development/RoboxResources/PrintSoftware/installer/LeftImage - AutoMaker 163x314.png</leftImage>
-    <splashImage>D:/Development/RoboxResources/PrintSoftware/installer/Splash - Configurator 600x400.png</splashImage>
-    <wmImage>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon48x48.png</wmImage>
+    <readmeFile>README_Configurator.txt</readmeFile>
+    <licenseFile>EULA_Configurator.txt</licenseFile>
+    <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
+    <splashImage>Splash - Configurator 600x400.png</splashImage>
+    <wmImage>RoboxIcon48x48.png</wmImage>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -70,10 +70,10 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator.configFile.xml</origin>
+                            <origin>Configurator.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LatestBuilds/Configurator.jar</origin>
+                            <origin>Configurator.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -84,28 +84,28 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator-update-linux.run</origin>
+                            <origin>Configurator-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator.ico</origin>
+                            <origin>Configurator.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorUninstallIcon.ico</origin>
+                            <origin>ConfiguratorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/librxtxSerial.so</origin>
+                            <origin>librxtxSerial.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x86/LeapPython.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/LeapPython.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x86/libLeap.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeap.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x86/libLeapCSharp.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeapCSharp.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x86/libLeapJava.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeapJava.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -116,28 +116,28 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator-update-linux-x64.run</origin>
+                            <origin>Configurator-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.ico</origin>
+                            <origin>ConfiguratorIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorUninstallIcon.ico</origin>
+                            <origin>ConfiguratorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/librxtxSerial.so</origin>
+                            <origin>librxtxSerial.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/LeapPython.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/LeapPython.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeap.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeap.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeapCSharp.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeapCSharp.so</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeapJava.so</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeapJava.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -148,40 +148,40 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator-update-windows.exe</origin>
+                            <origin>Configurator-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.ico</origin>
+                            <origin>ConfiguratorIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorUninstallIcon.ico</origin>
+                            <origin>ConfiguratorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/rxtxSerial.dll</origin>
+                            <origin>rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/rxtxSerial64.dll</origin>
+                            <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/jRegistryKey.dll</origin>
+                            <origin>jRegistryKey.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapJava.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapJava.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leap.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leap.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapCSharp.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapCSharp.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leapd.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leapd.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET4.0.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET4.0.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET3.5.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET3.5.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -192,28 +192,28 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Configurator-update-osx.app</origin>
+                            <origin>Configurator-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.icns</origin>
+                            <origin>ConfiguratorIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorUninstallIcon.icns</origin>
+                            <origin>ConfiguratorUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon_256x256.png</origin>
+                            <origin>ConfiguratorIcon_256x256.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapJava.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapJava.dylib</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeap.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeap.dylib</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapCSharp.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapCSharp.dylib</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/librxtxSerial.jnilib</origin>
+                            <origin>librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -257,7 +257,7 @@
             </initializationActionList>
         </component>
         <include>
-            <file>D:/Development/RoboxResources/PrintSoftware/projects/java.xml</file>
+            <file>java.xml</file>
         </include>
         <component>
             <name>Common</name>
@@ -275,19 +275,19 @@
                     <distributionFileList>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/robox_r*.bin</origin>
+                            <origin>robox_r*.bin</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>C:/Users/Ian/Dropbox/3Dea - 3D Printer/GUI/Latest Automaker Gcode Files/Macros</origin>
+                            <origin>Macros</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>C:/Users/Ian/Dropbox/3Dea - 3D Printer/GUI/Latest Automaker Gcode Files/PrintProfiles</origin>
+                            <origin>PrintProfiles</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Heads</origin>
+                            <origin>Heads</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>C:/Users/Ian/Dropbox/3Dea - 3D Printer/GUI/Latest Automaker Gcode Files/Filaments</origin>
+                            <origin>Filaments</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -298,7 +298,7 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Slicer_1_1_0/Linux_x86/Slic3r</origin>
+                            <origin>Slicer/Linux_x86/Slic3r</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -309,7 +309,7 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Slicer_1_1_0/Linux_x64/Slic3r</origin>
+                            <origin>Slicer/Linux_x64/Slic3r</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -320,7 +320,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Slicer_1_1_0/Windows/Slic3r</origin>
+                            <origin>Slicer/Windows/Slic3r</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -331,7 +331,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Slicer_1_1_0/Mac/Slic3r.app</origin>
+                            <origin>Slicer/Mac/Slic3r.app</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -345,7 +345,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.mac.sh</origin>
+                            <origin>bin/RoboxDetector.mac.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -359,7 +359,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.exe</origin>
+                            <origin>bin/RoboxDetector.exe</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -373,7 +373,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.linux.sh</origin>
+                            <origin>bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -387,7 +387,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.linux.sh</origin>
+                            <origin>bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -456,8 +456,8 @@
                 </componentSelection>
             </actionList>
 
-	<!-- We assume an existing installation if ${installdir} directory exists -->
-	<ruleList>
+            <!-- We assume an existing installation if ${installdir} directory exists -->
+            <ruleList>
                 <fileTest condition="exists" path="${installdir}"/>
             </ruleList>
         </actionGroup>
@@ -535,9 +535,9 @@ enable = 0
                 <runProgram>
                     <program>defaults</program>
 
-	<!-- The CDATA notation allow escaping a
+                    <!-- The CDATA notation allow escaping a
             block of XML characters -->
-	<programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
+                    <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
 &lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
 &lt;string&gt;com.CELTech.Configurator&lt;/string&gt;&lt;/dict&gt;"
@@ -549,8 +549,8 @@ enable = 0
                     </ruleList>
                 </runProgram>
 
-	<!-- Restart the launch services to reload the configuration -->
-	<runProgram>
+                <!-- Restart the launch services to reload the configuration -->
+                <runProgram>
                     <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
                     <programArguments>-kill -domain local -domain system -domain user</programArguments>
                     <ruleList>
@@ -581,11 +581,12 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>ConfiguratorIcon.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>ConfiguratorIcon.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>D:/Development/LatestBuilds</outputDirectory>
     <productDisplayIcon>${installdir}/ConfiguratorIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
+    <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
     <startMenuGroupName>${vendor}</startMenuGroupName>
@@ -594,8 +595,8 @@ enable = 0
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorIcon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/ConfiguratorUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>ConfiguratorIcon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>ConfiguratorUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
