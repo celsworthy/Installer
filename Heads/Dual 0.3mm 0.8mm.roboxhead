@@ -1,0 +1,16 @@
+#
+# Robox head definition file
+#
+name = Dual 0.3mm/0.8mm
+headID = RBX01-SM
+maximum_temperature_C = 260
+beta = 4380.0
+tcal = 19193.0
+nozzle1_X_offset = 7.16
+nozzle1_Y_offset = 0.0
+nozzle1_Z_offset = -0.7
+nozzle1_B_offset = 1.0
+nozzle2_X_offset = -7.16
+nozzle2_Y_offset = 0.0
+nozzle2_Z_offset = -0.7
+nozzle2_B_offset = -1.0
