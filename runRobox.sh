@@ -1,0 +1,1 @@
+java -DlibertySystems.configFile=robox.configFile.xml -jar AutoMaker.jar

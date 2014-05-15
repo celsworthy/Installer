@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<dpinst>
+<legacyMode>1</legacyMode>
+<icon>RoboxIcon.ico</icon>
+<suppressWizard/>
+<quietInstallStrict/>
+<suppressAddRemovePrograms/>
+
+<!-- The following search and subDirectory elements direct
+     DPInst to search all subdirectories (under the DPInst working directory) to locate driver
+     packages. -->
+    <search>
+      <subDirectory>*</subDirectory>
+    </search>
+
+<!-- The following language element localizes its child elements
+     for the English (Standard) language. The child elements
+     customize the text that appears on the DPInst wizard pages. -->
+    <language code="0x0409">
+      <dpinstTitle>Robox Device Driver Installer</dpinstTitle>
+      <welcomeTitle>Welcome to the Robox Device Installer!</welcomeTitle>
+      <welcomeIntro>This wizard will walk you through installing the drivers for your Robox printer.</welcomeIntro>
+      <installHeaderTitle>Installing the software for your device...</installHeaderTitle>
+      <finishTitle>Congratulations! You finished installing your device drivers.</finishTitle>
+    </language>
+
+</dpinst>

@@ -1,0 +1,15 @@
+#
+# Robox filament definition file
+#
+name = Amethyst Purple
+material = PLA
+reelID = RBX-PLA-PP157
+diameter_mm = 1.75
+filament_multiplier = 1.0
+feed_rate_multiplier = 1.0
+ambient_temperature_C = 30
+first_layer_bed_temperature_C = 70
+bed_temperature_C = 60
+first_layer_nozzle_temperature_C = 220
+nozzle_temperature_C = 210
+display_colour = #ba7cbc
