@@ -583,7 +583,7 @@ enable = 0
     <installationScope>user</installationScope>
     <osxApplicationBundleIcon>ConfiguratorIcon.icns</osxApplicationBundleIcon>
     <osxUninstallerApplicationBundleIcon>ConfiguratorIcon.icns</osxUninstallerApplicationBundleIcon>
-    <outputDirectory>D:/Development/LatestBuilds</outputDirectory>
+    <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${installdir}/ConfiguratorIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
