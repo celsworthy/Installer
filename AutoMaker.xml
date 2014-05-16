@@ -87,10 +87,10 @@
                             <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker.ico</origin>
+                            <origin>Automaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutomakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -119,10 +119,10 @@
                             <origin>AutoMaker-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerIcon.ico</origin>
+                            <origin>AutomakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutomakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -151,10 +151,10 @@
                             <origin>AutoMaker-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerIcon.ico</origin>
+                            <origin>AutomakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutomakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>rxtxSerial.dll</origin>
