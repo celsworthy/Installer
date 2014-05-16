@@ -1,11 +1,11 @@
 <project>
-    <shortName>Configurator</shortName>
-    <fullName>CEL Configurator</fullName>
+    <shortName>AutoMaker</shortName>
+    <fullName>CEL AutoMaker</fullName>
     <version>0.10.07</version>
-    <readmeFile>README_Configurator.txt</readmeFile>
-    <licenseFile>EULA_Configurator.txt</licenseFile>
+    <readmeFile>README_AutoMaker.txt</readmeFile>
+    <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
-    <splashImage>Splash - Configurator 600x400.png</splashImage>
+    <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
     <componentList>
         <component>
@@ -70,10 +70,10 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Configurator.configFile.xml</origin>
+                            <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Configurator.jar</origin>
+                            <origin>AutoMaker.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -84,13 +84,13 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Configurator-update-linux.run</origin>
+                            <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Configurator.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -116,13 +116,13 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Configurator-update-linux-x64.run</origin>
+                            <origin>AutoMaker-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.ico</origin>
+                            <origin>AutoMakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -148,13 +148,13 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Configurator-update-windows.exe</origin>
+                            <origin>AutoMaker-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.ico</origin>
+                            <origin>AutoMakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>rxtxSerial.dll</origin>
@@ -192,16 +192,16 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Configurator-update-osx.app</origin>
+                            <origin>AutoMaker-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.icns</origin>
+                            <origin>AutoMakerIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorUninstallIcon.icns</origin>
+                            <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon_256x256.png</origin>
+                            <origin>AutoMakerIcon_256x256.png</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapJava.dylib</origin>
@@ -221,11 +221,11 @@
             <initializationActionList>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
-                    <value>Configurator.jar</value>
+                    <value>AutoMaker.jar</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Configurator.configFile.xml</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -235,7 +235,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Configurator.configFile.xml -Xdock:icon=${installdir}/ConfiguratorIcon_256x256.png -Xdock:name="Configurator"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${installdir}/AutoMakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -244,7 +244,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_mainClass</name>
-                    <value>celtech.roboxconfigurator.RoboxConfigurator</value>
+                    <value>celtech.roboxconfigurator.RoboxAutoMaker</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_binary_name</name>
@@ -429,11 +429,11 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>launcherName</name>
-            <value>Configurator</value>
+            <value>AutoMaker</value>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/14f690bc22c/Configurator-update.xml</value>
+            <value>http://downloads.cel-robox.com:8001/0abc523fc24/AutoMaker-update.xml</value>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
@@ -540,7 +540,7 @@ enable = 0
                     <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
 &lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
-&lt;string&gt;com.CELTech.Configurator&lt;/string&gt;&lt;/dict&gt;"
+&lt;string&gt;com.CELTech.AutoMaker&lt;/string&gt;&lt;/dict&gt;"
            </programArguments>
                     <ruleList>
                         <platformTest>
@@ -581,22 +581,22 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>ConfiguratorIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>ConfiguratorIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>AutoMakerIcon.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>AutoMakerIcon.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${installdir}/ConfiguratorIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${installdir}/AutoMakerIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
     <startMenuGroupName>${vendor}</startMenuGroupName>
     <style>custom</style>
-    <uninstallerName>Uninstall Configurator</uninstallerName>
+    <uninstallerName>Uninstall AutoMaker</uninstallerName>
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>ConfiguratorIcon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>ConfiguratorUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>AutoMakerIcon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
