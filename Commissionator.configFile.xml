@@ -2,9 +2,9 @@
 <root>
     <ApplicationConfiguration>
         <ApplicationName>CEL Commissionator</ApplicationName>
-        <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:ApplicationName#/</ApplicationDataStorageDirectory>
-        <UserDataStorageDirectory>$USER_HOME$/#ApplicationConfiguration:ApplicationName#/</UserDataStorageDirectory>
-        <requiredFirmwareVersion>657</requiredFirmwareVersion>
+        <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
+        <UserDataStorageDirectory>$USER_HOME$/#ApplicationConfiguration:AppFolderName#/</UserDataStorageDirectory>
+        <requiredFirmwareVersion>664</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
