@@ -2,12 +2,12 @@
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
     <version>0.01.04</version>
-    <readmeFile>D:/Development/RoboxResources/PrintSoftware/installer/README_Commissionator.txt</readmeFile>
-    <licenseFile>D:/Development/RoboxResources/PrintSoftware/installer/EULA_Commissionator.txt</licenseFile>
-    <leftImage>D:/Development/RoboxResources/PrintSoftware/installer/InstallerLeftImage.png</leftImage>
-    <logoImage>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon48x48.png</logoImage>
-    <splashImage>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorSplash.png</splashImage>
-    <wmImage>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon48x48.png</wmImage>
+    <readmeFile>README_Commissionator.txt</readmeFile>
+    <licenseFile>EULA_Commissionator.txt</licenseFile>
+    <leftImage>InstallerLeftImage.png</leftImage>
+    <logoImage>RoboxIcon48x48.png</logoImage>
+    <splashImage>CommissionatorSplash.png</splashImage>
+    <wmImage>RoboxIcon48x48.png</wmImage>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -23,7 +23,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/windows_drivers</origin>
+                            <origin>windows_drivers</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -72,28 +72,28 @@
                     <distributionFileList>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/robox_r*.bin</origin>
+                            <origin>robox_r*.bin</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Commissionator.configFile.xml</origin>
+                            <origin>Commissionator.configFile.xml</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Macros</origin>
+                            <origin>Macros</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Filaments</origin>
+                            <origin>Filaments</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/PrintProfiles</origin>
+                            <origin>PrintProfiles</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Heads</origin>
+                            <origin>Heads</origin>
                         </distributionDirectory>
                         <distributionFile>
-                            <origin>D:/Development/LatestBuilds/Commissionator.jar</origin>
+                            <origin>Commissionator.jar</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Commissionator/Macros</origin>
+                            <origin>Commissionator/Macros</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -104,7 +104,7 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/librxtxSerial.so</origin>
+                            <origin>librxtxSerial.so</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/LeapPython.so</origin>
@@ -127,22 +127,22 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/rxtxSerial.dll</origin>
+                            <origin>rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/rxtxSerial64.dll</origin>
+                            <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Commissionator-update-windows.exe</origin>
+                            <origin>Commissionator-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon.ico</origin>
+                            <origin>CommissionatorIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorUninstallIcon.ico</origin>
+                            <origin>CommissionatorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/jRegistryKey.dll</origin>
+                            <origin>jRegistryKey.dll</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapJava.dll</origin>
@@ -253,7 +253,7 @@
             </initializationActionList>
         </component>
         <include>
-            <file>D:/Development/RoboxResources/PrintSoftware/projects/java.xml</file>
+            <file>java.xml</file>
         </include>
     </componentList>
     <postBuildActionList>
@@ -305,8 +305,8 @@
                 </componentSelection>
             </actionList>
 
-	<!-- We assume an existing installation if ${installdir} directory exists -->
-	<ruleList>
+            <!-- We assume an existing installation if ${installdir} directory exists -->
+            <ruleList>
                 <fileTest condition="exists" path="${installdir}"/>
             </ruleList>
         </actionGroup>
@@ -379,9 +379,9 @@ check_for_updates = 1
                 <runProgram>
                     <program>defaults</program>
 
-	<!-- The CDATA notation allow escaping a
+                    <!-- The CDATA notation allow escaping a
             block of XML characters -->
-	<programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
+                    <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
 &lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
 &lt;string&gt;com.CELTech.Commissionator&lt;/string&gt;&lt;/dict&gt;"
@@ -393,8 +393,8 @@ check_for_updates = 1
                     </ruleList>
                 </runProgram>
 
-	<!-- Restart the launch services to reload the configuration -->
-	<runProgram>
+                <!-- Restart the launch services to reload the configuration -->
+                <runProgram>
                     <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
                     <programArguments>-kill -domain local -domain system -domain user</programArguments>
                     <ruleList>
@@ -415,6 +415,7 @@ check_for_updates = 1
     <outputDirectory>D:/Development/LatestBuilds</outputDirectory>
     <productDisplayIcon>${installdir}/RoboxIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
+    <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
     <startMenuGroupName>${vendor}</startMenuGroupName>
@@ -427,8 +428,8 @@ check_for_updates = 1
     <windowsUninstallerExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <finalPageActionList>
         <runProgram>
-	<!-- On Mac OS X, use 'open' command for asynchronous launch -->
-	<program>open</program>
+            <!-- On Mac OS X, use 'open' command for asynchronous launch -->
+            <program>open</program>
             <programArguments>${installdir}/${launcherName}.app</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
@@ -436,8 +437,8 @@ check_for_updates = 1
             </ruleList>
         </runProgram>
         <runProgram>
-	<!-- On Windows, use ampersand for asynchronous launch -->
-	<program>${installdir}/${launcherName}.exe</program>
+            <!-- On Windows, use ampersand for asynchronous launch -->
+            <program>${installdir}/${launcherName}.exe</program>
             <programArguments>&amp;</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
