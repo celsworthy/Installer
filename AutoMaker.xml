@@ -22,7 +22,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/windows_drivers</origin>
+                            <origin>windows_drivers</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -166,22 +166,22 @@
                             <origin>jRegistryKey.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapJava.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/LeapJava.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leap.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/Leap.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapCSharp.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/LeapCSharp.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leapd.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/Leapd.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET4.0.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapCSharp.NET4.0.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET3.5.dll</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapCSharp.NET3.5.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -198,19 +198,19 @@
                             <origin>AutoMakerIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerUninstallIcon.icns</origin>
+                            <origin>AutomakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>AutoMakerIcon_256x256.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapJava.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeapJava.dylib</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeap.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeap.dylib</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/LeapSDK/lib/libLeapCSharp.dylib</origin>
+                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeapCSharp.dylib</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
@@ -584,7 +584,7 @@ enable = 0
     <osxApplicationBundleIcon>AutoMakerIcon.icns</osxApplicationBundleIcon>
     <osxUninstallerApplicationBundleIcon>AutoMakerIcon.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${installdir}/AutoMakerIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${installdir}/AutomakerIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -595,8 +595,8 @@ enable = 0
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>AutoMakerIcon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>AutomakerIcon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>AutomakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
