@@ -62,6 +62,22 @@
             <canBeEdited>1</canBeEdited>
             <selected>1</selected>
             <show>1</show>
+            <desktopShortcutList>
+                <shortcut>
+                    <comment>AutoMaker</comment>
+                    <exec>${installdir}/${project.shortName}.${platform_exec_suffix}</exec>
+                    <icon>AutomakerIcon.ico</icon>
+                    <name>AutoMaker</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                </shortcut>
+            </desktopShortcutList>
             <folderList>
                 <folder>
                     <description>Program Files</description>
@@ -87,7 +103,7 @@
                             <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Automaker.ico</origin>
+                            <origin>AutomakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>AutomakerUninstallIcon.ico</origin>
