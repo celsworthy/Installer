@@ -62,22 +62,6 @@
             <canBeEdited>1</canBeEdited>
             <selected>1</selected>
             <show>1</show>
-            <desktopShortcutList>
-                <shortcut>
-                    <comment>AutoMaker</comment>
-                    <exec>${installdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>AutomakerIcon.ico</icon>
-                    <name>AutoMaker</name>
-                    <path></path>
-                    <platforms>all</platforms>
-                    <runAsAdmin>0</runAsAdmin>
-                    <runInTerminal>0</runInTerminal>
-                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
-                    <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>AutomakerIcon.ico</windowsIcon>
-                    <windowsPath></windowsPath>
-                </shortcut>
-            </desktopShortcutList>
             <folderList>
                 <folder>
                     <description>Program Files</description>
@@ -613,6 +597,74 @@ enable = 0
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>AutomakerIcon.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>AutomakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <finalPageActionList>
+        <createShortcuts>
+            <destination>${windows_folder_common_startmenu}</destination>
+            <progressText>Do you want to create a shortcut in the Start Menu?</progressText>
+            <ruleList>
+                <platformTest type="windows"/>
+            </ruleList>
+            <shortcutList>
+                <shortcut>
+                    <comment>${project.fullName}</comment>
+                    <exec></exec>
+                    <icon></icon>
+                    <name>${project.fullName}</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                </shortcut>
+            </shortcutList>
+        </createShortcuts>
+        <createShortcuts>
+            <destination>${windows_folder_desktopdirectory}</destination>
+            <progressText>Do you want to create a shortcut in the Desktop?</progressText>
+            <shortcutList>
+                <shortcut>
+                    <comment>${project.fullName}</comment>
+                    <exec></exec>
+                    <icon></icon>
+                    <name>${project.fullName}</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                </shortcut>
+            </shortcutList>
+        </createShortcuts>
+        <createShortcuts>
+            <destination>${windows_folder_appdata}/Microsoft/Internet Explorer/Quick Launch</destination>
+            <progressText>Do you want to create a quick launch toolbar?</progressText>
+            <ruleList>
+                <platformTest type="windows-vista"/>
+            </ruleList>
+            <shortcutList>
+                <shortcut>
+                    <comment>${project.fullName}</comment>
+                    <exec></exec>
+                    <icon></icon>
+                    <name>${project.fullName}</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                </shortcut>
+            </shortcutList>
+        </createShortcuts>
+    </finalPageActionList>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
