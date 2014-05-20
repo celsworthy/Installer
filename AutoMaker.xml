@@ -195,13 +195,13 @@
                             <origin>AutoMaker-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerIcon.icns</origin>
+                            <origin>AutomakerIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>AutomakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMakerIcon_256x256.png</origin>
+                            <origin>AutomakerIcon_256x256.png</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeapJava.dylib</origin>
@@ -235,7 +235,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${installdir}/AutoMakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${installdir}/AutomakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -581,8 +581,8 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>AutoMakerIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>AutoMakerIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>AutomakerIcon.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>AutomakerIcon.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${installdir}/AutomakerIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
