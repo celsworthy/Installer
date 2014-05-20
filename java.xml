@@ -15,7 +15,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-windows/*</origin>
+                    <origin>java-windows/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -30,7 +30,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-linux/*</origin>
+                    <origin>java-linux/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -45,7 +45,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-linux-x64/*</origin>
+                    <origin>java-linux-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -60,7 +60,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-solaris-sparc/*</origin>
+                    <origin>java-solaris-sparc/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -75,7 +75,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-solaris-intel/*</origin>
+                    <origin>java-solaris-intel/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -90,7 +90,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>D:/Development/RoboxResources/PrintSoftware/projects/java-osx/*</origin>
+                    <origin>java-osx/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
