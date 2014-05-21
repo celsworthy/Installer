@@ -3,5 +3,6 @@ set -x
 ls -al LatestBuilds
 
 cd LatestBuilds
-zip -v -r AutoMaker-0.10.07-osx-installer.app AutoMaker-0.10.07-osx-installer.app
+ls -al
+zip -v -r AutoMaker-osx-installer.app AutoMaker-0.10.07-osx-installer.app
 #rm -rf LatestBuilds/AutoMaker-0.10.07-osx-installer.app
