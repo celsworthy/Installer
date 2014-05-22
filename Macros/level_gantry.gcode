@@ -10,7 +10,7 @@ G0 X111 Y75		;X Y Position Centre
 G28 Z			;Home Z
 G0 Z5			;Move up 5mm if homed
 
-;Level Gantry
+; Level Gantry
 	G0 X30 Y75		;Level Gantry Position 1
 	G28 Z0			;Home Z
 	G0 Z5 			;Move up 5mm
@@ -18,7 +18,7 @@ G0 Z5			;Move up 5mm if homed
 	G28 Z0			;Home Z
 	G0 Z5 			;Move up 5mm
 	G38 			;Level gantry
-G0 X Y			;Home X, then Y
+G0 X0 Y0			;Home X, then Y
 
 M104 S0			;Nozzle heater off
 M106			;Fan off
