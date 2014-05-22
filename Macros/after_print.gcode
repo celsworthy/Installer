@@ -8,6 +8,6 @@ M104 S0			;Heated nozzle off
 M106			;Fan on full
 G0 X15 Y0		;Move to back corner
 G0 E-150		;Retract the filament
-G37				;Open door
+G37 S			;Open door
 M107			;Fan off
 M84				;Disable axes

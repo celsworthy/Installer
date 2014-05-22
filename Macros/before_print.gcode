@@ -22,6 +22,7 @@ G0 Z5 			;Move up 5mm
 G39 			;level bed
 M109			;Wait for Nozzle to get to temp.
 M190
-G36 E500 F1200
-G36 E5 F100
+
+G36 E1000 F1200
+;G1 E1 F100
 M129			;Head LED on
