@@ -471,7 +471,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/0abc523fc24/Configurator-update.xml</value>
+            <value>http://downloads.cel-robox.com:8001/14f690bc22c/Configurator-update.xml</value>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>

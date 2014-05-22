@@ -1,1 +1,1 @@
-/opt/installbuilder-9.0.1/bin/builder build ./AutoMaker.xml windows
+/opt/installbuilder-9.0.1/bin/builder build ./Configurator.xml windows
