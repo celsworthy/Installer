@@ -1,7 +1,7 @@
 <project>
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
-    <version>0.10.08</version>
+    <version>0.10.10</version>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
