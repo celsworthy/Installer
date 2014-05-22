@@ -1,7 +1,7 @@
 <project>
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
-    <version>0.10.10</version>
+    <version>0.10.08</version>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
@@ -635,6 +635,26 @@ enable = 0
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>AutomakerIcon.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>AutomakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <finalPageActionList>
+        <runProgram>
+            <!-- On Mac OS X, use 'open' command for asynchronous launch -->
+            <program>open</program>
+            <programArguments>${installdir}/${launcherName}.app</programArguments>
+            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <ruleList>
+                <platformTest type="osx"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <!-- On Windows, use ampersand for asynchronous launch -->
+            <program>${installdir}/${launcherName}.exe</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <ruleList>
+                <platformTest type="windows"/>
+            </ruleList>
+        </runProgram>
+    </finalPageActionList>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
