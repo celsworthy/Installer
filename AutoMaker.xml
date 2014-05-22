@@ -66,7 +66,7 @@
                 <shortcut>
                     <comment>AutoMaker</comment>
                     <exec>${installdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>AutomakerIcon.ico</icon>
+                    <icon>${installdir}/AutomakerIcon.ico</icon>
                     <name>AutoMaker</name>
                     <path></path>
                     <platforms>all</platforms>
@@ -74,8 +74,13 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>AutomakerIcon.ico</windowsIcon>
+                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
                     <windowsPath></windowsPath>
+                    <ruleList>
+                        <isTrue>
+                            <value>${install_desktop_shortcut}</value>
+                        </isTrue>
+                    </ruleList>
                 </shortcut>
             </desktopShortcutList>
             <folderList>
@@ -271,6 +276,23 @@
                     <value>${project.shortName}</value>
                 </setInstallerVariable>
             </initializationActionList>
+            <startMenuShortcutList>
+                <startMenuShortcut>
+                    <comment>AutoMaker</comment>
+                    <name>AutoMaker</name>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                    <ruleList>
+                        <isTrue>
+                            <value>${install_menu_shortcut}</value>
+                        </isTrue>
+                    </ruleList>
+                </startMenuShortcut>
+            </startMenuShortcutList>
         </component>
         <include>
             <file>java.xml</file>
@@ -627,6 +649,34 @@ enable = 0
             <mustExist>0</mustExist>
             <width>30</width>
         </directoryParameter>
+        <parameterGroup>
+            <name>shortcuts</name>
+            <title>Create Shortcuts</title>
+            <explanation></explanation>
+            <value></value>
+            <default></default>
+            <parameterList>
+                <booleanParameter>
+                    <name>install_desktop_shortcut</name>
+                    <description>Add a shortcut to the desktop?</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>1</default>
+                    <displayStyle>checkbox-left</displayStyle>
+                </booleanParameter>
+                <booleanParameter>
+                    <name>install_menu_shortcut</name>
+                    <description>Add a shortcut to the Start Menu?</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>0</default>
+                    <displayStyle>checkbox-left</displayStyle>
+                    <ruleList>
+                        <platformTest type="windows"/>
+                    </ruleList>
+                </booleanParameter>
+            </parameterList>
+        </parameterGroup>
     </parameterList>
 </project>
 
