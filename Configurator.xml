@@ -93,7 +93,7 @@
                             <origin>Configurator.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Configurator.jar</origin>
+				<origin>../JarArtifacts/Configurator.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>

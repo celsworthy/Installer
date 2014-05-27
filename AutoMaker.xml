@@ -93,7 +93,7 @@
                             <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker.jar</origin>
+				<origin>../JarArtifacts/AutoMaker.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
