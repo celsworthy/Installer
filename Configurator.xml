@@ -1,7 +1,6 @@
 <project>
     <shortName>Configurator</shortName>
     <fullName>CEL Configurator</fullName>
-    <version>0.10.10</version>
     <readmeFile>README_Configurator.txt</readmeFile>
     <licenseFile>EULA_Configurator.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
