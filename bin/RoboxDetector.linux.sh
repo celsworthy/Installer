@@ -1,5 +1,5 @@
 #!/bin/bash
-output=`ls  /dev/serial/by-id/ | grep $1 | grep $2`
+output=`ls  /dev/serial/by-id/ | grep -i $1 | grep -i $2`
 if [ "$output" = "" ]
 then
 	echo "NOT_CONNECTED"

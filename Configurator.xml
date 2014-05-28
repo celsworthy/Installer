@@ -115,18 +115,6 @@
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/LeapPython.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeap.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeapCSharp.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x86/libLeapJava.so</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -146,18 +134,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/LeapPython.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeap.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeapCSharp.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/x64/libLeapJava.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -185,24 +161,6 @@
                         <distributionFile>
                             <origin>jRegistryKey.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/LeapJava.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/Leap.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/LeapCSharp.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/x86/Leapd.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapCSharp.NET4.0.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapCSharp.NET3.5.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -222,15 +180,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>ConfiguratorIcon_256x256.png</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeapJava.dylib</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeap.dylib</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>LeapDeveloperKit/LeapDeveloperKit_Mac_1_0_9_8391/libLeapCSharp.dylib</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
