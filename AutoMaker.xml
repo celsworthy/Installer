@@ -1,6 +1,7 @@
 <project>
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
+    <version></version>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
@@ -93,7 +94,7 @@
                             <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-				<origin>../JarArtifacts/AutoMaker.jar</origin>
+                            <origin>../JarArtifacts/AutoMaker.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -346,6 +347,12 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>bin/RoboxDetector.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcp100.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcr100.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>

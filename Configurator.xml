@@ -1,6 +1,7 @@
 <project>
     <shortName>Configurator</shortName>
     <fullName>CEL Configurator</fullName>
+    <version></version>
     <readmeFile>README_Configurator.txt</readmeFile>
     <licenseFile>EULA_Configurator.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
@@ -93,7 +94,7 @@
                             <origin>Configurator.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-				<origin>../JarArtifacts/Configurator.jar</origin>
+                            <origin>../JarArtifacts/Configurator.jar</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -346,6 +347,12 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>bin/RoboxDetector.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcr100.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcp100.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
