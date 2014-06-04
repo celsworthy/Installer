@@ -9,7 +9,7 @@
     <folderList>
         <folder>
             <description>Java binaries - Microsoft Windows</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_windows</name>
             <platforms>windows</platforms>
             <distributionFileList>
@@ -24,7 +24,7 @@
         </folder>
         <folder>
             <description>Java binaries - Linux</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_linux</name>
             <platforms>linux</platforms>
             <distributionFileList>
@@ -39,7 +39,7 @@
         </folder>
         <folder>
             <description>Java binaries - Linux-x64</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_linux_x64</name>
             <platforms>linux-x64</platforms>
             <distributionFileList>
@@ -54,7 +54,7 @@
         </folder>
         <folder>
             <description>Java binaries - Solaris Sparc</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_solaris_sparc</name>
             <platforms>solaris-sparc</platforms>
             <distributionFileList>
@@ -69,7 +69,7 @@
         </folder>
         <folder>
             <description>Java binaries - Solaris Intel</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_solaris_intel</name>
             <platforms>solaris-intel</platforms>
             <distributionFileList>
@@ -84,7 +84,7 @@
         </folder>
         <folder>
             <description>Java binaries - Mac OS X</description>
-            <destination>${installdir}/java</destination>
+            <destination>${automakerdir}/java</destination>
             <name>java_osx</name>
             <platforms>osx</platforms>
             <distributionFileList>

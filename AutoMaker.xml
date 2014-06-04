@@ -65,16 +65,16 @@
             <desktopShortcutList>
                 <shortcut>
                     <comment>AutoMaker</comment>
-                    <exec>${installdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>${installdir}/AutomakerIcon.ico</icon>
+                    <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
+                    <icon>${automakerdir}/AutomakerIcon.ico</icon>
                     <name>AutoMaker</name>
                     <path></path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
-                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -86,7 +86,7 @@
             <folderList>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfiles</name>
                     <platforms>all</platforms>
                     <distributionFileList>
@@ -100,7 +100,7 @@
                 </folder>
                 <folder>
                     <description>Program Files x86</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfileslinuxx86</name>
                     <platforms>linux</platforms>
                     <distributionFileList>
@@ -120,7 +120,7 @@
                 </folder>
                 <folder>
                     <description>Program Files x64</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfileslinuxx64</name>
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
@@ -140,7 +140,7 @@
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
                     <distributionFileList>
@@ -166,7 +166,7 @@
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
@@ -231,9 +231,9 @@
                     <name>AutoMaker</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
-                    <windowsExec>${installdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${installdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -413,12 +413,8 @@
             <value>CEL</value>
         </setInstallerVariable>
         <setInstallerVariable>
-            <name>commondir</name>
-            <value>${platform_install_prefix}/${vendor}/Common</value>
-        </setInstallerVariable>
-        <setInstallerVariable>
             <name>installdir</name>
-            <value>${platform_install_prefix}/${vendor}/${product_shortname}</value>
+            <value>${platform_install_prefix}/${vendor}/${project.shortName}/</value>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>launcherName</name>
@@ -436,7 +432,7 @@
         </setInstallerVariableFromRegEx>
         <setInstallerVariable>
             <name>windowsDriverDir</name>
-            <value>${installdir}/windows_drivers</value>
+            <value>${commondir}/windows_drivers</value>
         </setInstallerVariable>
     </initializationActionList>
     <preInstallationActionList>
@@ -457,12 +453,12 @@
     </preInstallationActionList>
     <postInstallationActionList>
         <writeFile>
-            <path>${installdir}/application.properties</path>
+            <path>${automakerdir}/application.properties</path>
             <text>version = ${project.version}
 language = ${installation_language_code}</text>
         </writeFile>
         <writeFile>
-            <path>${installdir}/update.ini</path>
+            <path>${automakerdir}/update.ini</path>
             <text>[Update]
 url = ${update_xml_url}
 version_id = ${installerVersionID}
@@ -482,10 +478,10 @@ enable = 0
             </ruleList>
         </addDirectoriesToUninstaller>
         <addFilesToUninstaller>
-            <files>${installdir}/update.ini</files>
+            <files>${automakerdir}/update.ini</files>
         </addFilesToUninstaller>
         <addFilesToUninstaller>
-            <files>${installdir}/application.properties</files>
+            <files>${automakerdir}/application.properties</files>
         </addFilesToUninstaller>
         <addDirectoriesToUninstaller>
             <addContents>1</addContents>
@@ -577,7 +573,7 @@ enable = 0
     <osxApplicationBundleIcon>AutomakerIcon.icns</osxApplicationBundleIcon>
     <osxUninstallerApplicationBundleIcon>AutomakerIcon.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${installdir}/AutomakerIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${automakerdir}/AutomakerIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -594,7 +590,7 @@ enable = 0
         <runProgram>
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->
             <program>open</program>
-            <programArguments>${installdir}/${launcherName}.app</programArguments>
+            <programArguments>${automakerdir}/${launcherName}.app</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
                 <platformTest type="osx"/>
@@ -602,11 +598,19 @@ enable = 0
         </runProgram>
         <runProgram>
             <!-- On Windows, use ampersand for asynchronous launch -->
-            <program>${installdir}/${launcherName}.exe</program>
+            <program>${automakerdir}/${launcherName}.exe</program>
             <programArguments>&amp;</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
                 <platformTest type="windows"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${automakerdir}/${launcherName}.run</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <ruleList>
+                <platformTest type="linux"/>
             </ruleList>
         </runProgram>
     </finalPageActionList>
@@ -623,6 +627,20 @@ enable = 0
             <mustBeWritable>yes</mustBeWritable>
             <mustExist>0</mustExist>
             <width>30</width>
+            <postShowPageActionList>
+                <setInstallerVariable>
+                    <name>automakerdir</name>
+                    <value>${installdir}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>${installdir}/AutoMaker.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>commondir</name>
+                    <value>${installdir}/../Common</value>
+                </setInstallerVariable>
+            </postShowPageActionList>
         </directoryParameter>
         <parameterGroup>
             <name>shortcuts</name>
