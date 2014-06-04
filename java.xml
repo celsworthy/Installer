@@ -101,7 +101,7 @@
 
     <!-- parameters for creating Java launchers -->
     <parameterList>
-        <stringParameter name="java_launcher_destination" value="${installdir}/${project.shortName}" ask="0">
+        <stringParameter name="java_launcher_destination" value="${automakerdir}/${project.shortName}" ask="0">
             <description></description>
             <explanation></explanation>
             <default></default>
@@ -175,9 +175,9 @@
     </parameterList>
     <postInstallationActionList>
         <!-- change permissions of all binaries -->
-        <changePermissions abortOnError="0" files="${installdir}/java/bin/*" permissions="0755" showMessageOnError="0">
+        <changePermissions abortOnError="0" files="${automakerdir}/java/bin/*" permissions="0755" showMessageOnError="0">
             <ruleList>
-                <fileExists path="${installdir}/java/bin"/>
+                <fileExists path="${automakerdir}/java/bin"/>
                 <platformTest negate="1" type="windows"/>
             </ruleList>
         </changePermissions>
@@ -185,46 +185,46 @@
         <!-- Create symbolic links on various platforms -->
         <actionGroup>
             <actionList>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/jre/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin"/>
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/jre/bin"/>
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/i386/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/i386/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/client"/>
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/client"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/i386/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/i386/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/server"/>
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/server"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/i386/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/i386/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/client"/>
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/client"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/i386/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/i386/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/server"/>
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/server"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -234,34 +234,34 @@
         </actionGroup>
         <actionGroup>
             <actionList>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/jre/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin"/>
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/jre/bin"/>
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/amd64/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/amd64/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/amd64/server"/>
-                        <fileExists path="${installdir}/java/jre/lib/amd64/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/server"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/amd64/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/amd64/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/amd64/server"/>
-                        <fileExists path="${installdir}/java/lib/amd64/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/amd64/server"/>
+                        <fileExists path="${automakerdir}/java/lib/amd64/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -271,46 +271,46 @@
         </actionGroup>
         <actionGroup>
             <actionList>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/jre/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin"/>
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/jre/bin"/>
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/i386/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/i386/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/client"/>
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/client"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/i386/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/i386/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/server"/>
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/server"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/i386/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/i386/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/client"/>
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/client"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/i386/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/i386/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/server"/>
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/server"/>
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -320,58 +320,58 @@
         </actionGroup>
         <actionGroup>
             <actionList>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/jre/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin"/>
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/jre/bin"/>
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/sparc/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/sparc/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/sparc/client"/>
-                        <fileExists path="${installdir}/java/jre/lib/sparc/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc/client"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/sparc/libjdgaSUNWafb.so" target="libjdgaSUNWffb.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/sparc/libjdgaSUNWafb.so" target="libjdgaSUNWffb.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/sparc"/>
-                        <fileExists path="${installdir}/java/jre/lib/sparc/libjdgaSUNWffb.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc/libjdgaSUNWffb.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/jre/lib/sparc/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/jre/lib/sparc/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/sparc/server"/>
-                        <fileExists path="${installdir}/java/jre/lib/sparc/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc/server"/>
+                        <fileExists path="${automakerdir}/java/jre/lib/sparc/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/bin/ControlPanel" target="jcontrol">
+                <createSymLink linkName="${automakerdir}/java/bin/ControlPanel" target="jcontrol">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin"/>
-                        <fileExists path="${installdir}/java/bin/jcontrol"/>
+                        <fileExists path="${automakerdir}/java/bin"/>
+                        <fileExists path="${automakerdir}/java/bin/jcontrol"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/sparc/client/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/sparc/client/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/sparc/client"/>
-                        <fileExists path="${installdir}/java/lib/sparc/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc/client"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/sparc/libjdgaSUNWafb.so" target="libjdgaSUNWffb.so">
+                <createSymLink linkName="${automakerdir}/java/lib/sparc/libjdgaSUNWafb.so" target="libjdgaSUNWffb.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/sparc"/>
-                        <fileExists path="${installdir}/java/lib/sparc/libjdgaSUNWffb.so"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc/libjdgaSUNWffb.so"/>
                     </ruleList>
                 </createSymLink>
-                <createSymLink linkName="${installdir}/java/lib/sparc/server/libjsig.so" target="../libjsig.so">
+                <createSymLink linkName="${automakerdir}/java/lib/sparc/server/libjsig.so" target="../libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/sparc/server"/>
-                        <fileExists path="${installdir}/java/lib/sparc/libjsig.so"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc/server"/>
+                        <fileExists path="${automakerdir}/java/lib/sparc/libjsig.so"/>
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -468,11 +468,11 @@
                 <!-- determine Java binary name - javaw.exe on Windows, java otherwise -->
                 <setInstallerVariable>
                     <name>java_executable</name>
-                    <value>${installdir}/java/bin/java</value>
+                    <value>${automakerdir}/java/bin/java</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_executable</name>
-                    <value>${installdir}/java/bin/javaw.exe</value>
+                    <value>${automakerdir}/java/bin/javaw.exe</value>
                     <ruleList>
                         <platformTest type="windows"/>
                     </ruleList>
