@@ -414,7 +414,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>installdir</name>
-            <value>${platform_install_prefix}/${vendor}/${project.shortName}/</value>
+            <value>${platform_install_prefix}/${vendor}/</value>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>launcherName</name>
@@ -618,7 +618,7 @@ enable = 0
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
-            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <explanation>Please specify the directory where CEL products will be installed</explanation>
             <value></value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
@@ -630,15 +630,15 @@ enable = 0
             <postShowPageActionList>
                 <setInstallerVariable>
                     <name>automakerdir</name>
-                    <value>${installdir}</value>
+                    <value>${installdir}/${project.shortName}/</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
-                    <value>${installdir}/AutoMaker.jar</value>
+                    <value>${installdir}/${project.shortName}/AutoMaker.jar</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>commondir</name>
-                    <value>${installdir}/../Common</value>
+                    <value>${installdir}/Common</value>
                 </setInstallerVariable>
             </postShowPageActionList>
         </directoryParameter>
