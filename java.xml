@@ -101,7 +101,7 @@
 
     <!-- parameters for creating Java launchers -->
     <parameterList>
-        <stringParameter name="java_launcher_destination" value="${automakerdir}/${project.shortName}" ask="0">
+        <stringParameter name="java_launcher_destination" value="${automakerdir}" ask="0">
             <description></description>
             <explanation></explanation>
             <default></default>

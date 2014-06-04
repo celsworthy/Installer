@@ -205,7 +205,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${installdir}/AutomakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutomakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -432,7 +432,7 @@
         </setInstallerVariableFromRegEx>
         <setInstallerVariable>
             <name>windowsDriverDir</name>
-            <value>${commondir}/windows_drivers</value>
+            <value>${installdir}/${project.shortName}/windows_drivers</value>
         </setInstallerVariable>
     </initializationActionList>
     <preInstallationActionList>
@@ -494,7 +494,7 @@ enable = 0
         </addDirectoriesToUninstaller>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -503,7 +503,7 @@ enable = 0
         </runProgram>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -512,7 +512,7 @@ enable = 0
         </runProgram>
         <runProgram>
             <program>plutil</program>
-            <programArguments>-convert xml1 "${installdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
