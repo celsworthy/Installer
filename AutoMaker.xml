@@ -657,8 +657,7 @@ enable = 0
                     <default>1</default>
                     <displayStyle>checkbox-left</displayStyle>
                     <ruleList>
-		        <negate>1</negate>
-                        <platformTest type="osx"/>
+                        <platformTest negate="1" type="osx"/>
                     </ruleList>
                 </booleanParameter>
                 <booleanParameter>
