@@ -421,6 +421,14 @@
             <value>AutoMaker</value>
         </setInstallerVariable>
         <setInstallerVariable>
+            <name>install_desktop_shortcut</name>
+            <value>0</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>install_menu_shortcut</name>
+            <value>0</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
             <name>update_xml_url</name>
             <value>http://downloads.cel-robox.com:8001/0abc523fc24/AutoMaker-update.xml</value>
         </setInstallerVariable>
@@ -492,7 +500,7 @@ enable = 0
                 </platformTest>
             </ruleList>
         </addDirectoriesToUninstaller>
-        <runProgram>
+        <!--<runProgram>
             <program>defaults</program>
             <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
             <ruleList>
@@ -518,7 +526,7 @@ enable = 0
                     <type>osx</type>
                 </platformTest>
             </ruleList>
-        </runProgram>
+        </runProgram>-->
         <actionGroup>
             <actionList>
                 <runProgram>
@@ -672,7 +680,11 @@ enable = 0
                     </ruleList>
                 </booleanParameter>
             </parameterList>
-        </parameterGroup>
+              <ruleList>
+		  <platformTest negate="1" type="osx"/>
+                </ruleList>
+    
+      </parameterGroup>
     </parameterList>
 </project>
 
