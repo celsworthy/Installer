@@ -467,7 +467,7 @@ enable = 0
         </addDirectoriesToUninstaller>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -476,7 +476,7 @@ enable = 0
         </runProgram>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -485,7 +485,7 @@ enable = 0
         </runProgram>
         <runProgram>
             <program>plutil</program>
-            <programArguments>-convert xml1 "${installdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -676,9 +676,9 @@ enable = 0
                     </ruleList>
                 </booleanParameter>
             </parameterList>
-            <ruleList>
-	      <platformTest negate="1" type="osx"/>
-            </ruleList>
+        <ruleList>
+	   <platformTest negate="1" type="osx"/>
+        </ruleList>
       </parameterGroup>
     </parameterList>
 </project>
