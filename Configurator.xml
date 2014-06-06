@@ -615,7 +615,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
-                    <value>AutoMaker.jar</value>
+                    <value>Configurator.jar</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
