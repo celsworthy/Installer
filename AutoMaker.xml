@@ -189,41 +189,6 @@
                 </folder>
             </folderList>
             <initializationActionList>
-                <setInstallerVariable>
-                    <name>java_launcher_jar</name>
-                    <value>AutoMaker.jar</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml</value>
-                    <ruleList>
-                        <platformTest>
-                            <negate>1</negate>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutomakerIcon_256x256.png -Xdock:name="AutoMaker"</value>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_mainClass</name>
-                    <value>celtech.roboxconfigurator.RoboxAutoMaker</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_binary_name</name>
-                    <value>${project.shortName}.${platform_exec_suffix}</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_startmenu_shortcut_name</name>
-                    <value>${project.shortName}</value>
-                </setInstallerVariable>
             </initializationActionList>
             <startMenuShortcutList>
                 <startMenuShortcut>
@@ -419,6 +384,14 @@
         <setInstallerVariable>
             <name>launcherName</name>
             <value>AutoMaker</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>install_desktop_shortcut</name>
+            <value>0</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>install_menu_shortcut</name>
+            <value>0</value>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
@@ -640,6 +613,37 @@ enable = 0
                     <name>commondir</name>
                     <value>${installdir}/Common</value>
                 </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>AutoMaker.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml</value>
+                    <ruleList>
+                        <platformTest>
+                            <negate>1</negate>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutomakerIcon_256x256.png "-Xdock:name=AutoMaker"</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_binary_name</name>
+                    <value>${project.shortName}.${platform_exec_suffix}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_startmenu_shortcut_name</name>
+                    <value>${project.shortName}</value>
+                </setInstallerVariable>
             </postShowPageActionList>
         </directoryParameter>
         <parameterGroup>
@@ -656,6 +660,9 @@ enable = 0
                     <value></value>
                     <default>1</default>
                     <displayStyle>checkbox-left</displayStyle>
+                    <ruleList>
+                        <platformTest negate="1" type="osx"/>
+                    </ruleList>
                 </booleanParameter>
                 <booleanParameter>
                     <name>install_menu_shortcut</name>
@@ -669,7 +676,10 @@ enable = 0
                     </ruleList>
                 </booleanParameter>
             </parameterList>
-        </parameterGroup>
+        <ruleList>
+	   <platformTest negate="1" type="osx"/>
+        </ruleList>
+      </parameterGroup>
     </parameterList>
 </project>
 
