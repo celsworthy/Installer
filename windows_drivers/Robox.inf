@@ -1,17 +1,5 @@
-
 ;------------------------------------------------------------------------------
-
 ;Communication Device Class(CDC) INF File
-
-;On Windows 7, right click to update driver software. It may take a while to
-;get this option, even if you cancel the auto driver search.
-;choose "browse my computer for driver software",
-;choose "let me pick from a list of device drivers on my computer",
-;Click "have disk" and browse to this .inf file
-;If there is a problem, right click and uninstall, checking delete driver software.
-
-; Works with puTTY 0.60 on my Phenom Windows7x64
-; David Kopf dak664@embarqmail.com August 2009
 ;------------------------------------------------------------------------------
 
 [Version]
@@ -25,22 +13,19 @@ LayoutFile=layout.inf
 DriverVer=02/12/2014,1.0.0.0
 
 [Manufacturer]
-%MANUFACTURER%=DeviceList,NTamd64
+%MANUFACTURER%=DeviceList, NTamd64
 
 [DestinationDirs]
+FakeModemCopyFileSelection=12
 DefaultDestDir=12
-
 
 ;------------------------------------------------------------------------------
 ;              Windows 2000/XP/Vista32 Support
 ;------------------------------------------------------------------------------
 [DriverInstall.nt]
-include=mdmcpq.inf
-CopyFiles=DriverCopyFiles.nt
+include=mdmcpq.inf,usb.inf
+CopyFiles=FakeModemCopyFileSection
 AddReg=DriverInstall.nt.AddReg
-
-[DriverCopyFiles.nt]
-usbser.sys,,,0x20
 
 [DriverInstall.nt.AddReg]
 HKR,,DevLoader,,*ntkern
@@ -48,6 +33,7 @@ HKR,,NTMPDriver,,usbser.sys
 HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
 
 [DriverInstall.nt.Services]
+include=mdmcpq.inf
 AddService=usbser, 0x00000002, DriverService.nt
 
 [DriverService.nt]
@@ -62,12 +48,9 @@ ServiceBinary=%12%\usbser.sys
 ;------------------------------------------------------------------------------
 
 [DriverInstall.NTamd64]
-include=mdmcpq.inf
-CopyFiles=DriverCopyFiles.NTamd64
+include=mdmcpq.inf,usb,inf
+CopyFiles=FakeModemCopyFileSection
 AddReg=DriverInstall.NTamd64.AddReg
-
-[DriverCopyFiles.NTamd64]
-usbser.sys,,,0x20
 
 [DriverInstall.NTamd64.AddReg]
 HKR,,DevLoader,,*ntkern
@@ -92,9 +75,10 @@ ServiceBinary=%12%\usbser.sys
 [SourceDisksNames]
 [DeviceList]
 %DESCRIPTION%=DriverInstall, USB\VID_16D0&PID_081B
-
 [DeviceList.NTamd64]
-%DESCRIPTION%=DriverInstall, USB\VID_16D0&PID_081B;------------------------------------------------------------------------------
+%DESCRIPTION%=DriverInstall, USB\VID_16D0&PID_081B
+
+;------------------------------------------------------------------------------
 ;              String Definitions
 ;------------------------------------------------------------------------------
 [Strings]
