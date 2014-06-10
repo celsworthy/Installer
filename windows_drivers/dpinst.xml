@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <dpinst>
-<legacyMode>1</legacyMode>
+<legacyMode>0</legacyMode>
 <icon>RoboxIcon.ico</icon>
 <suppressWizard/>
 <quietInstallStrict/>
 <suppressAddRemovePrograms/>
+<enableNotListedLanguages/>
 
 <!-- The following search and subDirectory elements direct
      DPInst to search all subdirectories (under the DPInst working directory) to locate driver

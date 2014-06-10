@@ -32,9 +32,9 @@
                     <abortOnError>0</abortOnError>
                     <explanation>Installing windows drivers for Robox</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
-                    <programArguments></programArguments>
+                    <programArguments>/q /se</programArguments>
                     <progressText>Installing windows drivers for Robox</progressText>
-                    <showMessageOnError>0</showMessageOnError>
+                    <showMessageOnError>1</showMessageOnError>
                     <ruleList>
                         <platformTest>
                             <type>windows-x86</type>
@@ -45,9 +45,9 @@
                     <abortOnError>0</abortOnError>
                     <explanation>Installing windows drivers for Robox</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
-                    <programArguments></programArguments>
+                    <programArguments>/q /se</programArguments>
                     <progressText>Installing windows drivers for Robox</progressText>
-                    <showMessageOnError>0</showMessageOnError>
+                    <showMessageOnError>1</showMessageOnError>
                     <ruleList>
                         <platformTest>
                             <type>windows-x64</type>
