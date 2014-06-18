@@ -5,26 +5,18 @@ use strictures 1;
 sub _clean_eval { eval $_[0] }
 
 use Sub::Defer;
+use B 'perlstring';
 use Scalar::Util qw(weaken);
 use base qw(Exporter);
-use B ();
-BEGIN {
-  *_HAVE_PERLSTRING = defined &B::perlstring ? sub(){1} : sub(){0};
-}
 
-our $VERSION = '1.004006';
+our $VERSION = '1.004002';
 $VERSION = eval $VERSION;
 
 our @EXPORT = qw(quote_sub unquote_sub quoted_from_sub);
-our @EXPORT_OK = qw(quotify capture_unroll inlinify);
 
 our %QUOTED;
 
-sub quotify {
-  ! defined $_[0]     ? 'undef()'
-  : _HAVE_PERLSTRING  ? B::perlstring($_[0])
-  : qq["\Q$_[0]\E"];
-}
+our %WEAK_REFS;
 
 sub capture_unroll {
   my ($from, $captures, $indent) = @_;
@@ -33,7 +25,7 @@ sub capture_unroll {
     map {
       /^([\@\%\$])/
         or die "capture key should start with \@, \% or \$: $_";
-      (' ' x $indent).qq{my ${_} = ${1}{${from}->{${\quotify $_}}};\n};
+      (' ' x $indent).qq{my ${_} = ${1}{${from}->{${\perlstring $_}}};\n};
     } keys %$captures
   );
 }
@@ -44,22 +36,16 @@ sub inlinify {
   if ($code =~ s/^(\s*package\s+([a-zA-Z0-9:]+);)//) {
     $do .= $1;
   }
-  if ($code =~ s{(\A\s*|\A# BEGIN quote_sub PRELUDE\n.*?# END quote_sub PRELUDE\n\s*)(^\s*)(my\s*\(([^)]+)\)\s*=\s*\@_;)$}{
-    my ($pre, $indent, $assign, $code_args) = ($1, $2, $3, $4);
-    if ($code_args eq $args) {
-      $pre . $indent . ($local ? 'local ' : '').'@_ = ('.$args.");\n"
-      . $indent . $assign;
+  my $assign = '';
+  if (my ($code_args) = $code =~ /^\s*my\s*\(([^)]+)\)\s*=\s*\@_;$/s) {
+    if ($code_args ne $args) {
+      $assign = 'my ('.$code_args.') = ('.$args.'); ';
     }
-    else {
-      $pre . 'my ('.$code_args.') = ('.$args.'); ';
-    }
-  }mse) {
-    #done
   }
   elsif ($local || $args ne '@_') {
-    $do .= ($local ? 'local ' : '').'@_ = ('.$args.'); ';
+    $assign = ($local ? 'local ' : '').'@_ = ('.$args.'); ';
   }
-  $do.$code.' }';
+  $do.$assign.$code.' }';
 }
 
 sub quote_sub {
@@ -79,56 +65,40 @@ sub quote_sub {
   my $name = $_[0];
   my ($package, $hints, $bitmask, $hintshash) = (caller(0))[0,8,9,10];
   my $context
-    ="# BEGIN quote_sub PRELUDE\n"
-    ."package $package;\n"
+    ="package $package;\n"
     ."BEGIN {\n"
-    ."  \$^H = ".quotify($hints).";\n"
-    ."  \${^WARNING_BITS} = ".quotify($bitmask).";\n"
+    ."  \$^H = ".B::perlstring($hints).";\n"
+    ."  \${^WARNING_BITS} = ".B::perlstring($bitmask).";\n"
     ."  \%^H = (\n"
     . join('', map
-     "    ".quotify($_)." => ".quotify($hintshash->{$_}).",",
+     "    ".B::perlstring($_)." => ".B::perlstring($hintshash->{$_}).",",
       keys %$hintshash)
     ."  );\n"
-    ."}\n"
-    ."# END quote_sub PRELUDE\n";
+    ."}\n";
   $code = "$context$code";
   my $quoted_info;
-  my $unquoted;
   my $deferred = defer_sub +($options->{no_install} ? undef : $name) => sub {
-    $unquoted if 0;
     unquote_sub($quoted_info->[4]);
   };
-  $quoted_info = [ $name, $code, $captures, \$unquoted, $deferred ];
-  weaken($quoted_info->[3]);
-  weaken($quoted_info->[4]);
+  $quoted_info = [ $name, $code, $captures, undef, $deferred ];
   weaken($QUOTED{$deferred} = $quoted_info);
   return $deferred;
 }
 
 sub quoted_from_sub {
   my ($sub) = @_;
-  my $quoted_info = $QUOTED{$sub||''} or return undef;
-  my ($name, $code, $captured, $unquoted, $deferred) = @{$quoted_info};
-  $unquoted &&= $$unquoted;
-  if (($deferred && $deferred eq $sub)
-      || ($unquoted && $unquoted eq $sub)) {
-    return [ $name, $code, $captured, $unquoted, $deferred ];
-  }
-  return undef;
+  $QUOTED{$sub||''};
 }
 
 sub unquote_sub {
   my ($sub) = @_;
-  my $quoted = $QUOTED{$sub} or return undef;
-  my $unquoted = $quoted->[3];
-  unless ($unquoted && $$unquoted) {
-    my ($name, $code, $captures) = @$quoted;
+  unless ($QUOTED{$sub}[3]) {
+    my ($name, $code, $captures) = @{$QUOTED{$sub}};
 
     my $make_sub = "{\n";
 
     my %captures = $captures ? %$captures : ();
-    $captures{'$_UNQUOTED'} = \$unquoted;
-    $captures{'$_QUOTED'} = \$quoted;
+    $captures{'$_QUOTED'} = \$QUOTED{$sub};
     $make_sub .= capture_unroll("\$_[1]", \%captures, 2);
 
     $make_sub .= (
@@ -137,14 +107,12 @@ sub unquote_sub {
           # we're not letting it escape from this scope anyway so there's
           # nothing trying to share it
         ? "  no warnings 'closure';\n  sub ${name} {\n"
-        : "  \$\$_UNQUOTED = sub {\n"
+        : "  \$_QUOTED->[3] = sub {\n"
     );
-    $make_sub .= "  \$_QUOTED if 0;\n";
-    $make_sub .= "  \$_UNQUOTED if 0;\n";
     $make_sub .= $code;
     $make_sub .= "  }".($name ? '' : ';')."\n";
     if ($name) {
-      $make_sub .= "  \$\$_UNQUOTED = \\&${name}\n";
+      $make_sub .= "  \$_QUOTED->[3] = \\&${name}\n";
     }
     $make_sub .= "}\n1;\n";
     $ENV{SUB_QUOTE_DEBUG} && warn $make_sub;
@@ -160,17 +128,13 @@ sub unquote_sub {
       unless ($success) {
         die "Eval went very, very wrong:\n\n${make_sub}\n\n$e";
       }
-      weaken($QUOTED{$$unquoted} = $quoted);
     }
   }
-  $$unquoted;
+  $QUOTED{$sub}[3];
 }
 
 sub CLONE {
-  %QUOTED = map { defined $_ ? (
-    $_->[3] && ${$_->[3]} ? (${ $_->[3] } => $_) : (),
-    $_->[4] ? ($_->[4] => $_) : (),
-  ) : () } values %QUOTED;
+  %QUOTED = map { defined $_ ? ($_->[4] => $_) : () } values %QUOTED;
   weaken($_) for values %QUOTED;
 }
 
@@ -275,14 +239,6 @@ Takes a string of code, a string of arguments, a string of code which acts as a
 "prelude", and a B<Boolean> representing whether or not to localize the
 arguments.
 
-=head2 quotify
-
- my $quoted_value = quotify $value;
-
-Quotes a single (non-reference) scalar value for use in a code string.  Numbers
-aren't treated specially and will be quoted as strings, but undef will quoted as
-C<undef()>.
-
 =head2 capture_unroll
 
  my $prelude = capture_unroll '$captures', {
@@ -299,8 +255,8 @@ are ignored.  C<$indent> is the number of spaces to indent the result by.
 
 =head1 CAVEATS
 
-Much of this is just string-based code-generation, and as a result, a few
-caveats apply.
+Much of this is just string-based code-generation, and as a result, a few caveats
+apply.
 
 =head2 return
 

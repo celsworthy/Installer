@@ -207,7 +207,6 @@ sub make_fill {
             $h,
             $is_bridge,
             $layerm->id == 0,
-            undef,
             $layerm->object,
         );
         
@@ -231,7 +230,9 @@ sub make_fill {
         $collection->append(
             map Slic3r::ExtrusionPath->new(
                 polyline => $_,
-                role => ($is_bridge
+                role => ($surface->surface_type == S_TYPE_INTERNALBRIDGE
+                    ? EXTR_ROLE_INTERNALBRIDGE
+                    : $is_bridge
                         ? EXTR_ROLE_BRIDGE
                         : $is_solid
                             ? (($surface->surface_type == S_TYPE_TOP) ? EXTR_ROLE_TOPSOLIDFILL : EXTR_ROLE_SOLIDFILL)

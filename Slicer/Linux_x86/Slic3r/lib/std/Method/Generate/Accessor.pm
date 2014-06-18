@@ -3,7 +3,8 @@ package Method::Generate::Accessor;
 use strictures 1;
 use Moo::_Utils;
 use base qw(Moo::Object);
-use Sub::Quote qw(quote_sub quoted_from_sub quotify);
+use Sub::Quote;
+use B 'perlstring';
 use Scalar::Util 'blessed';
 use overload ();
 use Module::Runtime qw(use_module);
@@ -21,8 +22,6 @@ BEGIN {
   ;
 }
 
-my $module_name_only = qr/\A$Module::Runtime::module_name_rx\z/;
-
 sub _SIGDIE
 {
   our ($CurrentAttribute, $OrigSigDie);
@@ -39,8 +38,7 @@ sub _SIGDIE
 sub _die_overwrite
 {
   my ($pkg, $method, $type) = @_;
-  die "You cannot overwrite a locally defined method ($method) with "
-    . ( $type || 'an accessor' );
+  die "You cannot overwrite a locally defined method ($method) with @{[ $type || 'an accessor' ]}";
 }
 
 sub generate_method {
@@ -55,7 +53,7 @@ sub generate_method {
   } elsif ($is eq 'lazy') {
     $spec->{reader} = $name unless exists $spec->{reader};
     $spec->{lazy} = 1;
-    $spec->{builder} ||= '_build_'.$name unless exists $spec->{default};
+    $spec->{builder} ||= '_build_'.$name unless $spec->{default};
   } elsif ($is eq 'rwp') {
     $spec->{reader} = $name unless exists $spec->{reader};
     $spec->{writer} = "_set_${name}" unless exists $spec->{writer};
@@ -71,7 +69,7 @@ sub generate_method {
     }
     $spec->{builder} = '_build_'.$name if ($spec->{builder}||0) eq 1;
     die "Invalid builder for $into->$name - not a valid method name"
-      if $spec->{builder} !~ $module_name_only;
+      if $spec->{builder} !~ /\A[A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*\z/;
   }
   if (($spec->{predicate}||0) eq 1) {
     $spec->{predicate} = $name =~ /^_/ ? "_has${name}" : "has_${name}";
@@ -89,9 +87,8 @@ sub generate_method {
   }
 
   if (exists $spec->{default}) {
-    if (ref $spec->{default}) {
-      $self->_validate_codulatable('default', $spec->{default}, "$into->$name",
-        'or a non-ref');
+    if (!defined $spec->{default} || ref $spec->{default}) {
+      $self->_validate_codulatable('default', $spec->{default}, "$into->$name", 'or a non-ref');
     }
   }
 
@@ -218,9 +215,9 @@ sub generate_method {
 
 
     $methods{$asserter} =
-      quote_sub "${into}::${asserter}" =>
-        $self->_generate_asserter($name, $spec),
-        delete $self->{captures};
+      quote_sub "${into}::${asserter}" => $self->_generate_asserter($name, $spec),
+        delete $self->{captures}
+      ;
   }
   \%methods;
 }
@@ -235,7 +232,7 @@ sub is_simple_attribute {
 
 sub is_simple_get {
   my ($self, $name, $spec) = @_;
-  !($spec->{lazy} and (exists $spec->{default} or $spec->{builder}));
+  !($spec->{lazy} and ($spec->{default} or $spec->{builder}));
 }
 
 sub is_simple_set {
@@ -270,12 +267,12 @@ sub generate_simple_has {
 
 sub _generate_simple_has {
   my ($self, $me, $name) = @_;
-  "exists ${me}->{${\quotify $name}}";
+  "exists ${me}->{${\perlstring $name}}";
 }
 
 sub _generate_simple_clear {
   my ($self, $me, $name) = @_;
-  "    delete ${me}->{${\quotify $name}}\n"
+  "    delete ${me}->{${\perlstring $name}}\n"
 }
 
 sub generate_get_default {
@@ -303,13 +300,12 @@ sub _generate_use_default {
   }
   $test." ? \n"
   .$self->_generate_simple_get($me, $name, $spec)."\n:"
-  .($spec->{isa} ?
-       "    do {\n      my \$value = ".$get_value.";\n"
+  .($spec->{isa}
+    ? "    do {\n      my \$value = ".$get_value.";\n"
       ."      ".$self->_generate_isa_check($name, '$value', $spec->{isa}).";\n"
       ."      ".$self->_generate_simple_set($me, $name, $spec, '$value')."\n"
       ."    }\n"
-    : '    ('.$self->_generate_simple_set($me, $name, $spec, $get_value).")\n"
-  );
+    : '    ('.$self->_generate_simple_set($me, $name, $spec, $get_value).")\n");
 }
 
 sub _generate_get_default {
@@ -317,7 +313,7 @@ sub _generate_get_default {
   if (exists $spec->{default}) {
     ref $spec->{default}
       ? $self->_generate_call_code($name, 'default', $me, $spec->{default})
-    : quotify $spec->{default};
+      : perlstring $spec->{default};
   }
   else {
     "${me}->${\$spec->{builder}}"
@@ -326,14 +322,12 @@ sub _generate_get_default {
 
 sub generate_simple_get {
   my ($self, @args) = @_;
-  $self->{captures} = {};
-  my $code = $self->_generate_simple_get(@args);
-  ($code, delete $self->{captures});
+  $self->_generate_simple_get(@args);
 }
 
 sub _generate_simple_get {
   my ($self, $me, $name) = @_;
-  my $name_str = quotify $name;
+  my $name_str = perlstring $name;
   "${me}->{${name_str}}";
 }
 
@@ -381,8 +375,8 @@ sub generate_coerce {
 
 sub _attr_desc {
   my ($name, $init_arg) = @_;
-  return quotify($name) if !defined($init_arg) or $init_arg eq $name;
-  return quotify($name).' (constructor argument: '.quotify($init_arg).')';
+  return perlstring($name) if !defined($init_arg) or $init_arg eq $name;
+  return perlstring($name).' (constructor argument: '.perlstring($init_arg).')';
 }
 
 sub _generate_coerce {
@@ -418,9 +412,9 @@ sub _generate_die_prefix {
   my ($self, $name, $prefix, $arg, $inside) = @_;
   "do {\n"
   .'  local $Method::Generate::Accessor::CurrentAttribute = {'
-  .'    init_arg => '.(defined $arg ? quotify($arg) : 'undef') . ",\n"
-  .'    name     => '.quotify($name).",\n"
-  .'    step     => '.quotify($prefix).",\n"
+  .'    init_arg => '.(defined $arg ? B::perlstring($arg) : 'undef') . ",\n"
+  .'    name     => '.B::perlstring($name).",\n"
+  .'    step     => '.B::perlstring($prefix).",\n"
   ."  };\n"
   .'  local $Method::Generate::Accessor::OrigSigDie = $SIG{__DIE__};'."\n"
   .'  local $SIG{__DIE__} = \&Method::Generate::Accessor::_SIGDIE;'."\n"
@@ -451,8 +445,9 @@ sub _generate_call_code {
     if (my $captures = $quoted->[2]) {
       my $cap_name = qq{\$${type}_captures_for_}.$self->_sanitize_name($name);
       $self->{captures}->{$cap_name} = \$captures;
-      Sub::Quote::inlinify($code, $values,
-        Sub::Quote::capture_unroll($cap_name, $captures, 6), $local);
+      Sub::Quote::inlinify(
+        $code, $values, Sub::Quote::capture_unroll($cap_name, $captures, 6), $local
+      );
     } else {
       Sub::Quote::inlinify($code, $values, undef, $local);
     }
@@ -485,8 +480,7 @@ sub _generate_populate_set {
                       );
     my $get_value =
       defined($spec->{init_arg})
-        ? "(\n${get_indent}  ${test}\n"
-            ."${get_indent}   ? ${source}\n${get_indent}   : "
+        ? "(\n${get_indent}  ${test}\n${get_indent}   ? ${source}\n${get_indent}   : "
             .$get_default
             ."\n${get_indent})"
         : $get_default;
@@ -545,13 +539,13 @@ sub _generate_populate_set {
 
 sub _generate_core_set {
   my ($self, $me, $name, $spec, $value) = @_;
-  my $name_str = quotify $name;
+  my $name_str = perlstring $name;
   "${me}->{${name_str}} = ${value}";
 }
 
 sub _generate_simple_set {
   my ($self, $me, $name, $spec, $value) = @_;
-  my $name_str = quotify $name;
+  my $name_str = perlstring $name;
   my $simple = $self->_generate_core_set($me, $name, $spec, $value);
 
   if ($spec->{weak_ref}) {
@@ -561,11 +555,11 @@ sub _generate_simple_set {
     # Perl < 5.8.3 can't weaken refs to readonly vars
     # (e.g. string constants). This *can* be solved by:
     #
-    # &Internals::SvREADONLY($foo, 0);
-    # Scalar::Util::weaken($foo);
-    # &Internals::SvREADONLY($foo, 1);
+    #Internals::SetReadWrite($foo);
+    #Scalar::Util::weaken ($foo);
+    #Internals::SetReadOnly($foo);
     #
-    # but requires Internal functions and is just too damn crazy
+    # but requires XS and is just too damn crazy
     # so simply throw a better exception
     my $weak_simple = "do { Scalar::Util::weaken(${simple}); no warnings 'void'; $get }";
     Moo::_Utils::lt_5_8_3() ? <<"EOC" : $weak_simple;
@@ -609,7 +603,7 @@ sub _generate_delegation {
   my ($self, $asserter, $target, $args) = @_;
   my $arg_string = do {
     if (@$args) {
-      # I could, I reckon, linearise out non-refs here using quotify
+      # I could, I reckon, linearise out non-refs here using perlstring
       # plus something to check for numbers but I'm unsure if it's worth it
       $self->{captures}{'@curries'} = $args;
       '@curries, @_';

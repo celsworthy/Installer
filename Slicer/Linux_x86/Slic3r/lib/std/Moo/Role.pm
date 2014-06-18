@@ -6,21 +6,15 @@ use Role::Tiny ();
 use base qw(Role::Tiny);
 use Import::Into;
 
-our $VERSION = '1.004006';
+our $VERSION = '1.004002';
 $VERSION = eval $VERSION;
 
 require Moo::sification;
 
-BEGIN {
-    *INFO = \%Role::Tiny::INFO;
-    *APPLIED_TO = \%Role::Tiny::APPLIED_TO;
-    *ON_ROLE_CREATE = \@Role::Tiny::ON_ROLE_CREATE;
-}
+BEGIN { *INFO = \%Role::Tiny::INFO }
 
 our %INFO;
-our %APPLIED_TO;
 our %APPLY_DEFAULTS;
-our @ON_ROLE_CREATE;
 
 sub _install_tracked {
   my ($target, $name, $code) = @_;
@@ -74,7 +68,7 @@ sub import {
     $me->apply_roles_to_package($target, @_);
     $me->_maybe_reset_handlemoose($target);
   };
-  return if $me->is_role($target); # already exported into this package
+  return if $INFO{$target}{is_role}; # already exported into this package
   $INFO{$target}{is_role} = 1;
   *{_getglob("${target}::meta")} = $me->can('meta');
   # grab all *non-constant* (stash slot is not a scalarref) subs present
@@ -84,18 +78,12 @@ sub import {
   my @not_methods = ('', map { *$_{CODE}||() } grep !ref($_), values %$stash);
   @{$INFO{$target}{not_methods}={}}{@not_methods} = @not_methods;
   # a role does itself
-  $APPLIED_TO{$target} = { $target => undef };
+  $Role::Tiny::APPLIED_TO{$target} = { $target => undef };
 
-  $_->($target)
-    for @ON_ROLE_CREATE;
-}
-
-push @ON_ROLE_CREATE, sub {
-  my $target = shift;
   if ($INC{'Moo/HandleMoose.pm'}) {
     Moo::HandleMoose::inject_fake_metaclass_for($target);
   }
-};
+}
 
 # duplicate from Moo::Object
 sub meta {
@@ -118,26 +106,19 @@ sub _maybe_reset_handlemoose {
 
 sub methods_provided_by {
   my ($self, $role) = @_;
-  _load_module($role);
   $self->_inhale_if_moose($role);
-  die "${role} is not a Moo::Role" unless $self->is_role($role);
+  die "${role} is not a Moo::Role" unless $INFO{$role};
   return $self->SUPER::methods_provided_by($role);
-}
-
-sub is_role {
-  my ($self, $role) = @_;
-  $self->_inhale_if_moose($role);
-  $self->SUPER::is_role($role);
 }
 
 sub _inhale_if_moose {
   my ($self, $role) = @_;
+  _load_module($role);
   my $meta;
-  if (!$self->SUPER::is_role($role)
+  if (!$INFO{$role}
       and (
         $INC{"Moose.pm"}
         and $meta = Class::MOP::class_of($role)
-        and ref $meta ne 'Moo::HandleMoose::FakeMetaClass'
         and $meta->isa('Moose::Meta::Role')
       )
       or (
@@ -154,7 +135,7 @@ sub _inhale_if_moose {
         grep !$meta->get_method($_)->isa('Class::MOP::Method::Meta'),
           $meta->get_method_list
     };
-    $APPLIED_TO{$role} = {
+    $Role::Tiny::APPLIED_TO{$role} = {
       map +($_->name => 1), $meta->calculate_all_roles
     };
     $INFO{$role}{requires} = [ $meta->get_required_method_list ];
@@ -254,18 +235,16 @@ sub role_application_steps {
 sub apply_roles_to_package {
   my ($me, $to, @roles) = @_;
   foreach my $role (@roles) {
-    _load_module($role);
     $me->_inhale_if_moose($role);
-    die "${role} is not a Moo::Role" unless $me->is_role($role);
+    die "${role} is not a Moo::Role" unless $INFO{$role};
   }
   $me->SUPER::apply_roles_to_package($to, @roles);
 }
 
 sub apply_single_role_to_package {
   my ($me, $to, $role) = @_;
-  _load_module($role);
   $me->_inhale_if_moose($role);
-  die "${role} is not a Moo::Role" unless $me->is_role($role);
+  die "${role} is not a Moo::Role" unless $INFO{$role};
   $me->SUPER::apply_single_role_to_package($to, $role);
 }
 
@@ -277,7 +256,6 @@ sub create_class_with_roles {
   return $new_name if $Role::Tiny::COMPOSED{class}{$new_name};
 
   foreach my $role (@roles) {
-      _load_module($role);
       $me->_inhale_if_moose($role);
   }
 
@@ -287,16 +265,17 @@ sub create_class_with_roles {
       and ref($m) ne 'Method::Generate::Accessor') {
     # old fashioned way time.
     *{_getglob("${new_name}::ISA")} = [ $superclass ];
-    $Moo::MAKERS{$new_name} = {is_class => 1};
     $me->apply_roles_to_package($new_name, @roles);
     _set_loaded($new_name, (caller)[1]);
     return $new_name;
   }
 
+  require Sub::Quote;
+
   $me->SUPER::create_class_with_roles($superclass, @roles);
 
   foreach my $role (@roles) {
-    die "${role} is not a Moo::Role" unless $me->is_role($role);
+    die "${role} is not a Role::Tiny" unless $INFO{$role};
   }
 
   $Moo::MAKERS{$new_name} = {is_class => 1};

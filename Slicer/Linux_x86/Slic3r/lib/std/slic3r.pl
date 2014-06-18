@@ -55,6 +55,9 @@ my %cli_options = ();
     GetOptions(%options) or usage(1);
 }
 
+# process command line options
+my $cli_config = Slic3r::Config->new_from_cli(%cli_options);
+
 # load configuration files
 my @external_configs = ();
 if ($opt{load}) {
@@ -70,21 +73,18 @@ if ($opt{load}) {
     }
 }
 
-# process command line options
-my $cli_config = Slic3r::Config->new;
-foreach my $c (@external_configs, Slic3r::Config->new_from_cli(%cli_options)) {
+# merge configuration
+my $config = Slic3r::Config->new_from_defaults;
+foreach my $c (@external_configs, $cli_config) {
     $c->normalize;  # expand shortcuts before applying, otherwise destination values would be already filled with defaults
-    $cli_config->apply($c);
+    $config->apply($c);
 }
 
 # save configuration
 if ($opt{save}) {
-    $cli_config->save($opt{save});
+    $config->validate;
+    $config->save($opt{save});
 }
-
-# apply command line config on top of default config
-my $config = Slic3r::Config->new_from_defaults;
-$config->apply($cli_config);
 
 # launch GUI
 my $gui;
@@ -174,6 +174,7 @@ if (@ARGV) {  # slicing from command line
         
         $sprint->apply_config($config);
         $sprint->set_model($model);
+        undef $model;  # free memory
         
         if ($opt{export_svg}) {
             $sprint->export_svg;
@@ -295,9 +296,6 @@ $j
                         (default: $config->{top_solid_infill_speed})
     --support-material-speed
                         Speed of support material print moves in mm/s (default: $config->{support_material_speed})
-    --support-material-interface-speed
-                        Speed of support material interface print moves in mm/s or % over support material
-                        speed (default: $config->{support_material_interface_speed})
     --bridge-speed      Speed of bridge print moves in mm/s (default: $config->{bridge_speed})
     --gap-fill-speed    Speed of gap fill print moves in mm/s (default: $config->{gap_fill_speed})
     --first-layer-speed Speed of print moves for bottom layer, expressed either as an absolute
@@ -344,7 +342,7 @@ $j
                         home X axis [G28 X], disable motors [M84]).
     --layer-gcode       Load layer-change G-code from the supplied file (default: nothing).
     --toolchange-gcode  Load tool-change G-code from the supplied file (default: nothing).
-    --seam-position     Position of loop starting points (random/nearest/aligned, default: $config->{seam_position}).
+    --randomize-start   Randomize starting point across layers (default: yes)
     --external-perimeters-first Reverse perimeter order. (default: no)
     --spiral-vase       Experimental option to raise Z gradually when printing single-walled vases
                         (default: no)
@@ -361,6 +359,10 @@ $j
    Quality options (slower slicing):
     --extra-perimeters  Add more perimeters when needed (default: yes)
     --avoid-crossing-perimeters Optimize travel moves so that no perimeters are crossed (default: no)
+    --start-perimeters-at-concave-points
+                        Try to start perimeters at concave points if any (default: no)
+    --start-perimeters-at-non-overhang
+                        Try to start perimeters at non-overhang points if any (default: no)
     --thin-walls        Detect single-width walls (default: yes)
     --overhangs         Experimental option to use bridge flow, speed and fan for overhangs
                         (default: yes)

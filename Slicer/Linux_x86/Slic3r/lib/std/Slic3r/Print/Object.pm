@@ -10,7 +10,7 @@ use Slic3r::Print::State ':steps';
 use Slic3r::Surface ':types';
 
 has 'print'             => (is => 'ro', weak_ref => 1, required => 1);
-has 'model_object'      => (is => 'ro', required => 1);  # caller is responsible for holding the Model object
+has 'model_object'      => (is => 'ro', required => 1);
 has 'region_volumes'    => (is => 'rw', default => sub { [] });  # by region_id
 has 'copies'            => (is => 'ro');  # Slic3r::Point objects in scaled G-code coordinates
 has 'config'            => (is => 'ro', default => sub { Slic3r::Config::PrintObject->new });
@@ -308,10 +308,11 @@ sub slice {
     }
     
     # remove empty layers from bottom
-    while (@{$self->layers} && !@{$self->layers->[0]->slices}) {
-        shift @{$self->layers};
-        for (my $i = 0; $i <= $#{$self->layers}; $i++) {
-            $self->layers->[$i]->id( $self->layers->[$i]->id-1 );
+    my $first_object_layer_id = $self->config->raft_layers;
+    while (@{$self->layers} && !@{$self->layers->[$first_object_layer_id]->slices}) {
+        splice @{$self->layers}, $first_object_layer_id, 1;
+        for (my $i = $first_object_layer_id; $i <= $#{$self->layers}; $i++) {
+            $self->layers->[$i]->id($i);
         }
     }
     
@@ -964,9 +965,6 @@ sub combine_infill {
 
 sub generate_support_material {
     my $self = shift;
-    
-    # TODO: make this method idempotent by removing all support layers
-    # before checking whether we need to generate support or not
     return unless ($self->config->support_material || $self->config->raft_layers > 0)
         && scalar(@{$self->layers}) >= 2;
     

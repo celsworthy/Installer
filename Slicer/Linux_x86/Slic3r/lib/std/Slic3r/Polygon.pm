@@ -15,11 +15,6 @@ sub wkt {
     return sprintf "POLYGON((%s))", join ',', map "$_->[0] $_->[1]", @$self;
 }
 
-sub dump_perl {
-    my $self = shift;
-    return sprintf "[%s]", join ',', map "[$_->[0],$_->[1]]", @$self;
-}
-
 sub grow {
     my $self = shift;
     return $self->split_at_first_point->grow(@_);
@@ -45,52 +40,52 @@ sub subdivide {
     return Slic3r::Polygon->new(@new_points);
 }
 
+# for cw polygons this will return convex points!
 sub concave_points {
-    my ($self, $angle) = @_;
-    
-    $angle //= PI;
-    
-    # input angle threshold is checked on the internal side of the polygon
-    # but angle3points measures CCW angle, so we calculate the complementary angle
-    my $ccw_angle = 2*PI-$angle;
+    my $self = shift;
     
     my @points = @$self;
     my @points_pp = @{$self->pp};
-    
-    my @concave = ();
-    for my $i (-1 .. ($#points-1)) {
-        next if $points[$i-1]->coincides_with($points[$i]);
-        # angle is measured in ccw orientation
-        my $vertex_angle = Slic3r::Geometry::angle3points(@points_pp[$i, $i-1, $i+1]);
-        if ($vertex_angle <= $ccw_angle) {
-            push @concave, $points[$i];
-        }
-    }
-    return [@concave];
+    return map $points[$_],
+        grep Slic3r::Geometry::angle3points(@points_pp[$_, $_-1, $_+1]) < PI - epsilon,
+        -1 .. ($#points-1);
 }
 
-sub convex_points {
-    my ($self, $angle) = @_;
+sub clip_as_polyline {
+    my ($self, $polygons) = @_;
     
-    $angle //= PI;
+    my $self_pl = $self->split_at_first_point;
     
-    # input angle threshold is checked on the internal side of the polygon
-    # but angle3points measures CCW angle, so we calculate the complementary angle
-    my $ccw_angle = 2*PI-$angle;
+    # Clipper will remove a polyline segment if first point coincides with last one.
+    # Until that bug is not fixed upstream, we move one of those points slightly.
+    $self_pl->[0]->translate(1, 0);
     
-    my @points = @$self;
-    my @points_pp = @{$self->pp};
-    
-    my @convex = ();
-    for my $i (-1 .. ($#points-1)) {
-        next if $points[$i-1]->coincides_with($points[$i]);
-        # angle is measured in ccw orientation
-        my $vertex_angle = Slic3r::Geometry::angle3points(@points_pp[$i, $i-1, $i+1]);
-        if ($vertex_angle >= $ccw_angle) {
-            push @convex, $points[$i];
+    my @polylines = @{intersection_pl([$self_pl], $polygons)};
+    if (@polylines == 1) {
+        if ($polylines[0][0]->coincides_with($self_pl->[0])) {
+            # compensate the above workaround for Clipper bug
+            $polylines[0][0]->translate(-1, 0);
+        }
+    } elsif (@polylines == 2) {
+        # If the split_at_first_point() call above happens to split the polygon inside the clipping area
+        # we would get two consecutive polylines instead of a single one, so we use this ugly hack to 
+        # recombine them back into a single one in order to trigger the @edges == 2 logic below.
+        # This needs to be replaced with something way better.
+        if ($polylines[0][-1]->coincides_with($self_pl->[-1]) && $polylines[-1][0]->coincides_with($self_pl->[0])) {
+            my $p = $polylines[0]->clone;
+            $p->pop_back;
+            $p->append(@{$polylines[-1]});
+            return [$p];
+        }
+        if ($polylines[0][0]->coincides_with($self_pl->[0]) && $polylines[-1][-1]->coincides_with($self_pl->[-1])) {
+            my $p = $polylines[-1]->clone;
+            $p->pop_back;
+            $p->append(@{$polylines[0]});
+            return [$p];
         }
     }
-    return [@convex];
+    
+    return [ @polylines ];
 }
 
 1;

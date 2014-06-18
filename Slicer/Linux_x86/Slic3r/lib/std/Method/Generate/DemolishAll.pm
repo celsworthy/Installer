@@ -2,8 +2,9 @@ package Method::Generate::DemolishAll;
 
 use strictures 1;
 use base qw(Moo::Object);
-use Sub::Quote qw(quote_sub quotify);
+use Sub::Quote;
 use Moo::_Utils;
+use B qw(perlstring);
 
 sub generate_method {
   my ($self, $into) = @_;
@@ -23,7 +24,7 @@ sub generate_method {
       };
       $@;
     };
-
+  
     no warnings 'misc';
     die $e if $e; # rethrow
   !;
@@ -40,7 +41,7 @@ sub demolishall_body_for {
 
 sub _handle_subdemolish {
   my ($self, $into) = @_;
-  '    if (ref($_[0]) ne '.quotify($into).') {'."\n".
+  '    if (ref($_[0]) ne '.perlstring($into).') {'."\n".
   '      return shift->Moo::Object::DEMOLISHALL(@_)'.";\n".
   '    }'."\n";
 }

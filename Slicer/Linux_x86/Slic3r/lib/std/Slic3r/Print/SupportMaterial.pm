@@ -70,20 +70,14 @@ sub generate {
     $self->clip_with_shape($base, $shape) if @$shape;
     
     # Install support layers into object.
-    for my $i (0 .. $#$support_z) {
-        push @{$object->support_layers}, Slic3r::Layer::Support->new(
-            object  => $object,
-            id      => $i,
-            height  => ($i == 0) ? $support_z->[$i] : ($support_z->[$i] - $support_z->[$i-1]),
-            print_z => $support_z->[$i],
-            slice_z => -1,
-            slices  => [],
-        );
-        if ($i >= 1) {
-            $object->support_layers->[-2]->upper_layer($object->support_layers->[-1]);
-            $object->support_layers->[-1]->lower_layer($object->support_layers->[-2]);
-        }
-    }
+    push @{$object->support_layers}, map Slic3r::Layer::Support->new(
+        object  => $object,
+        id      => $_,
+        height  => ($_ == 0) ? $support_z->[$_] : ($support_z->[$_] - $support_z->[$_-1]),
+        print_z => $support_z->[$_],
+        slice_z => -1,
+        slices  => [],
+    ), 0 .. $#$support_z;
     
     # Generate the actual toolpaths and save them into each layer.
     $self->generate_toolpaths($object, $overhang, $contact, $interface, $base);
@@ -121,8 +115,7 @@ sub contact_area {
         if ($layer_id == 0) {
             # this is the first object layer, so we're here just to get the object
             # footprint for the raft
-            # we only consider contours and discard holes to get a more continuous raft
-            push @overhang, map $_->clone, map $_->contour, @{$layer->slices};
+            push @overhang, map $_->clone, map @$_, @{$layer->slices};
             push @contact, @{offset(\@overhang, scale +MARGIN)};
         } else {
             my $lower_layer = $object->layers->[$layer_id-1];
@@ -133,7 +126,7 @@ sub contact_area {
                 # If a threshold angle was specified, use a different logic for detecting overhangs.
                 if (defined $threshold_rad
                     || $layer_id < $self->object_config->support_material_enforce_layers
-                    || ($self->object_config->raft_layers > 0 && $layer_id == 0)) {
+                    || $self->object_config->raft_layers > 0) {
                     my $d = defined $threshold_rad
                         ? scale $lower_layer->height * ((cos $threshold_rad) / (sin $threshold_rad))
                         : 0;
@@ -609,7 +602,7 @@ sub generate_toolpaths {
             my $mm3_per_mm = $interface_flow->mm3_per_mm($layer->height);
             @loops = map Slic3r::ExtrusionPath->new(
                 polyline    => $_,
-                role        => EXTR_ROLE_SUPPORTMATERIAL_INTERFACE,
+                role        => EXTR_ROLE_SUPPORTMATERIAL,
                 mm3_per_mm  => $mm3_per_mm,
                 width       => $interface_flow->width,
                 height      => $layer->height,
@@ -657,7 +650,7 @@ sub generate_toolpaths {
                 
                 push @paths, map Slic3r::ExtrusionPath->new(
                     polyline    => Slic3r::Polyline->new(@$_),
-                    role        => EXTR_ROLE_SUPPORTMATERIAL_INTERFACE,
+                    role        => EXTR_ROLE_SUPPORTMATERIAL,
                     mm3_per_mm  => $mm3_per_mm,
                     width       => $params->{flow}->width,
                     height      => $layer->height,
