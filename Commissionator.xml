@@ -1,12 +1,11 @@
 <project>
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
-    <version>0.01.04</version>
+    <version></version>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
-    <leftImage>InstallerLeftImage.png</leftImage>
-    <logoImage>RoboxIcon48x48.png</logoImage>
-    <splashImage>CommissionatorSplash.png</splashImage>
+    <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
+    <splashImage>Splash - Commissionator 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
     <componentList>
         <component>
@@ -18,7 +17,7 @@
             <folderList>
                 <folder>
                     <description>Windows Drivers</description>
-                    <destination>${installdir}</destination>
+                    <destination>${commondir}</destination>
                     <name>windows_drivers</name>
                     <platforms>windows</platforms>
                     <distributionFileList>
@@ -32,7 +31,7 @@
                 <runProgram>
                     <abortOnError>0</abortOnError>
                     <explanation>Installing windows drivers for Robox</explanation>
-                    <program>${installdir}\windows_drivers\dpinst_x86.exe</program>
+                    <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
                     <programArguments></programArguments>
                     <progressText>Installing windows drivers for Robox</progressText>
                     <showMessageOnError>0</showMessageOnError>
@@ -45,7 +44,7 @@
                 <runProgram>
                     <abortOnError>0</abortOnError>
                     <explanation>Installing windows drivers for Robox</explanation>
-                    <program>${installdir}\windows_drivers\dpinst_x64.exe</program>
+                    <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
                     <programArguments></programArguments>
                     <progressText>Installing windows drivers for Robox</progressText>
                     <showMessageOnError>0</showMessageOnError>
@@ -63,69 +62,97 @@
             <canBeEdited>1</canBeEdited>
             <selected>1</selected>
             <show>1</show>
+            <desktopShortcutList>
+                <shortcut>
+                    <comment>Commissionator</comment>
+                    <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
+                    <icon>${automakerdir}/AutomakerIcon.ico</icon>
+                    <name>Commissionator</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                    <ruleList>
+                        <isTrue>
+                            <value>${install_desktop_shortcut}</value>
+                        </isTrue>
+                    </ruleList>
+                </shortcut>
+            </desktopShortcutList>
             <folderList>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfiles</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <allowWildcards>1</allowWildcards>
-                            <origin>robox_r*.bin</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>Commissionator.configFile.xml</origin>
                         </distributionFile>
-                        <distributionDirectory>
-                            <origin>Macros</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
-                            <origin>Filaments</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
-                            <origin>PrintProfiles</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
-                            <origin>Heads</origin>
-                        </distributionDirectory>
                         <distributionFile>
-                            <origin>Commissionator.jar</origin>
+                            <origin>../JarArtifacts/Commissionator.jar</origin>
                         </distributionFile>
-                        <distributionDirectory>
-                            <origin>Commissionator/Macros</origin>
-                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
-                    <description>Program Files</description>
-                    <destination>${installdir}</destination>
-                    <name>programfileslinux</name>
+                    <description>Program Files x86</description>
+                    <destination>${automakerdir}</destination>
+                    <name>programfileslinuxx86</name>
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
+                            <origin>Commissionator-update-linux.run</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutomakerIcon.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutomakerUninstallIcon.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
                             <origin>librxtxSerial.so</origin>
                         </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files x64</description>
+                    <destination>${automakerdir}</destination>
+                    <name>programfileslinuxx64</name>
+                    <platforms>linux-x64</platforms>
+                    <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/LeapPython.so</origin>
+                            <origin>Commissionator-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeap.so</origin>
+                            <origin>AutomakerIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeapCSharp.so</origin>
+                            <origin>AutomakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Linux_1_0_9_8391/LeapSDK/lib/x64/libLeapJava.so</origin>
+                            <origin>librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
                     <distributionFileList>
+                        <distributionFile>
+                            <origin>Commissionator-update-windows.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutomakerIcon.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutomakerUninstallIcon.ico</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>rxtxSerial.dll</origin>
                         </distributionFile>
@@ -133,148 +160,242 @@
                             <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator-update-windows.exe</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>CommissionatorIcon.ico</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>CommissionatorUninstallIcon.ico</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>jRegistryKey.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapJava.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leap.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/LeapCSharp.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/x86/Leapd.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET4.0.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/LeapDeveloperKit/LeapDeveloperKit_Windows_1_0_9_8391/LeapSDK/lib/LeapCSharp.NET3.5.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>${installdir}</destination>
+                    <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/librxtxSerial.jnilib</origin>
+                            <origin>Commissionator-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/Commissionator-update-osx.app</origin>
+                            <origin>AutomakerIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/libLeap.dylib</origin>
+                            <origin>AutomakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/libLeapCSharp.dylib</origin>
+                            <origin>AutomakerIcon_256x256.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/libLeapJava.dylib</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon.icns</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorUninstallIcon.icns</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon_256x256.png</origin>
-                        </distributionFile>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Binary files</description>
-                    <destination>${installdir}/bin</destination>
-                    <name>bin</name>
-                    <platforms>all</platforms>
-                    <actionList>
-                        <changePermissions files="${installdir}/bin/*" permissions="0755"/>
-                    </actionList>
-                    <distributionFileList>
-                        <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.exe</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>D:/Development/RoboxResources/PrintSoftware/installer/bin/RoboxDetector.mac.sh</origin>
+                            <origin>librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
             </folderList>
             <initializationActionList>
-                <setInstallerVariable>
-                    <name>java_launcher_jar</name>
-                    <value>Commissionator.jar</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
-                    <ruleList>
-                        <platformTest>
-                            <negate>1</negate>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${installdir}/CommissionatorIcon_256x256.png -Xdock:name="Commissionator"</value>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_mainClass</name>
-                    <value>celtech.roboxconfigurator.RoboxCommissionator</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_binary_name</name>
-                    <value>${project.shortName}.${platform_exec_suffix}</value>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_startmenu_shortcut_name</name>
-                    <value>${project.shortName}</value>
-                </setInstallerVariable>
             </initializationActionList>
+            <startMenuShortcutList>
+                <startMenuShortcut>
+                    <comment>Commissionator</comment>
+                    <name>Commissionator</name>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsPath></windowsPath>
+                    <ruleList>
+                        <isTrue>
+                            <value>${install_menu_shortcut}</value>
+                        </isTrue>
+                    </ruleList>
+                </startMenuShortcut>
+            </startMenuShortcutList>
         </component>
         <include>
             <file>java.xml</file>
         </include>
+        <component>
+            <name>Common</name>
+            <description>Common files</description>
+            <canBeEdited>0</canBeEdited>
+            <detailedDescription>Common files required by all CEL applications</detailedDescription>
+            <selected>1</selected>
+            <show>0</show>
+            <folderList>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${commondir}</destination>
+                    <name>common</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <allowWildcards>1</allowWildcards>
+                            <origin>robox_r*.bin</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>Macros</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>PrintProfiles</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Heads</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Filaments</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files x86</description>
+                    <destination>${commondir}</destination>
+                    <name>programfileslinuxx86</name>
+                    <platforms>linux</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x86/Slic3r</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files x64</description>
+                    <destination>${commondir}</destination>
+                    <name>programfileslinuxx64</name>
+                    <platforms>linux-x64</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x64/Slic3r</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${commondir}</destination>
+                    <name>programfileswindows</name>
+                    <platforms>windows</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>Slicer/Windows/Slic3r</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${commondir}</destination>
+                    <name>programfilesosx</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>Slicer/Mac/Slic3r.app</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Binary files - mac</description>
+                    <destination>${commondir}/bin</destination>
+                    <name>bin_mac</name>
+                    <platforms>osx</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                    </actionList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>bin/RoboxDetector.mac.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Binary files - windows</description>
+                    <destination>${commondir}/bin</destination>
+                    <name>bin_windows</name>
+                    <platforms>windows</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                    </actionList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>bin/RoboxDetector.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcp100.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>bin/msvcr100.dll</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Binary files - linux</description>
+                    <destination>${commondir}/bin</destination>
+                    <name>bin_linux</name>
+                    <platforms>linux</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                    </actionList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>bin/RoboxDetector.linux.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Binary files - linux x64</description>
+                    <destination>${commondir}/bin</destination>
+                    <name>bin_linux_x64</name>
+                    <platforms>linux-x64</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                    </actionList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>bin/RoboxDetector.linux.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+        </component>
     </componentList>
     <postBuildActionList>
+        <runProgram>
+            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool</program>
+            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
         <runProgram>
             <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x64\signtool</program>
             <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
             <ruleList>
                 <platformTest>
-                    <type>windows</type>
+                    <type>windows-x64</type>
                 </platformTest>
             </ruleList>
         </runProgram>
     </postBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
+            <name>vendor</name>
+            <value>CEL</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>installdir</name>
+            <value>${platform_install_prefix}/${vendor}/</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
             <name>launcherName</name>
             <value>Commissionator</value>
         </setInstallerVariable>
         <setInstallerVariable>
+            <name>install_desktop_shortcut</name>
+            <value>0</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>install_menu_shortcut</name>
+            <value>0</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/14f690bc22c/Commissionator-update.xml</value>
+            <value>http://downloads.cel-robox.com:8001/0abc523fc24/Commissionator-update.xml</value>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
@@ -284,18 +405,10 @@
         </setInstallerVariableFromRegEx>
         <setInstallerVariable>
             <name>windowsDriverDir</name>
-            <value>${installdir}/windows_drivers</value>
+            <value>${installdir}/${project.shortName}/windows_drivers</value>
         </setInstallerVariable>
     </initializationActionList>
     <preInstallationActionList>
-        <setInstallerVariable>
-            <name>vendor</name>
-            <value>CEL</value>
-        </setInstallerVariable>
-        <setInstallerVariable>
-            <name>installdir</name>
-            <value>${platform_install_prefix}/${vendor}/${product_shortname}</value>
-        </setInstallerVariable>
         <actionGroup>
             <actionList>
                 <setInstallerVariable name="allowComponentSelection" value="0"/>
@@ -313,17 +426,19 @@
     </preInstallationActionList>
     <postInstallationActionList>
         <writeFile>
-            <path>${installdir}/application.properties</path>
+            <path>${automakerdir}/application.properties</path>
             <text>version = ${project.version}
 language = ${installation_language_code}</text>
         </writeFile>
         <writeFile>
-            <path>${installdir}/update.ini</path>
+            <path>${automakerdir}/update.ini</path>
             <text>[Update]
 url = ${update_xml_url}
 version_id = ${installerVersionID}
 update_download_location = ${installdir}/
 check_for_updates = 1
+[Proxy]
+enable = 0
 </text>
         </writeFile>
         <addDirectoriesToUninstaller>
@@ -336,7 +451,10 @@ check_for_updates = 1
             </ruleList>
         </addDirectoriesToUninstaller>
         <addFilesToUninstaller>
-            <files>${installdir}/update.ini</files>
+            <files>${automakerdir}/update.ini</files>
+        </addFilesToUninstaller>
+        <addFilesToUninstaller>
+            <files>${automakerdir}/application.properties</files>
         </addFilesToUninstaller>
         <addDirectoriesToUninstaller>
             <addContents>1</addContents>
@@ -349,7 +467,7 @@ check_for_updates = 1
         </addDirectoriesToUninstaller>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -358,7 +476,7 @@ check_for_updates = 1
         </runProgram>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${installdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -367,7 +485,7 @@ check_for_updates = 1
         </runProgram>
         <runProgram>
             <program>plutil</program>
-            <programArguments>-convert xml1 "${installdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -406,14 +524,29 @@ check_for_updates = 1
             </actionList>
         </actionGroup>
     </postInstallationActionList>
+    <postUninstallationActionList>
+        <actionGroup>
+            <actionList>
+                <registryDelete>
+                    <key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.vendor} ${project.fullName} ${project.version}</key>
+                    <name></name>
+                </registryDelete>
+            </actionList>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </actionGroup>
+    </postUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
-    <enableRollback>1</enableRollback>
+    <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
-    <height>500</height>
-    <osxApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon.icns</osxUninstallerApplicationBundleIcon>
-    <outputDirectory>D:/Development/LatestBuilds</outputDirectory>
-    <productDisplayIcon>${installdir}/RoboxIcon.ico</productDisplayIcon>
+    <installationScope>user</installationScope>
+    <osxApplicationBundleIcon>AutomakerIcon.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>AutomakerIcon.icns</osxUninstallerApplicationBundleIcon>
+    <outputDirectory>LatestBuilds</outputDirectory>
+    <productDisplayIcon>${automakerdir}/AutomakerIcon.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -421,16 +554,16 @@ check_for_updates = 1
     <startMenuGroupName>${vendor}</startMenuGroupName>
     <style>custom</style>
     <uninstallerName>Uninstall Commissionator</uninstallerName>
-    <vendor>CEL</vendor>
+    <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorIcon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>AutomakerIcon.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>AutomakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <finalPageActionList>
         <runProgram>
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->
             <program>open</program>
-            <programArguments>${installdir}/${launcherName}.app</programArguments>
+            <programArguments>${automakerdir}/${launcherName}.app</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
                 <platformTest type="osx"/>
@@ -438,11 +571,19 @@ check_for_updates = 1
         </runProgram>
         <runProgram>
             <!-- On Windows, use ampersand for asynchronous launch -->
-            <program>${installdir}/${launcherName}.exe</program>
+            <program>${automakerdir}/${launcherName}.exe</program>
             <programArguments>&amp;</programArguments>
             <progressText>Do you want to launch ${product_fullname} now?</progressText>
             <ruleList>
                 <platformTest type="windows"/>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${automakerdir}/${launcherName}.run</program>
+            <programArguments>&amp;</programArguments>
+            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <ruleList>
+                <platformTest type="linux"/>
             </ruleList>
         </runProgram>
     </finalPageActionList>
@@ -450,7 +591,7 @@ check_for_updates = 1
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
-            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <explanation>Please specify the directory where CEL products will be installed</explanation>
             <value></value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
@@ -459,7 +600,86 @@ check_for_updates = 1
             <mustBeWritable>yes</mustBeWritable>
             <mustExist>0</mustExist>
             <width>30</width>
+            <postShowPageActionList>
+                <setInstallerVariable>
+                    <name>automakerdir</name>
+                    <value>${installdir}/${project.shortName}/</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>${installdir}/${project.shortName}/Commissionator.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>commondir</name>
+                    <value>${installdir}/Common</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>Commissionator.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
+                    <ruleList>
+                        <platformTest>
+                            <negate>1</negate>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/AutomakerIcon_256x256.png "-Xdock:name=Commissionator"</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_binary_name</name>
+                    <value>${project.shortName}.${platform_exec_suffix}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_startmenu_shortcut_name</name>
+                    <value>${project.shortName}</value>
+                </setInstallerVariable>
+            </postShowPageActionList>
         </directoryParameter>
+        <parameterGroup>
+            <name>shortcuts</name>
+            <title>Create Shortcuts</title>
+            <explanation></explanation>
+            <value></value>
+            <default></default>
+            <parameterList>
+                <booleanParameter>
+                    <name>install_desktop_shortcut</name>
+                    <description>Add a shortcut to the desktop?</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>1</default>
+                    <displayStyle>checkbox-left</displayStyle>
+                    <ruleList>
+                        <platformTest negate="1" type="osx"/>
+                    </ruleList>
+                </booleanParameter>
+                <booleanParameter>
+                    <name>install_menu_shortcut</name>
+                    <description>Add a shortcut to the Start Menu?</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>0</default>
+                    <displayStyle>checkbox-left</displayStyle>
+                    <ruleList>
+                        <platformTest type="windows"/>
+                    </ruleList>
+                </booleanParameter>
+            </parameterList>
+        <ruleList>
+	   <platformTest negate="1" type="osx"/>
+        </ruleList>
+      </parameterGroup>
     </parameterList>
 </project>
 
