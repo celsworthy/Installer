@@ -1,5 +1,9 @@
 CEL AutoMaker README
 
+version 1.00.05
+Fixes windows driver failure to install on some non-english windows version.
+Fixes error in text of nozzle calibration screen.
+
 version 1.00.04
 Added automatic update of erroneous/out of date head and reel data (ROB-144)
 Print button visibility when filament is loaded and no manual selection has been made (ROB-147)
