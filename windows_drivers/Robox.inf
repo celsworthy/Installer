@@ -36,11 +36,12 @@ DefaultDestDir=12
 ;------------------------------------------------------------------------------
 [DriverInstall.nt]
 include=mdmcpq.inf
-CopyFiles=DriverCopyFiles.nt
+;;CopyFiles=DriverCopyFiles.nt
+CopyFiles=FakeModelCopyFileSection
 AddReg=DriverInstall.nt.AddReg
 
-[DriverCopyFiles.nt]
-usbser.sys,,,0x20
+;;[DriverCopyFiles.nt]
+;;usbser.sys,,,0x20
 
 [DriverInstall.nt.AddReg]
 HKR,,DevLoader,,*ntkern
@@ -63,11 +64,12 @@ ServiceBinary=%12%\usbser.sys
 
 [DriverInstall.NTamd64]
 include=mdmcpq.inf
-CopyFiles=DriverCopyFiles.NTamd64
+;;CopyFiles=DriverCopyFiles.NTamd64
+CopyFiles=FakeModelCopyFileSection
 AddReg=DriverInstall.NTamd64.AddReg
 
-[DriverCopyFiles.NTamd64]
-usbser.sys,,,0x20
+;;[DriverCopyFiles.NTamd64]
+;;usbser.sys,,,0x20
 
 [DriverInstall.NTamd64.AddReg]
 HKR,,DevLoader,,*ntkern

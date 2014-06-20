@@ -6,7 +6,7 @@ use B 'perlstring';
 use Sub::Defer ();
 use Import::Into;
 
-our $VERSION = '1.004001';
+our $VERSION = '1.004002';
 $VERSION = eval $VERSION;
 
 require Moo::sification;
@@ -971,6 +971,8 @@ tobyink - Toby Inkster (cpan:TOBYINK) <tobyink@cpan.org>
 haarg - Graham Knop (cpan:HAARG) <haarg@cpan.org>
 
 mattp - Matt Phillips (cpan:MATTP) <mattp@cpan.org>
+
+bluefeet - Aran Deltac (cpan:BLUEFEET) <bluefeet@gmail.com>
 
 =head1 COPYRIGHT
 

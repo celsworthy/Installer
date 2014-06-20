@@ -19,34 +19,4 @@ sub center {
     return $self->bounding_box->center;
 }
 
-sub facets_count {
-    my $self = shift;
-    return $self->stats->{number_of_facets};
-}
-
-sub bounding_box {
-    my $self = shift;
-    return Slic3r::Geometry::BoundingBox->new_from_bb($self->bb3);
-}
-
-# this will return *scaled* expolygons, so it is expected to be run
-# on unscaled meshes
-sub horizontal_projection {
-    my $self = shift;
-    
-    my ($facets, $vertices) = ($self->facets, $self->vertices);
-    
-    my @f = ();
-    foreach my $facet (@$facets) {
-        push @f, Slic3r::Polygon->new(
-            map [ map $_ / &Slic3r::SCALING_FACTOR, @{$vertices->[$_]}[X,Y] ], @$facet
-        );
-    }
-    
-    $_->make_counter_clockwise for @f;  # do this after scaling, as winding order might change while doing that
-    
-    # the offset factor was tuned using groovemount.stl
-    return union_ex(offset(\@f, Slic3r::Geometry::scale 0.01), 1);
-}
-
 1;

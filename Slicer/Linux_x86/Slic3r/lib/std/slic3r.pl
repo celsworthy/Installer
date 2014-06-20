@@ -1,6 +1,6 @@
 BEGIN { __x_05ty7nn_::xinit; }
 #line 1 "<Packaged Files>/cavaexecscript/slic3r.pl"
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -14,6 +14,7 @@ use Getopt::Long qw(:config no_auto_abbrev);
 use List::Util qw(first);
 use POSIX qw(setlocale LC_NUMERIC);
 use Slic3r;
+use Time::HiRes qw(gettimeofday tv_interval);
 $|++;
 
 our %opt = ();
@@ -37,7 +38,13 @@ my %cli_options = ();
         'export-svg'            => \$opt{export_svg},
         'merge|m'               => \$opt{merge},
         'repair'                => \$opt{repair},
+        'cut=f'                 => \$opt{cut},
         'info'                  => \$opt{info},
+        
+        'scale=f'               => \$opt{scale},
+        'rotate=i'              => \$opt{rotate},
+        'duplicate=i'           => \$opt{duplicate},
+        'duplicate-grid=s'      => \$opt{duplicate_grid},
     );
     foreach my $opt_key (keys %{$Slic3r::Config::Options}) {
         my $cli = $Slic3r::Config::Options->{$opt_key}->{cli} or next;
@@ -68,7 +75,10 @@ if ($opt{load}) {
 
 # merge configuration
 my $config = Slic3r::Config->new_from_defaults;
-$config->apply($_) for @external_configs, $cli_config;
+foreach my $c (@external_configs, $cli_config) {
+    $c->normalize;  # expand shortcuts before applying, otherwise destination values would be already filled with defaults
+    $config->apply($c);
+}
 
 # save configuration
 if ($opt{save}) {
@@ -113,6 +123,25 @@ if (@ARGV) {  # slicing from command line
         exit;
     }
     
+    if ($opt{cut}) {
+        foreach my $file (@ARGV) {
+            my $model = Slic3r::Model->read_from_file($file);
+            $model->add_default_instances;
+            my $mesh = $model->mesh;
+            $mesh->translate(0, 0, -$mesh->bounding_box->z_min);
+            my $upper = Slic3r::TriangleMesh->new;
+            my $lower = Slic3r::TriangleMesh->new;
+            $mesh->cut($opt{cut}, $upper, $lower);
+            $upper->repair;
+            $lower->repair;
+            $upper->write_ascii("${file}_upper.stl")
+                if $upper->facets_count > 0;
+            $lower->write_ascii("${file}_lower.stl")
+                if $lower->facets_count > 0;
+        }
+        exit;
+    }
+    
     while (my $input_file = shift @ARGV) {
         my $model;
         if ($opt{merge}) {
@@ -121,29 +150,46 @@ if (@ARGV) {  # slicing from command line
         } else {
             $model = Slic3r::Model->read_from_file($input_file);
         }
-        $_->scale($config->scale) for @{$model->objects};
-        $_->rotate($config->rotate) for @{$model->objects};
-        $model->arrange_objects($config);
         
         if ($opt{info}) {
             $model->print_info;
             next;
         }
         
-        my $print = Slic3r::Print->new(config => $config);
-        $print->add_model($model);
-        $print->validate;
-        my %params = (
-            output_file => $opt{output},
-            status_cb   => sub {
+        if (defined $opt{duplicate_grid}) {
+            $opt{duplicate_grid} = [ split /[,x]/, $opt{duplicate_grid}, 2 ];
+        }
+        
+        my $sprint = Slic3r::Print::Simple->new(
+            scale           => $opt{scale}          // 1,
+            rotate          => $opt{rotate}         // 0,
+            duplicate       => $opt{duplicate}      // 1,
+            duplicate_grid  => $opt{duplicate_grid} // [1,1],
+            status_cb       => sub {
                 my ($percent, $message) = @_;
                 printf "=> %s\n", $message;
             },
+            output_file     => $opt{output},
         );
+        
+        $sprint->apply_config($config);
+        $sprint->set_model($model);
+        undef $model;  # free memory
+        
         if ($opt{export_svg}) {
-            $print->export_svg(%params);
+            $sprint->export_svg;
         } else {
-            $print->export_gcode(%params);
+            my $t0 = [gettimeofday];
+            $sprint->export_gcode;
+            
+            # output some statistics
+            {
+                my $duration = tv_interval($t0);
+                printf "Done. Process took %d minutes and %.3f seconds\n", 
+                    int($duration/60), ($duration - int($duration/60)*60);  # % truncates to integer
+            }
+            printf "Filament required: %.1fmm (%.1fcm3)\n",
+                $sprint->total_used_filament, $sprint->total_extruded_volume/1000;
         }
     }
 } else {
@@ -153,7 +199,7 @@ if (@ARGV) {  # slicing from command line
 sub usage {
     my ($exit_code) = @_;
     
-    my $config = Slic3r::Config->new_from_defaults;
+    my $config = Slic3r::Config->new_from_defaults->as_hash;
     
     my $j = '';
     if ($Slic3r::have_threads) {
@@ -174,11 +220,16 @@ Usage: slic3r.pl [ OPTIONS ] [ file.stl ] [ file2.stl ] ...
     --load <file>       Load configuration from the specified file. It can be used 
                         more than once to load options from multiple files.
     -o, --output <file> File to output gcode to (by default, the file will be saved
-                        into the same directory as the input file using the 
-                        --output-filename-format to generate the filename)
+                        into the same directory as the input file using the
+                        --output-filename-format to generate the filename.) If a
+                        directory is specified for this option, the output will
+                        be saved under that directory, and the filename will be
+                        generated by --output-filename-format.
   
   Non-slicing actions (no G-code will be generated):
     --repair            Repair given STL files and save them as <name>_fixed.obj
+    --cut <z>           Cut given input files at given Z (relative) and export
+                        them as <name>_upper.stl and <name>_lower.stl
     --info              Output information about the supplied file(s) and exit
     
 $j
@@ -280,7 +331,7 @@ $j
     --top-solid-layers  Number of solid layers to do for top surfaces (range: 0+, default: $config->{top_solid_layers})
     --bottom-solid-layers  Number of solid layers to do for bottom surfaces (range: 0+, default: $config->{bottom_solid_layers})
     --solid-layers      Shortcut for setting the two options above at once
-    --fill-density      Infill density (range: 0-1, default: $config->{fill_density})
+    --fill-density      Infill density (range: 0%-100%, default: $config->{fill_density}%)
     --fill-angle        Infill angle in degrees (range: 0-90, default: $config->{fill_angle})
     --fill-pattern      Pattern to use to fill non-solid layers (default: $config->{fill_pattern})
     --solid-fill-pattern Pattern to use to fill solid layers (default: $config->{solid_fill_pattern})
@@ -335,6 +386,8 @@ $j
     --support-material-enforce-layers
                         Enforce support material on the specified number of layers from bottom,
                         regardless of --support-material and threshold (0+, default: $config->{support_material_enforce_layers})
+    --dont-support-bridges
+                        Experimental option for preventing support material from being generated under bridged areas (default: yes)
   
    Retraction options:
     --retract-length    Length of retraction in mm when pausing extrusion (default: $config->{retract_length}[0])
@@ -381,11 +434,11 @@ $j
                         (mm, default: $config->{brim_width})
    
    Transform options:
-    --scale             Factor for scaling input object (default: $config->{scale})
-    --rotate            Rotation angle in degrees (0-360, default: $config->{rotate})
-    --duplicate         Number of items with auto-arrange (1+, default: $config->{duplicate})
+    --scale             Factor for scaling input object (default: 1)
+    --rotate            Rotation angle in degrees (0-360, default: 0)
+    --duplicate         Number of items with auto-arrange (1+, default: 1)
     --bed-size          Bed size, only used for auto-arrange (mm, default: $config->{bed_size}->[0],$config->{bed_size}->[1])
-    --duplicate-grid    Number of items with grid arrangement (default: $config->{duplicate_grid}->[0],$config->{duplicate_grid}->[1])
+    --duplicate-grid    Number of items with grid arrangement (default: 1,1)
     --duplicate-distance Distance in mm between copies (default: $config->{duplicate_distance})
    
    Sequential printing options:

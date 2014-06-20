@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -32,7 +32,7 @@ use Math::PlanePath;
 use Math::PlanePath::MultipleRings;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 113;
+$VERSION = 115;
 @ISA = ('Math::PlanePath');
 
 
@@ -42,6 +42,8 @@ $VERSION = 113;
 
 use constant n_start => 0;
 use constant figure => 'circle';
+use constant _UNDOCUMENTED__x_negative_at_n => 2;
+use constant _UNDOCUMENTED__y_negative_at_n => 3;
 
 use constant 1.02; # for leading underscore
 use constant _TWO_PI => 4*atan2(1,0);
@@ -50,7 +52,6 @@ use constant _TWO_PI => 4*atan2(1,0);
 # dX -> sin(2pi/(2k+1))*k
 #    -> 2pi/(2k+1) * k
 #    -> pi
-
 use constant dx_minimum => - 2*atan2(1,0);  # -pi
 use constant dx_maximum =>   2*atan2(1,0);  # +pi
 use constant dy_minimum => - 2*atan2(1,0);
@@ -419,7 +420,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

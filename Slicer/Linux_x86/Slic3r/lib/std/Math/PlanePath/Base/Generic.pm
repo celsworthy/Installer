@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -21,7 +21,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION','@ISA','@EXPORT_OK';
-$VERSION = 113;
+$VERSION = 115;
 
 use Exporter;
 @ISA = ('Exporter');
@@ -63,8 +63,17 @@ sub round_nearest {
   return $int;
 }
 
+use constant parameter_info_nstart0 => { name        => 'n_start',
+                                         share_key   => 'n_start_0',
+                                         display     => 'N Start',
+                                         type        => 'integer',
+                                         default     => 0,
+                                         width       => 3,
+                                         description => 'Starting N.',
+                                       };
 use constant parameter_info_nstart1 => { name        => 'n_start',
                                          share_key   => 'n_start_1',
+                                         display     => 'N Start',
                                          type        => 'integer',
                                          default     => 1,
                                          width       => 3,
@@ -157,7 +166,8 @@ usual L<Exporter> style,
 
     use Math::PlanePath::Base::Generic 'round_nearest';
 
-(But not C<parameter_info_nstart1()>, for the reason described below.)
+(But not C<parameter_info_nstart0()> and C<parameter_info_nstart1()>, for
+the reason described below.)
 
 =head1 FUNCTIONS
 
@@ -172,10 +182,12 @@ Return C<$x> rounded to the nearest integer.  If C<$x> is half way, such as
 
    $x = round_nearest($x);
 
+=item C<$href = Math::PlanePath::Base::Generic::parameter_info_nstart0()>
+
 =item C<$href = Math::PlanePath::Base::Generic::parameter_info_nstart1()>
 
 Return an C<n_start> parameter hashref suitable for use in a
-C<parameter_info_array()>.  For example,
+C<parameter_info_array()>, with default either 0 or 1.  For example,
 
     # alone
     package Math::PlanePath::MySubclass;
@@ -205,11 +217,11 @@ L<Math::PlanePath::Base::Digits>
 
 =head1 HOME PAGE
 
-http://user42.tuxfamily.org/math-planepath/index.html
+L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

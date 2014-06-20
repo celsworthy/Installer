@@ -3,12 +3,16 @@ use strict;
 use warnings;
 use utf8;
 
+use File::Basename qw(basename);
 use FindBin;
 use Slic3r::GUI::AboutDialog;
 use Slic3r::GUI::ConfigWizard;
 use Slic3r::GUI::Plater;
+use Slic3r::GUI::Plater::ObjectPartsPanel;
+use Slic3r::GUI::Plater::ObjectCutDialog;
 use Slic3r::GUI::Plater::ObjectPreviewDialog;
 use Slic3r::GUI::Plater::ObjectSettingsDialog;
+use Slic3r::GUI::Plater::OverrideSettingsPanel;
 use Slic3r::GUI::Preferences;
 use Slic3r::GUI::OptionsGroup;
 use Slic3r::GUI::SkeinPanel;
@@ -17,12 +21,15 @@ use Slic3r::GUI::Tab;
 
 our $have_OpenGL = eval "use Slic3r::GUI::PreviewCanvas; 1";
 
-use Wx 0.9901 qw(:bitmap :dialog :frame :icon :id :misc :systemsettings :toplevelwindow);
+use Wx 0.9901 qw(:bitmap :dialog :frame :icon :id :misc :systemsettings :toplevelwindow
+    :filedialog);
 use Wx::Event qw(EVT_CLOSE EVT_MENU EVT_IDLE);
 use base 'Wx::App';
 
 use constant MI_LOAD_CONF     => &Wx::NewId;
+use constant MI_LOAD_CONFBUNDLE => &Wx::NewId;
 use constant MI_EXPORT_CONF   => &Wx::NewId;
+use constant MI_EXPORT_CONFBUNDLE => &Wx::NewId;
 use constant MI_QUICK_SLICE   => &Wx::NewId;
 use constant MI_REPEAT_QUICK  => &Wx::NewId;
 use constant MI_QUICK_SAVE_AS => &Wx::NewId;
@@ -54,6 +61,7 @@ our $Settings = {
     _ => {
         mode => 'simple',
         version_check => 1,
+        autocenter => 1,
     },
 };
 
@@ -75,7 +83,10 @@ sub OnInit {
     $datadir ||= Wx::StandardPaths::Get->GetUserDataDir;
     $datadir = Slic3r::encode_path($datadir);
     Slic3r::debugf "Data directory: %s\n", $datadir;
-    my $run_wizard = (-d $datadir) ? 0 : 1;
+    
+    # just checking for existence of $datadir is not enough: it may be an empty directory
+    # supplied as argument to --datadir; in that case we should still run the wizard
+    my $run_wizard = (-d $datadir && -e "$datadir/slic3r.ini") ? 0 : 1;
     for ($datadir, "$datadir/print", "$datadir/filament", "$datadir/printer") {
         mkdir or $self->fatal_error("Slic3r was unable to create its data directory at $_ (errno: $!).")
             unless -d $_;
@@ -88,6 +99,7 @@ sub OnInit {
         $Settings = $ini if $ini;
         $last_version = $Settings->{_}{version};
         $Settings->{_}{mode} ||= 'expert';
+        $Settings->{_}{autocenter} //= 1;
     }
     $Settings->{_}{version} = $Slic3r::VERSION;
     Slic3r::GUI->save_settings;
@@ -112,6 +124,8 @@ sub OnInit {
     {
         $fileMenu->Append(MI_LOAD_CONF, "&Load Config…\tCtrl+L", 'Load exported configuration file');
         $fileMenu->Append(MI_EXPORT_CONF, "&Export Config…\tCtrl+E", 'Export current configuration to file');
+        $fileMenu->Append(MI_LOAD_CONFBUNDLE, "&Load Config Bundle…", 'Load presets from a bundle');
+        $fileMenu->Append(MI_EXPORT_CONFBUNDLE, "&Export Config Bundle…", 'Export all presets to file');
         $fileMenu->AppendSeparator();
         $fileMenu->Append(MI_QUICK_SLICE, "Q&uick Slice…\tCtrl+U", 'Slice file');
         $fileMenu->Append(MI_QUICK_SAVE_AS, "Quick Slice and Save &As…\tCtrl+Alt+U", 'Slice file and save as');
@@ -127,7 +141,9 @@ sub OnInit {
         $fileMenu->AppendSeparator();
         $fileMenu->Append(wxID_EXIT, "&Quit", 'Quit Slic3r');
         EVT_MENU($frame, MI_LOAD_CONF, sub { $self->{skeinpanel}->load_config_file });
+        EVT_MENU($frame, MI_LOAD_CONFBUNDLE, sub { $self->{skeinpanel}->load_configbundle });
         EVT_MENU($frame, MI_EXPORT_CONF, sub { $self->{skeinpanel}->export_config });
+        EVT_MENU($frame, MI_EXPORT_CONFBUNDLE, sub { $self->{skeinpanel}->export_configbundle });
         EVT_MENU($frame, MI_QUICK_SLICE, sub { $self->{skeinpanel}->quick_slice;
                                                $repeat->Enable(defined $Slic3r::GUI::SkeinPanel::last_input_file) });
         EVT_MENU($frame, MI_REPEAT_QUICK, sub { $self->{skeinpanel}->quick_slice(reslice => 1) });
@@ -304,6 +320,21 @@ sub save_settings {
     Slic3r::Config->write_ini("$datadir/slic3r.ini", $Settings);
 }
 
+sub presets {
+    my ($class, $section) = @_;
+    
+    my %presets = ();
+    opendir my $dh, "$Slic3r::GUI::datadir/$section" or die "Failed to read directory $Slic3r::GUI::datadir/$section (errno: $!)\n";
+    foreach my $file (grep /\.ini$/i, readdir $dh) {
+        my $name = basename($file);
+        $name =~ s/\.ini$//;
+        $presets{$name} = "$Slic3r::GUI::datadir/$section/$file";
+    }
+    closedir $dh;
+    
+    return %presets;
+}
+
 sub have_version_check {
     my $class = shift;
     
@@ -334,6 +365,7 @@ sub check_version {
         } else {
             Slic3r::GUI::show_error(undef, "Failed to check for updates. Try later.") if $p{manual};
         }
+        Slic3r::thread_cleanup();
     })->detach;
 }
 
@@ -344,6 +376,25 @@ sub output_path {
     return ($Settings->{_}{last_output_path} && $Settings->{_}{remember_output_path})
         ? $Settings->{_}{last_output_path}
         : $dir;
+}
+
+sub open_model {
+    my ($self) = @_;
+    
+    my $dir = $Slic3r::GUI::Settings->{recent}{skein_directory}
+           || $Slic3r::GUI::Settings->{recent}{config_directory}
+           || '';
+    
+    my $dialog = Wx::FileDialog->new($self, 'Choose one or more files (STL/OBJ/AMF):', $dir, "",
+        &Slic3r::GUI::SkeinPanel::MODEL_WILDCARD, wxFD_OPEN | wxFD_MULTIPLE | wxFD_FILE_MUST_EXIST);
+    if ($dialog->ShowModal != wxID_OK) {
+        $dialog->Destroy;
+        return;
+    }
+    my @input_files = $dialog->GetPaths;
+    $dialog->Destroy;
+    
+    return @input_files;
 }
 
 sub CallAfter {

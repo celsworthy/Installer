@@ -5,11 +5,10 @@ has 'islands'           => (is => 'ro', required => 1);  # arrayref of ExPolygon
 has 'internal'          => (is => 'ro', default => sub { 1 });
 has '_space'            => (is => 'ro', default => sub { Slic3r::GCode::MotionPlanner::ConfigurationSpace->new });
 has '_inner'            => (is => 'ro', default => sub { [] });  # arrayref of ExPolygons
-has '_tolerance'        => (is => 'lazy');
 
 use List::Util qw(first max);
 use Slic3r::Geometry qw(A B scale epsilon);
-use Slic3r::Geometry::Clipper qw(offset offset_ex diff_ex);
+use Slic3r::Geometry::Clipper qw(offset offset_ex diff_ex intersection_pl);
 
 # clearance (in mm) from the perimeters
 has '_inner_margin' => (is => 'ro', default => sub { scale 1 });
@@ -25,8 +24,6 @@ has '_outer_margin' => (is => 'ro', default => sub { scale 2 });
 use constant CROSSING_PENALTY => 20;
 
 use constant POINT_DISTANCE => 10;  # unscaled
-
-sub _build__tolerance { scale epsilon }
 
 # setup our configuration space
 sub BUILD {
@@ -51,11 +48,11 @@ sub BUILD {
         for my $i (0 .. $#outer_points) {
             for my $j (($i+1) .. $#outer_points) {
                 my ($a, $b) = ($outer_points[$i], $outer_points[$j]);
-                my $line = Slic3r::Line->new($a, $b);
+                my $line = Slic3r::Polyline->new($a, $b);
                 # outer points are visible when their line has empty intersection with islands
-                my $intersection = Boost::Geometry::Utils::multi_polygon_multi_linestring_intersection(
-                    [ map $_->pp, @{$self->islands} ],
-                    [ $line->pp ],
+                my $intersection = intersection_pl(
+                    [ $line ],
+                    [ map @$_, @{$self->islands} ],
                 );
                 if (!@$intersection) {
                     $self->_space->add_edge($i+$o_outer, $j+$o_outer, $line->length);
@@ -78,7 +75,7 @@ sub BUILD {
                     my ($a, $b) = ($inner_points[$i], $inner_points[$j]);
                     my $line = Slic3r::Line->new($a, $b);
                     # turn $inner into an ExPolygonCollection and use $inner->contains_line()
-                    if (first { $_->encloses_line($line, $self->_tolerance) } @$inner) {
+                    if (first { $_->contains_line($line) } @$inner) {
                         $self->_space->add_edge($i+$o_inner, $j+$o_inner, $line->length);
                     }
                 }
@@ -96,7 +93,7 @@ sub BUILD {
                     my ($a, $b) = ($inner_points[$i], $outer_points[$j]);
                     my $line = Slic3r::Line->new($a, $b);
                     # turn $contour into an ExPolygonCollection and use $contour->contains_line()
-                    if (first { $_->encloses_line($line, $self->_tolerance) } @$contour) {
+                    if (first { $_->contains_line($line) } @$contour) {
                         $self->_space->add_edge($i+$o_inner, $j+$o_outer, $line->length * CROSSING_PENALTY);
                     }
                 }
@@ -171,11 +168,10 @@ sub shortest_path {
 sub _add_point_to_space {
     my ($self, $point, $space) = @_;
     
-    my $n = $space->nodes_count;
-    $space->add_nodes($point);
+    my $n = $space->add_nodes($point);
     
     # check whether we are inside an island or outside
-    my $inside = defined first { $self->islands->[$_]->encloses_point($point) } 0..$#{$self->islands};
+    my $inside = defined first { $self->islands->[$_]->contains_point($point) } 0..$#{$self->islands};
 
     # find candidates by checking visibility from $from to them
     foreach my $idx (0..$#{$space->nodes}) {
@@ -183,10 +179,10 @@ sub _add_point_to_space {
         # if $point is inside an island, it is visible from $idx when island contains their line
         # if $point is outside an island, it is visible from $idx when their line does not cross any island
         if (
-            ($inside && defined first { $_->encloses_line($line) } @{$self->_inner})
-                || (!$inside && !@{Boost::Geometry::Utils::multi_polygon_multi_linestring_intersection(
-                    [ map $_->pp, @{$self->islands} ],
-                    [ $line->pp ],
+            ($inside && defined first { $_->contains_line($line) } @{$self->_inner})
+                || (!$inside && !@{intersection_pl(
+                    [ $line->as_polyline ],
+                    [ map @$_, @{$self->islands} ],
                 )})
             ) {
             # $n ($point) and $idx are visible
@@ -198,7 +194,7 @@ sub _add_point_to_space {
     if (!exists $space->edges->{$n} && $inside) {
         foreach my $idx (0..$#{$space->nodes}) {
             my $line = Slic3r::Line->new($point, $space->nodes->[$idx]);
-            if (defined first { $_->encloses_line($line) } @{$self->islands}) {
+            if (defined first { $_->contains_line($line) } @{$self->islands}) {
                 # $n ($point) and $idx are visible
                 $space->add_edge($n, $idx, $line->length);
             }

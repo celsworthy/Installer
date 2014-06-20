@@ -1,11 +1,11 @@
 package Slic3r::Fill::Base;
 use Moo;
 
-use Slic3r::Geometry qw(PI);
+use Slic3r::Geometry qw(PI rad2deg);
 
 has 'layer_id'            => (is => 'rw');
-has 'angle'               => (is => 'rw', default => sub { $Slic3r::Config->fill_angle });
-has 'bounding_box'        => (is => 'ro', required => 1);  # Slic3r::Geometry::BoundingBox object
+has 'angle'               => (is => 'rw'); # in radians, ccw, 0 = East
+has 'bounding_box'        => (is => 'ro', required => 0);  # Slic3r::Geometry::BoundingBox object
 
 sub angles () { [0, PI/2] }
 
@@ -13,27 +13,35 @@ sub infill_direction {
     my $self = shift;
     my ($surface) = @_;
     
+    if (!defined $self->angle) {
+        warn "Using undefined infill angle";
+        $self->angle(0);
+    }
+    
     # set infill angle
-    my (@rotate, @shift);
-    $rotate[0] = Slic3r::Geometry::deg2rad($self->angle);
-    $rotate[1] = $self->bounding_box->center_2D;
-    @shift = @{$rotate[1]};
+    my (@rotate);
+    $rotate[0] = $self->angle;
+    $rotate[1] = $self->bounding_box
+        ? $self->bounding_box->center
+        : $surface->expolygon->bounding_box->center;
+    my $shift = $rotate[1]->clone;
     
     if (defined $self->layer_id) {
         # alternate fill direction
         my $layer_num = $self->layer_id / $surface->thickness_layers;
         my $angle = $self->angles->[$layer_num % @{$self->angles}];
-        $rotate[0] = Slic3r::Geometry::deg2rad($self->angle) + $angle if $angle;
+        $rotate[0] = $self->angle + $angle if $angle;
     }
         
     # use bridge angle
-    if ($surface->bridge_angle != -1) {
-        Slic3r::debugf "Filling bridge with angle %d\n", $surface->bridge_angle;
-        $rotate[0] = Slic3r::Geometry::deg2rad($surface->bridge_angle);
+    if ($surface->bridge_angle >= 0) {
+        Slic3r::debugf "Filling bridge with angle %d\n", rad2deg($surface->bridge_angle);
+        $rotate[0] = $surface->bridge_angle;
     }
     
-    @shift = @{ +(Slic3r::Geometry::rotate_points(@rotate, \@shift))[0] };
-    return [\@rotate, \@shift];
+    $rotate[0] += PI/2;
+    $shift->rotate(@rotate);
+    return [\@rotate, $shift];
 }
 
 # this method accepts any object that implements rotate() and translate()
@@ -42,18 +50,21 @@ sub rotate_points {
     my ($expolygon, $rotate_vector) = @_;
     
     # rotate points
-    $expolygon->rotate(@{$rotate_vector->[0]});
-    $expolygon->translate(@{$rotate_vector->[1]});
+    my ($rotate, $shift) = @$rotate_vector;
+    $rotate = [ -$rotate->[0], $rotate->[1] ];
+    $expolygon->rotate(@$rotate);
+    $expolygon->translate(@$shift);
 }
 
 sub rotate_points_back {
     my $self = shift;
     my ($paths, $rotate_vector) = @_;
-    my @rotate = (-$rotate_vector->[0][0], $rotate_vector->[0][1]);
-    my $shift  = [ map -$_, @{$rotate_vector->[1]} ];
+    
+    my ($rotate, $shift) = @$rotate_vector;
+    $shift = [ map -$_, @$shift ];
     
     $_->translate(@$shift) for @$paths;
-    $_->rotate(@rotate) for @$paths;
+    $_->rotate(@$rotate) for @$paths;
 }
 
 sub adjust_solid_spacing {

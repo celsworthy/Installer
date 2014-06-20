@@ -5,23 +5,22 @@ use warnings;
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
-    PI X Y Z A B X1 Y1 X2 Y2 Z1 Z2 MIN MAX epsilon slope line_atan lines_parallel 
+    PI X Y Z A B X1 Y1 X2 Y2 Z1 Z2 MIN MAX epsilon slope 
     line_point_belongs_to_segment points_coincide distance_between_points 
-    chained_path_items chained_path_points normalize tan move_points_3D
+    normalize tan move_points_3D
     point_in_polygon point_in_segment segment_in_segment
-    point_is_on_left_of_segment polyline_lines polygon_lines
+    polyline_lines polygon_lines
     point_along_segment polygon_segment_having_point polygon_has_subsegment
-    polygon_has_vertex can_connect_points deg2rad rad2deg
-    rotate_points move_points clip_segment_polygon
-    sum_vectors multiply_vector subtract_vectors dot perp polygon_points_visibility
+    deg2rad rad2deg
+    rotate_points move_points
+    dot perp polygon_points_visibility
     line_intersection bounding_box bounding_box_intersect
-    angle3points three_points_aligned line_direction
-    polyline_remove_parallel_continuous_edges polyline_remove_acute_vertices
-    polygon_remove_acute_vertices polygon_remove_parallel_continuous_edges
-    chained_path collinear scale unscale merge_collinear_lines
+    angle3points
+    chained_path chained_path_from collinear scale unscale
     rad2deg_dir bounding_box_center line_intersects_any douglas_peucker
     polyline_remove_short_segments normal triangle_normal polygon_is_convex
     scaled_epsilon bounding_box_3D size_3D size_2D
+    convex_hull directions_parallel directions_parallel_within
 );
 
 
@@ -56,30 +55,6 @@ sub slope {
     my ($line) = @_;
     return undef if abs($line->[B][X] - $line->[A][X]) < epsilon;  # line is vertical
     return ($line->[B][Y] - $line->[A][Y]) / ($line->[B][X] - $line->[A][X]);
-}
-
-sub line_atan {
-    my ($line) = @_;
-    return atan2($line->[B][Y] - $line->[A][Y], $line->[B][X] - $line->[A][X]);
-}
-
-sub line_direction {
-    my ($line) = @_;
-    my $atan2 = line_atan($line);
-    return ($atan2 == PI) ? 0
-        : ($atan2 < 0) ? ($atan2 + PI)
-        : $atan2;
-}
-
-sub lines_parallel {
-    my ($line1, $line2) = @_;
-    
-    return abs(line_direction($line1) - line_direction($line2)) < $parallel_degrees_limit;
-}
-
-sub three_points_aligned {
-    my ($p1, $p2, $p3) = @_;
-    return lines_parallel([$p1, $p2], [$p2, $p3]);
 }
 
 # this subroutine checks whether a given point may belong to a given
@@ -176,13 +151,6 @@ sub segment_in_segment {
     return point_in_segment($needle->[A], $haystack) && point_in_segment($needle->[B], $haystack);
 }
 
-sub point_is_on_left_of_segment {
-    my ($point, $line) = @_;
-    
-    return (($line->[B][X] - $line->[A][X])*($point->[Y] - $line->[A][Y]) 
-        - ($line->[B][Y] - $line->[A][Y])*($point->[X] - $line->[A][X])) > 0;
-}
-
 sub polyline_lines {
     my ($polyline) = @_;
     my @points = @$polyline;
@@ -229,14 +197,6 @@ sub polygon_has_subsegment {
     return 0;
 }
 
-sub polygon_has_vertex {
-    my ($polygon, $point) = @_;
-    foreach my $p (@$polygon) {
-        return 1 if points_coincide($p, $point);
-    }
-    return 0;
-}
-
 # polygon must be simple (non complex) and ccw
 sub polygon_is_convex {
     my ($points) = @_;
@@ -245,29 +205,6 @@ sub polygon_is_convex {
         return 0 if $angle < PI;
     }
     return 1;
-}
-
-sub can_connect_points {
-    my ($p1, $p2, $polygons) = @_;
-    
-    # check that the two points are visible from each other
-    return 0 if grep !polygon_points_visibility($_, $p1, $p2), @$polygons;
-    
-    # get segment where $p1 lies
-    my $p1_segment;
-    for (@$polygons) {
-        $p1_segment = polygon_segment_having_point($_, $p1);
-        last if $p1_segment;
-    }
-    
-    # defensive programming, this shouldn't happen
-    if (!$p1_segment) {
-        die sprintf "Point %f,%f wasn't found in polygon contour or holes!", @$p1;
-    }
-    
-    # check whether $p2 is internal or external  (internal = on the left)
-    return point_is_on_left_of_segment($p2, $p1_segment)
-        || point_in_segment($p2, $p1_segment);
 }
 
 sub deg2rad {
@@ -313,65 +250,6 @@ sub move_points_3D {
         $shift->[Y] + $_->[Y],
         $shift->[Z] + $_->[Z],
     ], @points;
-}
-
-# implementation of Liang-Barsky algorithm
-# polygon must be convex and ccw
-sub clip_segment_polygon {
-    my ($line, $polygon) = @_;
-    
-    if (@$line == 1) {
-        # the segment is a point, check for inclusion
-        return point_in_polygon($line, $polygon);
-    }
-    
-    my @V = (@$polygon, $polygon->[0]);
-    my $tE = 0; # the maximum entering segment parameter
-    my $tL = 1; # the minimum entering segment parameter
-    my $dS = subtract_vectors($line->[B], $line->[A]); # the segment direction vector
-    
-    for (my $i = 0; $i < $#V; $i++) {   # process polygon edge V[i]V[Vi+1]
-        my $e = subtract_vectors($V[$i+1], $V[$i]);
-        my $N = perp($e, subtract_vectors($line->[A], $V[$i]));
-        my $D = -perp($e, $dS);
-        if (abs($D) < epsilon) {          # $line is nearly parallel to this edge
-            ($N < 0) ? return : next;     # P0 outside this edge ? $line is outside : $line cannot cross edge, thus ignoring
-        }
-        
-        my $t = $N / $D;
-        if ($D < 0) { # $line is entering across this edge
-            if ($t > $tE) {  # new max $tE
-                $tE = $t;
-                return if $tE > $tL;  # $line enters after leaving polygon?
-            }
-        } else { # $line is leaving across this edge
-            if ($t < $tL) {  # new min $tL
-                $tL = $t;
-                return if $tL < $tE;  # $line leaves before entering polygon?
-            }
-        }
-    }
-    
-    # $tE <= $tL implies that there is a valid intersection subsegment
-    return [
-        sum_vectors($line->[A], multiply_vector($dS, $tE)),  # = P(tE) = point where S enters polygon
-        sum_vectors($line->[A], multiply_vector($dS, $tL)),  # = P(tE) = point where S enters polygon
-    ];
-}
-
-sub sum_vectors {
-    my ($v1, $v2) = @_;
-    return [ $v1->[X] + $v2->[X], $v1->[Y] + $v2->[Y] ];
-}
-
-sub multiply_vector {
-    my ($line, $scalar) = @_;
-    return [ $line->[X] * $scalar, $line->[Y] * $scalar ];
-}
-
-sub subtract_vectors {
-    my ($line2, $line1) = @_;
-    return [ $line2->[X] - $line1->[X], $line2->[Y] - $line1->[Y] ];
 }
 
 sub normal {
@@ -458,40 +336,6 @@ sub collinear {
     }
     
     return 1;
-}
-
-sub merge_collinear_lines {
-    my ($lines) = @_;
-    my $line_count = @$lines;
-    
-    for (my $i = 0; $i <= $#$lines-1; $i++) {
-        for (my $j = $i+1; $j <= $#$lines; $j++) {
-            # lines are collinear and overlapping?
-            next unless collinear($lines->[$i], $lines->[$j], 1);
-            
-            # lines have same orientation?
-            next unless ($lines->[$i][A][X] <=> $lines->[$i][B][X]) == ($lines->[$j][A][X] <=> $lines->[$j][B][X])
-                && ($lines->[$i][A][Y] <=> $lines->[$i][B][Y]) == ($lines->[$j][A][Y] <=> $lines->[$j][B][Y]);
-            
-            # resulting line
-            my @x = sort { $a <=> $b } ($lines->[$i][A][X], $lines->[$i][B][X], $lines->[$j][A][X], $lines->[$j][B][X]);
-            my @y = sort { $a <=> $b } ($lines->[$i][A][Y], $lines->[$i][B][Y], $lines->[$j][A][Y], $lines->[$j][B][Y]);
-            my $new_line = Slic3r::Line->new([$x[0], $y[0]], [$x[-1], $y[-1]]);
-            for (X, Y) {
-                ($new_line->[A][$_], $new_line->[B][$_]) = ($new_line->[B][$_], $new_line->[A][$_])
-                    if $lines->[$i][A][$_] > $lines->[$i][B][$_];
-            }
-            
-            # save new line and remove found one
-            $lines->[$i] = $new_line;
-            splice @$lines, $j, 1;
-            $j--;
-        }
-    }
-    
-    Slic3r::debugf "  merging %d lines resulted in %d lines\n", $line_count, scalar(@$lines);
-    
-    return $lines;
 }
 
 sub _line_intersection {
@@ -686,40 +530,6 @@ sub angle3points {
     return $angle <= 0 ? $angle + 2*PI() : $angle;
 }
 
-sub polyline_remove_parallel_continuous_edges {
-    my ($points, $isPolygon) = @_;
-    
-    for (my $i = $isPolygon ? 0 : 2; $i <= $#$points && @$points >= 3; $i++) {
-        if (Slic3r::Geometry::lines_parallel([$points->[$i-2], $points->[$i-1]], [$points->[$i-1], $points->[$i]])) {
-            # we can remove $points->[$i-1]
-            splice @$points, $i-1, 1;
-            $i--;
-        }
-    }
-}
-
-sub polygon_remove_parallel_continuous_edges {
-    my ($points) = @_;
-    return polyline_remove_parallel_continuous_edges($points, 1);
-}
-
-sub polyline_remove_acute_vertices {
-    my ($points, $isPolygon) = @_;
-    for (my $i = $isPolygon ? -1 : 1; $i < $#$points; $i++) {
-        my $angle = angle3points($points->[$i], $points->[$i-1], $points->[$i+1]);
-        if ($angle < 0.01 || $angle >= 2*PI - 0.01) {
-            # we can remove $points->[$i]
-            splice @$points, $i, 1;
-            $i--;
-        }
-    }
-}
-
-sub polygon_remove_acute_vertices {
-    my ($points) = @_;
-    return polyline_remove_acute_vertices($points, 1);
-}
-
 sub polyline_remove_short_segments {
     my ($points, $min_length, $isPolygon) = @_;
     for (my $i = $isPolygon ? 0 : 1; $i < $#$points; $i++) {
@@ -729,44 +539,6 @@ sub polyline_remove_short_segments {
             $i--;
         }
     }
-}
-
-# accepts an arrayref of points; it returns a list of indices
-# according to a nearest-neighbor walk
-sub chained_path {
-    my ($items, $start_near) = @_;
-    
-    my @points = @$items;
-    my %indices = map { $points[$_] => $_ } 0 .. $#points;
-    
-    my @result = ();
-    if (!$start_near && @points) {
-        $start_near = shift @points;
-        push @result, $indices{$start_near};
-    }
-    while (@points) {
-        my $idx = $start_near->nearest_point_index(\@points);
-        ($start_near) = splice @points, $idx, 1;
-        push @result, $indices{$start_near};
-    }
-    
-    return @result;
-}
-
-# accepts an arrayref; each item should be an arrayref whose first
-# item is the point to be used for the shortest path, and the second
-# one is the value to be returned in output (if the second item
-# is not provided, the point will be returned)
-sub chained_path_items {
-    my ($items, $start_near) = @_;
-    
-    my @indices = chained_path([ map $_->[0], @$items ], $start_near);
-    return [ map $_->[1], @$items[@indices] ];
-}
-
-sub chained_path_points {
-    my ($points, $start_near) = @_;
-    return [ @$points[ chained_path($points, $start_near) ] ];
 }
 
 sub douglas_peucker {
@@ -864,7 +636,7 @@ sub douglas_peucker2 {
 }
 
 sub arrange {
-    my ($total_parts, $partx, $party, $areax, $areay, $dist, $Config) = @_;
+    my ($total_parts, $partx, $party, $dist, $bb) = @_;
     
     my $linint = sub {
         my ($value, $oldmin, $oldmax, $newmin, $newmax) = @_;
@@ -875,22 +647,19 @@ sub arrange {
     $partx += $dist;
     $party += $dist;
     
-    # margin needed for the skirt
-    my $skirt_margin;		
-    if ($Config->skirts > 0) {
-        my $flow = Slic3r::Flow->new(
-            layer_height    => $Config->get_value('first_layer_height'),
-            nozzle_diameter => $Config->nozzle_diameter->[0],  # TODO: actually look for the extruder used for skirt
-            width           => $Config->get_value('first_layer_extrusion_width'),
-        );
-        $skirt_margin = ($flow->spacing * $Config->skirts + $Config->skirt_distance) * 2;
+    my ($areax, $areay);
+    if (defined $bb) {
+        my $size = $bb->size;
+        ($areax, $areay) = @$size[X,Y];
     } else {
-        $skirt_margin = 0;		
+        # bogus area size, large enough not to trigger the error below
+        $areax = $partx * $total_parts;
+        $areay = $party * $total_parts;
     }
     
     # this is how many cells we have available into which to put parts
-    my $cellw = int(($areax - $skirt_margin + $dist) / $partx);
-    my $cellh = int(($areay - $skirt_margin + $dist) / $party);
+    my $cellw = int(($areax + $dist) / $partx);
+    my $cellh = int(($areay + $dist) / $party);
     
     die "$total_parts parts won't fit in your print area!\n" if $total_parts > ($cellw * $cellh);
     
@@ -972,6 +741,11 @@ sub arrange {
         my $cy = $c->[1]->{index}->[1] - $ty;
 
         push @positions, [$cx * $partx, $cy * $party];
+    }
+    
+    if (defined $bb) {
+        $_->[X] += $bb->x_min for @positions;
+        $_->[Y] += $bb->y_min for @positions;
     }
     return @positions;
 }

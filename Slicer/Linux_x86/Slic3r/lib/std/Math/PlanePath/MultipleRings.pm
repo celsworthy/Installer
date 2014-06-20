@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -40,7 +40,7 @@ use Math::Libm 'asin', 'hypot';
 use vars '$VERSION', '@ISA';
 @ISA = ('Math::PlanePath');
 use Math::PlanePath;
-$VERSION = 113;
+$VERSION = 115;
 
 use Math::PlanePath::Base::Generic
   'is_infinite';
@@ -105,6 +105,19 @@ sub y_maximum {
   my ($self) = @_;
   return ($self->{'step'} == 0 ? 0  # step=0 always Y=0
           : undef);
+}
+
+sub _UNDOCUMENTED__x_negative_at_n {
+  my ($self) = @_;
+  return ($self->{'step'} == 0 ? undef  # no negatives
+          : $self->{'step'} == 1 ? 3
+          : $self->n_start + int($self->{'step'}/4) + 1);
+}
+sub _UNDOCUMENTED__y_negative_at_n {
+  my ($self) = @_;
+  return ($self->{'step'} == 0 ? undef  # no negatives
+          : $self->{'step'} <= 2 ? 6
+          : $self->n_start + int($self->{'step'}/2) + 1);
 }
 
 sub sumxy_minimum {
@@ -255,6 +268,11 @@ sub dy_maximum {
   return ($self->{'step'} == 0    ? 0    # horizontal only
           : $self->{'step'} <= 6  ? (2*_PI) / $self->{'step'}
           :                         1); # supremum
+}
+sub _UNDOCUMENTED__dxdy_list {
+  my ($self) = @_;
+  return ($self->{'step'} == 0 ? (1,0) # E only
+          : ());  # unlimited
 }
 
 sub absdx_minimum {
@@ -1677,7 +1695,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

@@ -5,47 +5,19 @@ use warnings;
 # a polygon is a closed polyline.
 use parent 'Slic3r::Polyline';
 
-use Slic3r::Geometry qw(polygon_remove_parallel_continuous_edges
-    polygon_remove_acute_vertices polygon_segment_having_point
+use Slic3r::Geometry qw(
+    polygon_segment_having_point
     PI X1 X2 Y1 Y2 epsilon);
+use Slic3r::Geometry::Clipper qw(intersection_pl);
 
 sub wkt {
     my $self = shift;
     return sprintf "POLYGON((%s))", join ',', map "$_->[0] $_->[1]", @$self;
 }
 
-sub merge_continuous_lines {
-    my $self = shift;
-    
-    my $p = $self->pp;
-    polygon_remove_parallel_continuous_edges($p);
-    return __PACKAGE__->new(@$p);
-}
-
-sub remove_acute_vertices {
-    my $self = shift;
-    polygon_remove_acute_vertices($self);
-}
-
-sub encloses_point {
-    my $self = shift;
-    my ($point) = @_;
-    return Boost::Geometry::Utils::point_covered_by_polygon($point->pp, [$self->pp]);
-}
-
 sub grow {
     my $self = shift;
     return $self->split_at_first_point->grow(@_);
-}
-
-# NOTE that this will turn the polygon to ccw regardless of its 
-# original orientation
-sub simplify {
-    my $self = shift;
-    my $tolerance = shift || 10;
-    
-    my $simplified = Boost::Geometry::Utils::linestring_simplify($self->pp, $tolerance);
-    return @{Slic3r::Geometry::Clipper::simplify_polygons([ $simplified ])};
 }
 
 # this method subdivides the polygon segments to that no one of them
@@ -77,6 +49,43 @@ sub concave_points {
     return map $points[$_],
         grep Slic3r::Geometry::angle3points(@points_pp[$_, $_-1, $_+1]) < PI - epsilon,
         -1 .. ($#points-1);
+}
+
+sub clip_as_polyline {
+    my ($self, $polygons) = @_;
+    
+    my $self_pl = $self->split_at_first_point;
+    
+    # Clipper will remove a polyline segment if first point coincides with last one.
+    # Until that bug is not fixed upstream, we move one of those points slightly.
+    $self_pl->[0]->translate(1, 0);
+    
+    my @polylines = @{intersection_pl([$self_pl], $polygons)};
+    if (@polylines == 1) {
+        if ($polylines[0][0]->coincides_with($self_pl->[0])) {
+            # compensate the above workaround for Clipper bug
+            $polylines[0][0]->translate(-1, 0);
+        }
+    } elsif (@polylines == 2) {
+        # If the split_at_first_point() call above happens to split the polygon inside the clipping area
+        # we would get two consecutive polylines instead of a single one, so we use this ugly hack to 
+        # recombine them back into a single one in order to trigger the @edges == 2 logic below.
+        # This needs to be replaced with something way better.
+        if ($polylines[0][-1]->coincides_with($self_pl->[-1]) && $polylines[-1][0]->coincides_with($self_pl->[0])) {
+            my $p = $polylines[0]->clone;
+            $p->pop_back;
+            $p->append(@{$polylines[-1]});
+            return [$p];
+        }
+        if ($polylines[0][0]->coincides_with($self_pl->[0]) && $polylines[-1][-1]->coincides_with($self_pl->[-1])) {
+            my $p = $polylines[-1]->clone;
+            $p->pop_back;
+            $p->append(@{$polylines[0]});
+            return [$p];
+        }
+    }
+    
+    return [ @polylines ];
 }
 
 1;

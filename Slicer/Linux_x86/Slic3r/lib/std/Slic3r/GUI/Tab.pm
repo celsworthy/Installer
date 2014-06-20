@@ -268,7 +268,6 @@ sub add_options_page {
     my $page = Slic3r::GUI::Tab::Page->new($self, $title, $self->{iconcount}, %params, on_change => sub {
         $self->on_value_change(@_);
         $self->set_dirty(1);
-        $self->on_presets_changed;
     });
     $page->Hide;
     $self->{sizer}->Add($page, 1, wxEXPAND | wxLEFT, 5);
@@ -291,7 +290,8 @@ sub set_value {
 sub reload_values {
     my $self = shift;
     
-    $self->set_value($_, $self->{config}->get($_)) for keys %{$self->{config}};
+    $self->set_value($_, $self->{config}->get($_))
+        for @{$self->{config}->get_keys};
 }
 
 sub update_tree {
@@ -311,6 +311,9 @@ sub update_tree {
 sub set_dirty {
     my $self = shift;
     my ($dirty) = @_;
+
+    return if $dirty and $self->is_dirty;
+    return if (not $dirty) and (not $self->is_dirty);
     
     my $selection = $self->{presets_choice}->GetSelection;
     my $i = $self->{dirty} // $selection; #/
@@ -344,16 +347,13 @@ sub load_presets {
         name    => '- default -',
     }];
     
-    opendir my $dh, "$Slic3r::GUI::datadir/" . $self->name or die "Failed to read directory $Slic3r::GUI::datadir/" . $self->name . " (errno: $!)\n";
-    foreach my $file (sort grep /\.ini$/i, readdir $dh) {
-        my $name = basename($file);
-        $name =~ s/\.ini$//;
+    my %presets = Slic3r::GUI->presets($self->name);
+    foreach my $preset_name (sort keys %presets) {
         push @{$self->{presets}}, {
-            file => "$Slic3r::GUI::datadir/" . $self->name . "/$file",
-            name => $name,
+            name => $preset_name,
+            file => $presets{$preset_name},
         };
     }
-    closedir $dh;
     
     $self->{presets_choice}->Clear;
     $self->{presets_choice}->Append($_->{name}) for @{$self->{presets}};
@@ -493,7 +493,8 @@ sub build {
         {
             title => 'Options for support material and raft',
             options => [qw(support_material_pattern support_material_spacing support_material_angle
-                support_material_interface_layers support_material_interface_spacing)],
+                support_material_interface_layers support_material_interface_spacing
+                dont_support_bridges)],
         },
     ]);
     
@@ -536,6 +537,10 @@ sub build {
         {
             title => 'Ooze prevention',
             options => [qw(ooze_prevention standby_temperature_delta)],
+        },
+        {
+            title => 'Advanced',
+            options => [qw(interface_shells)],
         },
     ]);
     
@@ -679,6 +684,7 @@ sub build {
             options => [qw(gcode_flavor use_relative_e_distances)],
         },
         {
+            class => 'Slic3r::GUI::OptionsGroup',
             title => 'Capabilities',
             options => [
                 {
@@ -728,25 +734,22 @@ sub build {
 sub _extruder_options { qw(nozzle_diameter extruder_offset retract_length retract_lift retract_speed retract_restart_extra retract_before_travel wipe
     retract_layer_change retract_length_toolchange retract_restart_extra_toolchange) }
 
-sub config {
-    my $self = shift;
-    
-    my $config = $self->SUPER::config(@_);
-    
-    # remove all unused values
-    foreach my $opt_key ($self->_extruder_options) {
-        splice @{ $config->{$opt_key} }, $self->{extruders_count};
-    }
-    
-    return $config;
-}
-
 sub _build_extruder_pages {
     my $self = shift;
     
-    foreach my $extruder_idx (0 .. $self->{extruders_count}-1) {
-        # build page if it doesn't exist
-        $self->{extruder_pages}[$extruder_idx] ||= $self->add_options_page("Extruder " . ($extruder_idx + 1), 'funnel.png', optgroups => [
+    my $default_config = Slic3r::Config::Full->new;
+    
+    foreach my $extruder_idx (@{$self->{extruder_pages}} .. $self->{extruders_count}-1) {
+        # extend options
+        foreach my $opt_key ($self->_extruder_options) {
+            my $values = $self->{config}->get($opt_key);
+            $values->[$extruder_idx] //= $default_config->get_at($opt_key, 0);
+            $self->{config}->set($opt_key, $values)
+                or die "Unable to extend $opt_key";
+        }
+        
+        # build page
+        $self->{extruder_pages}[$extruder_idx] = $self->add_options_page("Extruder " . ($extruder_idx + 1), 'funnel.png', optgroups => [
             {
                 title => 'Size',
                 options => ['nozzle_diameter#' . $extruder_idx],
@@ -773,6 +776,19 @@ sub _build_extruder_pages {
         $self->{extruder_pages}[$extruder_idx]{disabled} = 0;
     }
     
+    # remove extra pages
+    if ($self->{extruders_count} <= $#{$self->{extruder_pages}}) {
+        splice @{$self->{extruder_pages}}, $self->{extruders_count};
+    }
+    
+    # remove extra config values
+    foreach my $opt_key ($self->_extruder_options) {
+        my $values = $self->{config}->get($opt_key);
+        splice @$values, $self->{extruders_count} if $self->{extruders_count} <= $#$values;
+        $self->{config}->set($opt_key, $values)
+            or die "Unable to truncate $opt_key";
+    }
+    
     # rebuild page list
     @{$self->{pages}} = (
         (grep $_->{title} !~ /^Extruder \d+/, @{$self->{pages}}),
@@ -786,14 +802,7 @@ sub on_value_change {
     $self->SUPER::on_value_change(@_);
     
     if ($opt_key eq 'extruders_count') {
-        # remove unused pages from list
-        my @unused_pages = @{ $self->{extruder_pages} }[$self->{extruders_count} .. $#{$self->{extruder_pages}}];
-        for my $page (@unused_pages) {
-            @{$self->{pages}} = grep $_ ne $page, @{$self->{pages}};
-            $page->{disabled} = 1;
-        }
-        
-        # add extra pages
+        # add extra pages or remove unused
         $self->_build_extruder_pages;
         
         # update page list and select first page (General)
@@ -890,8 +899,10 @@ sub new {
     my ($parent, %params) = @_;
     my $self = $class->SUPER::new($parent, -1, "Save preset", wxDefaultPosition, wxDefaultSize);
     
+    my @values = grep $_ ne '- default -', @{$params{values}};
+    
     my $text = Wx::StaticText->new($self, -1, "Save " . lc($params{title}) . " as:", wxDefaultPosition, wxDefaultSize);
-    $self->{combo} = Wx::ComboBox->new($self, -1, $params{default}, wxDefaultPosition, wxDefaultSize, $params{values},
+    $self->{combo} = Wx::ComboBox->new($self, -1, $params{default}, wxDefaultPosition, wxDefaultSize, \@values,
                                        wxTE_PROCESS_ENTER);
     my $buttons = $self->CreateStdDialogButtonSizer(wxOK | wxCANCEL);
     
@@ -913,10 +924,12 @@ sub accept {
     my ($self, $event) = @_;
 
     if (($self->{chosen_name} = $self->{combo}->GetValue)) {
-        if ($self->{chosen_name} =~ /^[^<>:\/\\|?*\"]+$/i) {
-            $self->EndModal(wxID_OK);
-        } else {
+        if ($self->{chosen_name} !~ /^[^<>:\/\\|?*\"]+$/i) {
             Slic3r::GUI::show_error($self, "The supplied name is not valid; the following characters are not allowed: <>:/\|?*\"");
+        } elsif ($self->{chosen_name} eq '- default -') {
+            Slic3r::GUI::show_error($self, "The supplied name is not available.");
+        } else {
+            $self->EndModal(wxID_OK);
         }
     }
 }

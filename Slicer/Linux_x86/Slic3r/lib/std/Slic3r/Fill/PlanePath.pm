@@ -4,6 +4,7 @@ use Moo;
 extends 'Slic3r::Fill::Base';
 
 use Slic3r::Geometry qw(scale X1 Y1 X2 Y2);
+use Slic3r::Geometry::Clipper qw(intersection_pl);
 
 sub multiplier () { 1 }
 
@@ -26,12 +27,13 @@ sub fill_surface {
     my $rotate_vector = $self->infill_direction($surface);
     $self->rotate_points($expolygon, $rotate_vector);
     
-    my $distance_between_lines = scale $params{flow_spacing} / $params{density} * $self->multiplier;
+    my $flow = $params{flow};
+    my $distance_between_lines = $flow->scaled_spacing / $params{density} * $self->multiplier;
     my $bounding_box = $expolygon->bounding_box;
     
     (ref $self) =~ /::([^:]+)$/;
     my $path = "Math::PlanePath::$1"->new;
-    my @n = $self->get_n($path, [ map +($_ / $distance_between_lines), @{$bounding_box->bb} ]);
+    my @n = $self->get_n($path, [ map +($_ / $distance_between_lines), @{$bounding_box->min_point}, @{$bounding_box->max_point} ]);
     
     my $polyline = Slic3r::Polyline->new(
         map [ map {$_*$distance_between_lines} $path->n_to_xy($_) ], @n,
@@ -40,8 +42,7 @@ sub fill_surface {
     
     $self->process_polyline($polyline, $bounding_box);
     
-    my @paths = map $_->clip_with_expolygon($expolygon),
-        $polyline->clip_with_polygon($bounding_box->polygon);
+    my @paths = @{intersection_pl([$polyline], \@$expolygon)};
     
     if (0) {
         require "Slic3r/SVG.pm";
@@ -54,7 +55,7 @@ sub fill_surface {
     # paths must be rotated back
     $self->rotate_points_back(\@paths, $rotate_vector);
     
-    return { flow_spacing => $params{flow_spacing} }, @paths;
+    return { flow => $flow }, @paths;
 }
 
 1;

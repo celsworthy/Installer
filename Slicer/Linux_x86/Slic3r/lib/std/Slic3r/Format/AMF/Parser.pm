@@ -97,6 +97,12 @@ sub end_element {
     } elsif ($data->{LocalName} eq 'material') {
         $self->{_material} = undef;
     } elsif ($data->{LocalName} eq 'metadata' && $self->{_material}) {
+        if ($self->{_material_metadata_type} =~ /^slic3r\.(.+)/) {
+            my $opt_key = $1;
+            if (exists $Slic3r::Config::Options->{$opt_key}) {
+                $self->{_material}->config->set_deserialize($opt_key, $self->{_material}->attributes->{"slic3r.$opt_key"});
+            }
+        }
         $self->{_material_metadata_type} = undef;
     } elsif ($data->{LocalName} eq 'constellation') {
         $self->{_constellation} = undef;
@@ -120,7 +126,7 @@ sub end_document {
         foreach my $instance (@{ $self->{_instances}{$object_id} }) {
             $self->{_model}->objects->[$new_object_id]->add_instance(
                 rotation => $instance->{rz} || 0,
-                offset   => Slic3r::Point->new($instance->{deltax} || 0, $instance->{deltay} || 0),
+                offset   => [ $instance->{deltax} || 0, $instance->{deltay} || 0 ],
             );
         }
     }

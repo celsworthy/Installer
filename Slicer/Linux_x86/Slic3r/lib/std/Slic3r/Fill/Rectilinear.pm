@@ -6,6 +6,7 @@ extends 'Slic3r::Fill::Base';
 has 'cache'         => (is => 'rw', default => sub {{}});
 
 use Slic3r::Geometry qw(A B X Y MIN scale unscale scaled_epsilon);
+use Slic3r::Geometry::Clipper qw(intersection_pl offset);
 
 sub fill_surface {
     my $self = shift;
@@ -16,8 +17,8 @@ sub fill_surface {
     my $rotate_vector = $self->infill_direction($surface);
     $self->rotate_points($expolygon, $rotate_vector);
     
-    my $flow_spacing        = $params{flow_spacing};
-    my $min_spacing         = scale $params{flow_spacing};
+    my $flow                = $params{flow} or die "No flow supplied to fill_surface()";
+    my $min_spacing         = $flow->scaled_spacing;
     my $line_spacing        = $min_spacing / $params{density};
     my $line_oscillation    = $line_spacing - $min_spacing;
     my $is_line_pattern     = $self->isa('Slic3r::Fill::Line');
@@ -29,11 +30,18 @@ sub fill_surface {
             width       => $bounding_box->size->[X],
             distance    => $line_spacing,
         );
-        $flow_spacing = unscale $line_spacing;
+        $flow = Slic3r::Flow->new_from_spacing(
+            spacing             => unscale($line_spacing),
+            nozzle_diameter     => $flow->nozzle_diameter,
+            layer_height        => ($params{layer_height} or die "No layer_height supplied to fill_surface()"),
+            bridge              => $flow->bridge,
+        );
     } else {
         # extend bounding box so that our pattern will be aligned with other layers
-        $bounding_box->extents->[X][MIN] -= $bounding_box->x_min % $line_spacing;
-        $bounding_box->extents->[Y][MIN] -= $bounding_box->y_min % $line_spacing;
+        $bounding_box->merge_point(Slic3r::Point->new(
+            $bounding_box->x_min - ($bounding_box->x_min % $line_spacing),
+            $bounding_box->y_min - ($bounding_box->y_min % $line_spacing),
+        ));
     }
     
     # generate the basic pattern
@@ -47,25 +55,21 @@ sub fill_surface {
             $vertical_line->[A][X] += $line_oscillation;
             $vertical_line->[B][X] -= $line_oscillation;
         }
-        push @vertical_lines, $vertical_line;
+        push @vertical_lines, Slic3r::Polyline->new(@$vertical_line);
         $i++;
         $x += $line_spacing;
     }
     
-    # clip paths against a slightly offsetted expolygon, so that the first and last paths
+    # clip paths against a slightly larger expolygon, so that the first and last paths
     # are kept even if the expolygon has vertical sides
     # the minimum offset for preventing edge lines from being clipped is scaled_epsilon;
     # however we use a larger offset to support expolygons with slightly skewed sides and 
     # not perfectly straight
-    my @polylines = map Slic3r::Polyline->new(@$_),
-        @{ Boost::Geometry::Utils::multi_polygon_multi_linestring_intersection(
-            [ map $_->pp, @{$expolygon->offset_ex(scaled_epsilon * 100)} ],
-            [ @vertical_lines ],
-        ) };
+    my @polylines = @{intersection_pl(\@vertical_lines, $expolygon->offset(scale 0.02))};
     
     # connect lines
-    unless ($params{dont_connect}) {
-        my ($expolygon_off) = @{$expolygon->offset_ex(scale $params{flow_spacing}/2)};
+    unless ($params{dont_connect} || !@polylines) {  # prevent calling leftmost_point() on empty collections
+        my ($expolygon_off) = @{$expolygon->offset_ex($min_spacing/2)};
         my $collection = Slic3r::Polyline::Collection->new(@polylines);
         @polylines = ();
         
@@ -78,7 +82,7 @@ sub fill_surface {
             }
             : sub { $_[X] <= $diagonal_distance && $_[Y] <= $diagonal_distance };
         
-        foreach my $polyline (@{$collection->chained_path(0)}) {
+        foreach my $polyline (@{$collection->chained_path_from($collection->leftmost_point, 0)}) {
             if (@polylines) {
                 my $first_point = $polyline->first_point;
                 my $last_point = $polylines[-1]->last_point;
@@ -86,7 +90,7 @@ sub fill_surface {
                 
                 # TODO: we should also check that both points are on a fill_boundary to avoid 
                 # connecting paths on the boundaries of internal regions
-                if ($can_connect->(@distance) && $expolygon_off->encloses_line(Slic3r::Line->new($last_point, $first_point), $tolerance)) {
+                if ($can_connect->(@distance) && $expolygon_off->contains_line(Slic3r::Line->new($last_point, $first_point))) {
                     $polylines[-1]->append_polyline($polyline);
                     next;
                 }
@@ -100,7 +104,7 @@ sub fill_surface {
     # paths must be rotated back
     $self->rotate_points_back(\@polylines, $rotate_vector);
     
-    return { flow_spacing => $flow_spacing }, @polylines;
+    return { flow => $flow }, @polylines;
 }
 
 1;

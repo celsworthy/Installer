@@ -2,9 +2,9 @@ package Slic3r::Polyline;
 use strict;
 use warnings;
 
-use Slic3r::Geometry qw(A B X Y X1 X2 Y1 Y2 polyline_remove_parallel_continuous_edges polyline_remove_acute_vertices);
+use List::Util qw(first);
+use Slic3r::Geometry qw(X Y epsilon);
 use Slic3r::Geometry::Clipper qw(JT_SQUARE);
-use Storable qw();
 
 sub new_scale {
     my $class = shift;
@@ -17,56 +17,9 @@ sub wkt {
     return sprintf "LINESTRING((%s))", join ',', map "$_->[0] $_->[1]", @$self;
 }
 
-sub merge_continuous_lines {
-    my $self = shift;
-    polyline_remove_parallel_continuous_edges($self);
-}
-
-sub remove_acute_vertices {
-    my $self = shift;
-    polyline_remove_acute_vertices($self);
-}
-
-sub simplify {
-    my $self = shift;
-    my $tolerance = shift || 10;
-    
-    my $simplified = Boost::Geometry::Utils::linestring_simplify($self->pp, $tolerance);
-    return __PACKAGE__->new(@$simplified);
-}
-
-sub grow {
-    my $self = shift;
-    my ($distance, $scale, $joinType, $miterLimit) = @_;
-    $joinType   //= JT_SQUARE;  # we override this one
-    $scale      //= 100000;     # we init these because we can't pass undef
-    $miterLimit //= 3;
-    
-    my @points = @$self;
-    return @{Slic3r::Geometry::Clipper::offset(
-        [ Slic3r::Polygon->new(@points, CORE::reverse @points[1..($#points-1)]) ],
-        $distance, $scale, $joinType, $miterLimit,
-    )};
-}
-
-sub clip_with_polygon {
-    my $self = shift;
-    my ($polygon) = @_;
-    
-    return $self->clip_with_expolygon(Slic3r::ExPolygon->new($polygon));
-}
-
-sub clip_with_expolygon {
-    my $self = shift;
-    my ($expolygon) = @_;
-    
-    my $result = Boost::Geometry::Utils::polygon_multi_linestring_intersection($expolygon->pp, [$self->pp]);
-    return map { __PACKAGE__->new(@$_) } @$result;
-}
-
 sub bounding_box {
     my $self = shift;
-    return Slic3r::Geometry::BoundingBox->new_from_points($self);
+    return Slic3r::Geometry::BoundingBox->new_from_points([ @$self ]);
 }
 
 sub size {
@@ -74,10 +27,14 @@ sub size {
     return [ Slic3r::Geometry::size_2D($self) ];
 }
 
-sub align_to_origin {
-    my $self = shift;
-    my $bb = $self->bounding_box;
-    return $self->translate(-$bb->x_min, -$bb->y_min);
+sub is_straight {
+    my ($self) = @_;
+    
+    # Check that each segment's direction is equal to the line connecting
+    # first point and last point. (Checking each line against the previous
+    # one would have caused the error to accumulate.)
+    my $dir = Slic3r::Line->new($self->first_point, $self->last_point)->direction;
+    return !defined first { !$_->parallel_to($dir) } @{$self->lines};
 }
 
 1;

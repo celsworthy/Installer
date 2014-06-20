@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -18,8 +18,11 @@
 
 # Maybe:
 #
-# $bool = $path->rect_to_n_range_is_always_exact()
 # $bool = $path->is_tree()
+
+# ($depth,$offset) = $path->tree_n_to_depth_and_offset
+#
+# $bool = $path->rect_to_n_range_is_always_exact()
 # $bool = $path->tree_n_to_subheight_is_infinite()
 #    identifying the infinite spines only
 #
@@ -33,6 +36,20 @@
 # trsquared_minimum
 # trsquared_minimum
 #
+# level_to_n_range()  0 to 2^k-1 centres
+#                     0 to 2^k   dragon segments
+# ring_to_n_range()   2^(k-1) to 2^k-1  koch peaks
+# ($x1,$y1, $x2,$y2) = n_to_rect($n)     integer points
+# ($s1,$s1, $d2,$d2) = n_to_diamond($n)     integer points
+#      cf fractional part Diagonals outside integer area
+# n_to_figure_boundary
+# n_to_hull_boundary
+# n_to_hull_area
+# n_to_enclosed_area
+# n_to_enclosed_boundary
+# n_to_right_enclosed_boundary
+# n_to_left_enclosed_boundary
+
 # $path->xy_integer() if X,Y both all integer
 # $path->x_integer()  if X all integer
 # $path->y_integer()  if Y all integer
@@ -71,6 +88,7 @@
 # $path->xy_to_n_list_maximum
 # $path->xy_next_in_rect($x,$y, $x1,$y1,$x2,$y2)
 #    return ($x,$y) or empty
+# $path->xy_to_dxdy() or dxdy_list if multiple maybe
 #
 # xy_unique_n_start
 # figures_disjoint
@@ -90,7 +108,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION';
-$VERSION = 113;
+$VERSION = 115;
 
 # uncomment this to run the ### lines
 # use Smart::Comments;
@@ -116,6 +134,8 @@ use constant class_x_negative => 1;
 use constant class_y_negative => 1;
 sub x_negative { $_[0]->class_x_negative }
 sub y_negative { $_[0]->class_y_negative }
+use constant _UNDOCUMENTED__x_negative_at_n => undef;
+use constant _UNDOCUMENTED__y_negative_at_n => undef;
 use constant n_frac_discontinuity => undef;
 
 use constant parameter_info_array => [];
@@ -258,6 +278,38 @@ use constant dx_minimum => undef;
 use constant dy_minimum => undef;
 use constant dx_maximum => undef;
 use constant dy_maximum => undef;
+#
+# C<@dxdy_list = $path-E<gt>_UNDOCUMENTED__dxdy_list_at_n()>
+#
+# If C<$path> has a finite set of dX,dY steps then return them as a list
+#
+#     $dx1,$dy1, $dx2,$dy2, $dx3,$dy3, ...
+#
+# If C<$path> has an infinite set of dX,dY steps then return an empty list.
+#
+use constant _UNDOCUMENTED__dxdy_list => ();  # default not finite list
+use constant _UNDOCUMENTED__dxdy_list_at_n => undef; # maybe dxdy_at_n()
+use constant _UNDOCUMENTED__dxdy_list_three => (2,0,    # E
+                                                -1,1,   # NW
+                                                -1,-1); # SW
+use constant _UNDOCUMENTED__dxdy_list_six => (2,0,   # E
+                                              1,1,   # NE
+                                              -1,1,  # NW
+                                              -2,0,  # W
+                                              -1,-1, # SW
+                                              1,-1); # SE
+use constant _UNDOCUMENTED__dxdy_list_four => (1,0,   # E
+                                               0,1,   # N
+                                               -1,0,  # W
+                                               0,-1); # S
+use constant _UNDOCUMENTED__dxdy_list_eight => (1,0,   # E
+                                                1,1,   # NE
+                                                0,1,   # N
+                                                -1,1,  # NW
+                                                -1,0,  # W
+                                                -1,-1, # SW
+                                                0,-1,  # S
+                                                1,-1); # SE
 
 sub absdx_minimum {
   my ($self) = @_;
@@ -841,9 +893,9 @@ Return the radial distance R=sqrt(X^2+Y^2) of point C<$n>, or the radius
 squared R^2=X^2+Y^2.  If there's no point C<$n> then the return is C<undef>.
 
 For a few paths these might be calculated with less work than C<n_to_xy()>.
-For example the C<SacksSpiral> is simply R^2=N, or for example the
-C<MultipleRings> path with its default step=6 has an integer radius for
-integer C<$n> whereas C<$x,$y> are fractional (and inexact).
+For example the C<SacksSpiral> is simply R^2=N, or the C<MultipleRings> path
+with its default step=6 has an integer radius for integer C<$n> whereas
+C<$x,$y> are fractional (and so inexact).
 
 =item C<$n = $path-E<gt>xy_to_n ($x,$y)>
 
@@ -871,8 +923,8 @@ nothing at C<$x,$y> then return an empty list.
     my @n_list = $path->xy_to_n(20,20);
 
 Most paths have just a single N for a given X,Y but some such as
-C<DragonCurve> and C<TerdragonCurve> have multiple N's at a given X,Y and
-this method returns all of them.
+C<DragonCurve> and C<TerdragonCurve> have multiple N's and this method
+returns all of them.
 
 =item C<$bool = $path-E<gt>xy_is_visited ($x,$y)>
 
@@ -881,7 +933,7 @@ Return true if C<$x,$y> is visited.  This is equivalent to
     defined($path->xy_to_n($x,$y))
 
 Some paths cover the plane and for them C<xy_is_visited()> is always true.
-For others it might be less work to just test a point than to calculate its
+For others it might be less work to test a point than to calculate its
 C<$n>.
 
 =item C<($n_lo, $n_hi) = $path-E<gt>rect_to_n_range ($x1,$y1, $x2,$y2)>
@@ -1189,8 +1241,8 @@ C<KnightSpiral> goes in 2x1 steps and so has minimum East-North-East
 dX=2,dY=1 and maximum East-South-East dX=2,dY=-1.
 
 If the path has directions approaching 360 degrees then
-C<dir_maximum_dxdy()> is 0,0 to mean a full circle as a supremum.  For
-example C<MultipleRings>.
+C<dir_maximum_dxdy()> is 0,0 which should be taken to mean a full circle as
+a supremum.  For example C<MultipleRings>.
 
 If the path only ever goes East then the maximum is East dX=1,dY=0, and the
 minimum the same.  This isn't particularly interesting, but arises for
@@ -1223,7 +1275,7 @@ some children.
 The N numbering and any relation to X,Y positions varies among the paths.
 Some are numbered by rows in breadth-first style and some have children with
 X,Y positions adjacent to their parent, but that shouldn't be assumed, only
-that there's a parent-child relation down from some set of top nodes.
+that there's a parent-child relation down from some set of root nodes.
 
 =over
 
@@ -1247,15 +1299,16 @@ of C<$n>.
 
 Return the parent node of C<$n>, or C<undef> if it has no parent.
 
-There is no parent at the top of the tree, or one of multiple tops, or if
-C<$path> is not a tree.
+There is no parent at the root node of the tree, or one of multiple roots,
+or if C<$path> is not a tree.
 
 =item C<$n_root = $path-E<gt>tree_n_root ($n)>
 
-Return the N which is root node of C<$n>.  This is the top of the tree as
-by following C<tree_n_parent()> repeatedly until no more parent.
+Return the N which is the root node of C<$n>.  This is the top of the tree
+as would be found by following C<tree_n_parent()> repeatedly.
 
-The return is C<undef> if there's no such C<$n> or C<$path> is not a tree.
+The return is C<undef> if there's no C<$n> point or if C<$path> is not a
+tree.
 
 =item C<$depth = $path-E<gt>tree_n_to_depth($n)>
 
@@ -1274,7 +1327,7 @@ C<tree_n_to_depth()> is always 0.
 =item C<($n_lo, $n_hi) = $path-E<gt>tree_depth_to_n_range ($depth)>
 
 Return the first or last N, or both those N, for tree level C<$depth> in the
-path.  If there's no such C<$depth> or C<$path> is not a tree then return
+path.  If there's no such C<$depth> or if C<$path> is not a tree then return
 C<undef>, or for C<tree_depth_to_n_range()> return an empty list.
 
 The points C<$n_lo> through C<$n_hi> might not necessarily all be at
@@ -1283,8 +1336,8 @@ point numbering.  But many paths are breadth-wise successive rows and for
 them C<$n_lo> to C<$n_hi> inclusive is all C<$depth>.
 
 C<$n_hi> can only exist if the row has a finite number of points.  That's
-true of all current paths, but perhaps allowance should be made for C<$n_hi>
-as C<undef> or some such if there is no maximum N for some row.
+true of all current paths, but perhaps allowance ought to be made for
+C<$n_hi> as C<undef> or some such if there is no maximum N for some row.
 
 =item C<$num = $path-E<gt>tree_depth_to_width ($depth)>
 
@@ -1307,10 +1360,10 @@ For example,
             \  /             5         0
               0             ...
 
-At N=0 and all the left side the tree continues infinitely so the sub-height
-is infinite (so C<undef>).  For N=2 the sub-height is 2 because the longest
-path down is 2 levels (to N=4 then N=7 or N=8).  For a leaf node such as N=5
-the sub-height is 0.
+At N=0 and all of the left side the tree continues infinitely so the
+sub-height there is C<undef> for infinite.  For N=2 the sub-height is 2
+because the longest path down is 2 levels (to N=7 or N=8).  For a leaf node
+such as N=5 the sub-height is 0.
 
 =back
 
@@ -1336,7 +1389,7 @@ C<tree_num_roots()> many return values.
 =item C<@nums = $path-E<gt>tree_num_children_list()>
 
 Return the possible number of children of the nodes of C<$path>, either the
-minimum, maximum, or a list of all possible number of children.
+minimum, the maximum, or a list of all possible numbers of children.
 
 For C<tree_num_children_list()> the list of values is in increasing order,
 so the first value is C<tree_num_children_minimum()> and the last is
@@ -2098,13 +2151,13 @@ PerlMagick (module L<Image::Magick>) demo scripts F<lsys.pl> and F<tree.pl>
 
 =head1 HOME PAGE
 
-http://user42.tuxfamily.org/math-planepath/index.html
+L<http://user42.tuxfamily.org/math-planepath/index.html>
 
-http://user42.tuxfamily.org/math-planepath/gallery.html
+L<http://user42.tuxfamily.org/math-planepath/gallery.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

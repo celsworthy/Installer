@@ -6,7 +6,7 @@ extends 'Slic3r::Fill::Base';
 has 'cache'         => (is => 'rw', default => sub {{}});
 
 use Slic3r::Geometry qw(PI X Y MIN MAX scale scaled_epsilon);
-use Slic3r::Geometry::Clipper qw(intersection);
+use Slic3r::Geometry::Clipper qw(intersection intersection_pl);
 
 sub angles () { [0, PI/3, PI/3*2] }
 
@@ -17,11 +17,11 @@ sub fill_surface {
     my $rotate_vector = $self->infill_direction($surface);
     
     # cache hexagons math
-    my $cache_id = sprintf "d%s_s%s", $params{density}, $params{flow_spacing};
+    my $cache_id = sprintf "d%s_s%s", $params{density}, $params{flow}->spacing;
     my $m;
     if (!($m = $self->cache->{$cache_id})) {
         $m = $self->cache->{$cache_id} = {};
-        my $min_spacing = scale $params{flow_spacing};
+        my $min_spacing = $params{flow}->scaled_spacing;
         $m->{distance} = $min_spacing / $params{density};
         $m->{hex_side} = $m->{distance} / (sqrt(3)/2);
         $m->{hex_width} = $m->{distance} * 2;  # $m->{hex_width} == $m->{hex_side} * sqrt(3);
@@ -47,8 +47,10 @@ sub fill_surface {
             
             # extend bounding box so that our pattern will be aligned with other layers
             # $bounding_box->[X1] and [Y1] represent the displacement between new bounding box offset and old one
-            $bounding_box->extents->[X][MIN] -= $bounding_box->x_min % $m->{hex_width};
-            $bounding_box->extents->[Y][MIN] -= $bounding_box->y_min % $m->{pattern_height};
+            $bounding_box->merge_point(Slic3r::Point->new(
+                $bounding_box->x_min - ($bounding_box->x_min % $m->{hex_width}),
+                $bounding_box->y_min - ($bounding_box->y_min % $m->{pattern_height}),
+            ));
         }
         
         my $x = $bounding_box->x_min;
@@ -88,17 +90,16 @@ sub fill_surface {
         # consider polygons as polylines without re-appending the initial point:
         # this cuts the last segment on purpose, so that the jump to the next 
         # path is more straight
-        @paths = map Slic3r::Polyline->new(@$_),
-            @{ Boost::Geometry::Utils::polygon_multi_linestring_intersection(
-                $surface->expolygon->pp,
-                [ map $_->pp, @polygons ],
-            ) };
+        @paths = @{intersection_pl(
+            [ map Slic3r::Polyline->new(@$_), @polygons ],
+            [ @{$surface->expolygon} ],
+        )};
         
         # connect paths
-        {
+        if (@paths) {  # prevent calling leftmost_point() on empty collections
             my $collection = Slic3r::Polyline::Collection->new(@paths);
             @paths = ();
-            foreach my $path (@{$collection->chained_path(0)}) {
+            foreach my $path (@{$collection->chained_path_from($collection->leftmost_point, 0)}) {
                 if (@paths) {
                     # distance between first point of this path and last point of last path
                     my $distance = $paths[-1]->last_point->distance_to($path->first_point);
@@ -115,14 +116,13 @@ sub fill_surface {
         }
         
         # clip paths again to prevent connection segments from crossing the expolygon boundaries
-        @paths = map Slic3r::Polyline->new(@$_),
-            @{ Boost::Geometry::Utils::multi_polygon_multi_linestring_intersection(
-                [ map $_->pp, @{$surface->expolygon->offset_ex(scaled_epsilon)} ],
-                [ map $_->pp, @paths ],
-            ) } if @paths;  # this temporary check is a workaround for the multilinestring bug in B::G::U
+        @paths = @{intersection_pl(
+            \@paths,
+            [ map @$_, @{$surface->expolygon->offset_ex(scaled_epsilon)} ],
+        )};
     }
     
-    return { flow_spacing => $params{flow_spacing} }, @paths;
+    return { flow => $params{flow} }, @paths;
 }
 
 1;
