@@ -1,5 +1,18 @@
 CEL Configurator README
 
+version 1.00.06
+Fixes ROB-10 - Change to version 1.1.2 of Slic3r
+Fixes ROB-145 - Print quality control text is too large
+Fixes ROB-146 - Incorrect font on print quality control (Linux/Mac)
+Fixes ROB-148 - Text alignment on Profile->Nozzles
+Fixes ROB-150 - The print is always at the centre of the bed
+Fixes ROB-152 - First tab top on status pullout is different size when deselected
+Fixes ROB-159 - Create print profile keeps reappearing
+Fixes ROB-167 - Temperature display/entry incorrect for locales using . as a separator
+Fixes ROB-172 - Copy draft profile using save as command creates bug in gcode
+Fixes windows driver failure to install on some non-english windows versions.
+Fixes error in text of nozzle calibration screen.
+
 version 1.00.05
 Fixes windows driver failure to install on some non-english windows version.
 Fixes error in text of nozzle calibration screen.
