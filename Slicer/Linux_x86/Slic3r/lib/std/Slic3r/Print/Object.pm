@@ -10,7 +10,7 @@ use Slic3r::Print::State ':steps';
 use Slic3r::Surface ':types';
 
 has 'print'             => (is => 'ro', weak_ref => 1, required => 1);
-has 'model_object'      => (is => 'ro', required => 1);
+has 'model_object'      => (is => 'ro', required => 1);  # caller is responsible for holding the Model object
 has 'region_volumes'    => (is => 'rw', default => sub { [] });  # by region_id
 has 'copies'            => (is => 'ro');  # Slic3r::Point objects in scaled G-code coordinates
 has 'config'            => (is => 'ro', default => sub { Slic3r::Config::PrintObject->new });
@@ -119,6 +119,7 @@ sub slice {
         # make layers taking custom heights into account
         my $print_z = my $slice_z = my $height = my $id = 0;
         my $first_object_layer_height = -1;
+        my $first_object_layer_distance = -1;
     
         # add raft layers
         if ($self->config->raft_layers > 0) {
@@ -136,7 +137,8 @@ sub slice {
         
             # force first layer print_z according to the contact distance
             # (the loop below will raise print_z by such height)
-            $first_object_layer_height = $distance;
+            $first_object_layer_height = $nozzle_diameter;
+            $first_object_layer_distance = $distance;
         }
     
         # loop until we have at least one layer and the max slice_z reaches the object height
@@ -160,6 +162,7 @@ sub slice {
             
             if ($first_object_layer_height != -1 && !@{$self->layers}) {
                 $height = $first_object_layer_height;
+                $print_z += ($first_object_layer_distance - $height);
             }
             
             $print_z += $height;
@@ -308,11 +311,10 @@ sub slice {
     }
     
     # remove empty layers from bottom
-    my $first_object_layer_id = $self->config->raft_layers;
-    while (@{$self->layers} && !@{$self->layers->[$first_object_layer_id]->slices}) {
-        splice @{$self->layers}, $first_object_layer_id, 1;
-        for (my $i = $first_object_layer_id; $i <= $#{$self->layers}; $i++) {
-            $self->layers->[$i]->id($i);
+    while (@{$self->layers} && !@{$self->layers->[0]->slices}) {
+        shift @{$self->layers};
+        for (my $i = 0; $i <= $#{$self->layers}; $i++) {
+            $self->layers->[$i]->id( $self->layers->[$i]->id-1 );
         }
     }
     
@@ -965,6 +967,9 @@ sub combine_infill {
 
 sub generate_support_material {
     my $self = shift;
+    
+    # TODO: make this method idempotent by removing all support layers
+    # before checking whether we need to generate support or not
     return unless ($self->config->support_material || $self->config->raft_layers > 0)
         && scalar(@{$self->layers}) >= 2;
     

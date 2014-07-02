@@ -32,7 +32,7 @@ use Math::PlanePath;
 use Math::PlanePath::MultipleRings;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 115;
+$VERSION = 116;
 @ISA = ('Math::PlanePath');
 
 
@@ -42,8 +42,8 @@ $VERSION = 115;
 
 use constant n_start => 0;
 use constant figure => 'circle';
-use constant _UNDOCUMENTED__x_negative_at_n => 2;
-use constant _UNDOCUMENTED__y_negative_at_n => 3;
+use constant x_negative_at_n => 2;
+use constant y_negative_at_n => 3;
 
 use constant 1.02; # for leading underscore
 use constant _TWO_PI => 4*atan2(1,0);

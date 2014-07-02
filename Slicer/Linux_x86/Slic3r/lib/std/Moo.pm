@@ -2,11 +2,9 @@ package Moo;
 
 use strictures 1;
 use Moo::_Utils;
-use B 'perlstring';
-use Sub::Defer ();
 use Import::Into;
 
-our $VERSION = '1.004002';
+our $VERSION = '1.005000';
 $VERSION = eval $VERSION;
 
 require Moo::sification;
@@ -24,7 +22,7 @@ sub import {
   my $class = shift;
   _set_loaded(caller);
   strictures->import::into(1);
-  if ($Role::Tiny::INFO{$target} and $Role::Tiny::INFO{$target}{is_role}) {
+  if ($INC{'Role/Tiny.pm'} and Role::Tiny->is_role($target)) {
     die "Cannot import Moo into a role";
   }
   $MAKERS{$target} ||= {};
@@ -92,7 +90,7 @@ sub _set_superclasses {
   my $target = shift;
   foreach my $superclass (@_) {
     _load_module($superclass);
-    if ($INC{"Role/Tiny.pm"} && $Role::Tiny::INFO{$superclass}) {
+    if ($INC{'Role/Tiny.pm'} && Role::Tiny->is_role($superclass)) {
       require Carp;
       Carp::croak("Can't extend role '$superclass'");
     }
@@ -126,6 +124,7 @@ sub _accessor_maker_for {
   $MAKERS{$target}{accessor} ||= do {
     my $maker_class = do {
       if (my $m = do {
+            require Sub::Defer;
             if (my $defer_target =
                   (Sub::Defer::defer_info($target->can('new'))||[])->[0]
               ) {
@@ -146,31 +145,28 @@ sub _accessor_maker_for {
 }
 
 sub _constructor_maker_for {
-  my ($class, $target, $select_super) = @_;
+  my ($class, $target) = @_;
   return unless $MAKERS{$target};
   $MAKERS{$target}{constructor} ||= do {
     require Method::Generate::Constructor;
     require Sub::Defer;
     my ($moo_constructor, $con);
 
-    if ($select_super && $MAKERS{$select_super}) {
-      $moo_constructor = 1;
-      $con = $MAKERS{$select_super}{constructor};
-    } else {
-      my $t_new = $target->can('new');
-      if ($t_new) {
-        if ($t_new == Moo::Object->can('new')) {
-          $moo_constructor = 1;
-        } elsif (my $defer_target = (Sub::Defer::defer_info($t_new)||[])->[0]) {
-          my ($pkg) = ($defer_target =~ /^(.*)::[^:]+$/);
-          if ($MAKERS{$pkg}) {
-            $moo_constructor = 1;
-            $con = $MAKERS{$pkg}{constructor};
-          }
-        }
-      } else {
-        $moo_constructor = 1; # no other constructor, make a Moo one
+    my $t_new = $target->can('new');
+    if ($t_new) {
+      if ($t_new == Moo::Object->can('new')) {
+        $moo_constructor = 1;
       }
+      elsif (my $defer_target = (Sub::Defer::defer_info($t_new)||[])->[0]) {
+        my ($pkg) = ($defer_target =~ /^(.*)::[^:]+$/);
+        if ($MAKERS{$pkg}) {
+          $moo_constructor = 1;
+          $con = $MAKERS{$pkg}{constructor};
+        }
+      }
+    }
+    else {
+      $moo_constructor = 1; # no other constructor, make a Moo one
     }
     ($con ? ref($con) : 'Method::Generate::Constructor')
       ->new(
@@ -180,7 +176,7 @@ sub _constructor_maker_for {
           $con ? (construction_string => $con->construction_string) : ()
         ) : (
           construction_builder => sub {
-            '$class->'.$target.'::SUPER::new('
+            '$class->next::method('
               .($target->can('FOREIGNBUILDARGS') ?
                 '$class->FOREIGNBUILDARGS(@_)' : '@_')
               .')'
@@ -188,7 +184,10 @@ sub _constructor_maker_for {
         ),
         subconstructor_handler => (
           '      if ($Moo::MAKERS{$class}) {'."\n"
-          .'        '.$class.'->_constructor_maker_for($class,'.perlstring($target).');'."\n"
+          .'        if ($Moo::MAKERS{$class}{constructor}) {'."\n"
+          .'          return $class->'.$target.'::SUPER::new(@_);'."\n"
+          .'        }'."\n"
+          .'        '.$class.'->_constructor_maker_for($class);'."\n"
           .'        return $class->new(@_)'.";\n"
           .'      } elsif ($INC{"Moose.pm"} and my $meta = Class::MOP::get_metaclass_by_name($class)) {'."\n"
           .'        return $meta->new_object($class->BUILDARGS(@_));'."\n"
@@ -658,7 +657,7 @@ Takes a method name which will clear the attribute.
 
 If you set this to just C<1>, the clearer is automatically named
 C<clear_${attr_name}> if your attribute's name does not start with an
-underscore, or <_clear_${attr_name_without_the_underscore}> if it does.
+underscore, or C<_clear_${attr_name_without_the_underscore}> if it does.
 This feature comes from L<MooseX::AttributeShortcuts>.
 
 =item * C<lazy>
@@ -860,7 +859,8 @@ or array reference as a default is almost always incorrect since the value is
 then shared between all objects using that default.
 
 C<lazy_build> is not supported; you are instead encouraged to use the
-C<< is => 'lazy' >> option supported by L<Moo> and L<MooseX::AttributeShortcuts>.
+C<< is => 'lazy' >> option supported by L<Moo> and
+L<MooseX::AttributeShortcuts>.
 
 C<auto_deref> is not supported since the author considers it a bad idea and
 it has been considered best practice to avoid it for some time.
@@ -926,11 +926,13 @@ to Moo by providing a more Moose-like interface.
 
 Users' IRC: #moose on irc.perl.org
 
-=for html <a href="http://chat.mibbit.com/#moose@irc.perl.org">(click for instant chatroom login)</a>
+=for html <a href="http://chat.mibbit.com/#moose@irc.perl.org">(click for
+instant chatroom login)</a>
 
 Development and contribution IRC: #web-simple on irc.perl.org
 
-=for html <a href="http://chat.mibbit.com/#web-simple@irc.perl.org">(click for instant chatroom login)</a>
+=for html <a href="http://chat.mibbit.com/#web-simple@irc.perl.org">(click for
+instant chatroom login)</a>
 
 Bugtracker: L<https://rt.cpan.org/Public/Dist/Display.html?Name=Moo>
 

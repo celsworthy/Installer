@@ -2,7 +2,7 @@ package Moo::HandleMoose;
 
 use strictures 1;
 use Moo::_Utils;
-use B qw(perlstring);
+use Sub::Quote qw(quotify);
 
 our %TYPE_MAP;
 
@@ -82,12 +82,12 @@ sub inject_real_metaclass_for {
   }
 
   my %methods
-    = %{($am_role ? 'Role::Tiny' : 'Moo')->_concrete_methods_of($name)};
+    = %{($am_role ? 'Moo::Role' : 'Moo')->_concrete_methods_of($name)};
 
   # if stuff gets added afterwards, _maybe_reset_handlemoose should
   # trigger the recreation of the metaclass but we need to ensure the
-  # Role::Tiny cache is cleared so we don't confuse Moo itself.
-  if (my $info = $Role::Tiny::INFO{$name}) {
+  # Moo::Role cache is cleared so we don't confuse Moo itself.
+  if (my $info = $Moo::Role::INFO{$name}) {
     delete $info->{methods};
   }
 
@@ -123,8 +123,11 @@ sub inject_real_metaclass_for {
         my $tc = $spec{isa} = do {
           if (my $mapped = $TYPE_MAP{$isa}) {
             my $type = $mapped->();
-            Scalar::Util::blessed($type) && $type->isa("Moose::Meta::TypeConstraint")
-              or die "error inflating attribute '$name' for package '$_[0]': \$TYPE_MAP{$isa} did not return a valid type constraint'";
+            unless ( Scalar::Util::blessed($type)
+                && $type->isa("Moose::Meta::TypeConstraint") ) {
+              die "error inflating attribute '$name' for package '$_[0]': "
+                ."\$TYPE_MAP{$isa} did not return a valid type constraint'";
+            }
             $coerce ? $type->create_child_type(name => $type->name) : $type;
           } else {
             Moose::Meta::TypeConstraint->new(
@@ -138,7 +141,7 @@ sub inject_real_metaclass_for {
           $spec{coerce} = 1;
         }
       } elsif ($coerce) {
-        my $attr = perlstring($name);
+        my $attr = quotify($name);
         my $tc = Moose::Meta::TypeConstraint->new(
                    constraint => sub { die "This is not going to work" },
                    inlined => sub {
@@ -199,7 +202,7 @@ sub inject_real_metaclass_for {
   }
   $meta->add_role(Class::MOP::class_of($_))
     for grep !/\|/ && $_ ne $name, # reject Foo|Bar and same-role-as-self
-      do { no warnings 'once'; keys %{$Role::Tiny::APPLIED_TO{$name}} };
+      do { no warnings 'once'; keys %{$Moo::Role::APPLIED_TO{$name}} };
   $DID_INJECT{$name} = 1;
   $meta;
 }

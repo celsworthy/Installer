@@ -40,7 +40,7 @@ use Math::Libm 'asin', 'hypot';
 use vars '$VERSION', '@ISA';
 @ISA = ('Math::PlanePath');
 use Math::PlanePath;
-$VERSION = 115;
+$VERSION = 116;
 
 use Math::PlanePath::Base::Generic
   'is_infinite';
@@ -107,13 +107,13 @@ sub y_maximum {
           : undef);
 }
 
-sub _UNDOCUMENTED__x_negative_at_n {
+sub x_negative_at_n {
   my ($self) = @_;
   return ($self->{'step'} == 0 ? undef  # no negatives
           : $self->{'step'} == 1 ? 3
           : $self->n_start + int($self->{'step'}/4) + 1);
 }
-sub _UNDOCUMENTED__y_negative_at_n {
+sub y_negative_at_n {
   my ($self) = @_;
   return ($self->{'step'} == 0 ? undef  # no negatives
           : $self->{'step'} <= 2 ? 6

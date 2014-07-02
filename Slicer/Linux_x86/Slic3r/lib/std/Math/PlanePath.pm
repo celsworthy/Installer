@@ -18,6 +18,8 @@
 
 # Maybe:
 #
+# ($x,$y) = $path->xy_start()   x,y at n_start
+
 # $bool = $path->is_tree()
 
 # ($depth,$offset) = $path->tree_n_to_depth_and_offset
@@ -108,7 +110,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION';
-$VERSION = 115;
+$VERSION = 116;
 
 # uncomment this to run the ### lines
 # use Smart::Comments;
@@ -134,8 +136,8 @@ use constant class_x_negative => 1;
 use constant class_y_negative => 1;
 sub x_negative { $_[0]->class_x_negative }
 sub y_negative { $_[0]->class_y_negative }
-use constant _UNDOCUMENTED__x_negative_at_n => undef;
-use constant _UNDOCUMENTED__y_negative_at_n => undef;
+use constant x_negative_at_n => undef;
+use constant y_negative_at_n => undef;
 use constant n_frac_discontinuity => undef;
 
 use constant parameter_info_array => [];
@@ -279,15 +281,12 @@ use constant dy_minimum => undef;
 use constant dx_maximum => undef;
 use constant dy_maximum => undef;
 #
-# C<@dxdy_list = $path-E<gt>_UNDOCUMENTED__dxdy_list_at_n()>
+# =item C<$n = $path-E<gt>_UNDOCUMENTED__dxdy_list_at_n()>
 #
-# If C<$path> has a finite set of dX,dY steps then return them as a list
+# Return the N at which all possible dX,dY will have been seen.  If there is
+# not a finite set of possible dX,dY steps then return C<undef>.
 #
-#     $dx1,$dy1, $dx2,$dy2, $dx3,$dy3, ...
-#
-# If C<$path> has an infinite set of dX,dY steps then return an empty list.
-#
-use constant _UNDOCUMENTED__dxdy_list => ();  # default not finite list
+use constant _UNDOCUMENTED__dxdy_list => ();  # default empty for not a finite list
 use constant _UNDOCUMENTED__dxdy_list_at_n => undef; # maybe dxdy_at_n()
 use constant _UNDOCUMENTED__dxdy_list_three => (2,0,    # E
                                                 -1,1,   # NW
@@ -298,10 +297,6 @@ use constant _UNDOCUMENTED__dxdy_list_six => (2,0,   # E
                                               -2,0,  # W
                                               -1,-1, # SW
                                               1,-1); # SE
-use constant _UNDOCUMENTED__dxdy_list_four => (1,0,   # E
-                                               0,1,   # N
-                                               -1,0,  # W
-                                               0,-1); # S
 use constant _UNDOCUMENTED__dxdy_list_eight => (1,0,   # E
                                                 1,1,   # NE
                                                 0,1,   # N
@@ -411,6 +406,11 @@ sub n_to_radius {
 #------------------------------------------------------------------------------
 # tree
 
+sub is_tree {
+  my ($self) = @_;
+  return $self->tree_n_num_children($self->n_start);
+}
+
 use constant tree_n_parent => undef;  # default always no parent
 
 use constant tree_n_children => ();   # default no children
@@ -471,15 +471,6 @@ sub tree_depth_to_width {
   return undef;
 }
 
-# =item C<$bool = $path-E<gt>UNTESTED__is_tree()>
-#
-# Return true if C<$path> is a tree.
-#
-sub UNTESTED__is_tree {
-  my ($self) = @_;
-  return $self->tree_n_num_children($self->n_start);
-}
-
 sub tree_num_roots {
   my ($self) = @_;
   my @root_n_list = $self->tree_root_n_list;
@@ -490,7 +481,8 @@ sub tree_root_n_list {
   my $n_start = $self->n_start;
   my @ret;
   for (my $n = $n_start; ; $n++) {
-    # stop at non-root has a parent, or a non-tree path has no children
+    # stop on finding a non-root (has a parent), or a non-tree path has no
+    # children at all
     if (defined($self->tree_n_parent($n))
         || ! $self->tree_n_num_children($n)) {
       last;
@@ -771,6 +763,7 @@ related things are further down like C<Math::PlanePath::Base::Xyzzy>.
     CoprimeColumns         coprime X,Y
     DivisibleColumns       X divisible by Y
     WythoffArray           Fibonacci recurrences
+    WythoffPreliminaryTriangle
     PowerArray             powers in rows
     File                   points from a disk file
 
@@ -1026,6 +1019,14 @@ coordinates and/or negative Y coordinates, respectively.
 
 For some classes the X or Y extent may depend on parameter values.
 
+=item C<$n = $path-E<gt>x_negative_at_n()>
+
+=item C<$n = $path-E<gt>y_negative_at_n()>
+
+Return the integer N where X or Y respectively first goes negative, or
+return C<undef> if it does not go negative (C<x_negative()> or
+C<y_negative()> respectively is false).
+
 =item C<$x = $path-E<gt>x_minimum()>
 
 =item C<$y = $path-E<gt>y_minimum()>
@@ -1051,6 +1052,22 @@ the change along the same arm.
 
 Various paths which go by rows have non-decreasing Y.  For them
 C<dy_minimum()> is 0.
+
+=cut
+
+# =item C<@dxdy_list = $path-E<gt>dxdy_list()>
+# 
+# If C<$path> has a finite set of dX,dY steps then return them as a list.
+# If C<$path> has an infinite set of dX,dY steps then return an empty list.
+# 
+#     $dx1,$dy1, $dx2,$dy2, $dx3,$dy3, ...
+# 
+# The points are returned in order of angle around starting from East
+# (dXE<gt>0,dY=0), and by increasing length among those of the same angle.  If
+# dX=0,dY=0 occurs (which it doesn't in any current path) then that would be
+# first in the return list.
+
+=pod
 
 =item C<$adx = $path-E<gt>absdx_minimum()>
 
@@ -1278,6 +1295,14 @@ X,Y positions adjacent to their parent, but that shouldn't be assumed, only
 that there's a parent-child relation down from some set of root nodes.
 
 =over
+
+=item C<$bool = $path-E<gt>is_tree()>
+
+Return true if C<$path> is a tree.
+
+The various tree methods have empty or C<undef> returns on non-tree paths.
+Often it's enough to check for that from a desired method rather than a
+separate C<is_tree()> check.
 
 =item C<@n_children = $path-E<gt>tree_n_children($n)>
 
@@ -1720,7 +1745,7 @@ sqrt(3) scale factor before rotating or the result will be skewed.  60
 degree rotations can be made within the integer X,Y coordinates directly as
 follows, all giving integer X,Y results.
 
-    (X-3Y)/2, (X+Y)/2       rotate +60   (anti-clockwise)
+    (X-3Y)/2, (Y+X)/2       rotate +60   (anti-clockwise)
     (X+3Y)/2, (Y-X)/2       rotate -60   (clockwise)
     -(X+3Y)/2, (X-Y)/2      rotate +120
     (3Y-X)/2, -(X+Y)/2      rotate -120
@@ -1890,6 +1915,8 @@ The following descriptive methods have base implementations
     class_y_negative()  /
     x_negative()        calls class_x_negative()
     y_negative()        calls class_x_negative()
+    x_negative_at_n()   undef \ as for no negatives
+    y_negative_at_n()   undef /
 
 The base C<n_start()> starts at N=1.  Paths which treat N as digits of some
 radix or where there's self-similar replication are often best started from
@@ -1916,16 +1943,16 @@ A subclass can implement them directly if they can be done more efficiently.
     n_to_rsquared()       calls n_to_xy()
     n_to_radius()         sqrt of n_to_rsquared()
 
-C<SacksSpiral> is an example of an easy C<n_to_rsquared()>.  Or
+C<SacksSpiral> is an example of an easy C<n_to_rsquared()>.
 C<TheodorusSpiral> is only slightly trickier.  Unless a path has some sort
 of easy X^2+Y^2 then it might as well let the base implementation call
 C<n_to_xy()>.
 
 The way C<n_to_dxdy()> supports fractional N can be a little tricky.  One
-way is to calculate on the integers below and above and combine as described
-in L</N to dX,dY -- Fractional>.  For some paths the calculation of turn or
-direction at ceil(N) can be worked into a calculation of the direction at
-floor(N) so taking not much more work.
+way is to calculate dX,dY on the integer N below and above and combine as
+described in L</N to dX,dY -- Fractional>.  For some paths the calculation
+of turn or direction at ceil(N) can be worked into a calculation of the
+direction at floor(N) so not much more work.
 
 The following method has a base implementation calling C<xy_to_n()>.
 A subclass can implement is directly if it can be done more efficiently.
@@ -1949,6 +1976,12 @@ For a tree path the following methods are mandatory
 The other tree methods have base implementations,
 
 =over
+
+=item C<is_tree()>
+
+Checks for C<n_start()> having non-zero C<tree_n_to_num_children()>.
+Usually this suffices, expecting C<n_start()> to be a root node and to have
+some children.
 
 =item C<tree_n_num_children()>
 
@@ -2117,6 +2150,7 @@ L<Math::PlanePath::CfracDigits>,
 L<Math::PlanePath::CoprimeColumns>,
 L<Math::PlanePath::DivisibleColumns>,
 L<Math::PlanePath::WythoffArray>,
+L<Math::PlanePath::WythoffPreliminaryTriangle>,
 L<Math::PlanePath::PowerArray>,
 L<Math::PlanePath::File>
 
