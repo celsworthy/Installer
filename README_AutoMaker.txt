@@ -1,5 +1,8 @@
 CEL AutoMaker README
 
+version 1.00.07
+Hotfix for material temperature entry issue (material profile page).
+
 version 1.00.06
 Fixes ROB-10 - Change to version 1.1.2 of Slic3r
 Fixes ROB-22 - Deleting custom profiles deletes the file but leaves it in the selection box.
