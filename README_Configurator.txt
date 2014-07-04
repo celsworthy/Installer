@@ -1,5 +1,22 @@
 CEL Configurator README
 
+version 1.00.08
+Included version 1.1.5 Slic3r
+Update to nozzle offset calibration - now includes ability to nudge height offsets manually.
+Fixes ROB-85 - brim control on settings page.
+Fixes ROB-179 - AutoMaker can hang under certain conditions with a popup progress dialog being displayed
+Fixes ROB-173 - Degree symbol incorrect in graph axis label and target field labels
+Fixes ROB-182 - Can't type unicode characters into text boxes
+Fixes ROB-189 - Change wording of calibration routine to request door open
+Fixes ROB-186 - Heater target temperatures do not update unless return is pressed
+Fixes ROB-188 - Add close button to calibration dialogs
+ROB-189 - Change wording of calibration routine to request door open
+Fixes ROB-190 - Check for 3D support after autoupdate
+Fixes ROB-35 - ETA on print time
+Fixes ROB-126 - print progress goes beyond 100%
+Added z switch error handling
+Included Simplified Chinese language.
+
 version 1.00.07
 Hotfix for material temperature entry issue (material profile page).
 
