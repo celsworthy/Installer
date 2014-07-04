@@ -403,13 +403,13 @@ sub load_model_objects {
         );
         push @obj_idx, $#{ $self->{objects} };
     
-        if (!defined $model_object->instances) {
+        if ($model_object->instances_count == 0) {
             # if object has no defined position(s) we need to rearrange everything after loading
             $need_arrange = 1;
         
             # add a default instance and center object around origin
             $o->center_around_origin;
-            $o->add_instance(offset => [ @{$self->{config}->print_center} ]);
+            $o->add_instance(offset => Slic3r::Pointf->new(@{$self->{config}->print_center}));
         }
     
         $self->{print}->auto_assign_extruders($o);
@@ -471,8 +471,8 @@ sub reset {
     my $self = shift;
     
     @{$self->{objects}} = ();
-    $self->{model}->delete_all_objects;
-    $self->{print}->delete_all_objects;
+    $self->{model}->clear_objects;
+    $self->{print}->clear_objects;
     $self->{list}->DeleteAllItems;
     $self->object_list_changed;
     
@@ -487,7 +487,7 @@ sub increase {
     my $model_object = $self->{model}->objects->[$obj_idx];
     my $last_instance = $model_object->instances->[-1];
     my $i = $model_object->add_instance(
-        offset          => [ map 10+$_, @{$last_instance->offset} ],
+        offset          => Slic3r::Pointf->new(map 10+$_, @{$last_instance->offset}),
         scaling_factor  => $last_instance->scaling_factor,
         rotation        => $last_instance->rotation,
     );
@@ -542,7 +542,7 @@ sub rotate {
     
     {
         my $new_angle = $model_instance->rotation + $angle;
-        $_->rotation($new_angle) for @{ $model_object->instances };
+        $_->set_rotation($new_angle) for @{ $model_object->instances };
         $model_object->update_bounding_box;
         
         # update print
@@ -578,7 +578,7 @@ sub changescale {
             $range->[0] *= $variation;
             $range->[1] *= $variation;
         }
-        $_->scaling_factor($scale) for @{ $model_object->instances };
+        $_->set_scaling_factor($scale) for @{ $model_object->instances };
         $model_object->update_bounding_box;
         
         # update print
@@ -627,12 +627,6 @@ sub split_object {
         Slic3r::GUI::warning_catcher($self)->("The selected object couldn't be split because it already contains a single part.");
         return;
     }
-
-    # remove the original object before spawning the object_loaded event, otherwise 
-    # we'll pass the wrong $obj_idx to it (which won't be recognized after the
-    # thumbnail thread returns)
-    $self->remove($obj_idx);
-    $current_object = $obj_idx = undef;
     
     # create a bogus Model object, we only need to instantiate the new Model::Object objects
     my $new_model = Slic3r::Model->new;
@@ -654,10 +648,10 @@ sub split_object {
         for my $instance_idx (0..$#{ $current_model_object->instances }) {
             my $current_instance = $current_model_object->instances->[$instance_idx];
             $model_object->add_instance(
-                offset          => [
+                offset          => Slic3r::Pointf->new(
                     $current_instance->offset->[X] + ($instance_idx * 10),
                     $current_instance->offset->[Y] + ($instance_idx * 10),
-                ],
+                ),
                 rotation        => $current_instance->rotation,
                 scaling_factor  => $current_instance->scaling_factor,
             );
@@ -666,6 +660,12 @@ sub split_object {
         $model_object->center_around_origin;
         push @model_objects, $model_object;
     }
+
+    # remove the original object before spawning the object_loaded event, otherwise 
+    # we'll pass the wrong $obj_idx to it (which won't be recognized after the
+    # thumbnail thread returns)
+    $self->remove($obj_idx);
+    $current_object = $obj_idx = undef;
     
     # load all model objects at once, otherwise the plate would be rearranged after each one
     # causing original positions not to be kept
@@ -692,6 +692,7 @@ sub export_gcode {
         $self->{print}->apply_config($config);
         $self->{print}->validate;
     };
+    Slic3r::GUI::catch_error($self) and return;
     
     # apply extra variables
     {
@@ -1108,10 +1109,11 @@ sub mouse_event {
         return if !$self->{drag_start_pos}; # concurrency problems
         my ($obj_idx, $instance_idx) = @{ $self->{drag_object} };
         my $model_object = $parent->{model}->objects->[$obj_idx];
-        $model_object->instances->[$instance_idx]->offset([
-            unscale($pos->[X] - $self->{drag_start_pos}[X]),
-            unscale($pos->[Y] - $self->{drag_start_pos}[Y]),
-        ]);
+        $model_object->instances->[$instance_idx]->set_offset(
+            Slic3r::Pointf->new(
+                unscale($pos->[X] - $self->{drag_start_pos}[X]),
+                unscale($pos->[Y] - $self->{drag_start_pos}[Y]),
+            ));
         $model_object->update_bounding_box;
         $parent->Refresh;
     } elsif ($event->Moving) {

@@ -1,10 +1,8 @@
 package Method::Generate::Constructor;
 
 use strictures 1;
-use Sub::Quote;
-use base qw(Moo::Object);
+use Sub::Quote qw(quote_sub unquote_sub quotify);
 use Sub::Defer;
-use B 'perlstring';
 use Moo::_Utils qw(_getstash);
 
 sub register_attribute_specs {
@@ -27,9 +25,16 @@ sub register_attribute_specs {
         }
       }
     }
-    if (exists $new_spec->{init_arg} && !defined $new_spec->{init_arg}
-        && $new_spec->{required}) {
-      die "${name} attribute can't be required with init_arg => undef";
+    if ($new_spec->{required}
+      && !(
+        exists $new_spec->{default}
+        || $new_spec->{builder}
+        || !exists $new_spec->{init_arg}
+        || defined $new_spec->{init_arg}
+      )
+    ) {
+      die "You cannot have a required attribute (${name})"
+        . " without a default, builder, or an init_arg";
     }
     $new_spec->{index} = scalar keys %$specs
       unless defined $new_spec->{index};
@@ -114,7 +119,7 @@ sub generate_method {
 sub _handle_subconstructor {
   my ($self, $into, $name) = @_;
   if (my $gen = $self->{subconstructor_handler}) {
-    '    if ($class ne '.perlstring($into).') {'."\n".
+    '    if ($class ne '.quotify($into).') {'."\n".
     $gen.
     '    }'."\n";
   } else {
@@ -148,8 +153,8 @@ sub _generate_args {
         $args = { %{ $_[0] } };
     }
     elsif ( @_ % 2 ) {
-        die "The new() method for $class expects a hash reference or a key/value list."
-                . " You passed an odd number of arguments\n";
+        die "The new() method for $class expects a hash reference or a"
+          . " key/value list. You passed an odd number of arguments\n";
     }
     else {
         $args = {@_};
@@ -169,7 +174,7 @@ sub _assign_new {
     $test{$name} = $attr_spec->{init_arg};
   }
   join '', map {
-    my $arg_key = perlstring($test{$_});
+    my $arg_key = quotify($test{$_});
     my $test = "exists \$args->{$arg_key}";
     my $source = "\$args->{$arg_key}";
     my $attr_spec = $spec->{$_};
@@ -195,16 +200,22 @@ sub _check_required {
 }
 
 use Moo;
-Moo->_constructor_maker_for(__PACKAGE__)->register_attribute_specs(
+# bootstrap our own constructor
+sub new {
+  my $class = shift;
+  bless $class->BUILDARGS(@_), $class;
+}
+Moo->_constructor_maker_for(__PACKAGE__)
+->register_attribute_specs(
   attribute_specs => {
     is => 'ro',
     reader => 'all_attribute_specs',
   },
   accessor_generator => { is => 'ro' },
   construction_string => { is => 'lazy' },
-  construction_builder => { is => 'lazy' },
+  construction_builder => { is => 'bare' },
   subconstructor_handler => { is => 'ro' },
-  package => { is => 'ro' },
+  package => { is => 'bare' },
 );
 
 1;

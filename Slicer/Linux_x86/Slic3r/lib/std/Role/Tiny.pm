@@ -6,18 +6,20 @@ sub _getstash { \%{"$_[0]::"} }
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '1.003002'; # 1.3.2
+our $VERSION = '1.003003';
 $VERSION = eval $VERSION;
 
 our %INFO;
 our %APPLIED_TO;
 our %COMPOSED;
 our %COMPOSITE_INFO;
+our @ON_ROLE_CREATE;
 
 # Module state workaround totally stolen from Zefram's Module::Runtime.
 
 BEGIN {
   *_WORK_AROUND_BROKEN_MODULE_STATE = "$]" < 5.009 ? sub(){1} : sub(){0};
+  *_MRO_MODULE = "$]" < 5.010 ? sub(){"MRO/Compat.pm"} : sub(){"mro.pm"};
 }
 
 sub Role::Tiny::__GUARD__::DESTROY {
@@ -43,7 +45,7 @@ sub import {
   my $me = shift;
   strict->import;
   warnings->import(FATAL => 'all');
-  return if $INFO{$target}; # already exported into this package
+  return if $me->is_role($target); # already exported into this package
   $INFO{$target}{is_role} = 1;
   # get symbol table reference
   my $stash = _getstash($target);
@@ -71,6 +73,7 @@ sub import {
   @{$INFO{$target}{not_methods}={}}{@not_methods} = @not_methods;
   # a role does itself
   $APPLIED_TO{$target} = { $target => undef };
+  $_->($target) for @ON_ROLE_CREATE;
 }
 
 sub role_application_steps {
@@ -83,7 +86,7 @@ sub apply_single_role_to_package {
   _load_module($role);
 
   die "This is apply_role_to_package" if ref($to);
-  die "${role} is not a Role::Tiny" unless $INFO{$role};
+  die "${role} is not a Role::Tiny" unless $me->is_role($role);
 
   foreach my $step ($me->role_application_steps) {
     $me->$step($to, $role);
@@ -100,8 +103,9 @@ sub apply_roles_to_object {
   my ($me, $object, @roles) = @_;
   die "No roles supplied!" unless @roles;
   my $class = ref($object);
-  bless($object, $me->create_class_with_roles($class, @roles));
-  $object;
+  # on perl < 5.8.9, magic isn't copied to all ref copies. bless the parameter
+  # directly, so at least the variable passed to us will get any magic applied
+  bless($_[1], $me->create_class_with_roles($class, @roles));
 }
 
 my $role_suffix = 'A000';
@@ -139,19 +143,15 @@ sub create_class_with_roles {
 
   foreach my $role (@roles) {
     _load_module($role);
-    die "${role} is not a Role::Tiny" unless $INFO{$role};
+    die "${role} is not a Role::Tiny" unless $me->is_role($role);
   }
 
-  if ($] >= 5.010) {
-    require mro;
-  } else {
-    require MRO::Compat;
-  }
+  require(_MRO_MODULE);
 
   my $composite_info = $me->_composite_info_for(@roles);
   my %conflicts = %{$composite_info->{conflicts}};
   if (keys %conflicts) {
-    my $fail = 
+    my $fail =
       join "\n",
         map {
           "Method name conflict for '$_' between roles "
@@ -198,9 +198,11 @@ sub apply_roles_to_package {
   return $me->apply_role_to_package($to, $roles[0]) if @roles == 1;
 
   my %conflicts = %{$me->_composite_info_for(@roles)->{conflicts}};
-  delete $conflicts{$_} for keys %{ $me->_concrete_methods_of($to) };
+  my @have = grep $to->can($_), keys %conflicts;
+  delete @conflicts{@have};
+
   if (keys %conflicts) {
-    my $fail = 
+    my $fail =
       join "\n",
         map {
           "Due to a method name conflict between roles "
@@ -209,6 +211,15 @@ sub apply_roles_to_package {
         } keys %conflicts;
     die $fail;
   }
+
+  # conflicting methods are supposed to be treated as required by the
+  # composed role. we don't have an actual composed role, but because
+  # we know the target class already provides them, we can instead
+  # pretend that the roles don't do for the duration of application.
+  my @role_methods = map $me->_concrete_methods_of($_), @roles;
+  # separate loops, since local ..., delete ... for ...; creates a scope
+  local @{$_}{@have} for @role_methods;
+  delete @{$_}{@have} for @role_methods;
 
   # the if guard here is essential since otherwise we accidentally create
   # a $INFO for something that isn't a Role::Tiny (or Moo::Role) because
@@ -327,8 +338,8 @@ sub _concrete_methods_of {
 
 sub methods_provided_by {
   my ($me, $role) = @_;
-  die "${role} is not a Role::Tiny" unless my $info = $INFO{$role};
-  (keys %{$me->_concrete_methods_of($role)}, @{$info->{requires}||[]});
+  die "${role} is not a Role::Tiny" unless $me->is_role($role);
+  (keys %{$me->_concrete_methods_of($role)}, @{$INFO{$role}->{requires}||[]});
 }
 
 sub _install_methods {
@@ -350,9 +361,23 @@ sub _install_methods {
 
   foreach my $i (grep !exists $has_methods{$_}, keys %$methods) {
     no warnings 'once';
-    *{_getglob "${to}::${i}"} = $methods->{$i};
+    my $glob = _getglob "${to}::${i}";
+    *$glob = $methods->{$i};
+
+    # overloads using method names have the method stored in the scalar slot
+    # and &overload::nil in the code slot.
+    next
+      unless $i =~ /^\(/
+        && defined &overload::nil
+        && $methods->{$i} == \&overload::nil;
+
+    my $overload = ${ *{_getglob "${role}::${i}"}{SCALAR} };
+    next
+      unless defined $overload;
+
+    *$glob = \$overload;
   }
-  
+
   $me->_install_does($to);
 }
 
@@ -385,15 +410,16 @@ sub _install_single_modifier {
 my $FALLBACK = sub { 0 };
 sub _install_does {
   my ($me, $to) = @_;
-  
+
   # only add does() method to classes
-  return if $INFO{$to};
-  
+  return if $me->is_role($to);
+
   # add does() only if they don't have one
   *{_getglob "${to}::does"} = \&does_role unless $to->can('does');
-  
-  return if ($to->can('DOES') and $to->can('DOES') != (UNIVERSAL->can('DOES') || 0));
-  
+
+  return
+    if $to->can('DOES') and $to->can('DOES') != (UNIVERSAL->can('DOES') || 0);
+
   my $existing = $to->can('DOES') || $to->can('isa') || $FALLBACK;
   my $new_sub = sub {
     my ($proto, $role) = @_;
@@ -405,11 +431,7 @@ sub _install_does {
 
 sub does_role {
   my ($proto, $role) = @_;
-  if ($] >= 5.010) {
-    require mro;
-  } else {
-    require MRO::Compat;
-  }
+  require(_MRO_MODULE);
   foreach my $class (@{mro::get_linear_isa(ref($proto)||$proto)}) {
     return 1 if exists $APPLIED_TO{$class}{$role};
   }
@@ -418,10 +440,11 @@ sub does_role {
 
 sub is_role {
   my ($me, $role) = @_;
-  return !!$INFO{$role};
+  return !!($INFO{$role} && $INFO{$role}{is_role});
 }
 
 1;
+__END__
 
 =encoding utf-8
 
@@ -507,7 +530,7 @@ Declares a list of methods that must be defined to compose role.
 Composes another role into the current role (or class via L<Role::Tiny::With>).
 
 If you have conflicts and want to resolve them in favour of Some::Role1 you
-can instead write: 
+can instead write:
 
  with 'Some::Role1';
  with 'Some::Role2';
@@ -550,6 +573,15 @@ Note that since you are not required to use method modifiers,
 L<Class::Method::Modifiers> is lazily loaded and we do not declare it as
 a dependency. If your L<Role::Tiny> role uses modifiers you must depend on
 both L<Class::Method::Modifiers> and L<Role::Tiny>.
+
+=head2 Strict and Warnings
+
+In addition to importing subroutines, using C<Role::Tiny> applies L<strict> and
+L<fatal warnings|perllexwarn/Fatal Warnings> to the caller.  It's possible to
+disable these if desired:
+
+ use Role::Tiny;
+ use warnings NONFATAL => 'all';
 
 =head1 SUBROUTINES
 
@@ -604,17 +636,22 @@ New class is returned.
 
 Returns true if the given package is a role.
 
+=head1 CAVEATS
+
+=over 4
+
+=item * On perl 5.8.8 and earlier, applying a role to an object won't apply any
+overloads from the role to all copies of the object.
+
+=back
+
 =head1 SEE ALSO
 
 L<Role::Tiny> is the attribute-less subset of L<Moo::Role>; L<Moo::Role> is
 a meta-protocol-less subset of the king of role systems, L<Moose::Role>.
 
-If you don't want method modifiers and do want to be forcibly restricted
-to a single role application per class, Ovid's L<Role::Basic> exists. But
-Stevan Little (the L<Moose> author) and I don't find the additional
-restrictions to be amazingly helpful in most cases; L<Role::Basic>'s choices
-are more a guide to what you should prefer doing, to our mind, rather than
-something that needs to be enforced.
+Ovid's L<Role::Basic> provides roles with a similar scope, but without method
+modifiers, and having some extra usage restrictions.
 
 =head1 AUTHOR
 
@@ -645,6 +682,8 @@ Mithaldu - Christian Walde (cpan:MITHALDU) <walde.christian@googlemail.com>
 ilmari - Dagfinn Ilmari Mannsåker (cpan:ILMARI) <ilmari@ilmari.org>
 
 tobyink - Toby Inkster (cpan:TOBYINK) <tobyink@cpan.org>
+
+haarg - Graham Knop (cpan:HAARG) <haarg@haarg.org>
 
 =head1 COPYRIGHT
 

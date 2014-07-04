@@ -57,18 +57,16 @@ sub _load_module {
 }
 
 sub _maybe_load_module {
-  return $MAYBE_LOADED{$_[0]} if exists $MAYBE_LOADED{$_[0]};
-  (my $proto = $_[0]) =~ s/::/\//g;
-  local $@;
-  if (eval { require "${proto}.pm"; 1 }) {
-    $MAYBE_LOADED{$_[0]} = 1;
-  } else {
-    if (exists $INC{"${proto}.pm"}) {
-      warn "$_[0] exists but failed to load with error: $@";
-    }
-    $MAYBE_LOADED{$_[0]} = 0;
+  my $module = $_[0];
+  return $MAYBE_LOADED{$module}
+    if exists $MAYBE_LOADED{$module};
+  if(! eval { use_package_optimistically($module) }) {
+    warn "$module exists but failed to load with error: $@";
   }
-  return $MAYBE_LOADED{$_[0]};
+  elsif ( $INC{module_notional_filename($module)} ) {
+    return $MAYBE_LOADED{$module} = 1;
+  }
+  return $MAYBE_LOADED{$module} = 0;
 }
 
 sub _set_loaded {
@@ -80,8 +78,17 @@ sub _get_linear_isa {
 }
 
 sub _install_coderef {
+  my ($glob, $code) = (_getglob($_[0]), _name_coderef(@_));
   no warnings 'redefine';
-  *{_getglob($_[0])} = _name_coderef(@_);
+  if (*{$glob}{CODE}) {
+    *{$glob} = $code;
+  }
+  # perl will sometimes warn about mismatched prototypes coming from the
+  # inheritance cache, so disable them if we aren't redefining a sub
+  else {
+    no warnings 'prototype';
+    *{$glob} = $code;
+  }
 }
 
 sub _name_coderef {

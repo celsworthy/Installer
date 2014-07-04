@@ -38,9 +38,11 @@ use strict;
 *max = \&Math::PlanePath::_max;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 115;
+$VERSION = 116;
 use Math::PlanePath;
-@ISA = ('Math::PlanePath');
+use Math::PlanePath::Base::NSEW;
+@ISA = ('Math::PlanePath::Base::NSEW',
+        'Math::PlanePath');
 
 use Math::PlanePath::Base::Generic
   'is_infinite',
@@ -59,17 +61,6 @@ use constant n_start => 0;
 use constant class_x_negative => 0;
 use constant class_y_negative => 0;
 *xy_is_visited = \&Math::PlanePath::Base::Generic::xy_is_visited_quad1;
-
-use constant dx_minimum => -1;
-use constant dx_maximum => 1;
-use constant dy_minimum => -1;
-use constant dy_maximum => 1;
-*_UNDOCUMENTED__dxdy_list = \&Math::PlanePath::_UNDOCUMENTED__dxdy_list_four;
-use constant dsumxy_minimum => -1; # straight only
-use constant dsumxy_maximum => 1;
-use constant ddiffxy_minimum => -1;
-use constant ddiffxy_maximum => 1;
-use constant dir_maximum_dxdy => (0,-1); # South
 
 
 #------------------------------------------------------------------------------
@@ -247,6 +238,13 @@ sub rect_to_n_range {
   return ($n_min, $n_max);
 }
 
+#------------------------------------------------------------------------------
+
+sub _UNDOCUMENTED_level_to_n_range {
+  my ($self, $level) = @_;
+  return (0, 4**$level - 1);
+}
+
 1;
 __END__
 
@@ -344,34 +342,6 @@ places, the same in each.  (An odd number of bits would require swapping X,Y
 to compensate for the alternating transpose in part 0.)  The resulting
 integer N is then divided down by a corresponding multiple-of-4 binary
 places.
-
-=head2 Hamming Distance
-
-The Hamming distance between integers X and Y is the number of bit positions
-where the two values differ when written in binary.  On the Hilbert curve
-each bit-pair of N becomes a bit of X and a bit of Y,
-
-       N      X   Y
-    ------   --- ---
-    0 = 00    0   0
-    1 = 01    1   0     <- difference 1 bit
-    2 = 10    1   1
-    3 = 11    0   1     <- difference 1 bit
-
-So the Hamming distance for N=0to3 is 1 at N=1 and N=3.  As higher levels
-these the X,Y bits may be transposed (swapped) or rotated by 180 or both.
-A transpose swapping XE<lt>-E<gt>Y doesn't change the bit difference.
-A rotate by 180 is a flip 0E<lt>-E<gt>1 of the bit in each X and Y, so that
-doesn't change the bit difference either.
-
-On that basis the Hamming distance X,Y is the number of base4 digits of N
-which are 01 or 11.  If bit positions are counted from 0 for the least
-significant bit then
-
-    HammingDist(X,Y) = count 1-bits at even bit positions in N    
-
-See also L<Math::PlanePath::CornerReplicate/Hamming Distance> which has the
-same formula, but arising directly from 01 or 11, no transpose or rotate.
 
 =head1 FUNCTIONS
 
@@ -521,8 +491,9 @@ transpose, except that low 3s are transpose-only (no rotate) for the same
 reason as taking the lowest non-3 above.
 
 Jorg Arndt in the fxtbook above notes the direction can be obtained just by
-counting 3s in n and twos-complement -n.  The only thing to note is that the
-numbering there starts n=1, unlike the PlanePath starting N=0, so it becomes
+counting 3s in n and -n (the twos-complement).  The only thing to note is
+that the numbering there starts n=1, unlike the PlanePath starting N=0, so
+it becomes
 
     N+1 count 3s  / 0 mod 2   S or E
                   \ 1 mod 2   N or W
@@ -534,17 +505,135 @@ For the twos-complement negation an even number of base-4 digits of N must
 be taken.  Because -(N+1) = ~N, ie. a ones-complement, the second part is
 also
 
-    N count 0s         / 0 mod 2   N or E
-    [even num digits]  \ 1 mod 2   S or W
+    N count 0s          / 0 mod 2   N or E
+    in even num digits  \ 1 mod 2   S or W
 
 Putting the two together then
 
     N count 0s   N+1 count 3s    direction (0=E,1=N,etc)
+    in base 4    in base 4
 
       0 mod 2      0 mod 2          0
       1 mod 2      0 mod 2          3
       0 mod 2      1 mod 2          1
       1 mod 2      1 mod 2          2
+
+=head2 Segments in Direction
+
+The number of segments in each direction is calculated in
+
+=over
+
+Sergey Kitaev, Toufik Mansour and Patrice SE<233>E<233>bold, "Generating the
+Peano Curve and Counting Occurrences of Some Patterns", Journal of Automata,
+Languages and Combinatorics, volume 9, number 4, 2004, pages 439-455.
+L<https://personal.cis.strath.ac.uk/sergey.kitaev/publications.html>
+L<https://personal.cis.strath.ac.uk/sergey.kitaev/index_files/Papers/peano.ps>
+
+(Preprint as Sergey Kitaev and Toufik Mansour, "The Peano Curve and Counting
+Occurrences of Some Patterns", October 2002.
+L<http://arxiv.org/abs/math/0210268/>, version 1.)
+
+=cut
+
+=pod
+
+=back
+
+Their form is based on keeping the top-most U shape fixed and expanding
+sub-parts.  This means the end segments alternate vertical and horizontal in
+successive expansion levels.
+
+    direction            k=1              2       2
+      1 to 4                            *---*   *---*
+                           2           1|  3|   |1  |3
+        1                *---*          *   *---*   *
+        |               1|   |3        1| 4   2   4 |3
+    4--- ---2            *   *          *---*   *---*
+        |                                  1|   |3       k=2
+        3                               *---*   *---*
+                                          2       2
+
+    count segments in direction, for k >= 1
+    d(1,k) = 4^(k-1)                = 1,4,16,64,256,1024,4096,...
+    d(2,k) = 4^(k-1) + 2^(k-1) - 1  = 1,5,19,71,271,1055,4159,...
+    d(3,k) = 4^(k-1)                = 1,4,16,64,256,1024,4096,...
+    d(4,k) = 4^(k-1) - 2^(k-1)      = 0,2,12,56,240, 992,4032,...
+
+    total segments d(1,k)+d(2,k)+d(3,k)+d(4,k) = 4^k - 1
+
+The form in the path here keeps the first segment direction fixed.  This
+means a transpose 1E<lt>-E<gt>2 and 3E<lt>-E<gt>4 in odd levels.  The result
+is to take the alternate d values as follows.  For k=0 there is a single
+point N=0 so no line segments at all and so c(dir,0)=0.
+
+    points N=0 to N=4^k-1 inclusive
+
+    c(1,k) = / 0                        if k=0
+     North   | 4^(k-1) + 2^(k-1) - 1    if k odd >= 1
+             \ 4^(k-1)                  if k even >= 2
+      = 0, 1, 4, 19, 64, 271, 1024, 4159, 16384, ...
+
+
+    c(2,k) = / 0                        if k=0
+     East    | 4^(k-1)                  if k odd >= 1
+             \ 4^(k-1) + 2^(k-1) - 1    if k even >= 2
+      = 0, 1, 5, 16, 71, 256, 1055, 4096, 16511, ...
+
+    c(3,k) = / 0                        if k=0
+     South   | 4^(k-1) - 2^(k-1)        if k odd >= 1
+             \ 4^(k-1)                  if k even >= 2
+      = 0, 0, 4, 12, 64, 240, 1024, 4032, 16384, ...
+
+    c(4,k) = / 0                        if k=0
+     West    | 4^(k-1)                  if k odd >= 1
+             \ 4^(k-1) - 2^(k-1)        if k even >= 2
+      = 0, 1, 2, 16, 56, 256, 992, 4096, 16256, ...
+
+The segment N=4^k-1 to N=4^k is North (direction 1) when k odd, or East
+(direction 2) when k even.  That could be added to the respective cases in
+c(1,k) and c(2,k) if desired.
+
+=cut
+
+# (d1(k) = 4^(k-1));               for(k=0,8,print1(d1(k),","))
+# (d2(k) = 4^(k-1) + 2^(k-1) - 1); for(k=0,8,print1(d2(k),","))
+# (d3(k) = 4^(k-1));               for(k=0,8,print1(d3(k),","))
+# (d4(k) = 4^(k-1) - 2^(k-1));     for(k=0,8,print1(d4(k),","))
+# (c1(k) = if(k==0,0,if(k%2,d1(k),d2(k)))); for(k=0,8,print1(c1(k),", "))
+# (c2(k) = if(k==0,1,if(k%2,d2(k),d1(k)))); for(k=0,8,print1(c2(k),", "))
+# (c3(k) = if(k==0,0,if(k%2,d3(k),d4(k)))); for(k=0,8,print1(c3(k),", "))
+# (c4(k) = if(k==0,0,if(k%2,d4(k),d3(k)))); for(k=0,8,print1(c4(k),", "))
+
+=pod
+
+=head2 Hamming Distance
+
+The Hamming distance between integers X and Y is the number of bit positions
+where the two values differ when written in binary.  On the Hilbert curve
+each bit-pair of N becomes a bit of X and a bit of Y,
+
+       N      X   Y
+    ------   --- ---
+    0 = 00    0   0
+    1 = 01    1   0     <- difference 1 bit
+    2 = 10    1   1
+    3 = 11    0   1     <- difference 1 bit
+
+So the Hamming distance for N=0to3 is 1 at N=1 and N=3.  As higher levels
+these the X,Y bits may be transposed (swapped) or rotated by 180 or both.
+A transpose swapping XE<lt>-E<gt>Y doesn't change the bit difference.
+A rotate by 180 is a flip 0E<lt>-E<gt>1 of the bit in each X and Y, so that
+doesn't change the bit difference either.
+
+On that basis the Hamming distance X,Y is the number of base4 digits of N
+which are 01 or 11.  If bit positions are counted from 0 for the least
+significant bit then
+
+    HammingDist(X,Y) = count 1-bits at even bit positions in N    
+
+See also L<Math::PlanePath::CornerReplicate/Hamming Distance> which has the
+same formula, but arising directly from 01 or 11, no transpose or rotate.
 
 =head1 OEIS
 
@@ -576,9 +665,13 @@ L<http://oeis.org/A059252> (etc)
     A163542    relative direction (ahead=0,right=1,left=2)
     A163543    relative direction, swapped X,Y
 
+    A083885    count East segments N=0 to N=4^k
+
     A163900    distance dX^2+dY^2 between Hilbert and ZOrder
-    A165464    distance dX^2+dY^2 between Hilbert and PeanoCurve
+    A165464    distance dX^2+dY^2 between Hilbert and Peano
+    A165466    distance dX^2+dY^2 between Hilbert and transposed Peano
     A165465    N where Hilbert and Peano have same X,Y
+    A165467    N where Hilbert and Peano have transposed same X,Y
 
 The following take points of the plane in various orders, each value in the
 sequence being the N of the Hilbert curve at those positions.

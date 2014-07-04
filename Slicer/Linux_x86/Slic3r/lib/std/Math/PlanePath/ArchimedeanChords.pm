@@ -31,7 +31,7 @@ use POSIX 'ceil';
 *max = \&Math::PlanePath::_max;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 115;
+$VERSION = 116;
 use Math::PlanePath;
 @ISA = ('Math::PlanePath');
 
@@ -46,8 +46,8 @@ use Math::PlanePath::MultipleRings;
 
 use constant figure => 'circle';
 use constant n_start => 0;
-use constant _UNDOCUMENTED__x_negative_at_n => 3;
-use constant _UNDOCUMENTED__y_negative_at_n => 5;
+use constant x_negative_at_n => 3;
+use constant y_negative_at_n => 5;
 use constant gcdxy_maximum => 1;
 use constant dx_minimum => -1; # infimum when straight
 use constant dx_maximum => 1;  # at N=0

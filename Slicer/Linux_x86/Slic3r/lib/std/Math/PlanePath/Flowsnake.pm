@@ -40,7 +40,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 115;
+$VERSION = 116;
 
 # inherit: new(), rect_to_n_range(), arms_count(), n_start(),
 #          parameter_info_array(), xy_is_visited()
@@ -65,17 +65,17 @@ use Math::PlanePath::Base::Digits
 #             = (5x-3y)/2, (x+5y)/2
 
 {
-  my @_UNDOCUMENTED__x_negative_at_n = (undef, 23, 1, 1);
-  sub _UNDOCUMENTED__x_negative_at_n {
+  my @x_negative_at_n = (undef, 23, 1, 1);
+  sub x_negative_at_n {
     my ($self) = @_;
-    return $_UNDOCUMENTED__x_negative_at_n[$self->{'arms'}];
+    return $x_negative_at_n[$self->{'arms'}];
   }
 }
 {
-  my @_UNDOCUMENTED__y_negative_at_n = (undef, 8598, 7, 2);
-  sub _UNDOCUMENTED__y_negative_at_n {
+  my @y_negative_at_n = (undef, 8598, 7, 2);
+  sub y_negative_at_n {
     my ($self) = @_;
-    return $_UNDOCUMENTED__y_negative_at_n[$self->{'arms'}];
+    return $y_negative_at_n[$self->{'arms'}];
   }
 }
 
@@ -507,9 +507,9 @@ William Gosper,
                      \           \         /
                        3---- 2     7---- 8                     1
                            /
-                    0---- 1                                  y=0
+                    0---- 1                                  Y=0
 
-     x=-4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9 10 11
+     X=-4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9 10 11
 
 The points are spread out on every second X coordinate to make little
 triangles with integer coordinates, per L<Math::PlanePath/Triangular

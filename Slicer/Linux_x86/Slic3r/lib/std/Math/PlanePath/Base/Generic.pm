@@ -21,7 +21,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION','@ISA','@EXPORT_OK';
-$VERSION = 115;
+$VERSION = 116;
 
 use Exporter;
 @ISA = ('Exporter');
@@ -213,7 +213,8 @@ initializer and so no need to import it for repeated use.
 =head1 SEE ALSO
 
 L<Math::PlanePath>,
-L<Math::PlanePath::Base::Digits>
+L<Math::PlanePath::Base::Digits>,
+L<Math::PlanePath::Base::NSEW>
 
 =head1 HOME PAGE
 

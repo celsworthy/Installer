@@ -39,8 +39,8 @@ sub BUILDARGS {
         return { %{ $_[0] } };
     }
     elsif ( @_ % 2 ) {
-        die "The new() method for $class expects a hash reference or a key/value list."
-                . " You passed an odd number of arguments\n";
+        die "The new() method for $class expects a hash reference or a"
+          . " key/value list. You passed an odd number of arguments\n";
     }
     else {
         return {@_};
@@ -64,9 +64,10 @@ sub DEMOLISHALL {
 }
 
 sub does {
-  require Role::Tiny;
-  { no warnings 'redefine'; *does = \&Role::Tiny::does_role }
-  goto &Role::Tiny::does_role;
+  require Moo::Role;
+  my $does = Moo::Role->can("does_role");
+  { no warnings 'redefine'; *does = $does }
+  goto &$does;
 }
 
 # duplicated in Moo::Role

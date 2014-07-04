@@ -28,7 +28,7 @@ use strict;
 *max = \&Math::PlanePath::_max;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 115;
+$VERSION = 116;
 use Math::PlanePath;
 @ISA = ('Math::PlanePath');
 
@@ -45,11 +45,11 @@ use constant dx_maximum => 1;
 use constant dy_minimum => -1;
 use constant dy_maximum => 1;
 *_UNDOCUMENTED__dxdy_list = \&Math::PlanePath::_UNDOCUMENTED__dxdy_list_eight;
-sub _UNDOCUMENTED__x_negative_at_n {
+sub x_negative_at_n {
   my ($self) = @_;
   return $self->n_start + 6;
 }
-sub _UNDOCUMENTED__y_negative_at_n {
+sub y_negative_at_n {
   my ($self) = @_;
   return $self->n_start + 10;
 }
@@ -258,7 +258,7 @@ __END__
     #   \          | \   / |         /  /
     #     34   9-- 8   6   4-- 3  20  53              1
     #       \   \            /   /   /
-    #         35  10   1---2  19  52             <- y=0
+    #         35  10   1---2  19  52             <- Y=0
     #       /   /                \   \
     #     36  11--12  14  16--17--18  51             -1
     #   /          | /   \ |            \
@@ -269,7 +269,7 @@ __END__
     #         41              45                     -4
     #
     #                  ^
-    # -4  -3  -2  -1  x=0  1   2   3   4   5  ...
+    # -4  -3  -2  -1  X=0  1   2   3   4   5  ...
     #
     #
     #
@@ -287,7 +287,7 @@ __END__
     #   \          | \   / |         /  /
     #     33   9-- 8   6   4-- 3  19  51              1
     #       \   \            /   /  /
-    #         34  10   1---2  18  50             <- y=0
+    #         34  10   1---2  18  50             <- Y=0
     #       /   /              |   |
     #     35  11--12  14  16--17  49                 -1
     #   /          | /   \ |         \
@@ -298,7 +298,7 @@ __END__
     #         40              44                     -4
     #
     #                  ^
-    # -4  -3  -2  -1  x=0  1   2   3   4   5  ...
+    # -4  -3  -2  -1  X=0  1   2   3   4   5  ...
 
 
 

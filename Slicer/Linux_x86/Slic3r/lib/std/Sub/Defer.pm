@@ -5,7 +5,7 @@ use base qw(Exporter);
 use Moo::_Utils;
 use Scalar::Util qw(weaken);
 
-our $VERSION = '1.004002';
+our $VERSION = '1.005000';
 $VERSION = eval $VERSION;
 
 our @EXPORT = qw(defer_sub undefer_sub undefer_all);
@@ -29,7 +29,9 @@ sub undefer_sub {
     # _install_coderef calls are not necessary --ribasushi
     *{_getglob($target)} = $made;
   }
-  weaken($DEFERRED{$made} = $DEFERRED{$deferred});
+  $DEFERRED{$made} = $DEFERRED{$deferred};
+  weaken $DEFERRED{$made}
+    unless $target;
 
   return $made;
 }
@@ -41,7 +43,8 @@ sub undefer_all {
 
 sub defer_info {
   my ($deferred) = @_;
-  $DEFERRED{$deferred||''};
+  my $info = $DEFERRED{$deferred||''} or return undef;
+  [ @$info ];
 }
 
 sub defer_sub {
@@ -53,14 +56,18 @@ sub defer_sub {
     goto &$undeferred;
   };
   $deferred_info = [ $target, $maker, \$undeferred, $deferred ];
+  weaken($deferred_info->[3]);
   weaken($DEFERRED{$deferred} = $deferred_info);
   _install_coderef($target => $deferred) if defined $target;
   return $deferred;
 }
 
 sub CLONE {
-  %DEFERRED = map { defined $_ ? ($_->[3] => $_) : () } values %DEFERRED;
-  weaken($_) for values %DEFERRED;
+  %DEFERRED = map { defined $_ && $_->[3] ? ($_->[3] => $_) : () } values %DEFERRED;
+  for my $info (values %DEFERRED) {
+    weaken($info)
+      unless $info->[0] && ${$info->[2]};
+  }
 }
 
 1;
