@@ -96,6 +96,12 @@
                         <distributionFile>
                             <origin>../JarArtifacts/Commissionator.jar</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>EULA_Commissionator.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>README_Commissionator.txt</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -188,8 +194,6 @@
                     </distributionFileList>
                 </folder>
             </folderList>
-            <initializationActionList>
-            </initializationActionList>
             <startMenuShortcutList>
                 <startMenuShortcut>
                     <comment>Commissionator</comment>
@@ -225,11 +229,11 @@
                     <name>common</name>
                     <platforms>all</platforms>
                     <distributionFileList>
-		        <distributionFile>
-			    <origin>EULA_${project.shortName}.txt</origin>
+                        <distributionFile>
+                            <origin>EULA_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
-			    <origin>README_${project.shortName}.txt</origin>
+                            <origin>README_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
@@ -682,10 +686,10 @@ enable = 0
                     </ruleList>
                 </booleanParameter>
             </parameterList>
-        <ruleList>
-	   <platformTest negate="1" type="osx"/>
-        </ruleList>
-      </parameterGroup>
+            <ruleList>
+                <platformTest negate="1" type="osx"/>
+            </ruleList>
+        </parameterGroup>
     </parameterList>
 </project>
 
