@@ -1,5 +1,8 @@
 CEL AutoMaker README
 
+version 1.00.09
+Change head soft reset to hard reset - pressing the head reset button will now format a head if necessary.
+
 version 1.00.08
 Included version 1.1.5 Slic3r
 Update to nozzle offset calibration - now includes ability to nudge height offsets manually.
