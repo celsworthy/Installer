@@ -621,7 +621,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>commondir</name>
-                    <value>${installdir}/Common</value>
+                    <value>${installdir}/${project.shortName}/</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
