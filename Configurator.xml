@@ -66,7 +66,7 @@
                 <shortcut>
                     <comment>Configurator</comment>
                     <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>${automakerdir}/ConfiguratorIcon.ico</icon>
+                    <icon>${automakerdir}/Configurator.ico</icon>
                     <name>Configurator</name>
                     <path></path>
                     <platforms>all</platforms>
@@ -74,7 +74,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/ConfiguratorIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/Configurator.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -114,7 +114,7 @@
                             <origin>Configurator-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.ico</origin>
+                            <origin>Configurator.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>ConfiguratorUninstallIcon.ico</origin>
@@ -134,7 +134,7 @@
                             <origin>Configurator-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.ico</origin>
+                            <origin>Configurator.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>ConfiguratorUninstallIcon.ico</origin>
@@ -154,7 +154,7 @@
                             <origin>Configurator-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.ico</origin>
+                            <origin>Configurator.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>ConfiguratorUninstallIcon.ico</origin>
@@ -180,13 +180,13 @@
                             <origin>Configurator-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon.icns</origin>
+                            <origin>Configurator.icns</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>ConfiguratorUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>ConfiguratorIcon_256x256.png</origin>
+                            <origin>Configurator.png</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
@@ -202,7 +202,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/ConfiguratorIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/Configurator.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -553,10 +553,10 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>ConfiguratorIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>ConfiguratorIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>Configurator.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>Configurator.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${automakerdir}/ConfiguratorIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${automakerdir}/Configurator.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -567,7 +567,7 @@ enable = 0
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>ConfiguratorIcon.ico</windowsExecutableIcon>
+    <windowsExecutableIcon>Configurator.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>ConfiguratorUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <finalPageActionList>
         <runProgram>
@@ -639,7 +639,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Configurator.configFile.xml -Xdock:icon=${automakerdir}/ConfiguratorIcon_256x256.png "-Xdock:name=Configurator"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Configurator.configFile.xml -Xdock:icon=${automakerdir}/Configurator.png "-Xdock:name=Configurator"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
