@@ -4,12 +4,13 @@
     <version></version>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
-    <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
+    <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
     <allowLanguageSelection>1</allowLanguageSelection>
     <allowedLanguages>en zh_CN</allowedLanguages>
     <defaultLanguage>auto</defaultLanguage>
+    <removeLogFile>1</removeLogFile>
     <customLanguageFileList>
        <language>
          <code>en</code>
