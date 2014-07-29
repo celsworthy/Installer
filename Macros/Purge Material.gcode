@@ -1,5 +1,6 @@
-M104
-M140 S90
+M140 S70
+M103 S180
+
 
 ; Home all Axis in sequence
 T0				;Select Nozzle 0 (T0)
@@ -11,6 +12,10 @@ G0 X111 Y75		;X Y Position Centre
 G28 Z			;Home Z
 G0 Z8			;Move up 5mm if homed
 
+M190			;wait to get to Bed temp
+M140 S90
+M103 S230
+
 ; Level Gantry
 	G0 X30 Y75		;Level Gantry Position 1
 	G28 Z0			;Home Z
@@ -21,22 +26,26 @@ G0 Z8			;Move up 5mm if homed
 	G38 			;Level gantry
 G0 X0 Y0			;Home X, then Y
 
+M190			;wait to get to Bed temp
+M109			;wait to get to nozzle temp
+
 M129			;Head LED on
 M106			;Fan on
 
-M109
-M190
+G36 E1000 F12000 ; Un-Park
 
-; Un-Park
-G36 E1000 F12000
-; G1 E2 F75	
-
-G0 X30
-
-G0 Y20
+G0 X25 Y15
 T0
 G0 Z0.3
-G0 B2 
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
 G1 E15 F50
 G0 Z2
 G1 X200 E80 F800
@@ -45,72 +54,156 @@ G1 E15 F50
 G0 B0
 G0 Z8
 
-G0 Y40
-T0
-G0 Z0.3
-G0 B2
-G1 E15 F50
-G0 Z2
-G1 X31 E80 F800
-G0 Z0.3
-G1 E15 F50
-G0 B0
-G0 Z8
-
-G0 Y60
-T0
-G0 Z0.3
-G0 B2
-G1 E15 F50
-G0 Z2
-G1 X199 E80 F800
-G0 Z0.3
-G1 E15 F50
-G0 B0
-G0 Z8
-
-G0 Y80
+G0 Y35
 T1
 G0 Z0.3
 G0 B2
-G1 E15 F100
-G0 Z2
-G1 X31 E120 F800
-G0 Z0.3
-G1 E15 F100
-G0 B0
-G0 Z8
-
-G0 Y100
 T1
-G0 Z0.3
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
+T1
 G0 B2
 G1 E15 F100
 G0 Z2
-G1 X200 E120 F800
+G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
 G0 B0
 G0 Z8
 
-G0 Y120
+G0 Y55
+T0
+G0 Z0.3
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+G1 E15 F50
+G0 Z2
+G1 X200 E80 F800
+G0 Z0.3
+G1 E15 F50
+G0 B0
+G0 Z8
+
+G0 Y75
+T1
+G0 Z0.3
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
+G1 E15 F100
+G0 Z2
+G1 X25 E150 F800
+G0 Z0.3
+G1 E15 F100
+G0 B0
+G0 Z8
+
+G0 Y95
+T0
+G0 Z0.3
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+G1 E15 F50
+G0 Z2
+G1 X200 E80 F800
+G0 Z0.3
+G1 E15 F50
+G0 B0
+G0 Z8
+
+G0 Y115
 T1 
 G0 Z0.3
 G0 B2
+T1
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
+T1
+G0 B2
 G1 E15 F100
 G0 Z2
-G1 X30 E120 F800
+G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
 G0 B0
-G0 Z10
+G0 Z8
 
-G0 E-150 		;Retract the filament
+G0 Y135
+T0
+G0 Z0.3
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+T0
+G0 B2
+G1 E15 F50
+G0 Z2
+G1 X200 E80 F800
+G0 Z0.3
+G1 E15 F50
+G0 B0
+G0 Z8
 
-G37 S
+G0 X20 Y20 Z15
 
-M104 S0			;Nozzle heater off
+;Retract and Park
+G0 E-150
+;M106   		;Fan on full
+;M104 S140		;reduce nozzle temp
+;M109   		;wait to get to temp
+;G0 E-10   		;Retract the filament
+;M104 S90  		;reduce nozzle temp
+;M109			;wait to get to temp
+;M104 S0  		;nozzle heater off
+;G0 E-140  		;Finish retract
+
+;Finish/Abort Print
+M106			;Fan on full
+G90 			;Absolute positioning
+T0				;Select Nozzle 0 (T0)
+G0 B0			;Close Nozzle
+G91				;Relative positioning
+G0 Z5			;Move up 5mm
+G90 			;Absolute positioning
+G0 X15 Y0		;Move to back corner
+
+;Open Door
+G37 S			;Unlock door (S: don't wait for safe temp)
+
+;Every thing off
+M170 S0			;Ambient control off
+M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
-M106			;Fan off
+M107			;Fan off
 M128			;Head Light off
-M84				;Motor off
+M84				;Motors off
