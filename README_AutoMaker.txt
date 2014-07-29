@@ -1,6 +1,7 @@
 CEL AutoMaker README
 
 version 1.00.10
+IMPORTANT: The way Projects are saved and loaded has changed. The first time you run this release your current projects will not load correctly and will need to be closed.
 Integrated v678 firmware
 Updated to use robox firmware v677
 Fixed encoding issue for Chinese language
