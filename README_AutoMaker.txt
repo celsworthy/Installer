@@ -1,7 +1,34 @@
 CEL AutoMaker README
 
+version 1.00.10
+Integrated v678 firmware
+Updated to use robox firmware v677
+Fixed encoding issue for Chinese language
+Moved GCode display to bottom of status slideout
+Fixed decimal separator issue in post processor. Fixed calibration integration. Fixed post-processor issue where absence of T command in sliced code caused a failure.
+Printer Status tabs changed, merged Program into Reel and Head, removed PrinterID, improved Reel for better filament management.
+Tidy up Diagnostics panel
+Add name/colour/material to reel eeprom
+Updated head auto-programming
+Add Reset To Default for head offsets
+Add Reel tab to AutoMaker
+Fixes ROB-220 - don't preheat nozzle
+Fixes ROB-26 Current firmware version should be in a label
+Fixes ROB-192 ETC saying < 1minute when it is at start of job, before first line number comes back from printer
+Fixes ROB-74 disable changing the profile name in the profile name editor
+Fixed post processor errors - retract distance being used in autounretract
+Fixes ROB-43 Snap to ground, also Multi-select and Ctrl-A select all on Layout page
+Remove speed modifiers and hold down Ctrl/Command key to activate translate bed on Layout page
+Modifications to post processor - added open over volume and multi-stage close
+Check for collided models after auto layout
+Fixes ROB-203 ETC going wrong, thinks it has finished when it hasn't
+Fixes ROB-80 Open multiple files & ROB-199 D&D for upper case files & ROB-206 spaces in project names
+Fixed post processor issues with single-segment line and close with travels between extrudes in one segment
+Make filament loading more robust by trimming lines read in from file.
+Fixes ROB-184 - increase the resolution of the nozzle calibration increments to 0.05
+
 version 1.00.09
-Change head soft reset to hard reset - pressing the head reset button will now format a head if necessary.
+Hard reset for heads
 
 version 1.00.08
 Included version 1.1.5 Slic3r

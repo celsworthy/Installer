@@ -13,7 +13,10 @@ G0 Z5			;Move up 5mm if homed
 
 M109			;Wait for Nozzle to get to temp.
 
-G0 Z30	
+G0 Z30
+
+;Un-park Filament
+G36 E1000 F1200
 
 ; Nozzle Clean, repeat 20 times
 T1
@@ -28,42 +31,8 @@ G0 B0
 T1
 G0 B2
 G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
-T1
-G0 B2
-G0 B0
+
+G36 E1000 F1200
 T1
 G0 B2
 G0 B0
@@ -77,7 +46,66 @@ T1
 G0 B2
 G0 B0
 
-M104 S0			;Nozzle heater off
-M106			;Fan off
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+;Retract and Park
+G0 E-150
+;M106   		;Fan on full
+;M104 S140		;reduce nozzle temp
+;M109   		;wait to get to temp
+;G0 E-10   		;Retract the filament
+;M104 S90  		;reduce nozzle temp
+;M109			;wait to get to temp
+;M104 S0  		;nozzle heater off
+;G0 E-140  		;Finish retract
+
+;Open Door
+G37 S			;Unlock door (S: don't wait for safe temp)
+
+;Every thing off
+M170 S0			;Ambient control off
+M103 S0			;Nozzle heater off
+M140 S0			;Bed heater off
+M107			;Fan off
 M128			;Head Light off
-M84			;Motor off
+M84				;Motors off

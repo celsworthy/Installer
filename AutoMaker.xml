@@ -66,7 +66,7 @@
                 <shortcut>
                     <comment>AutoMaker</comment>
                     <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>${automakerdir}/AutomakerIcon.ico</icon>
+                    <icon>${automakerdir}/AutoMaker.ico</icon>
                     <name>AutoMaker</name>
                     <path></path>
                     <platforms>all</platforms>
@@ -74,7 +74,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/AutoMaker.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -96,6 +96,12 @@
                         <distributionFile>
                             <origin>../JarArtifacts/AutoMaker.jar</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>EULA_AutoMaker.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>README_AutoMaker.txt</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -108,10 +114,10 @@
                             <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerIcon.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -128,10 +134,10 @@
                             <origin>AutoMaker-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerIcon.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
@@ -148,10 +154,10 @@
                             <origin>AutoMaker-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerIcon.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>rxtxSerial.dll</origin>
@@ -174,13 +180,13 @@
                             <origin>AutoMaker-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerIcon.icns</origin>
+                            <origin>AutoMaker.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerUninstallIcon.icns</origin>
+                            <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutomakerIcon_256x256.png</origin>
+                            <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
@@ -188,8 +194,6 @@
                     </distributionFileList>
                 </folder>
             </folderList>
-            <initializationActionList>
-            </initializationActionList>
             <startMenuShortcutList>
                 <startMenuShortcut>
                     <comment>AutoMaker</comment>
@@ -198,7 +202,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/AutomakerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/AutoMaker.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -226,10 +230,10 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-			    <origin>EULA_${project.shortName}.txt</origin>
+                            <origin>EULA_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
-			    <origin>README_${project.shortName}.txt</origin>
+                            <origin>README_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
@@ -549,10 +553,10 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>AutomakerIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>AutomakerIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>AutoMaker.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>AutoMaker.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${automakerdir}/AutomakerIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -563,8 +567,8 @@ enable = 0
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>AutomakerIcon.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>AutomakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>AutoMaker.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <finalPageActionList>
         <runProgram>
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->
@@ -635,7 +639,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutomakerIcon_256x256.png "-Xdock:name=AutoMaker"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -682,10 +686,10 @@ enable = 0
                     </ruleList>
                 </booleanParameter>
             </parameterList>
-        <ruleList>
-	   <platformTest negate="1" type="osx"/>
-        </ruleList>
-      </parameterGroup>
+            <ruleList>
+                <platformTest negate="1" type="osx"/>
+            </ruleList>
+        </parameterGroup>
     </parameterList>
 </project>
 
