@@ -21,15 +21,11 @@ G1 E200 F200
 G0 B0
 
 ;retract code
-G0 E-150
-;M106   			;Fan on full
-;M104 S140		;reduce nozzle temp
-;M109   			;wait to get to temp
-;G0 E-10   		;Retract the filament
-;M104 S90  		;reduce nozzle temp
-;M109			;wait to get to temp
-;M104 S0  		;nozzle heater off
-;G0 E-140  		;Finish retract
+M106   			;Fan on full
+M104 S140		;reduce nozzle temp
+M109   			;wait to get to temp
+M104 S0  		;nozzle heater off
+G0 E-150   		;Retract the filament
 
 ;Finish Gcode
 G90 			;Absolute positioning

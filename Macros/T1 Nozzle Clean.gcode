@@ -16,7 +16,7 @@ M109			;Wait for Nozzle to get to temp.
 G0 Z30
 
 ;Un-park Filament
-G36 E1000 F1200
+G36 E500 F1200
 
 ; Nozzle Clean, repeat 20 times
 T1
@@ -88,16 +88,15 @@ T1
 G0 B2
 G0 B0
 
-;Retract and Park
-G0 E-150
-;M106   		;Fan on full
-;M104 S140		;reduce nozzle temp
-;M109   		;wait to get to temp
-;G0 E-10   		;Retract the filament
-;M104 S90  		;reduce nozzle temp
-;M109			;wait to get to temp
-;M104 S0  		;nozzle heater off
-;G0 E-140  		;Finish retract
+M103 S0			;Nozzle heater off
+M140 S0			;Bed heater off
+
+;retract code
+M106   			;Fan on full
+M104 S140		;reduce nozzle temp
+M109   			;wait to get to temp
+M104 S0  		;nozzle heater off
+G0 E-150   		;Retract the filament
 
 ;Open Door
 G37 S			;Unlock door (S: don't wait for safe temp)
