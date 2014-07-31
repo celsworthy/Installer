@@ -186,9 +186,6 @@
                             <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker.png</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
