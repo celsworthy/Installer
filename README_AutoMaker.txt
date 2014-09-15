@@ -1,5 +1,14 @@
 CEL AutoMaker README
 
+version 1.00.12
+Major update to postprocessor to improve print quality - specifically nozzle open/close.
+All default profiles updated.
+Automatic update of user profiles included.
+Numerous minor fixes to UI behaviour (including purge and filament detection).
+
+version 1.00.11
+Fixed an issue preventing Slicing when a user's home directory a UNC drive (Windows only)
+
 version 1.00.10
 IMPORTANT: The way Projects are saved and loaded has changed. The first time you run this release your current projects will not load correctly and will need to be closed. You will need to recreate your Projects, and also your Custom Material and Print Profiles.
 Integrated v679 firmware

@@ -1,12 +1,13 @@
 <project>
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
-    <version></version>
+    <version>999</version>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
+    <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -185,7 +186,7 @@
                         <distributionFile>
                             <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
-			<distributionFile>
+                        <distributionFile>
                             <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
@@ -284,6 +285,15 @@
                         <distributionDirectory>
                             <origin>Slicer/Windows/Slic3r</origin>
                         </distributionDirectory>
+                        <distributionFile>
+                            <origin>icons/STL File.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>icons/OBJ File.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>icons/RBX File.ico</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -533,6 +543,26 @@ enable = 0
                 </runProgram>
             </actionList>
         </actionGroup>
+        <associateWindowsFileExtension>
+            <extensions>.stl</extensions>
+            <friendlyName>AutoMaker STL</friendlyName>
+            <icon>${commondir}\STL File.ico</icon>
+            <mimeType>application/stl</mimeType>
+            <progID>celtech.AutoMaker</progID>
+            <commandList>
+                <command>
+                    <makeDefault>0</makeDefault>
+                    <runProgram>${automakerdir}/${launcherName}.exe</runProgram>
+                    <runProgramArguments>"%1"</runProgramArguments>
+                    <verb>Open</verb>
+                </command>
+            </commandList>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </associateWindowsFileExtension>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
@@ -548,7 +578,18 @@ enable = 0
                 </platformTest>
             </ruleList>
         </actionGroup>
+        <removeWindowsFileAssociation>
+            <extensions>.stl</extensions>
+            <mimeType>application/stl</mimeType>
+            <progID>celtech.AutoMaker</progID>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </removeWindowsFileAssociation>
     </postUninstallationActionList>
+    <allowedLanguages>en ja ko ru zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -558,6 +599,7 @@ enable = 0
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
@@ -689,6 +731,23 @@ enable = 0
             <ruleList>
                 <platformTest negate="1" type="osx"/>
             </ruleList>
+        </parameterGroup>
+        <parameterGroup>
+            <name>fileAssociations</name>
+            <title>File Associations</title>
+            <explanation></explanation>
+            <value></value>
+            <default></default>
+            <parameterList>
+                <booleanParameter>
+                    <name>stl_association</name>
+                    <description>Associate .stl files with AutoMaker?</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>1</default>
+                    <displayStyle>checkbox-left</displayStyle>
+                </booleanParameter>
+            </parameterList>
         </parameterGroup>
     </parameterList>
 </project>

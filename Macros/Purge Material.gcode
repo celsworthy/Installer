@@ -1,7 +1,3 @@
-M140 S70
-M103 S180
-
-
 ; Home all Axis in sequence
 T0				;Select Nozzle 0 (T0)
 G90 			;Use X Y Z Absolute positioning
@@ -11,10 +7,6 @@ G28 X Y			;Home X, then Y
 G0 X111 Y75		;X Y Position Centre
 G28 Z			;Home Z
 G0 Z8			;Move up 5mm if homed
-
-M190			;wait to get to Bed temp
-M140 S90
-M103 S230
 
 ; Level Gantry
 	G0 X30 Y75		;Level Gantry Position 1
@@ -47,7 +39,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 Z2
+G0 T1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -67,7 +59,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 Z2
+G0 T1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -87,7 +79,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 Z2
+G0 T1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -107,7 +99,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 Z2
+G0 T1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -127,7 +119,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 Z2
+G0 T1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -147,7 +139,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 Z2
+G0 T1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -167,7 +159,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 Z2
+G0 T1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50

@@ -1,4 +1,4 @@
-# Robox Sic3r profile : Custom
+# Slic3r 1.1.2 compatible profile
 avoid_crossing_perimeters = 0
 bed_size = 226,160
 bottom_solid_layers = 3
@@ -18,7 +18,6 @@ external_perimeters_first = 0
 extra_perimeters = 1
 extruder_clearance_height = 20
 extruder_clearance_radius = 20
-nozzle_diameter = 0.8,0.8
 extrusion_axis = E
 extrusion_width = 0.8
 fan_always_on = 1
@@ -51,13 +50,14 @@ min_print_speed = 15
 min_skirt_length = 25
 
 force_nozzle_on_first_layer = 1
+
 nozzle_open_over_volume = 0.2,0.4
-nozzle_partial_b_minimum = 0.2,0.2
 nozzle_preejection_volume = 0.5,0.4
 nozzle_ejection_volume = 0.6,1
 nozzle_wipe_volume = 0,0.1
 nozzle_close_at_midpoint = 0.8,0.8
 nozzle_close_midpoint_percent = 75,75
+nozzle_partial_b_minimum = 0.2,0.2
 
 only_retract_when_crossing_perimeters = 1
 ooze_prevention = 0
@@ -80,7 +80,7 @@ retract_length_toolchange = 0.05,0.05
 retract_lift = 0,0
 retract_restart_extra = 0.25,0.6
 retract_restart_extra_toolchange = 0,0
-retract_speed = 35,35
+retract_speed = 20,20
 rotate = 0
 scale = 1
 seam_position = aligned
