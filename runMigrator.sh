@@ -1,0 +1,1 @@
+java/bin/java -DlibertySystems.configFile=AutoMaker.configFile.xml -jar AutoMakerMigrator.jar

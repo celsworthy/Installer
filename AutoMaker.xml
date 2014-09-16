@@ -7,7 +7,6 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
-    <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -103,6 +102,9 @@
                         <distributionFile>
                             <origin>README_AutoMaker.txt</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>../JarArtifacts/AutoMakerMigrator.jar</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -123,6 +125,9 @@
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -142,6 +147,9 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -169,6 +177,9 @@
                         <distributionFile>
                             <origin>jRegistryKey.dll</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.bat</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -191,6 +202,9 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -543,26 +557,29 @@ enable = 0
                 </runProgram>
             </actionList>
         </actionGroup>
-        <associateWindowsFileExtension>
-            <extensions>.stl</extensions>
-            <friendlyName>AutoMaker STL</friendlyName>
-            <icon>${commondir}\STL File.ico</icon>
-            <mimeType>application/stl</mimeType>
-            <progID>celtech.AutoMaker</progID>
-            <commandList>
-                <command>
-                    <makeDefault>0</makeDefault>
-                    <runProgram>${automakerdir}/${launcherName}.exe</runProgram>
-                    <runProgramArguments>"%1"</runProgramArguments>
-                    <verb>Open</verb>
-                </command>
-            </commandList>
+        <runProgram>
+            <explanation>Migrating last installation</explanation>
+            <program>runMigrator.bat</program>
+            <programArguments></programArguments>
+            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
             <ruleList>
                 <platformTest>
                     <type>windows</type>
                 </platformTest>
             </ruleList>
-        </associateWindowsFileExtension>
+        </runProgram>
+        <runProgram>
+            <explanation>Migrating last installation</explanation>
+            <program>./runMigrator.sh</program>
+            <programArguments></programArguments>
+            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
@@ -578,16 +595,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </actionGroup>
-        <removeWindowsFileAssociation>
-            <extensions>.stl</extensions>
-            <mimeType>application/stl</mimeType>
-            <progID>celtech.AutoMaker</progID>
-            <ruleList>
-                <platformTest>
-                    <type>windows</type>
-                </platformTest>
-            </ruleList>
-        </removeWindowsFileAssociation>
     </postUninstallationActionList>
     <allowedLanguages>en ja ko ru zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
@@ -731,23 +738,6 @@ enable = 0
             <ruleList>
                 <platformTest negate="1" type="osx"/>
             </ruleList>
-        </parameterGroup>
-        <parameterGroup>
-            <name>fileAssociations</name>
-            <title>File Associations</title>
-            <explanation></explanation>
-            <value></value>
-            <default></default>
-            <parameterList>
-                <booleanParameter>
-                    <name>stl_association</name>
-                    <description>Associate .stl files with AutoMaker?</description>
-                    <explanation></explanation>
-                    <value></value>
-                    <default>1</default>
-                    <displayStyle>checkbox-left</displayStyle>
-                </booleanParameter>
-            </parameterList>
         </parameterGroup>
     </parameterList>
 </project>
