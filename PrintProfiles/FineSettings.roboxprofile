@@ -1,4 +1,5 @@
-#Profile:  CEL Robox FineSettings
+#Profile: FineSettings
+#Version = 1
 print_center = 100.5,82.2
 bed_size = 226,160
 z_offset = 0
@@ -119,7 +120,11 @@ interface_shells = 0
 seam_position = nearest
 standby_temperature_delta = -5
 support_material_interface_speed = 40
-nozzle_close_at_midpoint = 0.5,0.5
-nozzle_close_midpoint_percent = 60,60
-nozzle_open_over_volume = 0.4,0.4
+nozzle_close_at_midpoint = 0,0
+nozzle_close_midpoint_percent = 0,0
+nozzle_open_over_volume = 0,0
 force_nozzle_on_first_layer = 1
+perimeter_nozzle = 0
+fill_nozzle = 0
+support_nozzle = 0
+support_interface_nozzle = 0
