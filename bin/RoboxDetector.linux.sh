@@ -12,5 +12,6 @@ do
     if [[ $poss ]]
     then
 	echo $device >/dev/stdout
+	echo " "
     fi
 done
