@@ -384,7 +384,7 @@
         <createJavaLaunchers>
             <destination>${java_launcher_destination}</destination>
             <explanation>${msg(Installer.Java.CreateLaunchers.Explanation)}</explanation>
-            <progressText>${msg(Installer.Java.CreateLaunchers.Text)}</progressText>
+            <progressText>Creating Launcher</progressText>
             <javaLauncherList>
                 <javaLauncher>
                     <allowCommandLineArguments>1</allowCommandLineArguments>
@@ -432,7 +432,7 @@
                 <createShortcuts>
                     <destination>${java_launcher_startmenudirectory}</destination>
                     <explanation>${msg(Installer.Java.CreateLauncherShortcuts.Explanation)}</explanation>
-                    <progressText>${msg(Installer.Java.CreateLauncherShortcuts.Text)}</progressText>
+                    <progressText>Preparing Launcher</progressText>
                     <shortcutList>
                         <startMenuShortcut>
                             <comment>${java_launcher_binary_name}</comment>
