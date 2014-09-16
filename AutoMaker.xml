@@ -1,7 +1,7 @@
 <project>
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
-    <version></version>
+    <version>999</version>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
@@ -102,6 +102,9 @@
                         <distributionFile>
                             <origin>README_AutoMaker.txt</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>../JarArtifacts/AutoMakerMigrator.jar</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -122,6 +125,9 @@
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -141,6 +147,9 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -168,6 +177,9 @@
                         <distributionFile>
                             <origin>jRegistryKey.dll</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.bat</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -185,11 +197,14 @@
                         <distributionFile>
                             <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
-			<distributionFile>
+                        <distributionFile>
                             <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -284,6 +299,15 @@
                         <distributionDirectory>
                             <origin>Slicer/Windows/Slic3r</origin>
                         </distributionDirectory>
+                        <distributionFile>
+                            <origin>icons/STL File.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>icons/OBJ File.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>icons/RBX File.ico</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -533,6 +557,29 @@ enable = 0
                 </runProgram>
             </actionList>
         </actionGroup>
+        <runProgram>
+            <explanation>Migrating last installation</explanation>
+            <program>runMigrator.bat</program>
+            <programArguments></programArguments>
+            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <explanation>Migrating last installation</explanation>
+            <program>./runMigrator.sh</program>
+            <programArguments></programArguments>
+            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>windows</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
@@ -549,6 +596,7 @@ enable = 0
             </ruleList>
         </actionGroup>
     </postUninstallationActionList>
+    <allowedLanguages>en ja ko ru zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -558,6 +606,7 @@ enable = 0
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
