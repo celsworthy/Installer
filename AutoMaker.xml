@@ -606,6 +606,7 @@ enable = 0
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
