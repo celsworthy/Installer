@@ -12,6 +12,7 @@ Added languages - complete set is:
 	Swedish
 	Traditional Chinese
 Fixed ROB-239 - Check for updates does not timeout on Linux if web site down.
+Updated to version 681 firmware.
 
 version 1.00.12
 Major update to postprocessor to improve print quality - specifically nozzle open/close.
