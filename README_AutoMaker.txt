@@ -3,7 +3,7 @@ CEL AutoMaker README
 version 1.00.13
 Fixed post-processing issue causing under-extrusion and large blobs of material on some models.
 Added languages - complete set is:
-	English,
+	English
 	Finnish
 	German
 	Korean
@@ -12,7 +12,7 @@ Added languages - complete set is:
 	Swedish
 	Traditional Chinese
 Fixed ROB-239 - Check for updates does not timeout on Linux if web site down.
-Updated to version 681 firmware.
+Updated to version 683 firmware.
 
 version 1.00.12
 Major update to postprocessor to improve print quality - specifically nozzle open/close.
