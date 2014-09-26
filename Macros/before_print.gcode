@@ -33,6 +33,7 @@ G39 			;level bed
 G0 Y0 X21 Z10
 M106
 
+G36 E500 F1000
 ;Short Purge
 G0 Z3
 T0
