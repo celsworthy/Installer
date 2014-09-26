@@ -33,9 +33,6 @@ G39 			;level bed
 G0 Y0 X21 Z10
 M106
 
-;Un-park Filament
-G36 E500 F1000
-
 ;Short Purge
 G0 Z3
 T0

@@ -181,16 +181,8 @@ G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
 G0 X15 Y0		;Move to back corner
 
-M104 S140		;reduce nozzle temp
-
 ;Open Door
 G37 S			;Unlock door (S: don't wait for safe temp)
-
-;retract code
-M106   			;Fan on full
-M109   			;wait to get to temp
-M104 S0  		;nozzle heater off
-G0 E-150   		;Retract the filament
 
 ;Every thing off
 M170 S0			;Ambient control off
