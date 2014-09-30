@@ -39,7 +39,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 T1.5
+G0 Z1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -59,7 +59,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 T1.5
+G0 Z1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -79,7 +79,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 T1.5
+G0 Z1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -99,7 +99,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 T1.5
+G0 Z1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -119,7 +119,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 T1.5
+G0 Z1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -139,7 +139,7 @@ G0 B2
 T1
 G0 B2
 G1 E15 F100
-G0 T1.5
+G0 Z1.5
 G1 X25 E150 F800
 G0 Z0.3
 G1 E15 F100
@@ -159,7 +159,7 @@ G0 B2
 T0
 G0 B2
 G1 E15 F50
-G0 T1.5
+G0 Z1.5
 G1 X200 E80 F800
 G0 Z0.3
 G1 E15 F50
@@ -181,15 +181,16 @@ G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
 G0 X15 Y0		;Move to back corner
 
-;retract code
-M106   			;Fan on full
 M104 S140		;reduce nozzle temp
-M109   			;wait to get to temp
-M104 S0  		;nozzle heater off
-G0 E-150   		;Retract the filament
 
 ;Open Door
 G37 S			;Unlock door (S: don't wait for safe temp)
+
+;retract code
+M106   			;Fan on full
+M109   			;wait to get to temp
+M104 S0  		;nozzle heater off
+G0 E-150   		;Retract the filament
 
 ;Every thing off
 M170 S0			;Ambient control off
