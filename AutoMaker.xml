@@ -558,9 +558,11 @@ enable = 0
             </actionList>
         </actionGroup>
         <runProgram>
+            <abortOnError>0</abortOnError>
             <explanation>Migrating last installation</explanation>
             <program>runMigrator.bat</program>
             <programArguments></programArguments>
+            <showMessageOnError>0</showMessageOnError>
             <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
             <ruleList>
                 <platformTest>
@@ -569,9 +571,12 @@ enable = 0
             </ruleList>
         </runProgram>
         <runProgram>
+            <abortOnError>0</abortOnError>
             <explanation>Migrating last installation</explanation>
             <program>./runMigrator.sh</program>
             <programArguments></programArguments>
+            <showMessageOnError>0</showMessageOnError>
+            <useMSDOSPath>0</useMSDOSPath>
             <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
             <ruleList>
                 <platformTest>
