@@ -1,5 +1,8 @@
 CEL Configurator README
 
+version 1.00.14
+Updates to default print profiles and macros.
+
 version 1.00.13
 Fixed post-processing issue causing under-extrusion and large blobs of material on some models.
 Added languages - complete set is:
