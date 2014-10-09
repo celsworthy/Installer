@@ -4,6 +4,9 @@ version 1.00.14
 Updates to default print profiles and macros.
 Fixed issue in post-processor affecting very small extrusions where nozzle did not always close before travel.
 Reduced settings screen bed rotation load on CPU.
+Temperature graph is now visible during purge.
+Minor purge handling modifications.
+Version and date is written to post-processed gcode files.
 Update to version 684 firmware.
 
 version 1.00.13
