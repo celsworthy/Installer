@@ -1,0 +1,41 @@
+{
+  "version" : 1,
+  "name" : "Dual Nozzle 0.8mm/0.3mm",
+  "typeCode" : "RBX01-DM",
+  "nozzleHeaters" : [ {
+    "maximum_temperature_C" : 260,
+    "beta" : 4380.0,
+    "tcal" : 19193.0
+  } ],
+  "nozzles" : [ {
+    "diameter" : 0.4,
+    "defaultXOffset" : 7.08,
+	"minXOffset" : 6.8,
+	"maxXOffset" : 7.5,
+    "defaultYOffset" : 0.0,
+	"minYOffset" : -0.3,
+	"maxYOffset" : 0.3,
+    "defaultZOffset" : -0.4,
+	"minZOffset" : -1.2,
+	"maxZOffset" : 1.2,
+    "defaultBOffset" : 1.1,
+	"minBOffset" : 0.7,
+	"maxBOffset" : 2.0,
+	"associatedExtruder" : "E"
+  }, {
+    "diameter" : 0.4,
+    "defaultXOffset" : -7.08,
+	"minXOffset" : -7.5,
+	"maxXOffset" : -6.8,
+    "defaultYOffset" : 0.0,
+	"minYOffset" : -0.3,
+	"maxYOffset" : 0.3,
+    "defaultZOffset" : -0.4,
+	"minZOffset" : -1.2,
+	"maxZOffset" : 1.2,
+    "defaultBOffset" : -1.1,
+	"minBOffset" : -2.0,
+	"maxBOffset" : -0.7,
+	"associatedExtruder" : "D"
+  } ]
+}
