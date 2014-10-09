@@ -2,6 +2,9 @@ CEL AutoMaker README
 
 version 1.00.14
 Updates to default print profiles and macros.
+Fixed issue in post-processor affecting very small extrusions where nozzle did not always close before travel.
+Reduced settings screen bed rotation load on CPU.
+Update to version 684 firmware.
 
 version 1.00.13
 Fixed post-processing issue causing under-extrusion and large blobs of material on some models.

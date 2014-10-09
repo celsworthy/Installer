@@ -11,6 +11,7 @@ G0 Z5			;Move up 5mm if homed
 G0 Z10 			;Move up 10mm
 
 ;Unretract
+G0 E130
 G36 E30 F100
 
 T0				;Select Nozzle 0 (T0)
@@ -46,7 +47,14 @@ T1				;Select Nozzle 1 (T1)
 	G0 Y10
 	G0 Z10
 
-G0 X0 Y0			;Home
+Go X0 Y0			;Home
+
+;retract code
+M106   			;Fan on full
+M104 S140		;reduce nozzle temp
+M109   			;wait to get to temp
+M104 S0  		;nozzle heater off
+G0 E-150   		;Retract the filament
 
 G37 S			;Unlock door (S: don't wait for safe temp)
 
