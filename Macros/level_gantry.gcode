@@ -23,4 +23,5 @@ G0 X0 Y0			;Home X, then Y
 M104 S0			;Nozzle heater off
 M106			;Fan off
 M128			;Head Light off
-M84				;Motor off
+
+M84				;Motors Off

@@ -39,7 +39,8 @@ M121 E			;Eject Filament
 M170 S0			;Ambient control off
 M107			;Fan off
 M128			;Head Light off
-M84				;Motor off
 
 ;Open Door
 G37 S			;Unlock door (S: don't wait for safe temp)
+
+M84				;Motor off

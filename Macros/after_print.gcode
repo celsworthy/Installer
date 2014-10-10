@@ -20,4 +20,4 @@ M140 S0			;Bed heater off
 M107			;Fan off
 M128			;Head Light off
 
-M83				;Motors off
+M84				;Motors off
