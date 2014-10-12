@@ -1,5 +1,8 @@
 CEL Configurator README
 
+version 1.00.15
+Fix to nozzle opening calibration routine
+
 version 1.00.14
 Updates to default print profiles and macros.
 Fixed issue in post-processor affecting very small extrusions where nozzle did not always close before travel.
