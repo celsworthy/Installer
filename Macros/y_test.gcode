@@ -50,3 +50,5 @@ G0 Y0
 
 G28 X Y		;Home X, then Y
 M128			;Head LED off
+
+M84				;Motors off

@@ -183,19 +183,14 @@ G0 X15 Y0		;Move to back corner
 
 M104 S140		;reduce nozzle temp
 
-;Open Door
-G37 S			;Unlock door (S: don't wait for safe temp)
-
-;retract code
-M106   			;Fan on full
-M109   			;wait to get to temp
-M104 S0  		;nozzle heater off
-G0 E-150   		;Retract the filament
-
 ;Every thing off
 M170 S0			;Ambient control off
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
 M107			;Fan off
 M128			;Head Light off
+
+;Open Door
+G37 S			;Unlock door (S: don't wait for safe temp)
+
 M84				;Motors off

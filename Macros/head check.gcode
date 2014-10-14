@@ -58,6 +58,6 @@ G0 B0
 
 M128
 
-G0 E-150		;Park
-
 M104 S0			;Heat Nozzle off
+
+M84				;Motors Off
