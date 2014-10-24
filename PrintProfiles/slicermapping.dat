@@ -1,17 +1,19 @@
 {
   "mappings" : {
     "Slic3r" : {
-	    /*
-		 * Defaults for all profiles
-		 */
-		"D:reprap" : "gcode_flavor",		 
-		"D:4" : "threads",		 
-		"D:300" : "travel_speed",
-		"D:1" : "gcode_comments",
-	    "D:" : "end_gcode",
-	    "D:" : "start_gcode",
-		
-		 /*
+	  /*
+	   * Defaults for all profiles
+	   */
+      "defaults" : [
+			"gcode_flavor:reprap",
+			"threads:4",
+			"travel_speed:300",
+			"gcode_comments:1",
+			"end_gcode:",
+			"start_gcode:" ],
+			
+      "mappingData" : {
+         /*
 		  * Extrusion
 		  */
 		"layerHeight_mm" : "layer_height",
@@ -69,62 +71,84 @@
 		"coolIfLayerTimeLessThan_secs" : "fan_below_layer_time",
 		"slowDownIfLayerTimeLessThan_secs" : "slowdown_below_layer_time",
 		"minPrintSpeed_mm_per_s" : "min_print_speed"
+		}		 
     },
     "Cura" : {
         /*
 		 * Defaults for all profiles
 		 */	 
-		"D:300" : "moveSpeed",
-		"D:1" : "enableCombing",
-		"D:1" : "fixHorrible",
-		"D:0" : "skirtLineCount",
-		"D:100" : "retractionAmount",
-		"D:20" : "minimalExtrusionBeforeRetraction",
-		"D:1500" : "retractionMinimalDistance",
-		"D:0" : "autoCenter",
-				
-		 /*
-		  * Extrusion
-		  */
-      	"layerHeight_mm" : "layerThickness:1000",
-	    "firstLayerHeight_mm" : "initialLayerThickness:1000",
-		"fillPattern" : "infillPattern",
-	    "numberOfPerimeters" : "insetCount",
-		"spiralPrint" : "spiralizeMode",
+		"defaults" : [ 
+			"initialSpeedupLayers:4",
+			"minimalFeedrate:10",
+			"supportXYDistance:700",
+			"retractionZHop:0",
+			"retractionSpeed:40",
+			"filamentFlow:100",
+			"infillOverlap:10",
+			"coolHeadLift:0",
+			"upSkinCount:7",
+			"enableCombing:1",
+			"supportZDistance:150",
+			"minimalExtrusionBeforeRetraction:20",
+			"retractionMinimalDistance:1500",
+			"retractionAmount:5500",
+			"objectSink:0",
+			"printSpeed:50",
+			"fixHorrible:0",
+			"moveSpeed:300",
+			"skirtLineCount:0",
+			"autoCenter:0",
+			"supportLineDistance:6666",
+			"sparseInfillLineDistance:1298",
+			"insetCount:3",
+			"downSkinCount:7",
+			"multiVolumeOverlap:150",
+			"supportAngle:-1" ],
 		
-		/*
-		 * Nozzle data
-		 */
-		"firstLayerExtrusionWidth_mm" : "layer0extrusionWidth:1000",
-		"perimeterExtrusionWidth_mm" : "extrusionWidth:1000",
-		"fillExtrusionWidth_mm" : "fillExtrusionWidth:1000",
-		"supportExtrusionWidth_mm" : "supportExtrusionWidth:1000",
-		
-		/*
-		 * Support
-		 */
-		"generateSupportMaterial" : "supportEverywhere",
-		"supportOverhangThreshold_degrees" : "supportAngle",
-		"supportPattern" : "supportType",
-		"supportPatternSpacing_mm" : "supportLineDistance",
-		"supportPatternAngle_degrees" : "supportAngle",
+		"mappingData" : {
+			 /*
+			  * Extrusion
+			  */
+			"layerHeight_mm" : "layerThickness:1000",
+			"firstLayerHeight_mm" : "initialLayerThickness:1000",
+			// "fillPattern" : "infillPattern",
+			"numberOfPerimeters" : "insetCount",
+			// "spiralPrint" : "spiralizeMode",
+			
+			/*
+			 * Nozzle data
+			 */
+			"firstLayerExtrusionWidth_mm" : "layer0extrusionWidth:1000",
+			"perimeterExtrusionWidth_mm" : "extrusionWidth:1000",
+			"fillExtrusionWidth_mm" : "fillExtrusionWidth:1000",
+			"supportExtrusionWidth_mm" : "supportExtrusionWidth:1000",
+			
+			/*
+			 * Support
+			 */
+			// "generateSupportMaterial" : "supportEverywhere",
+			"supportOverhangThreshold_degrees" : "supportAngle",
+			// "supportPattern" : "supportType",
+			"supportPatternSpacing_mm" : "supportLineDistance",
+			// "supportPatternAngle_degrees" : "supportAngle",
 
-		/*
-		 * Speed settings
-		 */
-		"perimeterSpeed_mm_per_s" : "initialLayerSpeed",
-		"perimeterSpeed_mm_per_s" : "printSpeed",
-		"perimeterSpeed_mm_per_s" : "inset0Speed",
-		"perimeterSpeed_mm_per_s" : "insetXSpeed",
-		"fillSpeed_mm_per_s" : "infillSpeed",
-		"externalPerimeterSpeed_mm_per_s" : "inset0Speed",
+			/*
+			 * Speed settings
+			 */
+			"perimeterSpeed_mm_per_s" : "initialLayerSpeed",
+			"perimeterSpeed_mm_per_s" : "printSpeed",
+			"perimeterSpeed_mm_per_s" : "inset0Speed",
+			"perimeterSpeed_mm_per_s" : "insetXSpeed",
+			"fillSpeed_mm_per_s" : "infillSpeed",
+			"externalPerimeterSpeed_mm_per_s" : "inset0Speed",
 
-		/*
-		 * Cooling
-		 */
-		"minFanSpeed_percent" : "fanSpeedMin",
-		"maxFanSpeed_percent" : "fanSpeedMax",
-		"coolIfLayerTimeLessThan_secs" : "minimalLayerTime"
+			/*
+			 * Cooling
+			 */
+			"minFanSpeed_percent" : "fanSpeedMin",
+			"maxFanSpeed_percent" : "fanSpeedMax",
+			"coolIfLayerTimeLessThan_secs" : "minimalLayerTime"
+		}
 	}
-  }
+	}
 }
