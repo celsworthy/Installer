@@ -1,5 +1,9 @@
 CEL AutoMaker README
 
+version 1.01.00
+GUI update.
+Added Cura.
+
 version 1.00.14
 Updates to default print profiles and macros.
 Fixed issue in post-processor affecting very small extrusions where nozzle did not always close before travel.

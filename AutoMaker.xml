@@ -308,6 +308,9 @@
                         <distributionFile>
                             <origin>icons/RBX File.ico</origin>
                         </distributionFile>
+                        <distributionDirectory>
+                            <origin>Slicer/Windows/Cura</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
