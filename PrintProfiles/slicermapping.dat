@@ -86,7 +86,6 @@
 			"filamentFlow:100",
 			"infillOverlap:10",
 			"coolHeadLift:0",
-			"upSkinCount:7",
 			"enableCombing:1",
 			"supportZDistance:150",
 			"minimalExtrusionBeforeRetraction:20",
@@ -96,41 +95,37 @@
 			"printSpeed:50",
 			"fixHorrible:0",
 			"moveSpeed:300",
-			"skirtLineCount:0",
 			"autoCenter:0",
-			"supportLineDistance:6666",
-			"sparseInfillLineDistance:1298",
-			"insetCount:3",
-			"downSkinCount:7",
 			"multiVolumeOverlap:150",
-			"supportAngle:-1" ],
+			"skirtDistance:0" ],
 		
 		"mappingData" : {
 			 /*
 			  * Extrusion
 			  */
-			"layerHeight_mm" : "layerThickness:1000",
-			"firstLayerHeight_mm" : "initialLayerThickness:1000",
-			// "fillPattern" : "infillPattern",
+			"layerHeight_mm" : "layerThickness:*1000",
+			"firstLayerHeight_mm" : "initialLayerThickness:*1000",
 			"numberOfPerimeters" : "insetCount",
-			// "spiralPrint" : "spiralizeMode",
+			"solidLayersAtTop" : "upSkinCount",
+			"solidLayersAtBottom" : "downSkinCount",
+			"fillDensity_normalised" : "sparseInfillLineDistance:?0->-1:/fillExtrusionWidth:*1000",
+			"brimWidth_mm" : "skirtLineCount:/perimeterExtrusionWidth_mm",
+			"spiralPrint" : "spiralizeMode",
 			
 			/*
 			 * Nozzle data
 			 */
-			"firstLayerExtrusionWidth_mm" : "layer0extrusionWidth:1000",
-			"perimeterExtrusionWidth_mm" : "extrusionWidth:1000",
-			"fillExtrusionWidth_mm" : "fillExtrusionWidth:1000",
-			"supportExtrusionWidth_mm" : "supportExtrusionWidth:1000",
+			"firstLayerExtrusionWidth_mm" : "layer0extrusionWidth:*1000",
+			"perimeterExtrusionWidth_mm" : "extrusionWidth:*1000",
+			"fillExtrusionWidth_mm" : "fillExtrusionWidth:*1000",
+			"supportExtrusionWidth_mm" : "supportExtrusionWidth:*1000",
 			
 			/*
 			 * Support
 			 */
-			// "generateSupportMaterial" : "supportEverywhere",
-			"supportOverhangThreshold_degrees" : "supportAngle",
-			// "supportPattern" : "supportType",
-			"supportPatternSpacing_mm" : "supportLineDistance",
-			// "supportPatternAngle_degrees" : "supportAngle",
+			"supportOverhangThreshold_degrees" : "supportAngle:?generateSupportMaterial=false->-1",
+			"supportPattern" : "supportType",
+			"supportPatternSpacing_mm" : "supportLineDistance:*1000",
 
 			/*
 			 * Speed settings
