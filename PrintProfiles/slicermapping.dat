@@ -108,7 +108,7 @@
 			"numberOfPerimeters" : "insetCount",
 			"solidLayersAtTop" : "upSkinCount",
 			"solidLayersAtBottom" : "downSkinCount",
-			"fillDensity_normalised" : "sparseInfillLineDistance:?0->-1:/fillExtrusionWidth_mm:*1000",
+			"fillDensity_normalised" : "sparseInfillLineDistance:?0->-1:[fillExtrusionWidth_mm:*1000",
 			"brimWidth_mm" : "skirtLineCount:/perimeterExtrusionWidth_mm",
 			"spiralPrint" : "spiralizeMode",
 			
