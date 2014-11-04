@@ -277,6 +277,9 @@
                         <distributionDirectory>
                             <origin>Slicer/Linux_x86/Slic3r</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x86/Cura</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -287,6 +290,9 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>Slicer/Linux_x64/Slic3r</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
