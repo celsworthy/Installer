@@ -36,5 +36,6 @@ G0 Z5
 	G38 			;Level gantry
 G0 X Y			;Home X, then Y
 	
-M84
 M128			;Head LED off
+
+M84				;Motors off
