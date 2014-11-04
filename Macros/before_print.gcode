@@ -4,6 +4,7 @@ G90 			;Absolute positioning
 T0				;Select Nozzle 0 (T0)
 G0 B0			;Close Nozzle
 G28 Z			;Home Z
+G0 Z10			;Move Z up
 G28 X Y			;Home X, then Y
 
 M190			;Wait for Bed to get to temp.
