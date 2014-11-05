@@ -6,6 +6,12 @@
 	   */
       "defaults" : [
 			"gcode_flavor:reprap",
+			"use_relative_e_distances:1",
+			"thin_walls:1",
+			"only_retract_when_crossing_perimeters:1",
+			"infill_first:1",
+			"raft_layers:0",
+			"skirts:0",
 			"threads:4",
 			"travel_speed:300",
 			"gcode_comments:1",
