@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "name" : "Dual Nozzle 0.8mm/0.3mm",
+  "name" : "Single Material 0.8mm/0.3mm",
   "typeCode" : "RBX01-SM",
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 260,
