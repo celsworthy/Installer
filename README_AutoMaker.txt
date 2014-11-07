@@ -1,8 +1,15 @@
 CEL AutoMaker README
 
 version 1.01.00
-GUI update.
-Added Cura.
+GUI update
+Added Cura
+Updated firmware to v687.
+Incorporates tickets:
+	ROB-289
+	ROB-290
+	ROB-235
+Installer altered to show windows driver wizard
+Installer altered to include forced GPU launcher (in AutoMaker install directory)
 
 version 1.00.14
 Updates to default print profiles and macros.
