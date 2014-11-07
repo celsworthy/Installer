@@ -8,6 +8,7 @@ Incorporates tickets:
 	ROB-289
 	ROB-290
 	ROB-235
+	ROB-292
 Installer altered to show windows driver wizard
 Installer altered to include forced GPU launcher (in AutoMaker install directory)
 
