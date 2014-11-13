@@ -1,5 +1,5 @@
 M139			;Set & heat first layer Bed temp.
-
+M83				;Relative Extrusion
 G90 			;Absolute positioning
 T0				;Select Nozzle 0 (T0)
 G0 B0			;Close Nozzle

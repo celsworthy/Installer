@@ -91,7 +91,7 @@
 			"retractionSpeed:40",
 			"filamentFlow:100",
 			"infillOverlap:10",
-			"coolHeadLift:1",
+			"coolHeadLift:0",
 			"enableCombing:1",
 			"supportZDistance:150",
 			"minimalExtrusionBeforeRetraction:0",
@@ -136,9 +136,8 @@
 			/*
 			 * Speed settings
 			 */
-			"perimeterSpeed_mm_per_s" : "initialLayerSpeed",
+			"firstLayerSpeed_mm_per_s" : "initialLayerSpeed",
 			"perimeterSpeed_mm_per_s" : "printSpeed",
-			"perimeterSpeed_mm_per_s" : "inset0Speed",
 			"perimeterSpeed_mm_per_s" : "insetXSpeed",
 			"fillSpeed_mm_per_s" : "infillSpeed",
 			"externalPerimeterSpeed_mm_per_s" : "inset0Speed",
@@ -146,9 +145,9 @@
 			/*
 			 * Cooling
 			 */
-			"minFanSpeed_percent" : "fanSpeedMin",
-			"maxFanSpeed_percent" : "fanSpeedMax",
-			"coolIfLayerTimeLessThan_secs" : "minimalLayerTime"
+			"minFanSpeed_percent" : "fanSpeedMin:?enableCooling=false->0",
+			"maxFanSpeed_percent" : "fanSpeedMax:?enableCooling=false->0",
+			"slowDownIfLayerTimeLessThan_secs" : "minimalLayerTime"
 		}
 	}
 	}

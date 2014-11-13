@@ -3,12 +3,24 @@ CEL AutoMaker README
 version 1.01.00
 GUI update
 Added Cura
-Updated firmware to v687.
+Updated firmware to v688.
 Incorporates tickets:
 	ROB-289
 	ROB-290
 	ROB-235
 	ROB-292
+	ROB-27
+	ROB-296
+	ROB-303
+	ROB-305
+	ROB-306
+	ROB-307
+	SFR-18
+	SFR-17
+	SFR-13
+	SFR-15
+	SFR-16
+	SFR-12
 Installer altered to show windows driver wizard
 Installer altered to include forced GPU launcher (in AutoMaker install directory)
 
