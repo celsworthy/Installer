@@ -102,6 +102,8 @@
 			"fixHorrible:0",
 			"moveSpeed:300",
 			"autoCenter:0",
+			"posx:0",
+			"posy:0",
 			"multiVolumeOverlap:150",
 			"skirtDistance:0" ],
 		
