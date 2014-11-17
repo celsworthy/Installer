@@ -3,7 +3,7 @@ CEL AutoMaker README
 version 1.01.00
 GUI update
 Added Cura
-Updated firmware to v688.
+Updated firmware to v689
 Incorporates tickets:
 	ROB-289
 	ROB-290
