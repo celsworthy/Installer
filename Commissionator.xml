@@ -2,7 +2,6 @@
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
     <version></version>
-    <installerFilename>${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
@@ -553,7 +552,6 @@ enable = 0
         </actionGroup>
     </postUninstallationActionList>
     <allowedLanguages>en zh_CN</allowedLanguages>
-    <cdromDirectory>${product_version}-cdrom</cdromDirectory>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
