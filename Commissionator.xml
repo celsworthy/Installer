@@ -561,7 +561,6 @@ enable = 0
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/Commissionator.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
-    <removeLogFile>1</removeLogFile>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
@@ -636,7 +635,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>commondir</name>
-                    <value>${installdir}/${project.shortName}/</value>
+                    <value>${installdir}/Common</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
