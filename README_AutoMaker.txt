@@ -1,5 +1,8 @@
 CEL AutoMaker README
 
+version 1.00.16_RC1
+Revision 684.1 firmware
+
 version 1.00.16 - Affects Mac OS X only
 Fixes ROB-299 - Cannot load models due to an incompatibility with Mac OS X 10.7.x
 
