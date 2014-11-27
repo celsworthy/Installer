@@ -3,7 +3,7 @@
 #
 name = Highway Orange
 material = PLA
-reelID = RBX-ABS-OR022
+reelID = RBX-PLA-OR022
 diameter_mm = 1.75
 filament_multiplier = 0.93
 feed_rate_multiplier = 1.0

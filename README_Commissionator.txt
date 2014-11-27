@@ -1,5 +1,8 @@
 CEL Commissionator Readme
 
+version 2.03.01
+Version 684.2 firmware
+
 version 2.03.00
 Version 684 firmware
 Added program head ID and updated program printer ID to enable read back and write of ID data without affecting other parameters stored on the head.

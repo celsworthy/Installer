@@ -2,6 +2,14 @@ CEL AutoMaker README
 
 version 1.00.17
 Revision 684.2 firmware
+Fixes:
+ROB-263 - Filament saves incorrectly for countries using , decimal separator
+ROB-216 - Selection box corners sized incorrectly
+ROB-238 - Snap to ground does not cause reslice
+ROB-228 - Layout view rotates when it shouldn't
+ROB-294 - Correct problem with Orange PLA filament definition file
+ROB-226 - Model should go red when height is above maximum
+ROB-308 - Fix issue with firmware upgrade/downgrade
 
 version 1.00.16 - Affects Mac OS X only
 Fixes ROB-299 - Cannot load models due to an incompatibility with Mac OS X 10.7.x
