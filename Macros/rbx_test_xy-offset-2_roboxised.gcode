@@ -1,73 +1,10 @@
-; File post-processed by the CEL Tech Roboxiser on Tue 2 Dec 2014 22:41:42
-; null
-;
-; Pre print gcode
-M139			;Set & heat first layer Bed temp.
-M83				;Relative Extrusion
-G90 			;Absolute positioning
-T0				;Select Nozzle 0 (T0)
-G0 B0			;Close Nozzle
-G28 Z			;Home Z
-G0 Z10			;Move Z up
-G28 X Y			;Home X, then Y
-
-M190			;Wait for Bed to get to temp.
-M103			;Set & heat first layer nozzle temp.
+M83
+M104			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
 
-T0				;Select Nozzle 0 (T0)
-G0 X30 Y75		;Level Gantry Position 1
-G28 Z			;Home Z
-G0 Z5 			;Move up 5mm
-G0 X190 Y75		;Level Gantry Position 2
-G28 Z?			;Probe Z
-G38 			;Level gantry
-G0 X113 Y20		;Bed levelling Y Position 1
-G28 Z			;Home Z
-G0 Z5 			;Move up 5mm
-G0 X113 Y130	;Bed levelling Y Position 2
-G28 Z?			;Probe Z
-G39 S0.5		;level bed and washout transform over the first 2mm
-
-G28 Y
-G0 X15 Z10
-
-G36 E500 F1000
-;Short Purge
-G0 Z2
-G1 Y-3.5 F400
-T0
-G0 B2
-G1 E30 X35 F250
-G0 B0
-G0 Z5
-G0 Y5
-
-G36 E500 F1000
-G0 Z8
-T1
-G28 Y
-G0 Z3
-G1 Y-3.5 F400
-G0 B2
-G1 E35 X15 F300
-G0 B0
-G0 Z5
-G0 Y5
-G0 X105 Y75
-
-G1 E3 F1000
-M129			;Head LED on
-; End of Pre print gcode
-G90 			;Absolute positioning
-T0 ; Initialise using nozzle 0
-M83 ; Relative Extrusion
-M103 ; Set & heat first layer nozzle temp.
-M170 ; Set Ambient temp.
-T1 ;  - force to nozzle 1 on first layer
 G1 Z0.6 F18000 ;  move to next layer (3)
-G1 X90.1 Y96.885 F18000 ; ->132.3053786699543  ;  move to first perimeter point
+T1 X90.1 Y96.885 F18000 ; ->132.3053786699543  ;  move to first perimeter point
 G1 B1.0 ; Open and replenish from extrusion
 G1 X90.1 Y93.068 E0.51996 D0 F840 ; ->L3.8170000000000073 ->E0.51996 ->D0.0 ;  perimeter
 G1 X89.948 Y92.11 E0.13225 D0 ; ->L0.969983505014388 ->E0.13225 ->D0.0 ;  perimeter
@@ -149,7 +86,8 @@ G1 X93.24 Y99.778 B0.281 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progre
 G1 X93.908 Y99.438 B0.179 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.438 Y98.908 B0.077 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.778 Y98.24 B0 F1500 ; ->L0.0  ; ->E0.07676000000000016  ; Wipe - reverse end Normal close
-G1 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
+
+T0 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
 G1 B1.0 E1 F400 ; Open and replenish from extrusion
 G1 X80.9 Y86.576 E0.04141 D0 F1500 ; ->L0.5969396954467101 ->E0.04141 ->D0.0 ;  perimeter
 G1 X81.313 Y86.084 E0.04455 D0 ; ->L0.6423651609481851 ->E0.04455 ->D0.0 ;  perimeter
@@ -232,11 +170,9 @@ G1 X89.553 Y90.447 B0.245 F1500 ; ->L0.0  ; ->E0.06791  ; Wipe - reverse in prog
 G1 X90.148 Y91.224 B0.177 F1500 ; ->L0.0  ; ->E0.06798  ; Wipe - reverse in progress Normal close
 G1 X90.523 Y92.129 B0.11 F1500 ; ->L0.0  ; ->E0.06722  ; Wipe - reverse in progress Normal close
 G1 X90.65 Y93.09 B0 F1500 ; ->L0.0  ; ->E0.10980999999999974  ; Wipe - reverse end Normal close
-M104 ; take post layer 1 nozzle temperature from loaded reel - don't wait
-M140 ; take post layer 1 bed temperature from loaded reel - don't wait
 G1 Z0.8 F18000 ;  move to next layer (4)
-G1 X90.1 Y96.885 F18000 ; ->13.47050336847143  ;  move to first perimeter point
-T1 ; return to required nozzle
+
+T1 X90.1 Y96.885 F18000 ; ->13.47050336847143  ;  move to first perimeter point
 G1 B1.0 E1 F400 ; Open and replenish from extrusion
 G1 X90.1 Y93.068 E0.51996 D0 F840 ; ->L3.8170000000000073 ->E0.51996 ->D0.0 ;  perimeter
 G1 X89.948 Y92.11 E0.13225 D0 ; ->L0.969983505014388 ->E0.13225 ->D0.0 ;  perimeter
@@ -318,7 +254,8 @@ G1 X93.24 Y99.778 B0.281 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progre
 G1 X93.908 Y99.438 B0.179 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.438 Y98.908 B0.077 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.778 Y98.24 B0 F1500 ; ->L0.0  ; ->E0.07676000000000016  ; Wipe - reverse end Normal close
-G1 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
+
+T0 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
 G1 B1.0 E1 F400 ; Open and replenish from extrusion
 G1 X80.9 Y86.576 E0.04141 D0 F1500 ; ->L0.5969396954467101 ->E0.04141 ->D0.0 ;  perimeter
 G1 X81.313 Y86.084 E0.04455 D0 ; ->L0.6423651609481851 ->E0.04455 ->D0.0 ;  perimeter
@@ -402,7 +339,8 @@ G1 X90.148 Y91.224 B0.177 F1500 ; ->L0.0  ; ->E0.06798  ; Wipe - reverse in prog
 G1 X90.523 Y92.129 B0.11 F1500 ; ->L0.0  ; ->E0.06722  ; Wipe - reverse in progress Normal close
 G1 X90.65 Y93.09 B0 F1500 ; ->L0.0  ; ->E0.10980999999999974  ; Wipe - reverse end Normal close
 G1 Z1 F18000 ;  move to next layer (6)
-G1 X90.1 Y96.885 F18000 ; ->13.47050336847143  ;  move to first perimeter point
+
+T1 X90.1 Y96.885 F18000 ; ->13.47050336847143  ;  move to first perimeter point
 G1 B1.0 E1 F400 ; Open and replenish from extrusion
 G1 X90.1 Y93.068 E0.51996 D0 F840 ; ->L3.8170000000000073 ->E0.51996 ->D0.0 ;  perimeter
 G1 X89.948 Y92.11 E0.13225 D0 ; ->L0.969983505014388 ->E0.13225 ->D0.0 ;  perimeter
@@ -484,7 +422,8 @@ G1 X93.24 Y99.778 B0.281 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progre
 G1 X93.908 Y99.438 B0.179 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.438 Y98.908 B0.077 F1500 ; ->L0.0  ; ->E0.1021  ; Wipe - reverse in progress Normal close
 G1 X94.778 Y98.24 B0 F1500 ; ->L0.0  ; ->E0.07676000000000016  ; Wipe - reverse end Normal close
-G1 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
+
+T0 X80.696 Y87.137 F18000 ; ->13.631311015452615  ;  move to first perimeter point
 G1 B1.0 E1 F400 ; Open and replenish from extrusion
 G1 X80.9 Y86.576 E0.04141 D0 F1500 ; ->L0.5969396954467101 ->E0.04141 ->D0.0 ;  perimeter
 G1 X81.313 Y86.084 E0.04455 D0 ; ->L0.6423651609481851 ->E0.04455 ->D0.0 ;  perimeter
@@ -567,12 +506,7 @@ G1 X89.553 Y90.447 B0.245 F1500 ; ->L0.0  ; ->E0.06791  ; Wipe - reverse in prog
 G1 X90.148 Y91.224 B0.177 F1500 ; ->L0.0  ; ->E0.06798  ; Wipe - reverse in progress Normal close
 G1 X90.523 Y92.129 B0.11 F1500 ; ->L0.0  ; ->E0.06722  ; Wipe - reverse in progress Normal close
 G1 X90.65 Y93.09 B0 F1500 ; ->L0.0  ; ->E0.10980999999999974  ; Wipe - reverse end Normal close
-G90 			;Absolute positioning
-G91				;Relative positioning
-G90 			;Absolute positioning
-G37 S				;Unlock door (S: don't wait for safe temp)
-;
-; Post print gcode
+
 M104 S0  		;nozzle heater off
 
 ;Finish/Abort Print
@@ -596,5 +530,4 @@ M107			;Fan off
 M128			;Head Light off
 
 M84				;Motors off
-; End of Post print gcode
-; EOF
+
