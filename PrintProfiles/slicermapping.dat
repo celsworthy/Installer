@@ -56,6 +56,7 @@
 		/*
 		 * Speed settings
 		 */
+		"firstLayerSpeed_mm_per_s" : "first_layer_speed",
 		"perimeterSpeed_mm_per_s" : "perimeter_speed",
 		"smallPerimeterSpeed_mm_per_s" : "small_perimeter_speed",
 		"externalPerimeterSpeed_mm_per_s" : "external_perimeter_speed",
