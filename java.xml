@@ -401,6 +401,21 @@
                     <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
                     <workingDirectory>${java_launcher_destination}</workingDirectory>
                 </javaLauncher>
+                <javaLauncher>
+                    <allowCommandLineArguments>1</allowCommandLineArguments>
+                    <arguments>${java_launcher_arguments}</arguments>
+                    <binaryName>${project.shortName}-ForceGPU.${platform_exec_suffix}</binaryName>
+                    <classpath>${java_launcher_classpath}</classpath>
+                    <jarFile>${java_launcher_jar}</jarFile>
+                    <mainClass>${java_launcher_mainClass}</mainClass>
+                    <preferredJavaBinary>${java_executable}</preferredJavaBinary>
+                    <runInBackground>0</runInBackground>
+                    <runInConsole>0</runInConsole>
+                    <usePropertiesFile>0</usePropertiesFile>
+                    <vmParameters>-Dprism.forceGPU=true ${java_launcher_vm_parameters}</vmParameters>
+                    <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
+                    <workingDirectory>${java_launcher_destination}</workingDirectory>
+                </javaLauncher>
             </javaLauncherList>
             <ruleList>
                 <isTrue value="${java_create_launcher}"/>

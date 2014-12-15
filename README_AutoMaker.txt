@@ -1,5 +1,71 @@
 CEL AutoMaker README
 
+version 1.01.00
+GUI update
+Added Cura
+Updated firmware to v696
+Incorporates tickets:
+SFR-18	M140, M104 not being added to gcode after first layer.
+SFR-17	No first layer speeding being passed to Slic3r
+SFR-16	Post Processor Adding code to Gcode file that is not required.
+SFR-15	Cooling On/Off toggle is not passed to Slic3r from Automaker
+SFR-14	Cura is not adding retracts, so post processor is not closing nozzles between moves
+SFR-13	Add M83 to "before Print.gcode" so visuliiation is better
+SFR-12	Add First Layer print Speed as a new adjustiable variable in Automaker
+SFR-11	Hide Variables in Automaker that are not mapped to the chosen slice engine
+ROB-401	Old Print profiles Migratioed to old version.
+ROB-395	Calibration - Printer error occurs and dialog appears but heating action carries on
+ROB-391	AutoMaker should pause if filament error detected during print
+ROB-389	AutoMaker doens't reslice if custom profile is altered and saved
+ROB-387	Shutting down AutoMaker terminates prints
+ROB-381	It should not be possible to cancel a cancel
+ROB-369	Purge routine does not print after purge-before print
+ROB-359	Robox serial number not set on About screen
+ROB-358	Pause / Resume / Cancel button behaviour is incorrect
+ROB-351	Auto update of reel data is not working
+ROB-350	Make cura integration pass progress back to AutoMaker
+ROB-340	Remove stream GCode button from maintenance page
+ROB-337	Remove override safeties from preferences page
+ROB-336	Temperature graph changes
+ROB-334	Disable multi-printer support
+ROB-332	Error dialog - user presses cancel during calibration
+ROB-331	Pop-up notification to tell user why print is not possible when print button is pressed
+ROB-330	Notifications should not use ellipsis - requires word wrap?
+ROB-329	Notification font family and size are wrong
+ROB-328	Move status page buttons onto bottom tool bar
+ROB-327	Implement Chris's calibration changes
+ROB-325	Robox show fault on second and all subsequent print after switch on
+ROB-318	Open Door Button does not work
+ROB-317	Screen Eject button does not work.
+ROB-314	Height Calibration will not start without filament installed
+ROB-310	During Calibration an error ocour, it is cleared but the printer remains in pause
+ROB-309	NPE after firmware upgrade
+ROB-307	Nozzle height calibration - height value does not update
+ROB-306	Nozzle height calibration - failure does not close wizard
+ROB-305	Nozzle opening calibration - temperature bar goes beyond limit if temperature rises beyond target
+ROB-304	Attempted head reprogram after updating a blank head and choosing Calibrate
+ROB-303	Graphical error when selecting Nozzle Open Calbration
+ROB-302	Whizzy spinner should be in centre of specified node
+ROB-300	Add Preferences Page
+ROB-298	Add speed slider to Status screen
+ROB-296	Add default option for Custom profile slicer choice
+ROB-295	Prints using Cura on Linux are offset
+ROB-292	Make MyMiniFactory loader deal with rar files
+ROB-290	Change MyMiniFactory hooks to javascript calls
+ROB-289	Integrate MyMiniFactory load page
+ROB-285	Add text to icons + i18n
+ROB-264	Store MyMiniFactory session cookies
+ROB-262	Custom filament profile does not store ambient temperature
+ROB-252	Purge temperature does not appear in head EEPROM display until reconnect
+ROB-243	Maintenance operations possible while print active
+ROB-240	End of nozzle height calibration - push bed to front to allow insertion of PEI surface
+ROB-235	Internationlise strings for Reel and Head status tabs
+ROB-223	Can drop a file from explorer onto a project when it is at ready to print stage
+ROB-175	Change Head Button
+ROB-27	Purge needs a pop up sequence
+Installer altered to show windows driver wizard
+Installer altered to include forced GPU launcher (in AutoMaker install directory)
+
 version 1.00.17
 Revision 684.2 firmware
 Fixes:

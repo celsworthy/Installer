@@ -1,10 +1,10 @@
 ;Finish/Abort Print
+G0 B0			;Close Nozzle
 M106			;Fan on full
 G90 			;Absolute positioning
 T0				;Select Nozzle 0 (T0)
-G0 B0			;Close Nozzle
 G91				;Relative positioning
-G0 Z5			;Move up 5mm
+	G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
 G0 X15 Y0		;Move to back corner
 
