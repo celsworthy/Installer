@@ -13,7 +13,7 @@
 			"raft_layers:0",
 			"skirts:0",
 			"threads:4",
-			"travel_speed:300",
+			"travel_speed:200",
 			"gcode_comments:1",
 			"end_gcode:",
 			"start_gcode:" ],
@@ -87,9 +87,9 @@
 		"defaults" : [ 
 			"initialSpeedupLayers:4",
 			"minimalFeedrate:10",
-			"supportXYDistance:700",
+			"supportXYDistance:400",
 			"retractionZHop:0",
-			"retractionSpeed:40",
+			"retractionSpeed:30",
 			"filamentFlow:100",
 			"infillOverlap:10",
 			"coolHeadLift:0",
@@ -99,9 +99,8 @@
 			"retractionMinimalDistance:500",
 			"retractionAmount:500",
 			"objectSink:0",
-			"printSpeed:50",
 			"fixHorrible:0",
-			"moveSpeed:300",
+			"moveSpeed:200",
 			"autoCenter:0",
 			"posx:0",
 			"posy:0",
@@ -140,17 +139,18 @@
 			 * Speed settings
 			 */
 			"firstLayerSpeed_mm_per_s" : "initialLayerSpeed",
-			"perimeterSpeed_mm_per_s" : "printSpeed",
 			"perimeterSpeed_mm_per_s" : "insetXSpeed",
 			"fillSpeed_mm_per_s" : "infillSpeed",
 			"externalPerimeterSpeed_mm_per_s" : "inset0Speed",
+			"supportSpeed_mm_per_s" : "printSpeed",
 
 			/*
 			 * Cooling
 			 */
 			"minFanSpeed_percent" : "fanSpeedMin:?enableCooling=false->0",
 			"maxFanSpeed_percent" : "fanSpeedMax:?enableCooling=false->0",
-			"slowDownIfLayerTimeLessThan_secs" : "minimalLayerTime"
+			"slowDownIfLayerTimeLessThan_secs" : "minimalLayerTime",
+			"minPrintSpeed_mm_per_s" : "minimalFeedrate"
 		}
 	}
 	}
