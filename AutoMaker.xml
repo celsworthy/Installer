@@ -328,6 +328,9 @@
                         <distributionDirectory>
                             <origin>Slicer/Mac/Slic3r.app</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Mac/Cura</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
