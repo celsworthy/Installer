@@ -1,6 +1,6 @@
 {
   "version" : 2,
-  "profileName" : "FineSettings_1",
+  "profileName" : "FineSettings",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.2,
   "layerHeight_mm" : 0.1,
