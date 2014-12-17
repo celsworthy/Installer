@@ -1,12 +1,12 @@
 M139			;Set & heat first layer Bed temp.
-M83				;Relative Extrusion
-G90 			;Absolute positioning
-T0				;Select Nozzle 0 (T0)
-G0 B0			;Close Nozzle
+
+; Home all Axis in sequence
+G90 			;Use X Y Z Absolute positioning
+G0 Z5			;Move up 5mm if homed
 G28 Y			;Home Y
+G0 Y40			;Position Y
 G28 Z			;Home Z
-G0 Y42			;move to metal clip
-G0 Z5			;Move Z up
+G0 Z10			;Move up 10mm if homed
 G28 X			;Home X
 
 M190			;Wait for Bed to get to temp.
@@ -3855,25 +3855,21 @@ G1 X98.761 Y69.850 E0.68330 ; perimeter
 G1 X97.519 Y67.186 B0 E0.17637 ; perimeter
 G1 E-1.00000 F1800.000 ; retract
 
-M104 S0  		;nozzle heater off
+M103 S0			;Nozzle heater off
+M140 S0			;Bed heater off
 
 ;Finish/Abort Print
 M106			;Fan on full
-G90 			;Absolute positioning
-T0				;Select Nozzle 0 (T0)
-G0 B0			;Close Nozzle
 G91				;Relative positioning
 G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
 G0 X15 Y0		;Move to back corner
 
 ;Open Door
-G37 S				;Unlock door (S: don't wait for safe temp)
+G37 S			;Unlock door (S: don't wait for safe temp)
 
 ;Every thing off
 M170 S0			;Ambient control off
-M103 S0			;Nozzle heater off
-M140 S0			;Bed heater off
 M107			;Fan off
 M128			;Head Light off
 
