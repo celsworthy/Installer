@@ -27,7 +27,6 @@ ROB-350	Make cura integration pass progress back to AutoMaker
 ROB-340	Remove stream GCode button from maintenance page
 ROB-337	Remove override safeties from preferences page
 ROB-336	Temperature graph changes
-ROB-334	Disable multi-printer support
 ROB-332	Error dialog - user presses cancel during calibration
 ROB-331	Pop-up notification to tell user why print is not possible when print button is pressed
 ROB-330	Notifications should not use ellipsis - requires word wrap?

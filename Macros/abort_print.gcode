@@ -3,6 +3,7 @@ M140 S0			;Bed heater off
 
 ;Finish/Abort Print
 M106			;Fan on full
+G0 B0			;Close Nozzle
 G91				;Relative positioning
 G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
