@@ -3,7 +3,7 @@ CEL AutoMaker README
 version 1.01.00
 GUI update
 Added Cura
-Updated firmware to v696
+Updated firmware to v698
 Incorporates tickets:
 SFR-18	M140, M104 not being added to gcode after first layer.
 SFR-17	No first layer speeding being passed to Slic3r
