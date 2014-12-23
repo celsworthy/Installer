@@ -7,22 +7,8 @@
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
-    <allowLanguageSelection>1</allowLanguageSelection>
-    <allowedLanguages>en zh_CN</allowedLanguages>
     <defaultLanguage>auto</defaultLanguage>
-    <removeLogFile>1</removeLogFile>
-    <customLanguageFileList>
-       <language>
-         <code>en</code>
-         <encoding>iso8859-1</encoding>
-         <file>custom-en.lng</file>
-       </language>
-       <language>
-         <code>zh_CN</code>
-         <encoding>utf-8</encoding>
-         <file>custom-zh_CN.lng</file>
-       </language>
-     </customLanguageFileList>
+    <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -46,10 +32,10 @@
             <postInstallationActionList>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-		    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
+                    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
                     <programArguments></programArguments>
-		    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
+                    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -59,10 +45,10 @@
                 </runProgram>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-		    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
+                    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
                     <programArguments></programArguments>
-		    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
+                    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -565,6 +551,7 @@ enable = 0
             </ruleList>
         </actionGroup>
     </postUninstallationActionList>
+    <allowedLanguages>en zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -585,12 +572,23 @@ enable = 0
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <customLanguageFileList>
+        <language>
+            <code>en</code>
+            <file>custom-en.lng</file>
+        </language>
+        <language>
+            <code>zh_CN</code>
+            <encoding>utf-8</encoding>
+            <file>custom-zh_CN.lng</file>
+        </language>
+    </customLanguageFileList>
     <finalPageActionList>
         <runProgram>
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->
             <program>open</program>
             <programArguments>${automakerdir}/${launcherName}.app</programArguments>
-	    <progressText>${msg(database.launchApplicationNow)}</progressText>
+            <progressText>${msg(database.launchApplicationNow)}</progressText>
             <ruleList>
                 <platformTest type="osx"/>
             </ruleList>
@@ -599,7 +597,7 @@ enable = 0
             <!-- On Windows, use ampersand for asynchronous launch -->
             <program>${automakerdir}/${launcherName}.exe</program>
             <programArguments>&amp;</programArguments>
-	    <progressText>${msg(database.launchApplicationNow)}</progressText>
+            <progressText>${msg(database.launchApplicationNow)}</progressText>
             <ruleList>
                 <platformTest type="windows"/>
             </ruleList>
@@ -607,7 +605,7 @@ enable = 0
         <runProgram>
             <program>${automakerdir}/${launcherName}.run</program>
             <programArguments>&amp;</programArguments>
-	    <progressText>${msg(database.launchApplicationNow)}</progressText>
+            <progressText>${msg(database.launchApplicationNow)}</progressText>
             <ruleList>
                 <platformTest type="linux"/>
             </ruleList>
@@ -617,7 +615,7 @@ enable = 0
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
-	    <explanation>${msg(database.specifyInstallationDirectory)}</explanation>
+            <explanation>${msg(database.specifyInstallationDirectory)}</explanation>
             <value></value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
@@ -637,7 +635,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>commondir</name>
-                    <value>${installdir}/${project.shortName}/</value>
+                    <value>${installdir}/Common</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
@@ -681,7 +679,7 @@ enable = 0
             <parameterList>
                 <booleanParameter>
                     <name>install_desktop_shortcut</name>
-		    <description>${msg(database.addAShortcutToTheDesktop)}</description>
+                    <description>${msg(database.addAShortcutToTheDesktop)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>1</default>
@@ -692,7 +690,7 @@ enable = 0
                 </booleanParameter>
                 <booleanParameter>
                     <name>install_menu_shortcut</name>
-		    <description>${msg(database.addAShortcutToTheStartMenu)}</description>
+                    <description>${msg(database.addAShortcutToTheStartMenu)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>0</default>

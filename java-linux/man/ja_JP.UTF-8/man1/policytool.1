@@ -1,13 +1,15 @@
 '\" t
-.\" Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
+.\" Copyright (c) 2001, 2014, Oracle and/or its affiliates. All rights reserved.
+.\"
 .\" Title: policytool
-.\" Language: English
+.\" Language: Japanese
 .\" Date: 2013年11月21日
 .\" SectDesc: セキュリティ・ツール
 .\" Software: JDK 8
 .\" Arch: 汎用
+.\" Part Number: E54735-01
 .\"
-.pl 99999
+.if n .pl 99999
 .TH "policytool" "1" "2013年11月21日" "JDK 8" "セキュリティ・ツール"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
@@ -28,7 +30,7 @@
 .\" -----------------------------------------------------------------
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
-.SH "NAME"
+.SH "名前"
 policytool \- ユーティリティGUI経由で取得したユーザー入力に基づいて、プレーン・テキストのポリシー・ファイルを読み書きします。
 .SH "概要"
 .sp
@@ -36,7 +38,7 @@ policytool \- ユーティリティGUI経由で取得したユーザー入力に
 .RS 4
 .\}
 .nf
-\fIpolicytool\fR [ \fI\-file\fR ] [ \fIfilename\fR ] 
+\fBpolicytool\fR [ \fB\-file\fR ] [ \fIfilename\fR ] 
 .fi
 .if n \{\
 .RE
@@ -44,7 +46,7 @@ policytool \- ユーティリティGUI経由で取得したユーザー入力に
 .PP
 \-file
 .RS 4
-ポリシー・ファイルを読み込むように\fIpolicytool\fRに指示します。
+ポリシー・ファイルを読み込むように\fBpolicytool\fRに指示します。
 .RE
 .PP
 \fIfilename\fR
@@ -60,32 +62,34 @@ policytool \- ユーティリティGUI経由で取得したユーザー入力に
 .RS 4
 .\}
 .nf
-policytool
+\fBpolicytool\fR
+ 
 .fi
 .if n \{\
 .RE
 .\}
 .PP
-\fIpolicytool\fRコマンドを実行し、指定されたファイルをロードします:
+\fBpolicytool\fRコマンドを実行し、指定されたファイルをロードします:
 .sp
 .if n \{\
 .RS 4
 .\}
 .nf
-policytool\-file mypolicyfile
+\fBpolicytool\-file mypolicyfile\fR
+ 
 .fi
 .if n \{\
 .RE
 .\}
 .SH "説明"
 .PP
-\fIpolicytool\fRコマンドは、管理者のGUIを呼び出します。これにより、システム管理者はローカル・ポリシー・ファイルの内容を管理できるようになります。ポリシー・ファイルは\fI\&.policy\fR拡張子を持つプレーンテキスト・ファイルで、ドメイン別にリモート・リクエスタを権限オブジェクトにマップします。詳細は、http://docs\&.oracle\&.com/javase/8/docs/technotes/guides/security/PolicyFiles\&.htmlにある
+\fBpolicytool\fRコマンドは、管理者のGUIを呼び出します。これにより、システム管理者はローカル・ポリシー・ファイルの内容を管理できるようになります。ポリシー・ファイルは\fB\&.policy\fR拡張子を持つプレーンテキスト・ファイルで、ドメイン別にリモート・リクエスタを権限オブジェクトにマップします。詳細は、http://docs\&.oracle\&.com/javase/8/docs/technotes/guides/security/PolicyFiles\&.htmlにある
 「Default Policy Implementation and Policy File Syntax」を参照してください
 .SH "オプション"
 .PP
 \-file
 .RS 4
-ポリシー・ファイルを読み込むように\fIpolicytool\fRに指示します。
+ポリシー・ファイルを読み込むように\fBpolicytool\fRに指示します。
 .RE
 .SH "関連項目"
 .sp

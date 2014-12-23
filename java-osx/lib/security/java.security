@@ -212,6 +212,7 @@ package.access=sun.,\
                jdk.internal.,\
                jdk.nashorn.internal.,\
                jdk.nashorn.tools.,\
+               com.sun.activation.registries.,\
                apple.,\
                com.sun.browser.,\
                com.sun.glass.,\
@@ -269,6 +270,7 @@ package.definition=sun.,\
                    jdk.internal.,\
                    jdk.nashorn.internal.,\
                    jdk.nashorn.tools.,\
+                   com.sun.activation.registries.,\
                    apple.,\
                    com.sun.browser.,\
                    com.sun.glass.,\

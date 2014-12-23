@@ -132,7 +132,10 @@ sub quick_slice {
         );
         
         $sprint->apply_config($config);
-        $sprint->set_model(Slic3r::Model->read_from_file($input_file));
+        
+        # keep model
+        my $model = Slic3r::Model->read_from_file($input_file);
+        $sprint->set_model($model);
         
         {
             my $extra = $self->extra_variables;
@@ -449,9 +452,9 @@ sub combine_stls {
         my $material_name = basename($input_files[$m]);
         $material_name =~ s/\.(stl|obj)$//i;
         
-        $new_model->set_material($m, { Name => $material_name });
+        $new_model->set_material("$m", { Name => $material_name });
         $new_object->add_volume(
-            material_id => $m,
+            material_id => "$m",
             mesh        => $model->objects->[0]->volumes->[0]->mesh,
         );
     }

@@ -277,6 +277,9 @@
                         <distributionDirectory>
                             <origin>Slicer/Linux_x86/Slic3r</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x86/Cura</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -287,6 +290,9 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>Slicer/Linux_x64/Slic3r</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -308,6 +314,9 @@
                         <distributionFile>
                             <origin>icons/RBX File.ico</origin>
                         </distributionFile>
+                        <distributionDirectory>
+                            <origin>Slicer/Windows/Cura</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -318,6 +327,9 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>Slicer/Mac/Slic3r.app</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Slicer/Mac/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -682,7 +694,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>

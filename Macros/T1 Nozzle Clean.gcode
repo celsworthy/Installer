@@ -2,23 +2,25 @@ M103
 M129			;Head Light on
 
 ; Home all Axis in sequence
-T0				;Select Nozzle 0 (T0)
 G90 			;Use X Y Z Absolute positioning
-G0 Z5			;Move up 5mm if homed
-G0 B0			;Close Nozzle
-G28 X Y			;Home X, then Y
-G0 X111 Y75		;X Y Position Centre
+G0 Z10			;Move up 10mm if homed
+G28 Y			;Home Y
+G0 Y40			;Position Y
 G28 Z			;Home Z
-G0 Z5			;Move up 5mm if homed
+G0 Z10			;Move up 10mm if homed
+G28 X			;Home X
 
 M109			;Wait for Nozzle to get to temp.
 
-G0 Z30
+G0 Y-6 X36 Z10
+T1
+G0 Z2
+G1 Y-4 F400
 
 ;Un-park Filament
+
+; Nozzle Clean, repeat 10 times
 G36 E500 F1200
-
-; Nozzle Clean, repeat 20 times
 T1
 G0 B2
 G0 B0
@@ -88,23 +90,110 @@ T1
 G0 B2
 G0 B0
 
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G36 E1000 F1200
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+T1
+G0 B2
+G0 B0
+
+G1 E5 F400 		;Prime Nozzle
+
+;Short Purge T1
+G36 E500 F1000
+G0 B2
+G1 E4 F300
+G1 E35 X14 F300
+G0 B0
+G0 Z5
+G0 Y3
+
+;Short Purge T0
+G0 Y-6 X14 Z10
+T0
+G0 Z2
+G1 Y-4 F400
+G36 E500 F1000
+G0 B2
+G1 E2 F250
+G1 E30 X36 F250
+G0 B0
+G0 Z5
+G0 Y3
+G0 Z10
+
+;After Job
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
-
-;retract code
-M106   			;Fan on full
-M104 S140		;reduce nozzle temp
-M109   			;wait to get to temp
-M104 S0  		;nozzle heater off
-G0 E-150   		;Retract the filament
 
 ;Open Door
 G37 S			;Unlock door (S: don't wait for safe temp)
 
 ;Every thing off
 M170 S0			;Ambient control off
-M103 S0			;Nozzle heater off
-M140 S0			;Bed heater off
 M107			;Fan off
 M128			;Head Light off
 
