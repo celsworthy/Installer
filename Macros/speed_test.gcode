@@ -24,10 +24,7 @@ G0 X0 Y0		;Park X Y 0
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
 
-;Finish/Abort Print
-G91				;Relative positioning
-G0 Z5			;Move up 5mm
-G90 			;Absolute positioning
+;Finish Position
 G0 X15 Y0		;Move to back corner
 
 ;Open Door

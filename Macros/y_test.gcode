@@ -9,53 +9,50 @@ G28 X			;Home X
 
 ; Y Speed Test
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 G0 Y154
-G0 Y0
+G0 Y-6
 
 ;After Job
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
 
-;Finish/Abort Print
-G91				;Relative positioning
-G0 Z5			;Move up 5mm
-G90 			;Absolute positioning
-G0 X15 Y0		;Move to back corner
+;Finish Position
+G0 X15			;Move to back corner
 
 ;Open Door
 G37 S				;Unlock door (S: don't wait for safe temp)

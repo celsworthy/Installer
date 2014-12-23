@@ -1,3 +1,4 @@
+M83				;Set Extruder to Relative moves
 M139			;Set & heat first layer Bed temp.
 
 ; Home all Axis in sequence
@@ -22,7 +23,7 @@ G1 Y-4 F400
 G36 E500 F1000
 G0 B2
 G1 E2 F250
-G1 E30 X37 F250
+G1 E30 X36 F250
 G0 B0
 G0 Z5
 G0 Y3

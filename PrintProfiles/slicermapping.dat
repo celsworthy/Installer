@@ -85,16 +85,15 @@
 		 * Defaults for all profiles
 		 */	 
 		"defaults" : [ 
-			"initialSpeedupLayers:4",
-			"minimalFeedrate:10",
-			"supportXYDistance:400",
+			"initialSpeedupLayers:2",
+			"supportXYDistance:300",
 			"retractionZHop:0",
 			"retractionSpeed:30",
 			"filamentFlow:100",
 			"infillOverlap:10",
 			"coolHeadLift:0",
 			"enableCombing:1",
-			"supportZDistance:150",
+			"supportZDistance:100",
 			"minimalExtrusionBeforeRetraction:0",
 			"retractionMinimalDistance:500",
 			"retractionAmount:500",

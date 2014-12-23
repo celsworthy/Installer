@@ -1,6 +1,6 @@
 ; Home all Axis in sequence
 G90 			;Use X Y Z Absolute positioning
-G0 Z5			;Move up 5mm if homed
+G0 Z10			;Move up 10mm if homed
 G28 Y			;Home Y
 G0 Y40			;Position Y
 G28 Z			;Home Z
@@ -53,14 +53,11 @@ G0 X0
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
 
-;Finish/Abort Print
-G91				;Relative positioning
-G0 Z5			;Move up 5mm
-G90 			;Absolute positioning
-G0 X15 Y0		;Move to back corner
+;Finish Position
+G0 X15			;Move to back corner
 
 ;Open Door
-G37 S				;Unlock door (S: don't wait for safe temp)
+G37 S			;Unlock door (S: don't wait for safe temp)
 
 ;Every thing off
 M170 S0			;Ambient control off
