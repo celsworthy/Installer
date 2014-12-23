@@ -6,6 +6,7 @@ Cura slicing engine now incorporated in addition to Slic3r
 Incorporated My Mini Factory model library
 Print profiles updated
 Updated firmware to v699
+Calibration sequences updated - XY calibration sequence added
 Country specific language data will follow in a later release once translations are complete
 
 version 1.00.17
