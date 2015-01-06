@@ -130,6 +130,7 @@
 			/*
 			 * Support
 			 */
+			"generateSupportMaterial" : "supportEverywhere",
 			"supportOverhangThreshold_degrees" : "supportAngle:?generateSupportMaterial=false->-1",
 			"supportPattern" : "supportType",
 			"supportPatternSpacing_mm" : "supportLineDistance:*1000",
