@@ -2,12 +2,34 @@ CEL AutoMaker README
 
 version 1.01.00
 Major GUI update
-Cura slicing engine now incorporated in addition to Slic3r
-Incorporated My Mini Factory model library
-Print profiles updated
-Updated firmware to v700
-Calibration sequences updated - XY calibration sequence added
-Country specific language data will follow in a later release once translations are complete
+	- Look and feel refresh
+		- Text labels for buttons
+		- Clear indication of why make button is not available
+		- Added change head button
+		- Status page buttons re-organised
+		- User preferences added
+			- Default slicer
+			- Language
+	- Calibration sequences updated
+		- X Y alignment added
+		- Graphical instructions added
+	- Improved error handling
+	
+Model Handling
+	 - Incorporated My Mini Factory model library
+	 
+Slicing
+	- Cura slicing engine now incorporated in addition to Slic3r
+	- Print profiles updated
+	- Postprocessor improvements
+
+Firmware
+	- Updated to v700
+	- Improvements in homing, levelling and 
+
+Plus many other bug fixes and minor changes.
+
+Note: Country specific language data will follow in a later release once translations are complete
 
 version 1.00.17
 Revision 684.2 firmware
