@@ -74,5 +74,5 @@
   "coolIfLayerTimeLessThan_secs" : 60,
   "slowDownIfLayerTimeLessThan_secs" : 15,
   "minPrintSpeed_mm_per_s" : 8,
-  "maxClosesBeforeNozzleReselect" : 8
+  "maxClosesBeforeNozzleReselect" : -1
 }
