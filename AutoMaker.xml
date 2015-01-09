@@ -243,11 +243,6 @@
                     <destination>${commondir}</destination>
                     <name>common</name>
                     <platforms>all</platforms>
-                    <actionList>
-                        <deleteFile>
-                            <path>${commondir}/Heads</path>
-                        </deleteFile>
-                    </actionList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>EULA_${project.shortName}.txt</origin>
@@ -401,6 +396,11 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <preInstallationActionList>
+                <deleteFile>
+                    <path>${commondir}/Heads/*</path>
+                </deleteFile>
+            </preInstallationActionList>
         </component>
     </componentList>
     <postBuildActionList>
