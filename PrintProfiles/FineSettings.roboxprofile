@@ -73,5 +73,6 @@
   "disableFanFirstNLayers" : 0,
   "coolIfLayerTimeLessThan_secs" : 30,
   "slowDownIfLayerTimeLessThan_secs" : 25,
-  "minPrintSpeed_mm_per_s" : 8
+  "minPrintSpeed_mm_per_s" : 8,
+  "maxClosesBeforeNozzleReselect" : 8
 }
