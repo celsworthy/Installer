@@ -52,27 +52,27 @@ G0 Z4 			;Move up 4mm
 G38 			;Level gantry
 
 ; do the remaining 7 bed levelling points
-;G0 Y20
-;G28 Z
-;G0 Z2
-;G0 X105
-;G28 Z
-;G0 Z2
-;G0 X20
-;G28 Z
-;G0 Z2
-;G0 Y130
-;G28 Z
-;G0 Z2
-;G0 X105
-;G28 Z
-;G0 Z2
-;G0 X190
-;G28 Z
-;G0 Z2
-;G0 X105 Y75
-;G28 Z
-;G0 Z2
+G0 Y20
+G28 Z
+G0 Z2
+G0 X105
+G28 Z
+G0 Z2
+G0 X20
+G28 Z
+G0 Z2
+G0 Y130
+G28 Z
+G0 Z2
+G0 X105
+G28 Z
+G0 Z2
+G0 X190
+G28 Z
+G0 Z2
+G0 X105 Y75
+G28 Z
+G0 Z2
 
 G39 S0.5		;set washout over the first 2mm
 
