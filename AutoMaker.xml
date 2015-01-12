@@ -7,6 +7,51 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
+    <allowLanguageSelection>1</allowLanguageSelection>
+	<allowedLanguages>en de fi ko ru sv zh_CN zh_TW</allowedLanguages>
+    <defaultLanguage>auto</defaultLanguage>
+	<customLanguageFileList>
+       <language>
+         <code>en</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-en.lng</file>
+       </language>
+       <language>
+         <code>de</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-de.lng</file>
+       </language>
+       <language>
+         <code>fi</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-fi.lng</file>
+       </language>
+       <language>
+         <code>ko</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-ko.lng</file>
+       </language>
+       <language>
+         <code>ru</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-ru.lng</file>
+       </language>
+       <language>
+         <code>sv</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-sv.lng</file>
+       </language>
+       <language>
+         <code>zh_CN</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-zh_CN.lng</file>
+       </language>
+       <language>
+         <code>zh_TW</code>
+         <encoding>iso8859-1</encoding>
+         <file>InstallerLanguage/custom-zh_TW.lng</file>
+       </language>
+     </customLanguageFileList>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -30,10 +75,10 @@
             <postInstallationActionList>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-                    <explanation>Installing windows drivers for Robox</explanation>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
                     <programArguments></programArguments>
-                    <progressText>Installing windows drivers for Robox</progressText>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -43,10 +88,10 @@
                 </runProgram>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-                    <explanation>Installing windows drivers for Robox</explanation>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
                     <programArguments></programArguments>
-                    <progressText>Installing windows drivers for Robox</progressText>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -234,7 +279,7 @@
             <name>Common</name>
             <description>Common files</description>
             <canBeEdited>0</canBeEdited>
-            <detailedDescription>Common files required by all CEL applications</detailedDescription>
+            <detailedDescription>${msg{(AutoMakerInstaller.commonFilesRequiredByAllPlatforms)}</detailedDescription>
             <selected>1</selected>
             <show>0</show>
             <folderList>
@@ -403,26 +448,6 @@
             </preInstallationActionList>
         </component>
     </componentList>
-    <postBuildActionList>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x86</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x64\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x64</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-    </postBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
             <name>vendor</name>
@@ -576,7 +601,7 @@ enable = 0
         </actionGroup>
         <runProgram>
             <abortOnError>0</abortOnError>
-            <explanation>Migrating last installation</explanation>
+            <explanation>${msg(AutoMakerInstaller.migratingLastInstallation)}</explanation>
             <program>runMigrator.bat</program>
             <programArguments></programArguments>
             <showMessageOnError>0</showMessageOnError>
@@ -589,7 +614,7 @@ enable = 0
         </runProgram>
         <runProgram>
             <abortOnError>0</abortOnError>
-            <explanation>Migrating last installation</explanation>
+            <explanation>${msg(AutoMakerInstaller.migratingLastInstallation)}</explanation>
             <program>./runMigrator.sh</program>
             <programArguments></programArguments>
             <showMessageOnError>0</showMessageOnError>
@@ -618,7 +643,6 @@ enable = 0
             </ruleList>
         </actionGroup>
     </postUninstallationActionList>
-    <allowedLanguages>en ja ko ru zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -644,7 +668,7 @@ enable = 0
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->
             <program>open</program>
             <programArguments>${automakerdir}/${launcherName}.app</programArguments>
-            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
             <ruleList>
                 <platformTest type="osx"/>
             </ruleList>
@@ -653,7 +677,7 @@ enable = 0
             <!-- On Windows, use ampersand for asynchronous launch -->
             <program>${automakerdir}/${launcherName}.exe</program>
             <programArguments>&amp;</programArguments>
-            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
             <ruleList>
                 <platformTest type="windows"/>
             </ruleList>
@@ -661,7 +685,7 @@ enable = 0
         <runProgram>
             <program>${automakerdir}/${launcherName}.run</program>
             <programArguments>&amp;</programArguments>
-            <progressText>Do you want to launch ${product_fullname} now?</progressText>
+            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
             <ruleList>
                 <platformTest type="linux"/>
             </ruleList>
@@ -671,7 +695,7 @@ enable = 0
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
-            <explanation>Please specify the directory where CEL products will be installed</explanation>
+            <explanation>${msg(AutoMakerInstaller.specifyInstallationDirectory)}</explanation>
             <value></value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
@@ -728,14 +752,14 @@ enable = 0
         </directoryParameter>
         <parameterGroup>
             <name>shortcuts</name>
-            <title>Create Shortcuts</title>
+            <title>${msg(AutoMakerInstaller.createShortcuts)}</title>
             <explanation></explanation>
             <value></value>
             <default></default>
             <parameterList>
                 <booleanParameter>
                     <name>install_desktop_shortcut</name>
-                    <description>Add a shortcut to the desktop?</description>
+                    <description>${msg(AutoMakerInstaller.addAShortcutToTheDesktop)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>1</default>
@@ -746,7 +770,7 @@ enable = 0
                 </booleanParameter>
                 <booleanParameter>
                     <name>install_menu_shortcut</name>
-                    <description>Add a shortcut to the Start Menu?</description>
+                    <description>${msg(AutoMakerInstaller.addAShortcutToTheStartMenu)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>0</default>

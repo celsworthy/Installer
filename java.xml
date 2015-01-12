@@ -383,8 +383,8 @@
         <!-- create Java launcher using preferred JRE -->
         <createJavaLaunchers>
             <destination>${java_launcher_destination}</destination>
-            <explanation>${msg(Installer.Java.CreateLaunchers.Explanation)}</explanation>
-            <progressText>Creating Launcher</progressText>
+            <explanation>${msg(AutoMakerInstaller.creatingLauncher)}</explanation>
+            <progressText>${msg(AutoMakerInstaller.creatingLauncher)}</progressText>
             <javaLauncherList>
                 <javaLauncher>
                     <allowCommandLineArguments>1</allowCommandLineArguments>
