@@ -7,9 +7,7 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
-    <allowLanguageSelection>1</allowLanguageSelection>
-	<allowedLanguages>en de fi ko ru sv zh_CN zh_TW</allowedLanguages>
-    <defaultLanguage>auto</defaultLanguage>
+    <allowLanguageSelection>0</allowLanguageSelection>
 	<customLanguageFileList>
        <language>
          <code>en</code>
