@@ -575,12 +575,12 @@ enable = 0
     <customLanguageFileList>
         <language>
             <code>en</code>
-            <file>custom-en.lng</file>
+            <file>InstallerLanguage/custom-en.lng</file>
         </language>
         <language>
             <code>zh_CN</code>
             <encoding>utf-8</encoding>
-            <file>custom-zh_CN.lng</file>
+            <file>InstallerLanguage/custom-zh_CN.lng</file>
         </language>
     </customLanguageFileList>
     <finalPageActionList>
