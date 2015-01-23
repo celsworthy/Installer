@@ -1,5 +1,9 @@
 CEL Commissionator Readme
 
+version 2.04.00_RC1
+Version 703 firmware
+Fixed so that programming head and printer ID does not clear existing data
+
 version 2.03.01
 Version 684.2 firmware
 
