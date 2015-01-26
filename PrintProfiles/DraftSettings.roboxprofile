@@ -14,7 +14,7 @@
   "spiralPrint" : false,
   "firstLayerExtrusionWidth_mm" : 1.0,
   "perimeterExtrusionWidth_mm" : 0.8,
-  "fillExtrusionWidth_mm" : 1.0,
+  "fillExtrusionWidth_mm" : 0.8,
   "solidFillExtrusionWidth_mm" : 0.8,
   "topSolidFillExtrusionWidth_mm" : 0.6,
   "supportExtrusionWidth_mm" : 0.6,
@@ -74,5 +74,5 @@
   "coolIfLayerTimeLessThan_secs" : 60,
   "slowDownIfLayerTimeLessThan_secs" : 15,
   "minPrintSpeed_mm_per_s" : 8,
-  "maxClosesBeforeNozzleReselect" : 8
+  "maxClosesBeforeNozzleReselect" : 100
 }
