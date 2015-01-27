@@ -17,6 +17,13 @@ M103			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
 
+;Nozzle fault detection
+M104			;Heat nozzle
+T0				;Select nozzle 0
+T1				;Select nozzle 1
+T0				;Select nozzle 0
+M104 S0			;Switch off nozzle heat
+
 ;Short Purge T0
 G0 Y-6 X14 Z10
 T0
