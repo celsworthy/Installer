@@ -13,11 +13,11 @@
   "brimWidth_mm" : 2,
   "spiralPrint" : false,
   "firstLayerExtrusionWidth_mm" : 0.6,
-  "perimeterExtrusionWidth_mm" : 0.5,
-  "fillExtrusionWidth_mm" : 0.5,
-  "solidFillExtrusionWidth_mm" : 0.5,
-  "topSolidFillExtrusionWidth_mm" : 0.39620253,
-  "supportExtrusionWidth_mm" : 0.6,
+  "perimeterExtrusionWidth_mm" : 0.4,
+  "fillExtrusionWidth_mm" : 0.4,
+  "solidFillExtrusionWidth_mm" : 0.4,
+  "topSolidFillExtrusionWidth_mm" : 0.4,
+  "supportExtrusionWidth_mm" : 0.4,
   "nozzleParameters" : [ {
     "name" : null,
     "closedPosition" : 0.0,
@@ -74,5 +74,5 @@
   "coolIfLayerTimeLessThan_secs" : 60,
   "slowDownIfLayerTimeLessThan_secs" : 15,
   "minPrintSpeed_mm_per_s" : 8,
-  "maxClosesBeforeNozzleReselect" : 8
+  "maxClosesBeforeNozzleReselect" : 100
 }

@@ -1,5 +1,9 @@
 CEL AutoMaker README
 
+version 1.01.01
+Firmware update to v703
+Refines multi-point bed levelling and height calibration
+
 version 1.01.00
 Major GUI update
 	- Look and feel refresh

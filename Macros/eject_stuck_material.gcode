@@ -3,6 +3,8 @@ G90 			;Use X Y Z Absolute positioning
 G0 Z5			;Move up 5mm if homed
 G28 Y			;Home Y
 G0 Y40			;Position Y
+T0				;Select Nozzle 0
+G39				;Clear the bed levelling points
 G28 Z			;Home Z
 G0 Z10			;Move up 10mm if homed
 G28 X			;Home X
@@ -13,7 +15,7 @@ M109			;Wait for Nozzle to get to temp.
 ;Short Purge T0
 G0 Y-6 X14 Z10
 T0
-G0 Z2
+G0 Z3
 G1 Y-4 F400
 G36 E500 F1000
 G0 B2
@@ -26,7 +28,7 @@ G0 Y3
 ;Short Purge T1
 G0 Y-6 Z8
 T1
-G0 Z3
+G0 Z4
 G1 Y-4 F400
 G36 E500 F1000
 G0 B2

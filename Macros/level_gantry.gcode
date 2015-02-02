@@ -1,6 +1,7 @@
 M129			;Head LED on
-G0 B0
-T0
+
+T0				;Select Nozzle 0
+G39				;Clear the bed levelling points
 
 ; Home all Axis in sequence
 G90 			;Use X Y Z Absolute positioning
