@@ -32,10 +32,10 @@
             <postInstallationActionList>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-                    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
                     <programArguments></programArguments>
-                    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -45,10 +45,10 @@
                 </runProgram>
                 <runProgram>
                     <abortOnError>0</abortOnError>
-                    <explanation>${msg(database.installingWindowsDrivers)}</explanation>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
                     <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
                     <programArguments></programArguments>
-                    <progressText>${msg(database.installingWindowsDrivers)}</progressText>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
                     <showMessageOnError>0</showMessageOnError>
                     <ruleList>
                         <platformTest>
@@ -435,6 +435,24 @@
                 <fileTest condition="exists" path="${installdir}"/>
             </ruleList>
         </actionGroup>
+        <deleteFile>
+            <abortOnError>0</abortOnError>
+            <path>${commondir}/Heads/*</path>
+            <show>0</show>
+            <showMessageOnError>0</showMessageOnError>
+        </deleteFile>
+        <deleteFile>
+            <abortOnError>0</abortOnError>
+            <path>${commondir}/Filaments/*</path>
+            <show>0</show>
+            <showMessageOnError>0</showMessageOnError>
+        </deleteFile>
+        <deleteFile>
+            <abortOnError>0</abortOnError>
+            <path>${commondir}/PrintProfiles/*</path>
+            <show>0</show>
+            <showMessageOnError>0</showMessageOnError>
+        </deleteFile>
     </preInstallationActionList>
     <postInstallationActionList>
         <writeFile>
@@ -583,39 +601,11 @@ enable = 0
             <file>InstallerLanguage/custom-zh_CN.lng</file>
         </language>
     </customLanguageFileList>
-    <finalPageActionList>
-        <runProgram>
-            <!-- On Mac OS X, use 'open' command for asynchronous launch -->
-            <program>open</program>
-            <programArguments>${automakerdir}/${launcherName}.app</programArguments>
-            <progressText>${msg(database.launchApplicationNow)}</progressText>
-            <ruleList>
-                <platformTest type="osx"/>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <!-- On Windows, use ampersand for asynchronous launch -->
-            <program>${automakerdir}/${launcherName}.exe</program>
-            <programArguments>&amp;</programArguments>
-            <progressText>${msg(database.launchApplicationNow)}</progressText>
-            <ruleList>
-                <platformTest type="windows"/>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>${automakerdir}/${launcherName}.run</program>
-            <programArguments>&amp;</programArguments>
-            <progressText>${msg(database.launchApplicationNow)}</progressText>
-            <ruleList>
-                <platformTest type="linux"/>
-            </ruleList>
-        </runProgram>
-    </finalPageActionList>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
-            <explanation>${msg(database.specifyInstallationDirectory)}</explanation>
+            <explanation>${msg(AutoMakerInstaller.specifyInstallationDirectory)}</explanation>
             <value></value>
             <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
@@ -679,7 +669,7 @@ enable = 0
             <parameterList>
                 <booleanParameter>
                     <name>install_desktop_shortcut</name>
-                    <description>${msg(database.addAShortcutToTheDesktop)}</description>
+                    <description>${msg(AutoMakerInstaller.addAShortcutToTheDesktop)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>1</default>
@@ -690,7 +680,7 @@ enable = 0
                 </booleanParameter>
                 <booleanParameter>
                     <name>install_menu_shortcut</name>
-                    <description>${msg(database.addAShortcutToTheStartMenu)}</description>
+                    <description>${msg(AutoMakerInstaller.addAShortcutToTheStartMenu)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default>0</default>
