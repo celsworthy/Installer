@@ -1,6 +1,9 @@
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off
 
+;Depressurise the head
+G1 E-3 F400
+
 ;Finish/Abort Print
 M106			;Fan on full
 G0 B0			;Close Nozzle
