@@ -1,5 +1,12 @@
 CEL AutoMaker README
 
+version 1.01.02
+Firmware update to v708
+Modified PLA temperature settings
+Modified Draft, Normal and Fine profiles
+Improved nozzle control error detection and handling
+Added mini-purge to nozzle opening calibration sequence
+
 version 1.01.01
 Firmware update to v703
 Refines multi-point bed levelling and height calibration
