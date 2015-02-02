@@ -25,8 +25,8 @@
   }, {
     "diameter" : 0.8,
     "defaultXOffset" : 1,
-	"minXOffset" : 0,
-	"maxXOffset" : 2,
+	"minXOffset" : 0.5,
+	"maxXOffset" : 1.5,
     "defaultYOffset" : 5,
 	"minYOffset" : 4.5,
 	"maxYOffset" : 5.5,
