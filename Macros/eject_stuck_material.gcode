@@ -38,7 +38,7 @@ G0 B0
 G0 Z5
 G0 Y3
 
-M121 E			;Eject Filament
+M122 E			;Eject Filament
 
 M103 S0			;Nozzle heater off
 M140 S0			;Bed heater off

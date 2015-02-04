@@ -1,11 +1,13 @@
 CEL AutoMaker README
 
 version 1.01.02
-Firmware update to v708
+Firmware update to v709
 Modified PLA temperature settings
 Modified Draft, Normal and Fine profiles
-Improved nozzle control error detection and handling
+Improved nozzle position control handling
 Added mini-purge to nozzle opening calibration sequence
+Improved Remove Head function
+Modified filament load to ensure filament is moved as far into the head as possible
 
 version 1.01.01
 Firmware update to v703

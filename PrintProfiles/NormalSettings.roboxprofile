@@ -10,7 +10,7 @@
   "solidLayersAtTop" : 3,
   "solidLayersAtBottom" : 3,
   "numberOfPerimeters" : 2,
-  "brimWidth_mm" : 2,
+  "brimWidth_mm" : 0,
   "spiralPrint" : false,
   "firstLayerExtrusionWidth_mm" : 0.6,
   "perimeterExtrusionWidth_mm" : 0.4,

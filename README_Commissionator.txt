@@ -1,5 +1,9 @@
 CEL Commissionator Readme
 
+version 2.04.01
+Version 708 firmware
+Added extruder, head and motor tests.
+
 version 2.04.00
 Version 703 firmware
 Fixed so that programming head and printer ID does not clear existing data
