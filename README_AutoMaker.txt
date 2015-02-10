@@ -1,7 +1,7 @@
 CEL AutoMaker README
 
 version 1.01.02
-Firmware update to v711
+Firmware update to v712
 Modified PLA temperature settings
 Modified Draft, Normal and Fine profiles
 Improved nozzle position control handling

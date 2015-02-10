@@ -1,7 +1,7 @@
 CEL Commissionator Readme
 
 version 2.04.02
-Version 711 firmware
+Version 712 firmware
 
 version 2.04.01
 Version 708 firmware
