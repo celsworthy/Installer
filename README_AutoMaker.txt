@@ -9,6 +9,8 @@ Added mini-purge to nozzle opening calibration sequence
 Improved Remove Head function
 Modified filament load to ensure filament is moved as far into the head as possible
 Improved filament eject function
+Improved error handling during purge and calibration
+Removed colour change button as this can now be achieved using pause/eject/reload/resume
 
 version 1.01.01
 Firmware update to v703
