@@ -1,7 +1,7 @@
 {
   "version" : 2,
   "profileName" : "Draft",
-  "slicerOverride" : "Cura",
+  "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.2,
   "layerHeight_mm" : 0.3,
   "fillDensity_normalised" : 0.2,
