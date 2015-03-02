@@ -12,13 +12,6 @@ G28 Z			;Home Z
 G0 Z10			;Move up 10mm if homed
 G28 X			;Home X
 
-;Nozzle fault detection
-M104			;Heat nozzle
-T0				;Select nozzle 0
-T1				;Select nozzle 1
-T0				;Select nozzle 0
-M104 S0			;Switch off nozzle heat
-
 M190			;Wait for Bed to get to temp.
 M103			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.

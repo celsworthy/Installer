@@ -86,14 +86,14 @@
 		 */	 
 		"defaults" : [ 
 			"initialSpeedupLayers:2",
-			"supportXYDistance:300",
+			"supportXYDistance:700",
 			"retractionZHop:0",
 			"retractionSpeed:30",
 			"filamentFlow:100",
 			"infillOverlap:10",
 			"coolHeadLift:0",
 			"enableCombing:1",
-			"supportZDistance:100",
+			"supportZDistance:150",
 			"minimalExtrusionBeforeRetraction:0",
 			"retractionMinimalDistance:500",
 			"retractionAmount:500",

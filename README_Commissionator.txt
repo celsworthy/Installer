@@ -1,5 +1,8 @@
 CEL Commissionator Readme
 
+version 2.04.02
+Version 712 firmware
+
 version 2.04.01
 Version 708 firmware
 Added extruder, head and motor tests.

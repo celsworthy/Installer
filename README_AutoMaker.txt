@@ -4,13 +4,16 @@ version 1.01.03
 Language files updated for German, Finnish, Swedish, Japanese, Russian, Korean and Traditional Chinese
 
 version 1.01.02
-Firmware update to v709
+Firmware update to v713
 Modified PLA temperature settings
 Modified Draft, Normal and Fine profiles
 Improved nozzle position control handling
 Added mini-purge to nozzle opening calibration sequence
 Improved Remove Head function
 Modified filament load to ensure filament is moved as far into the head as possible
+Improved filament eject function
+Improved error handling during purge and calibration
+Removed colour change button as this can now be achieved using pause/eject/reload/resume
 
 version 1.01.01
 Firmware update to v703
