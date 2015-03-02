@@ -1,5 +1,8 @@
 CEL AutoMaker README
 
+version 1.01.03
+Language files updated for German, Finnish, Swedish, Japanese, Russian, Korean and Traditional Chinese
+
 version 1.01.02
 Firmware update to v709
 Modified PLA temperature settings
