@@ -7,49 +7,6 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
-    <allowLanguageSelection>0</allowLanguageSelection>
-	<customLanguageFileList>
-       <language>
-         <code>en</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-en.lng</file>
-       </language>
-       <language>
-         <code>de</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-de.lng</file>
-       </language>
-       <language>
-         <code>fi</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-fi.lng</file>
-       </language>
-       <language>
-         <code>ko</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-ko.lng</file>
-       </language>
-       <language>
-         <code>ru</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-ru.lng</file>
-       </language>
-       <language>
-         <code>sv</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-sv.lng</file>
-       </language>
-       <language>
-         <code>zh_CN</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-zh_CN.lng</file>
-       </language>
-       <language>
-         <code>zh_TW</code>
-         <encoding>iso8859-1</encoding>
-         <file>InstallerLanguage/custom-zh_TW.lng</file>
-       </language>
-     </customLanguageFileList>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -308,6 +265,9 @@
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>Filaments</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Models</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -661,6 +621,40 @@ enable = 0
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>AutoMaker.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <customLanguageFileList>
+        <language>
+            <code>en</code>
+            <file>InstallerLanguage/custom-en.lng</file>
+        </language>
+        <language>
+            <code>de</code>
+            <file>InstallerLanguage/custom-de.lng</file>
+        </language>
+        <language>
+            <code>fi</code>
+            <file>InstallerLanguage/custom-fi.lng</file>
+        </language>
+        <language>
+            <code>ko</code>
+            <file>InstallerLanguage/custom-ko.lng</file>
+        </language>
+        <language>
+            <code>ru</code>
+            <file>InstallerLanguage/custom-ru.lng</file>
+        </language>
+        <language>
+            <code>sv</code>
+            <file>InstallerLanguage/custom-sv.lng</file>
+        </language>
+        <language>
+            <code>zh_CN</code>
+            <file>InstallerLanguage/custom-zh_CN.lng</file>
+        </language>
+        <language>
+            <code>zh_TW</code>
+            <file>InstallerLanguage/custom-zh_TW.lng</file>
+        </language>
+    </customLanguageFileList>
     <finalPageActionList>
         <runProgram>
             <!-- On Mac OS X, use 'open' command for asynchronous launch -->

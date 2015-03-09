@@ -9,7 +9,7 @@ G90 			;Absolute positioning
 G0 X15 Y0		;Move to back corner
 
 ;Open Door
-G37 S			;Unlock door (S: don't wait for safe temp)
+G37 S				;Unlock door
 
 ;Every thing off
 M170 S0			;Ambient control off

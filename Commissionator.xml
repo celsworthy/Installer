@@ -253,6 +253,9 @@
                         <distributionDirectory>
                             <origin>Filaments</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Models</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
