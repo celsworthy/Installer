@@ -1,5 +1,9 @@
 CEL Commissionator Readme
 
+version 3.00.00
+Version 718 firmware
+Major update after factory visit
+
 version 2.04.02
 Version 712 firmware
 
