@@ -17,7 +17,7 @@
   "fillExtrusionWidth_mm" : 0.8,
   "solidFillExtrusionWidth_mm" : 0.8,
   "topSolidFillExtrusionWidth_mm" : 0.6,
-  "supportExtrusionWidth_mm" : 0.6,
+  "supportExtrusionWidth_mm" : 0.3,
   "nozzleParameters" : [ {
     "name" : null,
     "closedPosition" : 0.0,
