@@ -401,9 +401,21 @@
             </folderList>
             <preInstallationActionList>
                 <deleteFile>
-                    <path>${commondir}/Heads/*</path>
+                    <path>${commondir}/Heads/*.*</path>
                 </deleteFile>
-            </preInstallationActionList>
+                <deleteFile>
+                    <path>${commondir}/Filaments/*.*</path>
+                </deleteFile>
+                <deleteFile>
+                    <path>${commondir}/Macros/*.*</path>
+                </deleteFile>
+                <deleteFile>
+                    <path>${commondir}/PrintProfiles/*.*</path>
+                </deleteFile>
+				<deleteFile>
+                    <path>${commondir}/Models/*.*</path>
+                </deleteFile>
+				</preInstallationActionList>
         </component>
     </componentList>
     <initializationActionList>
