@@ -14,6 +14,7 @@ Auto-display scale added for displays less than 800 pixels high.
 Fixed an issue when filament slip is detected during purge - options were switched over
 STL load optimised
 Language files updated for German, Finnish, Swedish, Japanese, Russian, Korean and Traditional Chinese - added Spanish
+Added drag and drop for Robox project files
 
 User Preferences - accessed via the gear icon at the top right of the screen:
 -----------------------------------------------------------------------------
