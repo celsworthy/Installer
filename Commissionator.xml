@@ -104,6 +104,9 @@
                         <distributionFile>
                             <origin>README_Commissionator.txt</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>commissionator.properties</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
