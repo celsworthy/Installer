@@ -15,6 +15,8 @@ Fixed an issue when filament slip is detected during purge - options were switch
 STL load optimised
 Language files updated for German, Finnish, Swedish, Japanese, Russian, Korean and Traditional Chinese - added Spanish
 Added drag and drop for Robox project files
+Fixed minor issues on About page - added copy buttons for serial numbers
+Allow 1 decimal place for scaling operations.
 
 User Preferences - accessed via the gear icon at the top right of the screen:
 -----------------------------------------------------------------------------
