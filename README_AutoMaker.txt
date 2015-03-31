@@ -3,10 +3,11 @@ CEL AutoMaker README
 ===============
 version 1.01.03
 ===============
-Firmware update to v720
+Firmware update to v721
 	Robox will re-print last print job whether AutoMaker is attached on not - activate using two short presses of the eject button on the printer
 	Change in default steps per unit to improve part accuracy
 	Improvement in auto-levelling for long extrusions
+	Fixed pause/resume feed rate issue
 
 Print job / firmware transfer speeds significantly increased
 Resume failed data transfer added (allows unplug/replug during transfer)
@@ -16,7 +17,8 @@ STL load optimised
 Language files updated for German, Finnish, Swedish, Japanese, Russian, Korean and Traditional Chinese - added Spanish
 Added drag and drop for Robox project files
 Fixed minor issues on About page - added copy buttons for serial numbers
-Allow 1 decimal place for scaling operations.
+Allow 1 decimal place for scaling operations
+Fixed issue where print status disappears when filament is ejected and reloaded during a print
 
 User Preferences - accessed via the gear icon at the top right of the screen:
 -----------------------------------------------------------------------------
