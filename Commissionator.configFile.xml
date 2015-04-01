@@ -6,7 +6,7 @@
         <ApplicationShortName>Commissionator</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
         <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
-        <requiredFirmwareVersion>718</requiredFirmwareVersion>
+        <requiredFirmwareVersion>721</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
@@ -14,6 +14,5 @@
        <logfilename>#ApplicationConfiguration:ApplicationDataStorageDirectory#/AutoMaker.log</logfilename>
        <logmode>LOCAL</logmode>
        <logtee>T</logtee>
-       <loglevel>INFO</loglevel>
     </Stenographer>
 </root>
