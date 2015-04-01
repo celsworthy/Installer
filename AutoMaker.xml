@@ -399,11 +399,6 @@
                     </distributionFileList>
                 </folder>
             </folderList>
-            <preInstallationActionList>
-                <deleteFile>
-                    <path>${commondir}/Heads/*</path>
-                </deleteFile>
-            </preInstallationActionList>
         </component>
     </componentList>
     <initializationActionList>
@@ -458,6 +453,23 @@
             </ruleList>
         </actionGroup>
     </preInstallationActionList>
+    <readyToInstallActionList>
+        <deleteFile>
+            <path>${commondir}/Heads</path>
+        </deleteFile>
+        <deleteFile>
+            <path>${commondir}/Filaments</path>
+        </deleteFile>
+        <deleteFile>
+            <path>${commondir}/Macros</path>
+        </deleteFile>
+        <deleteFile>
+            <path>${commondir}/PrintProfiles</path>
+        </deleteFile>
+        <deleteFile>
+            <path>${commondir}/Models</path>
+        </deleteFile>
+    </readyToInstallActionList>
     <postInstallationActionList>
         <writeFile>
             <path>${automakerdir}/application.properties</path>

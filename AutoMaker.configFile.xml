@@ -6,7 +6,7 @@
         <ApplicationShortName>AutoMaker</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
         <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
-        <requiredFirmwareVersion>718</requiredFirmwareVersion>
+        <requiredFirmwareVersion>721</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
