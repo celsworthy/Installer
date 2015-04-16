@@ -6,9 +6,9 @@ M106			;Fan on Full
 M109			;Wait for Nozzle to get to temp.
 G4 S5			;Dwell
 
-Macro:Short_purge_T0
+Macro:Short_Purge_T0
 
-Macro:Short_purge_T1
+Macro:Short_Purge_T1
 
 G0 E-1200		;Eject Filament
 
