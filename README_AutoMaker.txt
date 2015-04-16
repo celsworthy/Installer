@@ -1,6 +1,15 @@
 CEL AutoMaker README
 
 ===============
+version 1.01.04
+===============
+Firmware update to v722
+
+New user preference allowing disablement of filament loaded detection
+Rotation allows negative numbers
+Scaling allows larger numbers
+
+===============
 version 1.01.03
 ===============
 Firmware update to v721
