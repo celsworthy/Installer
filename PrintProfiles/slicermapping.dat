@@ -14,6 +14,7 @@
 			"skirts:0",
 			"threads:4",
 			"travel_speed:200",
+			"solid_infill_below_area:60",
 			"gcode_comments:1",
 			"end_gcode:",
 			"start_gcode:" ],
