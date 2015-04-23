@@ -26,5 +26,3 @@ G0 X205 Y41		;Level Gantry Position 2
 
 G28 Z?
 M113
-
-Macro:Finish-Abort_Print
