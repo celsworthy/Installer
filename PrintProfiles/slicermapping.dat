@@ -16,7 +16,9 @@
 			"travel_speed:200",
 			"gcode_comments:1",
 			"end_gcode:",
-			"start_gcode:" ],
+			"start_gcode:",
+			"solid_infill_below_area:5",
+			"extra_perimeters:0"],
 			
       "mappingData" : {
          /*

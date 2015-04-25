@@ -3,7 +3,7 @@ G39				;Clear the bed levelling points
 Macro:Home_all_Axis_in_sequence
 
 ;Level_Gantry
-T1			;Select Nozzle 0 (T0)
+T1			;Select Nozzle 1 (T1)
 G0 X50 Y41		;Level Gantry Position 1
 G28 Z			;Home Z
 G0 Z4 			;Move up 4mm
