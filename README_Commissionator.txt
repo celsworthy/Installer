@@ -1,5 +1,9 @@
 CEL Commissionator Readme
 
+version 4.5
+Definitive version for IQC, Production and Final QC testing
+Version 722 firmware
+
 version 3.00.00
 Version 718 firmware
 Major update after factory visit

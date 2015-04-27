@@ -1,7 +1,7 @@
 <project>
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
-    <version></version>
+    <version>4.4</version>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
@@ -30,6 +30,19 @@
                 </folder>
             </folderList>
             <postInstallationActionList>
+                <runProgram>
+                    <abortOnError>0</abortOnError>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                    <program>${commondir}\windows_drivers\PL2303_Prolific_DriverInstaller_v1.10.0.exe</program>
+                    <programArguments></programArguments>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                    <showMessageOnError>0</showMessageOnError>
+                    <ruleList>
+                        <platformTest>
+                            <type>windows</type>
+                        </platformTest>
+                    </ruleList>
+                </runProgram>
                 <runProgram>
                     <abortOnError>0</abortOnError>
                     <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
@@ -370,26 +383,6 @@
             </folderList>
         </component>
     </componentList>
-    <postBuildActionList>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x86</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x64\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x64</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-    </postBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
             <name>vendor</name>
