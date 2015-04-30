@@ -1,7 +1,7 @@
 <project>
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
-    <version>4.4</version>
+    <version>4.9</version>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
