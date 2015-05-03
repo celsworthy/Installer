@@ -1,8 +1,10 @@
 CEL Commissionator Readme
 
-version 4.5
+version 4.10
 Definitive version for IQC, Production and Final QC testing
-Version 722 firmware
+Version 723 firmware
+Test print and demo print load added
+z limit error thresholds changed
 
 version 3.00.00
 Version 718 firmware
