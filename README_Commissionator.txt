@@ -1,4 +1,6 @@
 CEL Commissionator Readme
+version 4.11
+Fixes issue with Platform motion tests.
 
 version 4.10
 Definitive version for IQC, Production and Final QC testing
