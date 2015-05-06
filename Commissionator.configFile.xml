@@ -11,7 +11,7 @@
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
     <Stenographer>
-       <logfilename>#ApplicationConfiguration:ApplicationDataStorageDirectory#/AutoMaker.log</logfilename>
+       <logfilename>#ApplicationConfiguration:ApplicationDataStorageDirectory#/Commissionator.log</logfilename>
        <logmode>LOCAL</logmode>
        <logtee>T</logtee>
     </Stenographer>

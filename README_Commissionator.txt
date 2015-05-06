@@ -1,4 +1,8 @@
 CEL Commissionator Readme
+version 4.12.00
+Enabled auto-update.
+Added BR - Israel printer edition.
+
 version 4.11
 Fixes issue with Platform motion tests.
 
