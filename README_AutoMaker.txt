@@ -9,6 +9,7 @@ Firmware update to v723
 New user preference allowing disablement of filament loaded detection
 Rotation allows negative numbers
 Scaling allows larger numbers
+Added automated handling for filament out detection and hyperlinks to web content for filament errors
 
 ===============
 version 1.01.03
