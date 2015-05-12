@@ -1,6 +1,17 @@
 CEL AutoMaker README
 
 ===============
+version 1.01.04
+===============
+Firmware update to v723
+	 Improvements to filament load / eject
+
+New user preference allowing disablement of filament loaded detection
+Rotation allows negative numbers
+Scaling allows larger numbers
+Added automated handling for filament out detection and hyperlinks to web content for filament errors
+
+===============
 version 1.01.03
 ===============
 Firmware update to v721
