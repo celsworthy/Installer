@@ -78,5 +78,5 @@
   "raftBaseLinewidth": 1000,
   "raftAirGapLayer0": 275,
   "raftSurfaceLayers": 1,
-  "raftBaseThickness": 0,
+  "raftBaseThickness": 0
 }
