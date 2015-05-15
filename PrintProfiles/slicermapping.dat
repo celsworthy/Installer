@@ -53,29 +53,10 @@
 			"support_material_interface_speed:40",
 			"use_firmware_retraction:0",
 			"vibration_limit:0",
-			"wipe:0",
-			"raftLineSpacing:2000",
-			"raftMargin:3000",
-			"raftSurfaceLineSpacing:300",
-			"raftInterfaceLineSpacing:800",
-			"raftSurfaceSpeed:15", 
-			"raftFanSpeed:100", 
-			"raftSurfaceThickness:270", 
-			"raftBaseSpeed:15",
-			"raftSurfaceLinewidth:300",
-			"raftInterfaceLinewidth:400",
-			"raftInterfaceThickness:280"
+			"wipe:0"
  ],
 			
       "mappingData" : {
-
-		/*
-		 * Raft
-		 */
-		"raftBaseLinewidth": "raftBaseLinewidth",
-		"raftAirGapLayer0": "raftAirGapLayer0",
-		"raftSurfaceLayers": "raftSurfaceLayers",
-		"raftBaseThickness": "raftBaseThickness:?printRaft=true->300",
 
 	         /*
 		  * Extrusion
@@ -162,7 +143,18 @@
 			"posx:0",
 			"posy:0",
 			"multiVolumeOverlap:150",
-			"skirtDistance:0" ],
+			"skirtDistance:0",
+			"raftLineSpacing:2000",
+			"raftMargin:3000",
+			"raftSurfaceLineSpacing:300",
+			"raftInterfaceLineSpacing:800",
+			"raftSurfaceSpeed:15", 
+			"raftFanSpeed:100", 
+			"raftSurfaceThickness:270", 
+			"raftBaseSpeed:15",
+			"raftSurfaceLinewidth:300",
+			"raftInterfaceLinewidth:400",
+			"raftInterfaceThickness:280" ],
 		
 		"mappingData" : {
 			 /*
@@ -208,7 +200,15 @@
 			"minFanSpeed_percent" : "fanSpeedMin:?enableCooling=false->0",
 			"maxFanSpeed_percent" : "fanSpeedMax:?enableCooling=false->0",
 			"slowDownIfLayerTimeLessThan_secs" : "minimalLayerTime",
-			"minPrintSpeed_mm_per_s" : "minimalFeedrate"
+			"minPrintSpeed_mm_per_s" : "minimalFeedrate",
+
+			/*
+			 * Raft
+			 */
+			"raftBaseLinewidth": "raftBaseLinewidth",
+			"raftAirGapLayer0": "raftAirGapLayer0",
+			"raftSurfaceLayers": "raftSurfaceLayers",
+			"raftBaseThickness": "raftBaseThickness:?printRaft=true->300"
 		}
 	}
 	}
