@@ -1,7 +1,10 @@
 CEL Commissionator Readme
+version 4.13.00
+Fixes issue where load switch test was skipped if Platform Extruder test was repeated.
+
 version 4.12.00
 Enabled auto-update.
-Added BR - Israel printer edition.
+Added BI - Israel printer edition.
 
 version 4.11
 Fixes issue with Platform motion tests.
