@@ -1,6 +1,7 @@
 CEL Commissionator Readme
 version 4.13.00
 Fixes issue where load switch test was skipped if Platform Extruder test was repeated.
+Fixes issue where program as single material head does not work with unformatted EEPROM
 
 version 4.12.00
 Enabled auto-update.
