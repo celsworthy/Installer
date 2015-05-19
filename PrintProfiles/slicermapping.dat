@@ -205,10 +205,10 @@
 			/*
 			 * Raft
 			 */
-			"raftBaseLinewidth": "raftBaseLinewidth",
-			"raftAirGapLayer0": "raftAirGapLayer0",
+			"raftBaseLinewidth_mm": "raftBaseLinewidth:*1000",
+			"raftAirGapLayer0_mm": "raftAirGapLayer0:*1000",
 			"raftSurfaceLayers": "raftSurfaceLayers",
-			"raftBaseThickness": "raftBaseThickness:?printRaft=true->300"
+			"raftBaseThickness_mm": "raftBaseThickness:*1000:?printRaft=false->0"
 		}
 	}
 	}

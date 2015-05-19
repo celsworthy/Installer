@@ -75,8 +75,8 @@
   "slowDownIfLayerTimeLessThan_secs" : 15,
   "minPrintSpeed_mm_per_s" : 8,
   "maxClosesBeforeNozzleReselect" : 100,
-  "raftBaseLinewidth": 1000,
-  "raftAirGapLayer0": 275,
+  "raftBaseLinewidth_mm": 1.0,
+  "raftAirGapLayer0_mm": 0.275,
   "raftSurfaceLayers": 1,
-  "raftBaseThickness": 0
+  "raftBaseThickness_mm": 0.300
 }
