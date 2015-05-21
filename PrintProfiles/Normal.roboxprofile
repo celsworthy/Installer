@@ -1,5 +1,5 @@
 {
-  "version" : 2,
+  "version" : 4,
   "profileName" : "Normal",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.2,
