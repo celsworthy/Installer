@@ -19,7 +19,6 @@
 			"thin_walls:0",
 			"only_retract_when_crossing_perimeters:1",
 			"infill_first:0",
-			"raft_layers:0",
 			"skirts:0",
 			"threads:4",
 			"travel_speed:200",
@@ -47,10 +46,9 @@
 			"seam_position:aligned",
 			"skirt_distance:6",
 			"skirt_height:1",
+			"support_material_enforce_layers:0",
 			"support_material_interface_extruder:1",
-			"support_material_interface_layers:2",
 			"support_material_interface_spacing:0",
-			"support_material_interface_speed:40",
 			"use_firmware_retraction:0",
 			"vibration_limit:0",
 			"wipe:0"
@@ -61,62 +59,69 @@
 	         /*
 		  * Extrusion
 		  */
-		"layerHeight_mm" : "layer_height",
-		"firstLayerHeight_mm" : "first_layer_height",
-		"fillDensity_normalised" : "fill_density",
-		"fillPattern" : "fill_pattern",
-		"fillEveryNLayers" : "infill_every_layers",
-		"solidLayersAtTop" : "top_solid_layers",
-		"solidLayersAtBottom" : "bottom_solid_layers",
-		"numberOfPerimeters" : "perimeters",
-		"brimWidth_mm" : "brim_width",
-		"spiralPrint" : "spiral_vase",
+		  "layer_height":"layerHeight_mm",
+		  "first_layer_height":"firstLayerHeight_mm",
+		  "fill_density":"fillDensity_normalised",
+		  "fill_pattern":"fillPattern",
+		  "infill_every_layers":"fillEveryNLayers",
+		  "top_solid_layers":"solidLayersAtTop",
+		  "bottom_solid_layers":"solidLayersAtBottom",
+		  "perimeters":"numberOfPerimeters",
+		  "brim_width":"brimWidth_mm",
+		  "spiral_vase":"spiralPrint",
 		
 		/*
 		 * Nozzle data
 		 */
-		"firstLayerExtrusionWidth_mm" : "first_layer_extrusion_width",
-		"perimeterExtrusionWidth_mm" : "perimeter_extrusion_width",
-		"fillExtrusionWidth_mm" : "infill_extrusion_width",
-		"solidFillExtrusionWidth_mm" : "solid_infill_extrusion_width",
-		"topSolidFillExtrusionWidth_mm" : "top_infill_extrusion_width",
-		"supportExtrusionWidth_mm" : "support_material_extrusion_width",
+		  "first_layer_extrusion_width":"firstLayerExtrusionWidth_mm",
+		  "perimeter_extrusion_width":"perimeterExtrusionWidth_mm", 
+		  "infill_extrusion_width":"fillExtrusionWidth_mm",
+		  "solid_infill_extrusion_width":"solidFillExtrusionWidth_mm",
+		  "top_infill_extrusion_width":"topSolidFillExtrusionWidth_mm",
+		  "support_material_extrusion_width":"supportExtrusionWidth_mm", 
 		
 		/*
 		 * Support
 		 */
-		"generateSupportMaterial" : "support_material",
-		"supportOverhangThreshold_degrees" : "support_material_threshold",
-		"forcedSupportForFirstNLayers" : "support_material_enforce_layers",
-		"supportPattern" : "support_material_pattern",
-		"supportPatternSpacing_mm" : "support_material_spacing",
-		"supportPatternAngle_degrees" : "support_material_angle",
+		  "support_material":"generateSupportMaterial",
+		  "support_material_threshold":"supportOverhangThreshold_degrees",
+		  "support_material_pattern":"supportPattern", 
+		  "support_material_spacing":"supportPatternSpacing_mm",
+		  "support_material_angle":"supportPatternAngle_degrees",
 
 		/*
 		 * Speed settings
 		 */
-		"firstLayerSpeed_mm_per_s" : "first_layer_speed",
-		"perimeterSpeed_mm_per_s" : "perimeter_speed",
-		"smallPerimeterSpeed_mm_per_s" : "small_perimeter_speed",
-		"externalPerimeterSpeed_mm_per_s" : "external_perimeter_speed",
-		"fillSpeed_mm_per_s" : "infill_speed",
-		"solidFillSpeed_mm_per_s" : "solid_infill_speed",
-		"topSolidFillSpeed_mm_per_s" : "top_solid_infill_speed",
-		"supportSpeed_mm_per_s" : "support_material_speed",
-		"bridgeSpeed_mm_per_s" : "bridge_speed",
-		"gapFillSpeed_mm_per_s" : "gap_fill_speed",
+		  "first_layer_speed":"firstLayerSpeed_mm_per_s",
+		  "perimeter_speed":"perimeterSpeed_mm_per_s",
+		  "small_perimeter_speed":"smallPerimeterSpeed_mm_per_s",
+		  "external_perimeter_speed":"externalPerimeterSpeed_mm_per_s",
+		  "infill_speed":"fillSpeed_mm_per_s",
+		  "solid_infill_speed":"solidFillSpeed_mm_per_s",
+		  "top_solid_infill_speed":"topSolidFillSpeed_mm_per_s",
+		  "support_material_speed":"supportSpeed_mm_per_s",
+		  "bridge_speed":"bridgeSpeed_mm_per_s",
+		  "gap_fill_speed":"gapFillSpeed_mm_per_s",
+		  "support_material_interface_speed":"interfaceSpeed_mm_per_s",
 
 		/*
 		 * Cooling
 		 */
-		"enableCooling" : "cooling",
-		"minFanSpeed_percent" : "min_fan_speed",
-		"maxFanSpeed_percent" : "max_fan_speed",
-		"bridgeFanSpeed_percent" : "bridge_fan_speed",
-		"disableFanFirstNLayers" : "disable_fan_first_layers",
-		"coolIfLayerTimeLessThan_secs" : "fan_below_layer_time",
-		"slowDownIfLayerTimeLessThan_secs" : "slowdown_below_layer_time",
-		"minPrintSpeed_mm_per_s" : "min_print_speed"
+		  "cooling":"enableCooling",
+		  "min_fan_speed":"minFanSpeed_percent",
+		  "max_fan_speed":"maxFanSpeed_percent",
+		  "bridge_fan_speed":"bridgeFanSpeed_percent",
+		  "disable_fan_first_layers":"disableFanFirstNLayers",
+		  "fan_below_layer_time":"coolIfLayerTimeLessThan_secs",
+		  "slowdown_below_layer_time":"slowDownIfLayerTimeLessThan_secs",
+		  "min_print_speed":"minPrintSpeed_mm_per_s",
+
+		/*
+		* Raft
+		*/
+		 "support_material_contact_distance":"raftAirGapLayer0_mm",
+		 "support_material_interface_layers":"interfaceLayers",
+		 "raft_layers":"interfaceLayers:+1:?printRaft=false->0"
 		}		 
     },
     "Cura" : {
@@ -160,55 +165,56 @@
 			 /*
 			  * Extrusion
 			  */
-			"layerHeight_mm" : "layerThickness:*1000",
-			"firstLayerHeight_mm" : "initialLayerThickness:*1000",
-			"numberOfPerimeters" : "insetCount",
-			"solidLayersAtTop" : "upSkinCount",
-			"solidLayersAtBottom" : "downSkinCount",
-			"fillDensity_normalised" : "sparseInfillLineDistance:?0->-1:[fillExtrusionWidth_mm:*1000",
-			"brimWidth_mm" : "skirtLineCount",
-			"spiralPrint" : "spiralizeMode",
+			"layerThickness":"layerHeight_mm:*1000", 
+			"initialLayerThickness":"firstLayerHeight_mm:*1000",
+			"insetCount":"numberOfPerimeters", 
+			"upSkinCount":"solidLayersAtTop", 
+			"downSkinCount":"solidLayersAtBottom",
+			"sparseInfillLineDistance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm:*1000",
+			"skirtLineCount":"brimWidth_mm",
+			"spiralizeMode":"spiralPrint",
 			
 			/*
 			 * Nozzle data
 			 */
-			"firstLayerExtrusionWidth_mm" : "layer0extrusionWidth:*1000",
-			"perimeterExtrusionWidth_mm" : "extrusionWidth:*1000",
-			"fillExtrusionWidth_mm" : "fillExtrusionWidth:*1000",
-			"supportExtrusionWidth_mm" : "supportExtrusionWidth:*1000",
+			"layer0extrusionWidth":"firstLayerExtrusionWidth_mm:*1000",
+			"extrusionWidth":"perimeterExtrusionWidth_mm:*1000",
+			"fillExtrusionWidth":"fillExtrusionWidth_mm:*1000",
+			"supportExtrusionWidth":"supportExtrusionWidth_mm:*1000",
 			
 			/*
 			 * Support
 			 */
-			"generateSupportMaterial" : "supportEverywhere",
-			"supportOverhangThreshold_degrees" : "supportAngle:?generateSupportMaterial=false->-1",
-			"supportPattern" : "supportType",
-			"supportPatternSpacing_mm" : "supportLineDistance:*1000",
+			"supportEverywhere":"generateSupportMaterial",
+			"supportAngle":"supportOverhangThreshold_degrees:?generateSupportMaterial=false->-1",
+			"supportType":"supportPattern",
+			"supportLineDistance":"supportPatternSpacing_mm:*1000",
 
 			/*
 			 * Speed settings
 			 */
-			"firstLayerSpeed_mm_per_s" : "initialLayerSpeed",
-			"perimeterSpeed_mm_per_s" : "insetXSpeed",
-			"fillSpeed_mm_per_s" : "infillSpeed",
-			"externalPerimeterSpeed_mm_per_s" : "inset0Speed",
-			"supportSpeed_mm_per_s" : "printSpeed",
+			"initialLayerSpeed":"firstLayerSpeed_mm_per_s", 
+			"insetXSpeed":"perimeterSpeed_mm_per_s",
+			"infillSpeed":"fillSpeed_mm_per_s",
+			"inset0Speed":"externalPerimeterSpeed_mm_per_s",
+			"printSpeed":"supportSpeed_mm_per_s", 
+			"raftSurfaceSpeed":"interfaceSpeed_mm_per_s",
 
 			/*
 			 * Cooling
 			 */
-			"minFanSpeed_percent" : "fanSpeedMin:?enableCooling=false->0",
-			"maxFanSpeed_percent" : "fanSpeedMax:?enableCooling=false->0",
-			"slowDownIfLayerTimeLessThan_secs" : "minimalLayerTime",
-			"minPrintSpeed_mm_per_s" : "minimalFeedrate",
+			"fanSpeedMin":"minFanSpeed_percent:?enableCooling=false->0",
+			"fanSpeedMax":"maxFanSpeed_percent:?enableCooling=false->0",
+			"minimalLayerTime":"slowDownIfLayerTimeLessThan_secs", 
+			"minimalFeedrate":"minPrintSpeed_mm_per_s",
 
 			/*
 			 * Raft
 			 */
-			"raftBaseLinewidth_mm": "raftBaseLinewidth:*1000",
-			"raftAirGapLayer0_mm": "raftAirGapLayer0:*1000",
-			"raftSurfaceLayers": "raftSurfaceLayers",
-			"raftBaseThickness_mm": "raftBaseThickness:*1000:?printRaft=false->0"
+			"raftBaseLinewidth":"raftBaseLinewidth_mm:*1000",
+			"raftAirGapLayer0":"raftAirGapLayer0_mm:*1000",
+			"interfaceLayers":"interfaceLayers",
+			"raftBaseThickness":"raftBaseThickness_mm:*1000:?printRaft=false->0"
 		}
 	}
 	}
