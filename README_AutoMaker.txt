@@ -14,7 +14,7 @@ version 1.01.05
 
 Lean/Twist/Turn
 ---------------
-It is now possible to set the lean, twist and turn of an object an the bed:
+It is now possible to set the lean, twist and turn of an object on the bed:
 Lean   - this indicates how many degrees to lean the object away from the vertical. 90 degrees will lay the object
          on its side and 180 degrees will turn it upside down.
 Twist  - when looking from the top of the object down its vertical axis, the twist rotates the object clockwise around
