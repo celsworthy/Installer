@@ -102,9 +102,6 @@
                         <distributionFile>
                             <origin>README_AutoMaker.txt</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>../JarArtifacts/AutoMakerMigrator.jar</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -125,9 +122,6 @@
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>runMigrator.sh</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -147,9 +141,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.so</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -177,9 +168,6 @@
                         <distributionFile>
                             <origin>jRegistryKey.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>runMigrator.bat</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -202,9 +190,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>runMigrator.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -569,34 +554,6 @@ enable = 0
                 </runProgram>
             </actionList>
         </actionGroup>
-        <runProgram>
-            <abortOnError>0</abortOnError>
-            <explanation>${msg(AutoMakerInstaller.migratingLastInstallation)}</explanation>
-            <program>runMigrator.bat</program>
-            <programArguments></programArguments>
-            <showMessageOnError>0</showMessageOnError>
-            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
-            <ruleList>
-                <platformTest>
-                    <type>windows</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <abortOnError>0</abortOnError>
-            <explanation>${msg(AutoMakerInstaller.migratingLastInstallation)}</explanation>
-            <program>./runMigrator.sh</program>
-            <programArguments></programArguments>
-            <showMessageOnError>0</showMessageOnError>
-            <useMSDOSPath>0</useMSDOSPath>
-            <workingDirectory>${installdir}/${project.shortName}</workingDirectory>
-            <ruleList>
-                <platformTest>
-                    <negate>1</negate>
-                    <type>windows</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
