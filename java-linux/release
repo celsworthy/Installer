@@ -1,6 +1,6 @@
-JAVA_VERSION="1.8.0_25"
+JAVA_VERSION="1.8.0_45"
 OS_NAME="Linux"
 OS_VERSION="2.6"
 OS_ARCH="i586"
-SOURCE=" .:d117f01bfb4f corba:f46df0af2ca8 deploy:1aaf2c7dc6a5 hotspot:28b50d07f6f8 hotspot/make/closed:993f88bfdca6 hotspot/src/closed:2a110c0ffc77 hotspot/test/closed:61307ce8fb2e install:ff8fb72b3695 jaxp:7a721e57b38f jaxws:d47a47f961ee jdk:67b22a82345b jdk/make/closed:c2752960430d jdk/src/closed:8d9c265a25de jdk/test/closed:a71b4ef16f2e langtools:53ca196be1ae nashorn:4b9cc65dd24d pubs:84ad6e71a2e5 sponsors:202e112ed4af"
+SOURCE=" .:15b679d327da corba:50fb9bed64c9 deploy:d8ad6eeea2c2 hotspot:5321d26956b2 hotspot/make/closed:f5fffacbb894 hotspot/src/closed:b983c361adfe hotspot/test/closed:0ec3efcbc9a4 install:c4c2c753a81b jaxp:e0167ec9d759 jaxws:bad02ac45d59 jdk:20e6cadfac43 jdk/make/closed:0f9b453728a0 jdk/src/closed:f686f92762ac jdk/test/closed:36552a07b3e4 langtools:847af465a542 nashorn:d5477c6d1678 pubs:c41575b6ecc2 sponsors:8b09018bcb34"
 BUILD_TYPE="commercial"

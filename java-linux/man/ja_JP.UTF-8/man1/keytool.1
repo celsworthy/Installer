@@ -3,14 +3,15 @@
 .\"
 .\" Title: keytool
 .\" Language: Japanese
-.\" Date: 2013年8月6日
+.\" Date: 2015年3月3日
 .\" SectDesc: セキュリティ・ツール
 .\" Software: JDK 8
 .\" Arch: 汎用
-.\" Part Number: E54735-01
+.\" Part Number: E58104-01
+.\" Doc ID: JSSOR
 .\"
 .if n .pl 99999
-.TH "keytool" "1" "2013年8月6日" "JDK 8" "セキュリティ・ツール"
+.TH "keytool" "1" "2015年3月3日" "JDK 8" "セキュリティ・ツール"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -390,9 +391,17 @@ keytool \- 暗号化鍵、X\&.509証明書チェーンおよび信頼できる�
 .\}
 イタリックの項目の実際の値(オプションの値)は、指定する必要があります。たとえば、\fB\-printcert\fRコマンドの形式は次のとおりです。
 .sp
-\fBkeytool \-printcert {\-file cert_file} {\-v}\fR
+.if n \{\
+.RS 4
+.\}
+.nf
+\fBkeytool \-printcert {\-file \fR\fB\fIcert_file\fR\fR\fB} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
 .sp
-\fB\-printcert\fRコマンドを指定する場合は、\fBcert_file\fRを実際のファイル名で置き換えます。例:
+\fB\-printcert\fRコマンドを指定する場合は、\fIcert_file\fRを実際のファイル名で置き換えます。例:
 \fBkeytool \-printcert \-file VScert\&.cer\fR
 .RE
 .sp
@@ -604,8 +613,7 @@ EKUまたはExtendedKeyUsage
 SANまたはSubjectAlternativeName
 .RS 4
 \fB値\fR:
-\fBtype\fR:\fBvalue\fR
-(t\fBype:value\fR)*、\fBtype\fRには\fBEMAIL\fR、\fBURI\fR、\fBDNS\fR、\fBIP\fRまたは\fBOID\fRを指定できます。\fBvalue\fR引数は、\fBtype\fRの文字列形式の値です。
+\fBtype\fR:\fBvalue\fR(t\fBype:value\fR)*、\fBtype\fRには\fBEMAIL\fR、\fBURI\fR、\fBDNS\fR、\fBIP\fRまたは\fBOID\fRを指定できます。\fBvalue\fR引数は、\fBtype\fRの文字列形式の値です。
 .RE
 .PP
 IANまたはIssuerAlternativeName
@@ -642,8 +650,66 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-gencert
 .RS 4
-\fB{\-rfc} {\-infile infile} {\-outfile outfile} {\-alias alias} {\-sigalg sigalg} {\-dname dname} {\-startdate startdate {\-ext ext}* {\-validity valDays} [\-keypass keypass] {\-keystore keystore} [\-storepass storepass] {\-storetype storetype} {\-providername provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-rfc} {\-infile \fR\fB\fIinfile\fR\fR\fB} {\-outfile \fR\fB\fIoutfile\fR\fR\fB} {\-alias \fR\fB\fIalias\fR\fR\fB} {\-sigalg \fR\fB\fIsigalg\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-dname \fR\fB\fIdname\fR\fR\fB} {\-startdate \fR\fB\fIstartdate\fR\fR\fB {\-ext \fR\fB\fIext\fR\fR\fB}* {\-validity \fR\fB\fIvalDays\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-providername \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 証明書リクエスト・ファイル(\fBkeytool\fR
 \fB\-certreq\fRコマンドで作成可能)に対するレスポンスとして証明書を生成します。このコマンドは、\fIinfile\fRから(省略した場合は、標準入力から)リクエストを読み込み、別名の秘密鍵を使用してそのリクエストに署名して、X\&.509証明書を\fIoutfile\fRに(省略した場合は、標準出力に)出力します。\fB\-rfc\fRを指定した場合、出力形式はBASE64符号化のPEMになります。それ以外の場合は、バイナリDERが作成されます。
 .sp
@@ -704,8 +770,66 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-genkeypair
 .RS 4
-\fB{\-alias alias} {\-keyalg keyalg} {\-keysize keysize} {\-sigalg sigalg} [\-dname dname] [\-keypass keypass] {\-startdate value} {\-ext ext}* {\-validity valDays} {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-keyalg \fR\fB\fIkeyalg\fR\fR\fB} {\-keysize \fR\fB\fIkeysize\fR\fR\fB} {\-sigalg \fR\fB\fIsigalg\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-dname \fR\fB\fIdname\fR\fR\fB] [\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-startdate \fR\fB\fIvalue\fR\fR\fB} {\-ext \fR\fB\fIext\fR\fR\fB}*\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-validity \fR\fB\fIvalDays\fR\fR\fB} {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 鍵のペア(公開鍵および関連する秘密鍵)を生成します。公開鍵はX\&.509 v3自己署名証明書でラップされます。証明書は、単一の要素を持つ証明書チェーンとして格納されます。この証明書チェーンと秘密鍵は、aliasで特定される新しいキーストア・エントリに格納されます。
 .sp
 \fBkeyalg\fR値は鍵ペアの生成に使用するアルゴリズムを、\fBkeysize\fR値は生成する各鍵のサイズを、それぞれ指定します。\fBsigalg\fR値は、自己署名証明書に署名を付けるために使用するアルゴリズムを指定します。このアルゴリズムは\fBkeyalg\fR値と互換性がある必要があります。
@@ -738,7 +862,7 @@ AIAまたはAuthorityInfoAccess
 .if n \{\
 .RE
 .\}
-2番目の形式では、ユーザーは、年/月/日と時間:分:秒の2つの部分からなる正確な発行時刻を設定します(ローカルのタイム・ゾーンを使用)。ユーザーは、1つの部分のみを指定できます。これは、もう1つの部分は現在の日付(または時刻)と同じになるということです。ユーザーは、形式の定義に示されているように、桁数を厳密に指定する必要があります(短い場合は0で埋めます)。日付と時刻の両方が指定された状態で、2つの部分の間に空白文字が1つ(1つのみ)あります。時間は常に24時間形式で指定してください。
+2番目の形式では、ユーザーは、年/月/日と時間:分:秒の2つの部分で厳密な開始時刻を設定します(地元の時間帯を使用)。ユーザーは、1つの部分のみを指定できます。これは、もう1つの部分は現在の日付(または時刻)と同じになるということです。ユーザーは、形式の定義に示されているように、桁数を厳密に指定する必要があります(短い場合は0で埋めます)。日付と時刻の両方が指定された状態で、2つの部分の間に空白文字が1つ(1つのみ)あります。時間は常に24時間形式で指定してください。
 .sp
 オプションを指定しないと、開始日付は現在の時刻になります。オプションは、最大で1回指定できます。
 .sp
@@ -749,8 +873,46 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-genseckey
 .RS 4
-\fB\-genseckey {\-alias alias} {\-keyalg keyalg} {\-keysize keysize} [\-keypass keypass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-keyalg \fR\fB\fIkeyalg\fR\fR\fB} {\-keysize \fR\fB\fIkeysize\fR\fR\fB} [\-keypass \fR\fB\fIkeypass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 秘密鍵を生成し、それを新しい\fBKeyStore\&.SecretKeyEntry\fR(\fBalias\fRで特定される)内に格納します。
 .sp
 \fBkeyalg\fR値は鍵ペアの生成に使用するアルゴリズムを、\fBkeysize\fR値は生成する各鍵のサイズを、それぞれ指定します。\fBkeypass\fR値は、秘密鍵を保護するパスワードです。パスワードを指定しなかった場合は、パスワードの入力を求められます。このとき、[Return]キーを押すと、\fBkeystore\fRのパスワードと同じパスワードが鍵のパスワードに設定されます。\fBkeypass\fR値は、6文字以上にする必要があります。
@@ -758,8 +920,56 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-importcert
 .RS 4
-\fB\-importcert {\-alias alias} {\-file cert_file} [\-keypass keypass] {\-noprompt} {\-trustcacerts} {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-file \fR\fB\fIcert_file\fR\fR\fB} [\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-noprompt} {\-trustcacerts}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 ファイル\fBcert_file\fRから証明書または証明書チェーン(証明書チェーンの場合は、PKCS#7形式の応答または一連のX\&.509証明書で提供されるもの)を読み込み、\fBalias\fRによって特定される\fBkeystore\fRエントリに格納します。ファイルが指定されていない場合は、\fBstdin\fRから証明書または証明書チェーンを読み込みます。
 .sp
 \fBkeytool\fRコマンドでは、X\&.509 v1、v2、v3の証明書、およびPKCS#7形式の証明書から構成されているPKCS#7形式の証明書チェーンをインポートできます。インポートするデータは、バイナリ符号化方式、または出力可能符号化方式(Base64符号化とも呼ばれる)のどちらかで提供する必要があります。出力可能符号化方式は、インターネットRFC 1421証明書符号化規格で定義されています。この符号化方式の場合、証明書は\fB\-\fR\fB\-\-\-\-BEGIN\fRで始まる文字列で開始され、\fB\-\-\-\-\-END\fRで始まる文字列で終了する必要があります。
@@ -771,15 +981,131 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-importpassword
 .RS 4
-\fB{\-alias alias} [\-keypass keypass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} [\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 パスフレーズをインポートし、\fBalias\fRで識別される新規\fBKeyStore\&.SecretKeyEntry\fRに格納します。パスフレーズは、標準入力ストリームを介して提供できます。または、ユーザーにそのプロンプトが表示されます。\fBkeypass\fRは、インポートされるパスフレーズの保護に使用されるパスワードです。パスワードを指定しなかった場合は、パスワードの入力を求められます。このとき、[Return]キーを押すと、\fBkeystore\fRのパスワードと同じパスワードが鍵のパスワードに設定されます。\fBkeypass\fRは、6文字以上にする必要があります。
 .RE
 .PP
 \-importkeystore
 .RS 4
-\fB{\-srcstoretype srcstoretype} {\-deststoretype deststoretype} [\-srcstorepass srcstorepass] [\-deststorepass deststorepass] {\-srcprotected} {\-destprotected} {\-srcalias srcalias {\-destalias destalias} [\-srckeypass srckeypass] } [\-destkeypass destkeypass] {\-noprompt} {\-srcProviderName src_provider_name} {\-destProviderName dest_provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-srcstoretype \fR\fB\fIsrcstoretype\fR\fR\fB} {\-deststoretype \fR\fB\fIdeststoretype\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-srcstorepass \fR\fB\fIsrcstorepass\fR\fR\fB] [\-deststorepass \fR\fB\fIdeststorepass\fR\fR\fB] {\-srcprotected}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-destprotected} \fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-srcalias \fR\fB\fIsrcalias\fR\fR\fB {\-destalias \fR\fB\fIdestalias\fR\fR\fB} [\-srckeypass \fR\fB\fIsrckeypass\fR\fR\fB]} \fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-destkeypass \fR\fB\fIdestkeypass\fR\fR\fB] {\-noprompt}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-srcProviderName \fR\fB\fIsrc_provider_name\fR\fR\fB} {\-destProviderName \fR\fB\fIdest_provider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 ソース・キーストアからターゲット・キーストアへ、単一のエントリまたはすべてのエントリをインポートします。
 .sp
 \fB\-srcalias\fRオプションが指定された場合、このコマンドは、その別名で特定される単一のエントリをターゲット・キーストアにインポートします。\fBdestalias\fR経由でターゲット別名が指定されなかった場合、\fBsrcalias\fRがターゲット別名として使用されます。ソースのエントリがパスワードで保護されていた場合、\fBsrckeypass\fRを使用してそのエントリが回復されます。\fIsrckeypass\fRが指定されなかった場合、\fBkeytool\fRコマンドは\fBsrcstorepass\fRを使用してそのエントリを回復しようとします。\fBsrcstorepass\fRが指定されなかったか正しくなかった場合、ユーザーはパスワードの入力を求められます。ターゲットのエントリは\fBdestkeypass\fRによって保護されます。\fBdestkeypass\fRが指定されなかった場合、ターゲット・エントリはソース・エントリのパスワードによって保護されます。たとえば、ほとんどのサード・パーティ・ツールでは、PKCS #12キーストアで\fBstorepass\fRと\fBkeypass\fRが同じである必要があります。これらのツールのPKCS #12キーストアを作成する場合は、常に\fB\-destkeypass\fRと\fB\-deststorepass\fRが同じになるように指定します。
@@ -794,16 +1120,72 @@ AIAまたはAuthorityInfoAccess
 .PP
 \-printcertreq
 .RS 4
-\fB{\-file file}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-file \fR\fB\fIfile\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
 PKCS#10形式の証明書リクエストの内容を出力します。このリクエストは、\fBkeytool\fR
 \fB\-certreq\fRコマンドで生成できます。このコマンドは、ファイルからリクエストを読み取ります。ファイルが存在しない場合、リクエストは標準入力から読み取られます。
 .RE
 .PP
 \-certreq
 .RS 4
-\fB{\-alias alias} {\-dname dname} {\-sigalg sigalg} {\-file certreq_file} [\-keypass keypass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-dname \fR\fB\fIdname\fR\fR\fB} {\-sigalg \fR\fB\fIsigalg\fR\fR\fB} {\-file \fR\fB\fIcertreq_file\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-storepass \fR\fB\fIstorepass\fR\fR\fB] {\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 PKCS#10形式を使用して証明書署名リクエスト(CSR)を生成します。
 .sp
 CSRは、証明書発行局(CA)に送信することを目的としたものです。CAは、証明書要求者を(通常はオフラインで)認証し、証明書または証明書チェーンを送り返します。この証明書または証明書チェーンは、キーストア内の既存の証明書チェーン(最初は1つの自己署名証明書から構成される)に置き換えて使用します。
@@ -819,8 +1201,46 @@ CAからのレスポンスをインポートするには、\fBimportcert\fRコ�
 .PP
 \-exportcert
 .RS 4
-\fB{\-alias alias} {\-file cert_file} {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-rfc} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-file \fR\fB\fIcert_file\fR\fR\fB} {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-storepass \fR\fB\fIstorepass\fR\fR\fB] {\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-rfc} {\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 \fIalias\fRに関連付けられた証明書をキーストアから読み込み、ファイルcert_fileに格納します。ファイルが指定されていない場合は、\fBstdout\fRに証明書が出力されます。
 .sp
 デフォルトでは、証明書はバイナリ符号化で出力されます。\fB\-rfc\fRオプションが指定されている場合、出力可能符号化方式の出力はインターネットRFC 1421証明書符号化規格で定義されます。
@@ -832,8 +1252,46 @@ CAからのレスポンスをインポートするには、\fBimportcert\fRコ�
 .PP
 \-list
 .RS 4
-\fB{\-alias alias} {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v | \-rfc} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v | \-rfc} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 \fBalias\fRで特定されるキーストア・エントリの内容を\fBstdout\fRに出力します。\fBalias\fRが指定されていない場合は、キーストア全体の内容が表示されます。
 .sp
 このコマンドは、デフォルトでは証明書のSHA1フィンガープリントを表示します。
@@ -844,8 +1302,26 @@ CAからのレスポンスをインポートするには、\fBimportcert\fRコ�
 .PP
 \-printcert
 .RS 4
-\fB{\-file cert_file | \-sslserver host[:port]} {\-jarfile JAR_file {\-rfc} {\-v} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-file \fR\fB\fIcert_file\fR\fR\fB | \-sslserver \fR\fB\fIhost\fR\fR\fB[:\fR\fB\fIport\fR\fR\fB]} {\-jarfile \fR\fB\fIJAR_file\fR\fR\fB {\-rfc} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 ファイルcert_file、host:portにあるSSLサーバー、または署名付きJARファイル\fBJAR_file\fR(\fB\-jarfile\fRオプションを指定)から証明書を読み込み、人間が読むことのできる形式で証明書の内容を表示します。ポートが指定されていない場合は、標準のHTTPSポート443が想定されます。\fB\-sslserver\fRおよび\-fileオプションを同時に指定することはできません。それ以外の場合、エラーが報告されます。オプションが指定されていない場合は、\fBstdin\fRから証明書を読み込みます。
 .sp
 \fB\-rfc\fRが指定されている場合、\fBkeytool\fRコマンドは、インターネットRFC 1421証明書符号化標準で定義されているように、PEMモードで証明書を出力します。インターネットRFC 1421証明書符号化規格を参照してください。
@@ -861,8 +1337,16 @@ SSLサーバーがファイアウォールの背後にある場合は、\fB\-J\-
 .PP
 \-printcrl
 .RS 4
-\fB\-file crl_ {\-v}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB\-file \fR\fB\fIcrl_\fR\fR\fB {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
 ファイル\fBcrl_\fRから証明書失効リスト(CRL)を読み込みます。CRLは、発行したCAによって失効されたデジタル証明書のリストです。CAは、\fBcrl_\fRを生成します。
 .sp
 \fB注意:\fR
@@ -871,15 +1355,91 @@ SSLサーバーがファイアウォールの背後にある場合は、\fB\-J\-
 .PP
 \-storepasswd
 .RS 4
-\fB[\-new new_storepass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-new \fR\fB\fInew_storepass\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-storepass \fR\fB\fIstorepass\fR\fR\fB] {\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 キーストアの内容の整合性を保護するために使用するパスワードを変更します。\fBnew_storepass\fRには、新しいパスワードを指定します。new_storepassは、6文字以上である必要があります。
 .RE
 .PP
 \-keypasswd
 .RS 4
-\fB{\-alias alias} [\-keypass old_keypass] [\-new new_keypass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} [\-keypass \fR\fB\fIold_keypass\fR\fR\fB] [\-new \fR\fB\fInew_keypass\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB] {\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 \fBalias\fRによって特定される非公開/秘密鍵を保護するためのパスワードを、\fBold_keypass\fRから\fBnew_keypass\fRに変更します。new_keypassは、6文字以上である必要があります。
 .sp
 コマンド行で\fB\-keypass\fRオプションを指定しておらず、鍵のパスワードがキーストアのパスワードと異なる場合は、鍵のパスワードの入力を求められます。
@@ -889,15 +1449,91 @@ SSLサーバーがファイアウォールの背後にある場合は、\fB\-J\-
 .PP
 \-delete
 .RS 4
-\fB[\-alias alias] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB[\-alias \fR\fB\fIalias\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB} {\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB]\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerName \fR\fB\fIprovider_name\fR\fR\fB}  \fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-v} {\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 \fBalias\fRによって特定されるエントリをキーストアから削除します。コマンド行で別名を指定しなかった場合は、別名の入力を求められます。
 .RE
 .PP
 \-changealias
 .RS 4
-\fB{\-alias alias} [\-destalias destalias] [\-keypass keypass] {\-storetype storetype} {\-keystore keystore} [\-storepass storepass] {\-providerName provider_name} {\-providerClass provider_class_name {\-providerArg provider_arg}} {\-v} {\-protected} {\-Jjavaoption}\fR
 .sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-alias \fR\fB\fIalias\fR\fR\fB} [\-destalias \fR\fB\fIdestalias\fR\fR\fB] [\-keypass \fR\fB\fIkeypass\fR\fR\fB] {\-storetype \fR\fB\fIstoretype\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-keystore \fR\fB\fIkeystore\fR\fR\fB} [\-storepass \fR\fB\fIstorepass\fR\fR\fB] {\-providerName \fR\fB\fIprovider_name\fR\fR\fB}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-providerClass \fR\fB\fIprovider_class_name\fR\fR\fB {\-providerArg \fR\fB\fIprovider_arg\fR\fR\fB}} {\-v}\fR
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB{\-protected} {\-Jjavaoption}\fR
+.fi
+.if n \{\
+.RE
+.\}
 指定された\fBalias\fRから新しい別名\fBdestalias\fRへ、既存のキーストア・エントリを移動します。ターゲット別名を指定しなかった場合、ターゲット別名の入力を求められます。元のエントリがエントリ・パスワードで保護されていた場合、\fB\-keypass\fRオプションでそのパスワードを指定できます。鍵パスワードが指定されなかった場合、\fBstorepass\fR(指定された場合)がまず試みられます。その試みが失敗すると、ユーザーはパスワードの入力を求められます。
 .RE
 .PP
@@ -995,7 +1631,7 @@ CAからの証明書応答をインポートするには、キーストアか、
 .PP
 \fBcacerts\fRキーストア・ファイルは、いくつかのVeriSignルートCA証明書を含んだ状態で出荷されているので、VeriSignの証明書を、信頼できる証明書としてキーストア内にインポートする必要がない場合があります。ただし、他のCAに対して署名付き証明書をリクエストしていて、このCAの公開鍵を認証する証明書が、\fBcacerts\fRにまだ追加されていない場合は、該当するCAからの証明書を、「信頼できる証明書」としてインポートする必要があります。
 .PP
-通常、CAからの証明書は、自己署名証明書、または他のCAによって署名された証明書です(後者の場合は、該当する他のCAの公開鍵を認証する証明書が必要)。ABC, Inc\&.,がCAで、ABCから自己署名証明書であるA\fBBCCA\&.cer\fRという名前のファイルを取得したとします(この証明書はCAの公開鍵を認証します)。信頼できる証明書として証明書をインポートするときは、証明書が有効であることを確認する必要があります。まず、\fBkeytool \-printcert\fRコマンドまたは\fB\-noprompt\fRオプションなしの\fBkeytool \-importcert\fRコマンドでそれを表示し、表示された証明書のフィンガープリントが期待されるものと一致するかどうかを確認します。証明書を送信した人物に連絡し、この人物が提示した(またはセキュアな公開鍵のリポジトリによって提示される)フィンガープリントと、上のコマンドで表示されたフィンガープリントとを比較します。フィンガープリントが一致すれば、送信途中で他の何者か(攻撃者など)による証明書のすり替えが行われていないことを確認できます。送信途中でこの種の攻撃が行われていた場合、チェックを行わずに証明書をインポートすると、攻撃者によって署名されたすべてのものを信頼することになります。
+通常、CAからの証明書は、自己署名証明書、または他のCAによって署名された証明書です(後者の場合は、該当する他のCAの公開鍵を認証する証明書が必要)。ABC, Inc\&.,がCAで、ABCから自己署名証明書であるA\fBBCCA\&.cer\fRという名前のファイルを取得したとします(この証明書はCAの公開鍵を認証します)。信頼できる証明書として証明書をインポートするときは、証明書が有効であることを確認する必要があります。まず、証明書の内容を表示し\fBkeytool \-printcert\fRコマンドを使用するか、または\fB\-noprompt\fRオプションを指定しないで\fBkeytool \-importcert\fRコマンドを使用し、表示された証明書のフィンガープリントが、期待されるフィンガープリントと一致するかどうかを確認します。証明書を送信した人物に連絡し、この人物が提示した(または安全な公開鍵のリポジトリによって提示される)フィンガープリントと、上のコマンドで表示されたフィンガープリントとを比較します。フィンガープリントが一致すれば、送信途中で他の何者か(攻撃者など)による証明書のすり替えが行われていないことを確認できます。送信途中でこの種の攻撃が行われていた場合、チェックを行わずに証明書をインポートすると、攻撃者によって署名されたすべてのものを信頼することになります。
 .PP
 証明書が有効であると信頼する場合は、次のコマンドでキーストアに追加できます。
 .sp
@@ -1066,7 +1702,7 @@ ABCCA\&.cerファイルのデータを含む信頼できる証明書のエント
 .RE
 .\}
 .PP
-また、\fBimportkeystore\fRコマンドを使用すれば、あるソース・キーストア内の単一のエントリをターゲット・キーストアにインポートすることもできます。この場合は、前例のオプションに加えて、インポートする別名を指定する必要があります。\fB\-srcalias\fRオプションを指定する場合には、ターゲット別名もコマンド行から指定できるほか、秘密/秘密鍵の保護用パスワードやターゲット保護用パスワードも指定できます。その方法を示すコマンドを次に示します。
+また、\fBimportkeystore\fRコマンドを使用すれば、あるソース・キーストア内の単一のエントリをターゲット・キーストアにインポートすることもできます。この場合は、前例のオプションに加えて、インポートする別名を指定する必要があります。\fB\-srcalias\fRオプションを指定する場合には、ターゲット別名もコマンドラインから指定できるほか、秘密/秘密鍵の保護用パスワードやターゲット保護用パスワードも指定できます。その方法を示すコマンドを次に示します。
 .sp
 .if n \{\
 .RS 4
@@ -1435,7 +2071,7 @@ X\&.500識別名は、エンティティを特定するために使用されま�
 .if n \{\
 .RE
 .\}
-識別名文字列の値にカンマが含まれる場合に、コマンド行で文字列を指定するときには、次のようにカンマをバックスラッシュ文字(\e)でエスケープする必要があります。
+識別名文字列の値にカンマが含まれる場合に、コマンドラインで文字列を指定するときには、次のようにカンマをバックスラッシュ文字(\e)でエスケープする必要があります。
 .sp
 .if n \{\
 .RS 4
@@ -1447,7 +2083,7 @@ X\&.500識別名は、エンティティを特定するために使用されま�
 .if n \{\
 .RE
 .\}
-識別名文字列をコマンド行で指定する必要はありません。識別名を必要とするコマンドを実行するときに、コマンド行で識別名を指定しなかった場合は、各サブコンポーネントの入力を求められます。この場合は、カンマをバックスラッシュ(\e)でエスケープする必要はありません。
+識別名文字列をコマンドラインで指定する必要はありません。識別名を必要とするコマンドを実行するときに、コマンドラインで識別名を指定しなかった場合は、各サブコンポーネントの入力を求められます。この場合は、カンマをバックスラッシュ(\e)でエスケープする必要はありません。
 .RE
 .SH "警告"
 .SS "信頼できる証明書のインポート警告"
