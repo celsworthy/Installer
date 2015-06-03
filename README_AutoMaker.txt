@@ -3,12 +3,17 @@ CEL AutoMaker README
 version 1.01.05
 ===============
    New features:
+       Undo/Redo - all changes to models on the bed can be undone
        Apply lean/twist/turn of an object on the bed
        Scale in X/Y/Z independently
        Display Time and Cost estimates for Draft/Normal/Fine/Custom profiles
        Rafts
    
    Improved filament and print profile management
+       Filament and print profile management have been moved to the Settings area (click
+       on the gear icon in the top right of the application) and made simpler to user.
+       Writing to the reel is now located on the Filament Library page (which is accessed
+       from Settings).
    Improved consistency of look & feel    
    Improved error handling
 
