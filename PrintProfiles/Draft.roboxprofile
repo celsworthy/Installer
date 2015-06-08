@@ -17,7 +17,7 @@
   "fillExtrusionWidth_mm" : 0.8,
   "solidFillExtrusionWidth_mm" : 0.8,
   "topSolidFillExtrusionWidth_mm" : 0.6,
-  "supportExtrusionWidth_mm" : 0.6,
+  "supportExtrusionWidth_mm" : 0.35,
   "nozzleParameters" : [ {
     "name" : null,
     "closedPosition" : 0.0,
@@ -50,7 +50,6 @@
   "fillNozzle" : 1,
   "supportNozzle" : 0,
   "supportInterfaceNozzle" : 0,
-  "generateSupportMaterial" : false,
   "supportOverhangThreshold_degrees" : 40,
   "forcedSupportForFirstNLayers" : 0,
   "supportPattern" : "RECTILINEAR",
