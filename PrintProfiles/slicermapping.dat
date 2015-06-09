@@ -5,6 +5,7 @@
 	   * Defaults for all profiles
 	   */
       "defaults" : [
+      		        "solid_fill_pattern:rectilinear",
 			"avoid_crossing_perimeters:0",
 			"dont_support_bridges:1",
 			"external_perimeters_first:0",
