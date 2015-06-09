@@ -2,6 +2,7 @@ package Slic3r::Fill::Honeycomb;
 use Moo;
 
 extends 'Slic3r::Fill::Base';
+with qw(Slic3r::Fill::WithDirection);
 
 has 'cache'         => (is => 'rw', default => sub {{}});
 
@@ -17,11 +18,11 @@ sub fill_surface {
     my $rotate_vector = $self->infill_direction($surface);
     
     # cache hexagons math
-    my $cache_id = sprintf "d%s_s%s", $params{density}, $params{flow}->spacing;
+    my $cache_id = sprintf "d%s_s%s", $params{density}, $self->spacing;
     my $m;
     if (!($m = $self->cache->{$cache_id})) {
         $m = $self->cache->{$cache_id} = {};
-        my $min_spacing = $params{flow}->scaled_spacing;
+        my $min_spacing = scale($self->spacing);
         $m->{distance} = $min_spacing / $params{density};
         $m->{hex_side} = $m->{distance} / (sqrt(3)/2);
         $m->{hex_width} = $m->{distance} * 2;  # $m->{hex_width} == $m->{hex_side} * sqrt(3);
@@ -80,7 +81,7 @@ sub fill_surface {
     }
     
     my @paths;
-    if ($params{complete}) {
+    if ($params{complete} || 1) {
         # we were requested to complete each loop;
         # in this case we don't try to make more continuous paths
         @paths = map $_->split_at_first_point,
@@ -122,7 +123,7 @@ sub fill_surface {
         )};
     }
     
-    return { flow => $params{flow} }, @paths;
+    return @paths;
 }
 
 1;

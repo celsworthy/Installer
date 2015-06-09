@@ -36,7 +36,9 @@ sub write_file {
     printf $fh qq{<amf unit="millimeter">\n};
     printf $fh qq{  <metadata type="cad">Slic3r %s</metadata>\n}, $Slic3r::VERSION;
     for my $material_id (sort @{ $model->material_names }) {
+        next if $material_id eq '';
         my $material = $model->get_material($material_id);
+        # note that material-id must never be 0 since it's reserved by the AMF spec
         printf $fh qq{  <material id="%s">\n}, $material_id;
         for (keys %{$material->attributes}) {
              printf $fh qq{    <metadata type=\"%s\">%s</metadata>\n}, $_, $material->attributes->{$_};
@@ -55,6 +57,9 @@ sub write_file {
         my $config = $object->config;
         foreach my $opt_key (@{$config->get_keys}) {
              printf $fh qq{    <metadata type=\"slic3r.%s\">%s</metadata>\n}, $opt_key, $config->serialize($opt_key);
+        }
+        if ($object->name) {
+            printf $fh qq{    <metadata type=\"name\">%s</metadata>\n}, $object->name;
         }
         
         printf $fh qq{    <mesh>\n};
@@ -81,11 +86,14 @@ sub write_file {
         foreach my $volume (@{ $object->volumes }) {
             my $vertices_offset = shift @vertices_offset;
             printf $fh qq{      <volume%s>\n},
-                (!defined $volume->material_id) ? '' : (sprintf ' materialid="%s"', $volume->material_id);
+                ($volume->material_id eq '') ? '' : (sprintf ' materialid="%s"', $volume->material_id);
             
             my $config = $volume->config;
             foreach my $opt_key (@{$config->get_keys}) {
                  printf $fh qq{        <metadata type=\"slic3r.%s\">%s</metadata>\n}, $opt_key, $config->serialize($opt_key);
+            }
+            if ($volume->name) {
+                printf $fh qq{        <metadata type=\"name\">%s</metadata>\n}, $volume->name;
             }
             if ($volume->modifier) {
                 printf $fh qq{        <metadata type=\"slic3r.modifier\">1</metadata>\n};
