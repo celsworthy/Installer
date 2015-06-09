@@ -1,5 +1,5 @@
 package Moo::HandleMoose::_TypeMap;
-use strictures 1;
+use Moo::_strictures;
 
 package
   Moo::HandleMoose;
@@ -8,6 +8,7 @@ our %TYPE_MAP;
 package Moo::HandleMoose::_TypeMap;
 
 use Scalar::Util ();
+use Config;
 
 our %WEAK_TYPES;
 
@@ -65,8 +66,10 @@ sub DESTROY {
   %TYPE_MAP = %types;
 }
 
-my @types = %TYPE_MAP;
-tie %TYPE_MAP, __PACKAGE__;
-%TYPE_MAP = @types;
+if ($Config{useithreads}) {
+  my @types = %TYPE_MAP;
+  tie %TYPE_MAP, __PACKAGE__;
+  %TYPE_MAP = @types;
+}
 
 1;

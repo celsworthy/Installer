@@ -4,7 +4,8 @@ use warnings;
 use utf8;
 
 use List::Util qw(first);
-use Wx qw(:misc :sizer :button wxTAB_TRAVERSAL wxSUNKEN_BORDER wxBITMAP_TYPE_PNG);
+use Wx qw(:misc :sizer :button wxTAB_TRAVERSAL wxSUNKEN_BORDER wxBITMAP_TYPE_PNG
+    wxTheApp);
 use Wx::Event qw(EVT_BUTTON EVT_LEFT_DOWN EVT_MENU);
 use base 'Wx::ScrolledWindow';
 
@@ -16,8 +17,10 @@ sub new {
     my $class = shift;
     my ($parent, %params) = @_;
     my $self = $class->SUPER::new($parent, -1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    $self->{config} = $params{config};  # may be passed as undef
+    $self->{default_config} = Slic3r::Config->new;
+    $self->{config} = Slic3r::Config->new;
     $self->{on_change} = $params{on_change};
+    $self->{fixed_options} = {};
     
     $self->{sizer} = Wx::BoxSizer->new(wxVERTICAL);
     
@@ -35,7 +38,7 @@ sub new {
                 my $id = &Wx::NewId();
                 $menu->Append($id, $self->{option_labels}{$opt_key});
                 EVT_MENU($menu, $id, sub {
-                    $self->{config}->apply(Slic3r::Config->new_from_defaults($opt_key));
+                    $self->{config}->set($opt_key, $self->{default_config}->get($opt_key));
                     $self->update_optgroup;
                     $self->{on_change}->() if $self->{on_change};
                 });
@@ -58,6 +61,17 @@ sub new {
     return $self;
 }
 
+sub set_default_config {
+    my ($self, $config) = @_;
+    $self->{default_config} = $config;
+}
+
+sub set_config {
+    my ($self, $config) = @_;
+    $self->{config} = $config;
+    $self->update_optgroup;
+}
+
 sub set_opt_keys {
     my ($self, $opt_keys) = @_;
     
@@ -68,9 +82,9 @@ sub set_opt_keys {
     $self->{options} = [ sort { $self->{option_labels}{$a} cmp $self->{option_labels}{$b} } @$opt_keys ];
 }
 
-sub set_config {
-    my ($self, $config) = @_;
-    $self->{config} = $config;
+sub set_fixed_options {
+    my ($self, $opt_keys) = @_;
+    $self->{fixed_options} = { map {$_ => 1} @$opt_keys };
     $self->update_optgroup;
 }
 
@@ -88,32 +102,35 @@ sub update_optgroup {
     }
     foreach my $category (sort keys %categories) {
         my $optgroup = Slic3r::GUI::ConfigOptionsGroup->new(
-            parent      => $self,
-            title       => $category,
-            config      => $self->{config},
-            options     => [ sort @{$categories{$category}} ],
-            full_labels => 1,
-            label_font  => $Slic3r::GUI::small_font,
-            sidetest_font => $Slic3r::GUI::small_font,
-            label_width => 120,
-            on_change   => sub { $self->{on_change}->() if $self->{on_change} },
-            extra_column => sub {
+            parent          => $self,
+            title           => $category,
+            config          => $self->{config},
+            full_labels     => 1,
+            label_font      => $Slic3r::GUI::small_font,
+            sidetext_font   => $Slic3r::GUI::small_font,
+            label_width     => 120,
+            on_change       => sub { $self->{on_change}->() if $self->{on_change} },
+            extra_column    => sub {
                 my ($line) = @_;
-                my ($opt_key) = @{$line->{options}};  # we assume that we have one option per line
                 
-                # if this option is not listed in the ones the user can add, disallow deleting it
-                return undef if !first { $_ eq $opt_key } @{$self->{options}};
+                my $opt_key = $line->get_options->[0]->opt_id;  # we assume that we have one option per line
+                
+                # disallow deleting fixed options
+                return undef if $self->{fixed_options}{$opt_key};
                 
                 my $btn = Wx::BitmapButton->new($self, -1, Wx::Bitmap->new("$Slic3r::var/delete.png", wxBITMAP_TYPE_PNG),
                     wxDefaultPosition, wxDefaultSize, Wx::wxBORDER_NONE);
                 EVT_BUTTON($self, $btn, sub {
                     $self->{config}->erase($opt_key);
                     $self->{on_change}->() if $self->{on_change};
-                    Slic3r::GUI->CallAfter(sub { $self->update_optgroup });
+                    wxTheApp->CallAfter(sub { $self->update_optgroup });
                 });
                 return $btn;
             },
         );
+        foreach my $opt_key (sort @{$categories{$category}}) {
+            $optgroup->append_single_option_line($opt_key);
+        }
         $self->{options_sizer}->Add($optgroup->sizer, 0, wxEXPAND | wxBOTTOM, 0);
     }
     $self->Layout;

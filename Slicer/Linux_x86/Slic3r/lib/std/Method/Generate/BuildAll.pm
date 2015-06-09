@@ -1,7 +1,8 @@
 package Method::Generate::BuildAll;
 
-use strictures 1;
-use base qw(Moo::Object);
+use Moo::_strictures;
+use Moo::Object ();
+our @ISA = qw(Moo::Object);
 use Sub::Quote qw(quote_sub quotify);
 use Moo::_Utils;
 
@@ -26,8 +27,10 @@ sub buildall_body_for {
   my @builds =
     grep *{_getglob($_)}{CODE},
     map "${_}::BUILD",
-    reverse @{Moo::_Utils::_get_linear_isa($into)};
-  join '', map qq{    ${me}->${_}(${args});\n}, @builds;
+    reverse @{mro::get_linear_isa($into)};
+  '    unless (('.$args.')[0]->{__no_BUILD__}) {'."\n"
+  .join('', map qq{      ${me}->${_}(${args});\n}, @builds)
+  ."   }\n";
 }
 
 1;

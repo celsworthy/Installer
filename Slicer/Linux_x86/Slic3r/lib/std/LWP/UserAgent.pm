@@ -5,7 +5,7 @@ use vars qw(@ISA $VERSION);
 
 require LWP::MemberMixin;
 @ISA = qw(LWP::MemberMixin);
-$VERSION = "6.04";
+$VERSION = "6.06";
 
 use HTTP::Request ();
 use HTTP::Response ();
@@ -33,12 +33,12 @@ sub new
     my $local_address = delete $cnf{local_address};
     my $ssl_opts = delete $cnf{ssl_opts} || {};
     unless (exists $ssl_opts->{verify_hostname}) {
-	# The processing of HTTPS_CA_* below is for compatiblity with Crypt::SSLeay
+	# The processing of HTTPS_CA_* below is for compatibility with Crypt::SSLeay
 	if (exists $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME}) {
 	    $ssl_opts->{verify_hostname} = $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME};
 	}
 	elsif ($ENV{HTTPS_CA_FILE} || $ENV{HTTPS_CA_DIR}) {
-	    # Crypt-SSLeay compatiblity (verify peer certificate; but not the hostname)
+	    # Crypt-SSLeay compatibility (verify peer certificate; but not the hostname)
 	    $ssl_opts->{verify_hostname} = 0;
 	    $ssl_opts->{SSL_verify_mode} = 1;
 	}
@@ -346,7 +346,8 @@ sub request
 	    )
     {
 	my $proxy = ($code == &HTTP::Status::RC_PROXY_AUTHENTICATION_REQUIRED);
-	my $ch_header = $proxy ?  "Proxy-Authenticate" : "WWW-Authenticate";
+	my $ch_header = $proxy || $request->method eq 'CONNECT'
+	    ?  "Proxy-Authenticate" : "WWW-Authenticate";
 	my @challenge = $response->header($ch_header);
 	unless (@challenge) {
 	    $response->header("Client-Warning" => 
@@ -852,7 +853,7 @@ sub run_handlers {
 }
 
 
-# depreciated
+# deprecated
 sub use_eval   { shift->_elem('use_eval',  @_); }
 sub use_alarm
 {
@@ -935,7 +936,7 @@ sub mirror
         else {
             # Replace the stale file with a fresh copy
             if ( -e $file ) {
-                # Some dosish systems fail to rename if the target exists
+                # Some DOSish systems fail to rename if the target exists
                 chmod 0777, $file;
                 unlink $file;
             }
@@ -1036,6 +1037,7 @@ sub no_proxy {
 
 sub _new_response {
     my($request, $code, $message, $content) = @_;
+    $message ||= HTTP::Status::status_message($code);
     my $response = HTTP::Response->new($code, $message);
     $response->request($request);
     $response->header("Client-Date" => HTTP::Date::time2str(time));
@@ -1126,7 +1128,7 @@ The following additional options are also accepted: If the C<env_proxy> option
 is passed in with a TRUE value, then proxy settings are read from environment
 variables (see env_proxy() method below).  If C<env_proxy> isn't provided the
 C<PERL_LWP_ENV_PROXY> environment variable controls if env_proxy() is called
-during initalization.  If the C<keep_alive> option is passed in, then a
+during initialization.  If the C<keep_alive> option is passed in, then a
 C<LWP::ConnCache> is set up (see conn_cache() method below).  The C<keep_alive>
 value is passed on as the C<total_capacity> for the connection cache.
 
@@ -1194,8 +1196,8 @@ method for the more general interface that allow any header to be defaulted.
 =item $ua->cookie_jar( $cookie_jar_obj )
 
 Get/set the cookie jar object to use.  The only requirement is that
-the cookie jar object must implement the extract_cookies($request) and
-add_cookie_header($response) methods.  These methods will then be
+the cookie jar object must implement the extract_cookies($response) and
+add_cookie_header($request) methods.  These methods will then be
 invoked by the user agent as requests are sent and responses are
 received.  Normally this will be a C<HTTP::Cookies> object or some
 subclass.
@@ -1344,7 +1346,7 @@ change to include 'POST', consider:
 =item $ua->show_progress( $boolean )
 
 Get/set a value indicating whether a progress bar should be displayed
-on on the terminal as requests are processed. The default is FALSE.
+on the terminal as requests are processed. The default is FALSE.
 
 =item $ua->timeout
 
@@ -1479,7 +1481,7 @@ The possible values $phase and the corresponding callback signatures are:
 =item request_preprepare => sub { my($request, $ua, $h) = @_; ... }
 
 The handler is called before the C<request_prepare> and other standard
-initialization of of the request.  This can be used to set up headers
+initialization of the request.  This can be used to set up headers
 and attributes that the C<request_prepare> handler depends on.  Proxy
 initialization should take place here; but in general don't register
 handlers for this phase.
@@ -1546,7 +1548,7 @@ this request instead.
 Remove handlers that match the given %matchspec.  If $phase is not
 provided remove handlers from all phases.
 
-Be careful as calling this function with %matchspec that is not not
+Be careful as calling this function with %matchspec that is not
 specific enough can remove handlers not owned by you.  It's probably
 better to use the set_my_handler() method instead.
 
@@ -1566,7 +1568,7 @@ If $cb is passed as C<undef>, remove the handler.
 
 Will retrieve the matching handler as hash ref.
 
-If C<$init> is passed passed as a TRUE value, create and add the
+If C<$init> is passed as a TRUE value, create and add the
 handler if it's not found.  If $init is a subroutine reference, then
 it's called with the created handler hash as argument.  This sub might
 populate the hash with extra fields; especially the callback.  If
@@ -1708,7 +1710,7 @@ this time, then nothing happens.  If the document has been updated, it
 will be downloaded again.  The modification time of the file will be
 forced to match that of the server.
 
-The return value is the the response object.
+The return value is the response object.
 
 =item $ua->request( $request )
 

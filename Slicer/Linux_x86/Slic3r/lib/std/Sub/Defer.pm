@@ -1,14 +1,15 @@
 package Sub::Defer;
 
-use strictures 1;
-use base qw(Exporter);
-use Moo::_Utils;
+use Moo::_strictures;
+use Exporter qw(import);
+use Moo::_Utils qw(_getglob _install_coderef);
 use Scalar::Util qw(weaken);
 
-our $VERSION = '1.005000';
+our $VERSION = '2.000001';
 $VERSION = eval $VERSION;
 
 our @EXPORT = qw(defer_sub undefer_sub undefer_all);
+our @EXPORT_OK = qw(undefer_package);
 
 our %DEFERRED;
 
@@ -38,6 +39,13 @@ sub undefer_sub {
 
 sub undefer_all {
   undefer_sub($_) for keys %DEFERRED;
+  return;
+}
+
+sub undefer_package {
+  my $package = shift;
+  my @subs = grep { $DEFERRED{$_}[0] =~ /^${package}::[^:]+$/ } keys %DEFERRED;
+  undefer_sub($_) for @subs;
   return;
 }
 
@@ -107,6 +115,8 @@ return a subroutine which will be goto'ed to on subsequent calls.
 If a name is provided, this also installs the sub as that name - and when
 the subroutine is undeferred will re-install the final version for speed.
 
+Exported by default.
+
 =head2 undefer_sub
 
  my $coderef = undefer_sub \&Foo::name;
@@ -116,6 +126,8 @@ If the passed coderef has not been deferred, this will just return it.
 
 If this is confusing, take a look at the example in the L</SYNOPSIS>.
 
+Exported by default.
+
 =head2 undefer_all
 
  undefer_all();
@@ -124,7 +136,19 @@ This will undefer all defered subs in one go.  This can be very useful in a
 forking environment where child processes would each have to undefer the same
 subs.  By calling this just before you start forking children you can undefer
 all currently deferred subs in the parent so that the children do not have to
-do it.
+do it.  Note this may bake the behavior of some subs that were intended to
+calculate their behavior later, so it shouldn't be used midway through a
+module load or class definition.
+
+Exported by default.
+
+=head2 undefer_package
+
+  undefer_package($package);
+
+This undefers all defered subs in a package.
+
+Not exported by default.
 
 =head1 SUPPORT
 

@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -38,7 +38,7 @@ use strict;
 *max = \&Math::PlanePath::_max;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 116;
+$VERSION = 119;
 use Math::PlanePath;
 use Math::PlanePath::Base::NSEW;
 @ISA = ('Math::PlanePath::Base::NSEW',
@@ -49,6 +49,7 @@ use Math::PlanePath::Base::Generic
   'round_nearest';
 use Math::PlanePath::Base::Digits
   'round_down_pow',
+  'round_up_pow',
   'bit_split_lowtohigh',
   'digit_split_lowtohigh',
   'digit_join_lowtohigh';
@@ -240,15 +241,25 @@ sub rect_to_n_range {
 
 #------------------------------------------------------------------------------
 
-sub _UNDOCUMENTED_level_to_n_range {
+# shared by Math::PlanePath::AR2W2Curve and others
+sub level_to_n_range {
   my ($self, $level) = @_;
   return (0, 4**$level - 1);
 }
+sub n_to_level {
+  my ($self, $n) = @_;
+  if ($n < 0) { return undef; }
+  if (is_infinite($n)) { return $n; }
+  $n = round_nearest($n);
+  my ($pow, $exp) = round_up_pow ($n+1, 4);
+  return $exp;
+}
 
+#------------------------------------------------------------------------------
 1;
 __END__
 
-=for :stopwords Ryde Math-PlanePath PlanePaths OEIS ZOrderCurve ZOrder Peano Gosper's HAKMEM Jorg Arndt's bitwise bignums fxtbook Ueber stetige Abbildung einer Linie auf ein FlE<228>chenstE<252>ck Mathematische Annalen DOI ascii lookup Arndt PlanePath ie
+=for :stopwords Ryde Math-PlanePath PlanePaths OEIS ZOrderCurve ZOrder Peano Gosper's HAKMEM Jorg Arndt's bitwise bignums fxtbook Ueber stetige Abbildung einer Linie auf ein FlE<228>chenstE<252>ck Mathematische Annalen DOI ascii lookup Arndt PlanePath ie Sergey Kitaev Toufik Mansour Automata Combinatorics Preprint
 
 =head1 NAME
 
@@ -373,6 +384,16 @@ returns N.
 
 The returned range is exact, meaning C<$n_lo> and C<$n_hi> are the smallest
 and biggest in the rectangle.
+
+=back
+
+=head2 Level Methods
+
+=over
+
+=item C<($n_lo, $n_hi) = $path-E<gt>level_to_n_range($level)>
+
+Return C<(0, 4**$level - 1)>.
 
 =back
 
@@ -559,6 +580,7 @@ successive expansion levels.
     d(2,k) = 4^(k-1) + 2^(k-1) - 1  = 1,5,19,71,271,1055,4159,...
     d(3,k) = 4^(k-1)                = 1,4,16,64,256,1024,4096,...
     d(4,k) = 4^(k-1) - 2^(k-1)      = 0,2,12,56,240, 992,4032,...
+                             (A000302, A099393, A000302, A020522)
 
     total segments d(1,k)+d(2,k)+d(3,k)+d(4,k) = 4^k - 1
 
@@ -567,7 +589,7 @@ means a transpose 1E<lt>-E<gt>2 and 3E<lt>-E<gt>4 in odd levels.  The result
 is to take the alternate d values as follows.  For k=0 there is a single
 point N=0 so no line segments at all and so c(dir,0)=0.
 
-    points N=0 to N=4^k-1 inclusive
+    first 4^k-1 segments
 
     c(1,k) = / 0                        if k=0
      North   | 4^(k-1) + 2^(k-1) - 1    if k odd >= 1
@@ -600,10 +622,15 @@ c(1,k) and c(2,k) if desired.
 # (d2(k) = 4^(k-1) + 2^(k-1) - 1); for(k=0,8,print1(d2(k),","))
 # (d3(k) = 4^(k-1));               for(k=0,8,print1(d3(k),","))
 # (d4(k) = 4^(k-1) - 2^(k-1));     for(k=0,8,print1(d4(k),","))
-# (c1(k) = if(k==0,0,if(k%2,d1(k),d2(k)))); for(k=0,8,print1(c1(k),", "))
-# (c2(k) = if(k==0,1,if(k%2,d2(k),d1(k)))); for(k=0,8,print1(c2(k),", "))
+# (c1(k) = if(k==0,0,if(k%2,d2(k),d1(k)))); for(k=0,8,print1(c1(k),", "))
+# (c2(k) = if(k==0,1,if(k%2,d1(k),d2(k)))); for(k=0,8,print1(c2(k),", "))
 # (c3(k) = if(k==0,0,if(k%2,d3(k),d4(k)))); for(k=0,8,print1(c3(k),", "))
 # (c4(k) = if(k==0,0,if(k%2,d4(k),d3(k)))); for(k=0,8,print1(c4(k),", "))
+#
+# N=0 to N=4^k so first 4^k segments
+# (east4k(k) = c2(k) + if(k>=2&&k%2==0,1,0)); for(k=0,8,print1(east4k(k),", "))
+# 1,1,6,16,72,256,1056,4096,16512, 
+# 1,1,6,16,72,256,1056,4096
 
 =pod
 
@@ -630,10 +657,25 @@ On that basis the Hamming distance X,Y is the number of base4 digits of N
 which are 01 or 11.  If bit positions are counted from 0 for the least
 significant bit then
 
+    X,Y coordinates of N
     HammingDist(X,Y) = count 1-bits at even bit positions in N    
+                     = 0,1,0,1, 1,2,1,2, 0,1,0,1, 1,2,1,2, ... (A139351)
 
 See also L<Math::PlanePath::CornerReplicate/Hamming Distance> which has the
 same formula, but arising directly from 01 or 11, no transpose or rotate.
+
+=cut
+
+# (d1(k) = 4^(k-1));               for(k=0,8,print1(d1(k),","))
+# (d2(k) = 4^(k-1) + 2^(k-1) - 1); for(k=0,8,print1(d2(k),","))
+# (d3(k) = 4^(k-1));               for(k=0,8,print1(d3(k),","))
+# (d4(k) = 4^(k-1) - 2^(k-1));     for(k=0,8,print1(d4(k),","))
+# (c1(k) = if(k==0,0,if(k%2,d1(k),d2(k)))); for(k=0,8,print1(c1(k),", "))
+# (c2(k) = if(k==0,1,if(k%2,d2(k),d1(k)))); for(k=0,8,print1(c2(k),", "))
+# (c3(k) = if(k==0,0,if(k%2,d3(k),d4(k)))); for(k=0,8,print1(c3(k),", "))
+# (c4(k) = if(k==0,0,if(k%2,d4(k),d3(k)))); for(k=0,8,print1(c4(k),", "))
+
+=pod
 
 =head1 OEIS
 
@@ -645,12 +687,12 @@ L<http://oeis.org/A059252> (etc)
 
 =back
 
-    A059252    Y coord
     A059253    X coord
+    A059252    Y coord
     A059261    X+Y
     A059285    X-Y
-    A163547    X^2+Y^2 radius squared
-    A139351    HammingDist(X,Y), count 1-bits at even positions in N
+    A163547    X^2+Y^2 = radius squared
+    A139351    HammingDist(X,Y)
 
     A163365    sum N on diagonal
     A163477    sum N on diagonal, divided by 4
@@ -665,7 +707,7 @@ L<http://oeis.org/A059252> (etc)
     A163542    relative direction (ahead=0,right=1,left=2)
     A163543    relative direction, swapped X,Y
 
-    A083885    count East segments N=0 to N=4^k
+    A083885    count East segments N=0 to N=4^k (first 4^k segs)
 
     A163900    distance dX^2+dY^2 between Hilbert and ZOrder
     A165464    distance dX^2+dY^2 between Hilbert and Peano
@@ -745,7 +787,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

@@ -1,12 +1,11 @@
 package Moo::Role;
 
-use strictures 1;
+use Moo::_strictures;
 use Moo::_Utils;
 use Role::Tiny ();
-use base qw(Role::Tiny);
-use Import::Into;
+our @ISA = qw(Role::Tiny);
 
-our $VERSION = '1.005000';
+our $VERSION = '2.000001';
 $VERSION = eval $VERSION;
 
 require Moo::sification;
@@ -31,8 +30,10 @@ sub _install_tracked {
 sub import {
   my $target = caller;
   my ($me) = @_;
+
   _set_loaded(caller);
-  strictures->import::into(1);
+  strict->import;
+  warnings->import;
   if ($Moo::MAKERS{$target} and $Moo::MAKERS{$target}{is_class}) {
     die "Cannot import Moo::Role into a Moo class";
   }
@@ -323,7 +324,7 @@ sub apply_roles_to_object {
 
       my $specs = $con_gen->all_attribute_specs;
 
-      my $assign = '';
+      my $assign = "{no warnings 'void';\n";
       my %captures;
       foreach my $name ( keys %attrs ) {
         my $spec = $specs->{$name};
@@ -333,11 +334,12 @@ sub apply_roles_to_object {
           my ($code, $pop_cap)
             = $m->generate_use_default('$_[0]', $name, $spec, $has);
 
-          $assign .= $code;
+          $assign .= $code . ";\n";
           @captures{keys %$has_cap, keys %$pop_cap}
             = (values %$has_cap, values %$pop_cap);
         }
       }
+      $assign .= "}";
       Sub::Quote::quote_sub($assign, \%captures);
     }
     else {
@@ -361,19 +363,50 @@ sub _install_single_modifier {
   _install_modifier(@args);
 }
 
+sub _install_does {
+    my ($me, $to) = @_;
+
+    # If Role::Tiny actually installed the DOES, give it a name
+    my $new = $me->SUPER::_install_does($to) or return;
+    return _name_coderef("${to}::DOES", $new);
+}
+
+sub does_role {
+  my ($proto, $role) = @_;
+  return 1
+    if Role::Tiny::does_role($proto, $role);
+  my $meta;
+  if ($INC{'Moose.pm'}
+      and $meta = Class::MOP::class_of($proto)
+      and ref $meta ne 'Moo::HandleMoose::FakeMetaClass'
+  ) {
+    return $meta->does_role($role);
+  }
+  return 0;
+}
+
 sub _handle_constructor {
   my ($me, $to, $role) = @_;
   my $attr_info = $INFO{$role} && $INFO{$role}{attributes};
   return unless $attr_info && @$attr_info;
-  if ($INFO{$to}) {
-    push @{$INFO{$to}{attributes}||=[]}, @$attr_info;
-  } else {
-    # only fiddle with the constructor if the target is a Moo class
-    if ($INC{"Moo.pm"}
-        and my $con = Moo->_constructor_maker_for($to)) {
-      # shallow copy of the specs since the constructor will assign an index
-      $con->register_attribute_specs(map ref() ? { %$_ } : $_, @$attr_info);
-    }
+  my $info = $INFO{$to};
+  my $con = $INC{"Moo.pm"} && Moo->_constructor_maker_for($to);
+  my %existing
+    = $info ? @{$info->{attributes} || []}
+    : $con  ? %{$con->all_attribute_specs || {}}
+    : ();
+
+  my @attr_info =
+    map { @{$attr_info}[$_, $_+1] }
+    grep { ! $existing{$attr_info->[$_]} }
+    map { 2 * $_ } 0..@$attr_info/2-1;
+
+  if ($info) {
+    push @{$info->{attributes}||=[]}, @attr_info;
+  }
+  elsif ($con) {
+    # shallow copy of the specs since the constructor will assign an index
+    $con->register_attribute_specs(map ref() ? { %$_ } : $_, @attr_info);
   }
 }
 
@@ -389,6 +422,7 @@ Moo::Role - Minimal Object Orientation support for Roles
  package My::Role;
 
  use Moo::Role;
+ use strictures 2;
 
  sub foo { ... }
 
@@ -405,6 +439,7 @@ And elsewhere:
  package Some::Class;
 
  use Moo;
+ use strictures 2;
 
  # bar gets imported, but not foo
  with('My::Role');
