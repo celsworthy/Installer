@@ -291,7 +291,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Windows/Slic3r</origin>
+                            <origin>Slicer/Windows/x86/Slic3r</origin>
                         </distributionDirectory>
                         <distributionFile>
                             <origin>icons/STL File.ico</origin>
