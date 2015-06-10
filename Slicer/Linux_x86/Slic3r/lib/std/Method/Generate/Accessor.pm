@@ -1,8 +1,9 @@
 package Method::Generate::Accessor;
 
-use strictures 1;
+use Moo::_strictures;
 use Moo::_Utils;
-use base qw(Moo::Object);
+use Moo::Object ();
+our @ISA = qw(Moo::Object);
 use Sub::Quote qw(quote_sub quoted_from_sub quotify);
 use Scalar::Util 'blessed';
 use overload ();
@@ -22,19 +23,6 @@ BEGIN {
 }
 
 my $module_name_only = qr/\A$Module::Runtime::module_name_rx\z/;
-
-sub _SIGDIE
-{
-  our ($CurrentAttribute, $OrigSigDie);
-  my $sigdie = $OrigSigDie && $OrigSigDie != \&_SIGDIE
-    ? $OrigSigDie
-    : sub { die $_[0] };
-
-  return $sigdie->(@_) if ref($_[0]);
-
-  my $attr_desc = _attr_desc(@$CurrentAttribute{qw(name init_arg)});
-  $sigdie->("$CurrentAttribute->{step} for $attr_desc failed: $_[0]");
-}
 
 sub _die_overwrite
 {
@@ -81,6 +69,16 @@ sub generate_method {
   }
   if (($spec->{trigger}||0) eq 1) {
     $spec->{trigger} = quote_sub('shift->_trigger_'.$name.'(@_)');
+  }
+  if (($spec->{coerce}||0) eq 1) {
+    my $isa = $spec->{isa};
+    if (blessed $isa and $isa->can('coercion')) {
+      $spec->{coerce} = $isa->coercion;
+    } elsif (blessed $isa and $isa->can('coerce')) {
+      $spec->{coerce} = sub { $isa->coerce(@_) };
+    } else {
+      die "Invalid coercion for $into->$name - no appropriate type constraint";
+    }
   }
 
   for my $setting (qw( isa coerce )) {
@@ -387,11 +385,12 @@ sub _attr_desc {
 
 sub _generate_coerce {
   my ($self, $name, $value, $coerce, $init_arg) = @_;
-  $self->_generate_die_prefix(
+  $self->_wrap_attr_exception(
     $name,
     "coercion",
     $init_arg,
-    $self->_generate_call_code($name, 'coerce', "${value}", $coerce)
+    $self->_generate_call_code($name, 'coerce', "${value}", $coerce),
+    1,
   );
 }
 
@@ -414,23 +413,40 @@ sub generate_isa_check {
   ($code, delete $self->{captures});
 }
 
-sub _generate_die_prefix {
-  my ($self, $name, $prefix, $arg, $inside) = @_;
+sub _wrap_attr_exception {
+  my ($self, $name, $step, $arg, $code, $want_return) = @_;
+  my $prefix = quotify("${step} for "._attr_desc($name, $arg).' failed: ');
   "do {\n"
-  .'  local $Method::Generate::Accessor::CurrentAttribute = {'
-  .'    init_arg => '.(defined $arg ? quotify($arg) : 'undef') . ",\n"
+  .'  local $Method::Generate::Accessor::CurrentAttribute = {'."\n"
+  .'    init_arg => '.quotify($arg).",\n"
   .'    name     => '.quotify($name).",\n"
-  .'    step     => '.quotify($prefix).",\n"
+  .'    step     => '.quotify($step).",\n"
   ."  };\n"
-  .'  local $Method::Generate::Accessor::OrigSigDie = $SIG{__DIE__};'."\n"
-  .'  local $SIG{__DIE__} = \&Method::Generate::Accessor::_SIGDIE;'."\n"
-  .$inside
+  .($want_return ? '  my $_return;'."\n" : '')
+  .'  my $_error;'."\n"
+  ."  {\n"
+  .'    my $_old_error = $@;'."\n"
+  ."    if (!eval {\n"
+  .'      $@ = $_old_error;'."\n"
+  .($want_return ? '      $_return ='."\n" : '')
+  .'      '.$code.";\n"
+  ."      1;\n"
+  ."    }) {\n"
+  .'      $_error = $@;'."\n"
+  .'      if (!ref $_error) {'."\n"
+  .'        $_error = '.$prefix.'.$_error;'."\n"
+  ."      }\n"
+  ."    }\n"
+  .'    $@ = $_old_error;'."\n"
+  ."  }\n"
+  .'  die $_error if $_error;'."\n"
+  .($want_return ? '  $_return;'."\n" : '')
   ."}\n"
 }
 
 sub _generate_isa_check {
   my ($self, $name, $value, $check, $init_arg) = @_;
-  $self->_generate_die_prefix(
+  $self->_wrap_attr_exception(
     $name,
     "isa check",
     $init_arg,

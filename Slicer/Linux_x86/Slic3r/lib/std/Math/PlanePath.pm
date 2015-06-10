@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -15,102 +15,12 @@
 # You should have received a copy of the GNU General Public License along
 # with Math-PlanePath.  If not, see <http://www.gnu.org/licenses/>.
 
-
-# Maybe:
-#
-# ($x,$y) = $path->xy_start()   x,y at n_start
-
-# $bool = $path->is_tree()
-
-# ($depth,$offset) = $path->tree_n_to_depth_and_offset
-#
-# $bool = $path->rect_to_n_range_is_always_exact()
-# $bool = $path->tree_n_to_subheight_is_infinite()
-#    identifying the infinite spines only
-#
-# tree_n_ordered_children() $n and undefs
-#   SierpinskiTree,ToothpickTree left and right
-#   OneOfEight 3 from horiz, 5 from diag
-#
-# gcdxy_minimum
-# gcdxy_maximum
-# productxy_minimum
-# trsquared_minimum
-# trsquared_minimum
-#
-# level_to_n_range()  0 to 2^k-1 centres
-#                     0 to 2^k   dragon segments
-# ring_to_n_range()   2^(k-1) to 2^k-1  koch peaks
-# ($x1,$y1, $x2,$y2) = n_to_rect($n)     integer points
-# ($s1,$s1, $d2,$d2) = n_to_diamond($n)     integer points
-#      cf fractional part Diagonals outside integer area
-# n_to_figure_boundary
-# n_to_hull_boundary
-# n_to_hull_area
-# n_to_enclosed_area
-# n_to_enclosed_boundary
-# n_to_right_enclosed_boundary
-# n_to_left_enclosed_boundary
-
-# $path->xy_integer() if X,Y both all integer
-# $path->x_integer()  if X all integer
-# $path->y_integer()  if Y all integer
-# $path->xy_integer_n_start
-#
-# xy_all_coprime() xy_coprime()   gcd(X,Y)=1 always
-# xy_all_divisible()   X divisible by Y
-# xy_any_even
-# xy_any_odd
-# xy_all_even
-# xy_all_odd
-# xy_parity_minimum() X+Y mod 2
-# xy_parity_maximum() X+Y mod 2
-# xy_parity "even" "odd" "both"
-# xy_hexlattice_type "centred" "side_horiz"
-# xy_triangular_lattice "", "even", "odd
-#
-# lattice_type square,triangular,triangular_odd,pentagonal,fractional
-# $path->xy_any_odd()   xy_odd()   xy_all_odd()
-# $path->xy_any_even()  xy_even()  xy_all_even()
-#
-# $path->turn_any_left
-# $path->turn_any_right
-# $path->turn_any_straight
-# $path->n_to_turn_lsr
-# $path->n_to_dir4
-# $path->n_to_turn4
-# $path->n_to_turn6
-# $path->n_to_turn8
-# $path->n_to_ddist
-# $path->n_to_drsquared
-# $path->xy_to_dir4_list
-# $path->xy_to_dxdy_list
-# $path->xy_to_n_list_maxcount
-# $path->xy_to_n_list_maxnum
-# $path->xy_to_n_list_maximum
-# $path->xy_next_in_rect($x,$y, $x1,$y1,$x2,$y2)
-#    return ($x,$y) or empty
-# $path->xy_to_dxdy() or dxdy_list if multiple maybe
-#
-# xy_unique_n_start
-# figures_disjoint
-# figures_disjoint_n_start
-#         separate
-#         unoverlapped
-#
-# Math::PlanePath::Base::Generic
-#   divrem
-#   divrem_mutate
-#
-
-
-#------------------------------------------------------------------------------
 package Math::PlanePath;
 use 5.004;
 use strict;
 
 use vars '$VERSION';
-$VERSION = 116;
+$VERSION = 119;
 
 # uncomment this to run the ### lines
 # use Smart::Comments;
@@ -403,6 +313,39 @@ sub n_to_radius {
   return (defined $rsquared ? sqrt($rsquared) : undef);
 }
 
+sub xyxy_to_n {
+  my ($self, $x1,$y1, $x2,$y2) = @_;
+  my $arms = $self->arms_count;
+  my $n;
+  foreach my $n1 ($self->xy_to_n_list($x1,$y1)) {
+    foreach my $n2 ($self->xy_to_n_list($x2,$y2)) {
+      if ($n2 == $n1 + $arms) {
+        if (! defined $n || $n1 < $n) {
+          $n = $n1;
+        }
+        last;  # go to next $n1
+      }
+    }
+  }
+  return $n;
+}
+sub xyxy_to_n_either {
+  my ($self, $x1,$y1, $x2,$y2) = @_;
+  my $arms = $self->arms_count;
+  my $n;
+  foreach my $n1 ($self->xy_to_n_list($x1,$y1)) {
+    foreach my $n2 ($self->xy_to_n_list($x2,$y2)) {
+      if (abs($n1-$n2) == $arms) {
+        my $m = ($n1 < $n2 ? $n1 : $n2);
+        if (! defined $n || $m < $n) {
+          $n = $m;
+        }
+      }
+    }
+  }
+  return $n;
+}
+
 #------------------------------------------------------------------------------
 # tree
 
@@ -448,6 +391,7 @@ sub tree_depth_to_n_end {
   my ($self, $depth) = @_;
   if ($depth >= 0
       && defined (my $n = $self->tree_depth_to_n($depth+1))) {
+    ### tree_depth_to_n_end(): $depth, $n
     return $n-1;
   } else {
     return undef;
@@ -546,6 +490,13 @@ sub tree_n_root {
 # }
 
 #------------------------------------------------------------------------------
+# levels
+
+use constant level_to_n_range => ();
+use constant n_to_level => undef;
+
+
+#------------------------------------------------------------------------------
 # shared internals
 
 sub _max {
@@ -618,7 +569,7 @@ sub _divrem_mutate {
 1;
 __END__
 
-=for stopwords PlanePath Ryde Math-PlanePath Math-PlanePath-Toothpick 7-gonals 8-gonal (step+2)-gonal heptagonals octagonals bignum multi-arm eg PerlMagick NaN NaNs subclasses incrementing arrayref hashref filename enum radix ie dX dY dX,dY Rsquared radix SUBCLASSING Ns onwards supremum radix radix-1 octant dSum dDiffXY RSquared
+=for stopwords PlanePath Ryde Math-PlanePath Math-PlanePath-Toothpick 7-gonals 8-gonal (step+2)-gonal heptagonals octagonals bignum multi-arm eg PerlMagick NaN NaNs subclasses incrementing arrayref hashref filename enum radix ie dX dY dX,dY Rsquared radix SUBCLASSING Ns onwards supremum radix radix-1 octant dSum dDiffXY RSquared Manhatten SumAbs infimum
 
 =head1 NAME
 
@@ -928,6 +879,21 @@ Return true if C<$x,$y> is visited.  This is equivalent to
 Some paths cover the plane and for them C<xy_is_visited()> is always true.
 For others it might be less work to test a point than to calculate its
 C<$n>.
+
+=item C<$n = $path-E<gt>xyxy_to_n($x1,$y1, $x2,$y2)>
+
+=item C<$n = $path-E<gt>xyxy_to_n_either($x1,$y1, $x2,$y2)>
+
+Return <$n> which goes from C<$x1,$y1> to C<$x2,$y2>.  <$n> is at
+C<$x1,$y1> and C<$n+1> is at C<$x2,$y2>.  For a multi-arm path C<$n+$arms>
+so a step along the same arm.  If there's no such C<$n> then return
+C<undef>.
+
+For C<xyxy_to_n_either()> the <$n> can be either direction, so C<$x1,$y1>
+to C<$x2,$y2> or the other way C<$x2,$y2> to C<$x1,$y1>.
+
+The possible N values at each X,Y are determined the same way as for
+C<xy_to_n()>.
 
 =item C<($n_lo, $n_hi) = $path-E<gt>rect_to_n_range ($x1,$y1, $x2,$y2)>
 
@@ -1430,6 +1396,32 @@ occurs then there are leaf nodes.
 
 Some trees may have no leaf nodes, for example in the complete binary tree
 of C<RationalsTree> every node always has 2 children.
+
+=back
+
+=head2 Level Methods
+
+=over
+
+=item C<level = $path-E<gt>n_to_level($n)>
+
+Return the replication level containing C<$n>.  The first level is 0.
+
+=item C<($n_lo,$n_hi) = $path-E<gt>level_to_n_range($level)>
+
+Return the range of N values, inclusive, which comprise a self-similar
+replication level in C<$path>.  If C<$path> has no notion of such levels
+then return an empty list.
+
+    my ($n_lo, $n_hi) = $path->level_to_n_range(6)
+      or print "no levels in this path";
+
+For example the C<DragonCurve> has levels running C<0> to C<2**$level>, or
+the C<HilbertCurve> is C<0> to C<4**$level - 1>.  Most levels are powers
+like this.  A power C<2**$level> is a "vertex" style whereas C<2**$level -
+1> is a "centre" style.  The difference is generally whether the X,Y points
+represent vertices of the object's segments as opposed to centres or
+midpoints.
 
 =back
 
@@ -1954,10 +1946,12 @@ described in L</N to dX,dY -- Fractional>.  For some paths the calculation
 of turn or direction at ceil(N) can be worked into a calculation of the
 direction at floor(N) so not much more work.
 
-The following method has a base implementation calling C<xy_to_n()>.
-A subclass can implement is directly if it can be done more efficiently.
+The following methods have base implementations calling C<xy_to_n()>.
+A subclass can implement is directly if they can be done more efficiently.
 
-    xy_is_visited()     defined(xy_to_n($x,$y))
+    xy_is_visited()       defined(xy_to_n($x,$y))
+    xyxy_to_n()           calls xy_to_n_list()
+    xyxy_to_n_either()    calls xy_to_n_list()
 
 Paths such as C<SquareSpiral> which fill the plane have C<xy_is_visited()>
 always true, so for them
@@ -2209,3 +2203,92 @@ You should have received a copy of the GNU General Public License along with
 Math-PlanePath.  If not, see <http://www.gnu.org/licenses/>.
 
 =cut
+
+#------------------------------------------------------------------------------
+# Maybe:
+#
+
+
+#------------------------------------------------------------------------------
+# ($x,$y) = $path->xy_start()   x,y at n_start
+
+# ($depth,$offset) = $path->tree_n_to_depth_and_offset
+#
+# $bool = $path->rect_to_n_range_is_always_exact()
+# $bool = $path->tree_n_to_subheight_is_infinite()
+#    identifying the infinite spines only
+#
+# tree_n_ordered_children() $n and undefs
+#   SierpinskiTree,ToothpickTree left and right
+#   OneOfEight 3 from horiz, 5 from diag
+#
+# gcdxy_minimum
+# gcdxy_maximum
+# mulxy_minimum
+# trsquared_minimum
+# trsquared_minimum
+#
+# ring_to_n_range()   2^(k-1) to 2^k-1  koch peaks
+# ($x1,$y1, $x2,$y2) = n_to_rect($n)     integer points
+# ($s1,$s1, $d2,$d2) = n_to_diamond($n)     integer points
+#      cf fractional part Diagonals outside integer area
+# n_to_figure_boundary
+# n_to_hull_boundary
+# n_to_hull_area
+# n_to_enclosed_area
+# n_to_enclosed_boundary
+# n_to_right_enclosed_boundary
+# n_to_left_enclosed_boundary
+
+# $path->xy_integer() if X,Y both all integer
+# $path->x_integer()  if X all integer
+# $path->y_integer()  if Y all integer
+# $path->xy_integer_n_start
+#
+# xy_all_coprime() xy_coprime()   gcd(X,Y)=1 always
+# xy_all_divisible()   X divisible by Y
+# xy_any_even
+# xy_any_odd
+# xy_all_even
+# xy_all_odd
+# xy_parity_minimum() X+Y mod 2
+# xy_parity_maximum() X+Y mod 2
+# xy_parity "even" "odd" "both"
+# xy_hexlattice_type "centred" "side_horiz"
+# xy_triangular_lattice "", "even", "odd
+#
+# lattice_type square,triangular,triangular_odd,pentagonal,fractional
+# $path->xy_any_odd()   xy_odd()   xy_all_odd()
+# $path->xy_any_even()  xy_even()  xy_all_even()
+#
+# $path->turn_any_left
+# $path->turn_any_right
+# $path->turn_any_straight
+# $path->n_to_turn_lsr
+# $path->n_to_dir4
+# $path->n_to_turn4
+# $path->n_to_turn6
+# $path->n_to_turn8
+# $path->n_to_ddist
+# $path->n_to_drsquared
+# $path->xy_to_dxdy() or xy_to_dxdy_list() if multiple
+# $path->xy_to_dir4_list
+# $path->xy_to_dxdy_list
+# $path->xy_n_list_maxcount
+# $path->xy_n_list_maxnum
+# $path->xy_n_list_maximum
+# $path->xy_next_in_rect($x,$y, $x1,$y1,$x2,$y2)
+#    return ($x,$y) or empty
+
+#------------------------------------------------------------------------------
+# xy_unique_n_start
+# figures_disjoint
+# figures_disjoint_n_start
+#         separate
+#         unoverlapped
+
+#------------------------------------------------------------------------------
+# Math::PlanePath::Base::Generic
+#   divrem
+#   divrem_mutate
+#

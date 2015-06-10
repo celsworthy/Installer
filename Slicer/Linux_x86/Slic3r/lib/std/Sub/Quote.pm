@@ -1,18 +1,18 @@
 package Sub::Quote;
 
-use strictures 1;
-
 sub _clean_eval { eval $_[0] }
 
-use Sub::Defer;
+use Moo::_strictures;
+
+use Sub::Defer qw(defer_sub);
 use Scalar::Util qw(weaken);
-use base qw(Exporter);
+use Exporter qw(import);
 use B ();
 BEGIN {
   *_HAVE_PERLSTRING = defined &B::perlstring ? sub(){1} : sub(){0};
 }
 
-our $VERSION = '1.005000';
+our $VERSION = '2.000001';
 $VERSION = eval $VERSION;
 
 our @EXPORT = qw(quote_sub unquote_sub quoted_from_sub qsub);
@@ -44,17 +44,15 @@ sub inlinify {
   if ($code =~ s/^(\s*package\s+([a-zA-Z0-9:]+);)//) {
     $do .= $1;
   }
-  if ($code =~ s{(\A\s*|\A# BEGIN quote_sub PRELUDE\n.*?# END quote_sub PRELUDE\n\s*)(^\s*)(my\s*\(([^)]+)\)\s*=\s*\@_;)$}{
-    my ($pre, $indent, $assign, $code_args) = ($1, $2, $3, $4);
-    if ($code_args eq $args) {
-      $pre . $indent . ($local ? 'local ' : '').'@_ = ('.$args.");\n"
-      . $indent . $assign;
+  if ($code =~ s{
+    \A((?:\#\ BEGIN\ quote_sub\ PRELUDE\n.*?\#\ END\ quote_sub\ PRELUDE\n)?\s*)
+    (^\s*) my \s* \(([^)]+)\) \s* = \s* \@_;
+  }{}xms) {
+    my ($pre, $indent, $code_args) = ($1, $2, $3);
+    $do .= $pre;
+    if ($code_args ne $args) {
+      $do .= $indent . 'my ('.$code_args.') = ('.$args.'); ';
     }
-    else {
-      $pre . 'my ('.$code_args.') = ('.$args.'); ';
-    }
-  }mse) {
-    #done
   }
   elsif ($local || $args ne '@_') {
     $do .= ($local ? 'local ' : '').'@_ = ('.$args.'); ';
@@ -267,7 +265,7 @@ version for convenience.
  my $prelude = capture_unroll '$captures', {
    '$x' => 1,
    '$y' => 2,
- };
+ }, 4;
 
  my $inlined_code = inlinify q{
    my ($x, $y) = @_;

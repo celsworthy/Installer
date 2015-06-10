@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -25,7 +25,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION','@ISA','@EXPORT_OK';
-$VERSION = 116;
+$VERSION = 119;
 
 use Exporter;
 @ISA = ('Exporter');
@@ -33,7 +33,8 @@ use Exporter;
               'bit_split_lowtohigh',
               'digit_split_lowtohigh',
               'digit_join_lowtohigh',
-              'round_down_pow');
+              'round_down_pow',
+              'round_up_pow');
 
 # uncomment this to run the ### lines
 # use Smart::Comments;
@@ -53,7 +54,7 @@ use constant parameter_info_array => [ parameter_info_radix2() ];
 
 #------------------------------------------------------------------------------
 
-# ENHANCE-ME: Occasionally the $pow value is not wanted,
+# ENHANCE-ME: Sometimes the $pow value is not wanted,
 # eg. SierpinskiArrowhead, though that tends to be approximation code rather
 # than exact range calculations etc.
 #
@@ -74,7 +75,7 @@ sub round_down_pow {
     if ($n->isa('Math::BigRat')) {
       $n = int($n);
     }
-    if ($n->isa('Math::BigInt')) {
+    if ($n->isa('Math::BigInt') || $n->isa('Math::BigInt::Lite')) {
       ### use blog() ...
       my $exp = $n->copy->blog($base);
       ### exp: "$exp"
@@ -93,11 +94,66 @@ sub round_down_pow {
   # rounding in log()/log($base)
   # Crib: $n as first arg in case $n==BigFloat and $pow==BigInt
   if ($n < $pow) {
-    ### hmm, int(log) too big, decrease...
+    ### hmm, int(log) too big, decrease ...
     $exp -= 1;
     $pow = $base**$exp;
   } elsif ($n >= $base*$pow) {
-    ### hmm, int(log) too small, increase...
+    ### hmm, int(log) too small, increase ...
+    $exp += 1;
+    $pow *= $base;
+  }
+  return ($pow, $exp);
+}
+
+sub round_up_pow {
+  my ($n, $base) = @_;
+  ### round_up_pow(): "$n base $base"
+
+  # only for integer bases
+  ### assert: $base == int($base)
+
+  if ($n < 1) {
+    return (1, 0);
+  }
+
+  # Math::BigInt and Math::BigRat overloaded log() return NaN, use integer
+  # based blog()
+  if (ref $n) {
+    ### $n
+    if ($n->isa('Math::BigRat')) {
+      $n = int($n);
+    }
+    if ($n->isa('Math::BigInt') || $n->isa('Math::BigInt::Lite')) {
+      ### use blog(): ref $n
+      my $exp = $n->copy->blog($base);
+      ### exp: $exp
+
+      my $pow = (ref $n)->new(1)->blsft($exp,$base);
+      # Crib: must have $n first to have Math::BigInt::Lite method preferred
+      if ($n > $pow) {
+        ### blog too small, increase ...
+        $pow *= $base;
+        $exp += 1;
+      }
+      return ($pow, $exp);
+    }
+  }
+
+  my $exp = int(log($n)/log($base) + 1);
+  my $pow = $base**$exp;
+  ### n:   ref($n)."  $n"
+  ### exp: ref($exp)."  $exp"
+  ### pow: ref($pow)."  $pow"
+
+  # check how $pow actually falls against $n, not sure should trust float
+  # rounding in log()/log($base)
+  # Crib: $n as first arg in case $n==BigFloat and $pow==BigInt
+  if ($exp > 0 && $n <= $pow/$base) {
+    ### hmm, int(log) too big, decrease...
+    $exp -= 1;
+    $pow = $base**$exp;
+  } elsif ($n > $pow) {
+    ### hmm, int(log)+1 too small, increase...
     $exp += 1;
     $pow *= $base;
   }
@@ -258,9 +314,17 @@ usual L<Exporter> style,
 
 =over 4
 
+=item C<($power, $exponent) = round_up_pow ($n, $radix)>
+
 =item C<($power, $exponent) = round_down_pow ($n, $radix)>
 
-Return the power of C<$radix> equal to or less than C<$n>.  For example
+Return the power of C<$radix> equal to or either higher or lower than C<$n>.
+For example
+
+   ($pow, $exp) = round_down_pow (260, 2);
+   # $pow==512  # the next higher power
+   # $exp==9    # the exponent in that power
+   # 2**9=512 is next above 260
 
    ($pow, $exp) = round_down_pow (260, 2);
    # $pow==256  # the next lower power
@@ -369,7 +433,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

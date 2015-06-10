@@ -4,8 +4,9 @@ require 5.005;  # 4-arg substr
 
 use strict;
 use vars qw($VERSION);
+use URI;
 
-$VERSION = "6.00";
+$VERSION = "6.07";
 
 my $CRLF = "\015\012";   # "\r\n" is not portable
 
@@ -44,20 +45,30 @@ sub http_configure {
 	$cnf->{PeerAddr} = $peer = $host;
     }
 
-    if ($peer =~ s,:(\d+)$,,) {
-	$cnf->{PeerPort} = int($1);  # always override
-    }
-    if (!$cnf->{PeerPort}) {
-	$cnf->{PeerPort} = $self->http_default_port;
-    }
+    # CONNECTIONS
+    # PREFER: port number from PeerAddr, then PeerPort, then http_default_port
+    my $peer_uri = URI->new("http://$peer");
+    $cnf->{"PeerPort"} =  $peer_uri->_port || $cnf->{PeerPort} ||  $self->http_default_port;
+    $cnf->{"PeerAddr"} = $peer_uri->host;
 
-    if (!$explict_host) {
-	$host = $peer;
-	$host =~ s/:.*//;
-    }
-    if ($host && $host !~ /:/) {
-	my $p = $cnf->{PeerPort};
-	$host .= ":$p" if $p != $self->http_default_port;
+    # HOST header:
+    # If specified but blank, ignore.
+    # If specified with a value, add the port number
+    # If not specified, set to PeerAddr and port number
+    # ALWAYS: If IPv6 address, use [brackets]  (thanks to the URI package)
+    # ALWAYS: omit port number if http_default_port
+    if (($host) || (! $explict_host)) {
+        my $uri =  ($explict_host) ? URI->new("http://$host") : $peer_uri->clone;
+        if (!$uri->_port) {
+            # Always use *our*  $self->http_default_port  instead of URI's  (Covers HTTP, HTTPS)
+            $uri->port( $cnf->{PeerPort} ||  $self->http_default_port);
+        }
+        my $host_port = $uri->host_port;               # Returns host:port or [ipv6]:port
+        my $remove = ":" . $self->http_default_port;   # we want to remove the default port number
+        if (substr($host_port,0-length($remove)) eq $remove) {
+            substr($host_port,0-length($remove)) = "";
+        }
+        $host = $host_port;
     }
 
     $cnf->{Proto} = 'tcp';
@@ -233,6 +244,7 @@ sub my_read {
 	    return length($_[0]);
 	}
 	else {
+	    die "read timeout" unless $self->can_read;
 	    return $self->sysread($_[0], $len);
 	}
     }
@@ -255,15 +267,10 @@ sub my_readline {
 	    # need to read more data to find a line ending
           READ:
             {
+                die "read timeout" unless $self->can_read;
                 my $n = $self->sysread($_, 1024, length);
                 unless (defined $n) {
-                    redo READ if $!{EINTR};
-                    if ($!{EAGAIN}) {
-                        # Hmm, we must be reading from a non-blocking socket
-                        # XXX Should really wait until this socket is readable,...
-                        select(undef, undef, undef, 0.1);  # but this will do for now
-                        redo READ;
-                    }
+                    redo READ if $!{EINTR} || $!{EAGAIN};
                     # if we have already accumulated some data let's at least
                     # return that as a line
                     die "$what read failed: $!" unless length;
@@ -280,6 +287,38 @@ sub my_readline {
 	my $line = substr($_, 0, $pos+1, "");
 	$line =~ s/(\015?\012)\z// || die "Assert";
 	return wantarray ? ($line, $1) : $line;
+    }
+}
+
+
+sub can_read {
+    my $self = shift;
+    return 1 unless defined(fileno($self));
+    return 1 if $self->isa('IO::Socket::SSL') && $self->pending;
+
+    # With no timeout, wait forever.  An explict timeout of 0 can be
+    # used to just check if the socket is readable without waiting.
+    my $timeout = @_ ? shift : (${*$self}{io_socket_timeout} || undef);
+
+    my $fbits = '';
+    vec($fbits, fileno($self), 1) = 1;
+  SELECT:
+    {
+        my $before;
+        $before = time if $timeout;
+        my $nfound = select($fbits, undef, undef, $timeout);
+        if ($nfound < 0) {
+            if ($!{EINTR} || $!{EAGAIN}) {
+                # don't really think EAGAIN can happen here
+                if ($timeout) {
+                    $timeout -= time - $before;
+                    $timeout = 0 if $timeout < 0;
+                }
+                redo SELECT;
+            }
+            die "select failed: $!";
+        }
+        return $nfound > 0;
     }
 }
 
@@ -415,6 +454,7 @@ sub read_entity_body {
 	    my @te = split(/\s*,\s*/, lc($te));
 	    die "Chunked must be last Transfer-Encoding '$te'"
 		unless pop(@te) eq "chunked";
+	    pop(@te) while @te && $te[-1] eq "chunked";  # ignore repeated chunked spec
 
 	    for (@te) {
 		if ($_ eq "deflate" && inflate_ok()) {
@@ -489,6 +529,7 @@ sub read_entity_body {
 		die "Bad chunk-size in HTTP response: $line";
 	    }
 	    $chunked = hex($1);
+	    ${*$self}{'http_chunked'} = $chunked;
 	    if ($chunked == 0) {
 		${*$self}{'http_trailers'} = [$self->_read_header_lines];
 		$$buf_ref = "";
@@ -536,8 +577,7 @@ sub read_entity_body {
 	my $n = $bytes;
 	$n = $size if $size && $size < $n;
 	$n = my_read($self, $$buf_ref, $n);
-	return undef unless defined $n;
-	${*$self}{'http_bytes'} = $bytes - $n;
+	${*$self}{'http_bytes'} = defined $n ? $bytes - $n : $bytes;
 	return $n;
     }
     else {

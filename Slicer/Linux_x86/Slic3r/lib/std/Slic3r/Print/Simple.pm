@@ -8,7 +8,7 @@ has '_print' => (
     default => sub { Slic3r::Print->new },
     handles => [qw(apply_config extruders expanded_output_filepath
                     total_used_filament total_extruded_volume
-                    placeholder_parser)],
+                    placeholder_parser process)],
 );
 
 has 'duplicate' => (
@@ -34,6 +34,11 @@ has 'duplicate_grid' => (
 has 'status_cb' => (
     is      => 'rw',
     default => sub { sub {} },
+);
+
+has 'print_center' => (
+    is      => 'rw',
+    default => sub { Slic3r::Pointf->new(100,100) },
 );
 
 has 'output_file' => (
@@ -63,7 +68,8 @@ sub set_model {
         # if all input objects have defined position(s) apply duplication to the whole model
         $model->duplicate($self->duplicate, $self->_print->config->min_object_distance);
     }
-    $model->center_instances_around_point($self->_print->config->print_center);
+    $_->translate(0,0,-$_->bounding_box->z_min) for @{$model->objects};
+    $model->center_instances_around_point($self->print_center);
     
     foreach my $model_object (@{$model->objects}) {
         $self->_print->auto_assign_extruders($model_object);
@@ -74,24 +80,21 @@ sub set_model {
 sub _before_export {
     my ($self) = @_;
     
-    $self->_print->status_cb($self->status_cb);
+    $self->_print->set_status_cb($self->status_cb);
     $self->_print->validate;
 }
 
 sub _after_export {
     my ($self) = @_;
     
-    $self->_print->status_cb(undef);
+    $self->_print->set_status_cb(undef);
 }
 
 sub export_gcode {
     my ($self) = @_;
     
     $self->_before_export;
-    
-    $self->_print->process;
     $self->_print->export_gcode(output_file => $self->output_file);
-    
     $self->_after_export;
 }
 
