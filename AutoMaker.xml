@@ -303,7 +303,7 @@
                             <origin>icons/RBX File.ico</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>Slicer/Windows/Cura</origin>
+                            <origin>Slicer/Windows/x86/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
