@@ -275,50 +275,6 @@
                     </distributionFileList>
                 </folder>
                 <folder>
-                    <description>Program Files x86</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileslinuxx86</name>
-                    <platforms>linux</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Linux_x86/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files x64</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileslinuxx64</name>
-                    <platforms>linux-x64</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Linux_x64/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileswindows</name>
-                    <platforms>windows</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Windows/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${commondir}</destination>
-                    <name>programfilesosx</name>
-                    <platforms>osx</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Mac/Slic3r.app</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
                     <description>Binary files - mac</description>
                     <destination>${commondir}/bin</destination>
                     <name>bin_mac</name>
