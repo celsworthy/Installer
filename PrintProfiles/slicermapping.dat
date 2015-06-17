@@ -30,7 +30,7 @@
 			"extrusion_width:0.3",
 			"infill_extruder:1",
 			"interface_shells:0",
-			"nozzle_diameter:0.8",
+			"nozzle_diameter:0.3",
 			"ooze_prevention:0",
 			"overhangs:1",
 			"perimeter_acceleration:0",
