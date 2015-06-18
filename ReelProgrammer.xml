@@ -77,17 +77,17 @@
             <show>1</show>
             <desktopShortcutList>
                 <shortcut>
-                    <comment>Commissionator</comment>
+                    <comment>Reel Programmer</comment>
                     <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>${automakerdir}/Commissionator.ico</icon>
-                    <name>Commissionator</name>
+                    <icon>${automakerdir}/ReelProgrammer.ico</icon>
+                    <name>ReelProgrammer</name>
                     <path></path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/Commissionator.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/ReelProgrammer.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -212,13 +212,13 @@
             </folderList>
             <startMenuShortcutList>
                 <startMenuShortcut>
-                    <comment>Commissionator</comment>
-                    <name>Commissionator</name>
+                    <comment>ReelProgrammer</comment>
+                    <name>ReelProgrammer</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/Commissionator.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/ReelProgrammer.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -348,7 +348,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>launcherName</name>
-            <value>Commissionator</value>
+            <value>ReelProgrammer</value>
         </setInstallerVariable>
         <setInstallerVariable>
             <name>install_desktop_shortcut</name>
@@ -360,7 +360,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/1532f2c4ab/Commissionator-update.xml</value>
+            <value>http://downloads.cel-robox.com:8001/1532f2c4ab/ReelProgrammer-update.xml</value>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
@@ -485,7 +485,7 @@ enable = 0
                     <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
 &lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
-&lt;string&gt;com.CELTech.Commissionator&lt;/string&gt;&lt;/dict&gt;"
+&lt;string&gt;com.CELTech.ReelProgrammer&lt;/string&gt;&lt;/dict&gt;"
            </programArguments>
                     <ruleList>
                         <platformTest>
@@ -527,22 +527,22 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>Commissionator.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>Commissionator.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>ReelProgrammer.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>ReelProgrammer.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${automakerdir}/Commissionator.ico</productDisplayIcon>
+    <productDisplayIcon>${automakerdir}/ReelProgrammer.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
     <splashScreenDelay>3000</splashScreenDelay>
     <startMenuGroupName>${vendor}</startMenuGroupName>
     <style>custom</style>
-    <uninstallerName>Uninstall Commissionator</uninstallerName>
+    <uninstallerName>Uninstall ReelProgrammer</uninstallerName>
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
-    <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
+    <windowsExecutableIcon>ReelProgrammer.ico</windowsExecutableIcon>
+    <windowsUninstallerExecutableIcon>ReelProgrammerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>
         <language>
             <code>en</code>
@@ -574,7 +574,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
-                    <value>${installdir}/${project.shortName}/Commissionator.jar</value>
+                    <value>${installdir}/${project.shortName}/ReelProgrammer.jar</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>commondir</name>
@@ -582,11 +582,11 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_jar</name>
-                    <value>Commissionator.jar</value>
+                    <value>ReelProgrammer.jar</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -596,7 +596,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/Commissionator.png "-Xdock:name=Commissionator"</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Xdock:icon=${automakerdir}/ReelProgrammer.png "-Xdock:name=ReelProgrammer"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
