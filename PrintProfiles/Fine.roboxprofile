@@ -22,7 +22,7 @@
     "name" : null,
     "closedPosition" : 0.0,
     "openPosition" : 1.0,
-    "diameter" : 0.8,
+    "diameter" : 0.3,
     "openOverVolume" : 0.0,
     "preejectionVolume" : 0.0,
     "ejectionVolume" : 0.6,
