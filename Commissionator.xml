@@ -1,7 +1,7 @@
 <project>
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
-    <version>4.9</version>
+    <version></version>
     <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
@@ -109,7 +109,7 @@
                             <origin>Commissionator.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../JarArtifacts/Commissionator.jar</origin>
+                            <origin>../application/target/Commissionator.jar</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_Commissionator.txt</origin>

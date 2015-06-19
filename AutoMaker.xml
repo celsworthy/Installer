@@ -94,7 +94,7 @@
                             <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../JarArtifacts/AutoMaker.jar</origin>
+                            <origin>../application/target/AutoMaker.jar</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_AutoMaker.txt</origin>
