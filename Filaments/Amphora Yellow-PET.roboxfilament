@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® Yellow
+name = Amphora Yellow
 material = PET
 reelID = RBX-PET-YL001
 diameter_mm = 1.75

@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® Orange
+name = Amphora Orange
 material = PET
 reelID = RBX-PET-OR001
 diameter_mm = 1.75

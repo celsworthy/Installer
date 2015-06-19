@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® Light Blue
+name = Amphora Light Blue
 material = PET
 reelID = RBX-PET-BL001
 diameter_mm = 1.75

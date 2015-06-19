@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® Light Green
+name = Amphora Light Green
 material = PET
 reelID = RBX-PET-GR002
 diameter_mm = 1.75

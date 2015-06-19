@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® Crystal Clear
+name = Amphora Crystal Clear
 material = PET
 reelID = RBX-PET-TP001
 diameter_mm = 1.75

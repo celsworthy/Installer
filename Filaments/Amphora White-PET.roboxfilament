@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amphora® White
+name = Amphora White
 material = PET
 reelID = RBX-PET-WH001
 diameter_mm = 1.75
