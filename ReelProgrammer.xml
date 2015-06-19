@@ -107,7 +107,7 @@
                             <origin>ReelProgrammer.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../JarArtifacts/ReelProgrammer.jar</origin>
+                            <origin>../application/target/ReelProgrammer.jar</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_ReelProgrammer.txt</origin>
