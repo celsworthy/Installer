@@ -1,15 +1,16 @@
-#Robox data
-#Fri May 22 15:35:43 BST 2015
-name=Crystal Clear_1
-diameter_mm=1.750
-display_colour=\#FCFBED
-nozzle_temperature_C=230
-first_layer_nozzle_temperature_C=235
-ambient_temperature_C=50
-first_layer_bed_temperature_C=95
-material=ABS
-bed_temperature_C=85
-feed_rate_multiplier=1.000
-reelID=U4391bf2971542c
-filament_multiplier=0.850
-cost_gbp_per_kg = 38.4
+#
+# Robox filament definition file
+#
+name = Crystal Clear
+material = ABS
+reelID = RBX-ABS-TP001
+diameter_mm = 1.75
+filament_multiplier = 0.95
+feed_rate_multiplier = 1.0
+ambient_temperature_C = 50
+first_layer_bed_temperature_C = 95
+bed_temperature_C = 85
+first_layer_nozzle_temperature_C = 235
+nozzle_temperature_C = 230
+display_colour = #FCFBED
+cost_gbp_per_kg = 41.5
