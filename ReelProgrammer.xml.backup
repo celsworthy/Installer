@@ -79,7 +79,7 @@
                 <shortcut>
                     <comment>Reel Programmer</comment>
                     <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
-                    <icon>${automakerdir}/ReelProgrammerIcon.ico</icon>
+                    <icon>${automakerdir}/ReelProgrammer.ico</icon>
                     <name>ReelProgrammer</name>
                     <path></path>
                     <platforms>all</platforms>
@@ -87,7 +87,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/ReelProgrammerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/ReelProgrammer.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -107,7 +107,7 @@
                             <origin>ReelProgrammer.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../application/target/ReelProgrammer.jar</origin>
+                            <origin>../JarArtifacts/ReelProgrammer.jar</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_ReelProgrammer.txt</origin>
@@ -212,13 +212,13 @@
             </folderList>
             <startMenuShortcutList>
                 <startMenuShortcut>
-                    <comment>Reel Programmer</comment>
-                    <name>Reel Programmer</name>
+                    <comment>ReelProgrammer</comment>
+                    <name>ReelProgrammer</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon>${automakerdir}/ReelProgrammerIcon.ico</windowsIcon>
+                    <windowsIcon>${automakerdir}/ReelProgrammer.ico</windowsIcon>
                     <windowsPath></windowsPath>
                     <ruleList>
                         <isTrue>
@@ -527,10 +527,10 @@ enable = 0
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
-    <osxApplicationBundleIcon>ReelProgrammerIcon.icns</osxApplicationBundleIcon>
-    <osxUninstallerApplicationBundleIcon>ReelProgrammerIcon.icns</osxUninstallerApplicationBundleIcon>
+    <osxApplicationBundleIcon>ReelProgrammer.icns</osxApplicationBundleIcon>
+    <osxUninstallerApplicationBundleIcon>ReelProgrammer.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
-    <productDisplayIcon>${automakerdir}/ReelProgrammerIcon.ico</productDisplayIcon>
+    <productDisplayIcon>${automakerdir}/ReelProgrammer.ico</productDisplayIcon>
     <productUrlInfoAbout>www.cel-robox.com</productUrlInfoAbout>
     <saveRelativePaths>1</saveRelativePaths>
     <showFileUnpackingProgress>0</showFileUnpackingProgress>
@@ -541,7 +541,7 @@ enable = 0
     <vendor>C Enterprise (UK) Limited</vendor>
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
-    <windowsExecutableIcon>ReelProgrammerIcon.ico</windowsExecutableIcon>
+    <windowsExecutableIcon>ReelProgrammer.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>ReelProgrammerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>
         <language>
