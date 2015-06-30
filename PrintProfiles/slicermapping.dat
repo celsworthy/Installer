@@ -149,18 +149,7 @@
 			"posx:0",
 			"posy:0",
 			"multiVolumeOverlap:150",
-			"skirtDistance:0",
-			"raftLineSpacing:2000",
-			"raftMargin:3000",
-			"raftSurfaceLineSpacing:300",
-			"raftInterfaceLineSpacing:800",
-			"raftSurfaceSpeed:15", 
-			"raftFanSpeed:100", 
-			"raftSurfaceThickness:270", 
-			"raftBaseSpeed:15",
-			"raftSurfaceLinewidth:300",
-			"raftInterfaceLinewidth:400",
-			"raftInterfaceThickness:280" ],
+			"skirtDistance:0" ],
 		
 		"mappingData" : {
 			 /*
@@ -212,10 +201,21 @@
 			/*
 			 * Raft
 			 */
-			"raftBaseLinewidth":"raftBaseLinewidth_mm:*1000",
-			"raftAirGapLayer0":"raftAirGapLayer0_mm:*1000",
-			"interfaceLayers":"interfaceLayers",
-			"raftBaseThickness":"raftBaseThickness_mm:*1000:?printRaft=false->0"
+			"raftBaseLinewidth":"raftBaseLinewidth_mm:*1000:?printRaft=false->|",
+			"raftAirGapLayer0":"raftAirGapLayer0_mm:*1000:?printRaft=false->|",
+			"interfaceLayers":"interfaceLayers:?printRaft=false->|",
+			"raftBaseThickness":"raftBaseThickness_mm:*1000:?printRaft=false->|",
+			"raftLineSpacing":"2000:?printRaft=false->|",
+			"raftMargin":"3000:?printRaft=false->|",
+			"raftSurfaceLineSpacing":"300:?printRaft=false->|",
+			"raftInterfaceLineSpacing":"800:?printRaft=false->|",
+			"raftSurfaceSpeed":"15:?printRaft=false->|", 
+			"raftFanSpeed":"100:?printRaft=false->|", 
+			"raftSurfaceThickness":"270:?printRaft=false->|", 
+			"raftBaseSpeed":"15:?printRaft=false->|",
+			"raftSurfaceLinewidth":"300:?printRaft=false->|",
+			"raftInterfaceLinewidth":"400:?printRaft=false->|",
+			"raftInterfaceThickness":"280:?printRaft=false->|"
 		}
 	}
 	}
