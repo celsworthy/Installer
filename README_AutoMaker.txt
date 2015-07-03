@@ -1,6 +1,6 @@
 CEL AutoMaker README
 ===============
-version 1.01.05
+version 1.02.00
 ===============
    Updated to version 731 firmware
 

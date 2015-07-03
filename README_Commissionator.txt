@@ -1,5 +1,5 @@
 CEL Commissionator Readme
-version 1.01.05
+version 1.02.00
 Harmonised version of Commissionator with AutoMaker
 Version 731 firmware
 
