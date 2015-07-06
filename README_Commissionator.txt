@@ -1,4 +1,8 @@
 CEL Commissionator Readme
+version 1.02.00
+Harmonised version of Commissionator with AutoMaker
+Version 731 firmware
+
 version 4.13.00
 Fixes issue where load switch test was skipped if Platform Extruder test was repeated.
 Fixes issue where program as single material head does not work with unformatted EEPROM
