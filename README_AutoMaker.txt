@@ -1,7 +1,9 @@
 CEL AutoMaker README
 ===============
-version 1.01.05
+version 1.02.00
 ===============
+   Updated to version 731 firmware
+
    New features:
        Undo/Redo - all changes to models on the bed can be undone
        Apply lean/twist/turn of an object on the bed

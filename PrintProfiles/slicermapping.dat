@@ -203,7 +203,7 @@
 			 */
 			"raftBaseLinewidth":"raftBaseLinewidth_mm:*1000:?printRaft=false->|",
 			"raftAirGapLayer0":"raftAirGapLayer0_mm:*1000:?printRaft=false->|",
-			"interfaceLayers":"interfaceLayers:?printRaft=false->|",
+			"raftSurfaceLayers":"interfaceLayers:?printRaft=false->|",
 			"raftBaseThickness":"raftBaseThickness_mm:*1000:?printRaft=false->|",
 			"raftLineSpacing":"2000:?printRaft=false->|",
 			"raftMargin":"3000:?printRaft=false->|",
