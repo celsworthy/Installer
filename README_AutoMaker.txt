@@ -19,16 +19,22 @@ version 1.02.00
    Improved consistency of look & feel    
    Improved error handling
 
+   Changes to the first layer print process
+       The thickness of the first layer on each of the fine, normal and draft profiles has been increased
+       to 0.3mm and the first layer speed has been slowed down. This has been done to improve
+       the quality, reliability and repeatability of the first layer
+
 Lean/Twist/Turn
 ---------------
-It is now possible to set the lean, twist and turn of an object on the bed:
+It is now possible to set the lean, twist and turn of an object on the bed. Currently this can only be done using 
+text fields but a future release will provide a graphical interface:
 Turn   - when looking down on the object from above the bed, the turn rotates the object clockwise on the bed.
 Lean   - this indicates how many degrees to lean the object away from the vertical. 90 degrees will lay the object
          on its side and 180 degrees will turn it upside down.
 Twist  - when looking from the top of the object down its vertical axis, the twist rotates the object clockwise around
          that vertical axis.
 
-The turn is applied first, then the lean and then the twist.
+The lean is applied first, then the twist and finally the turn.
 
 ===============
 version 1.01.04
