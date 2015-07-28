@@ -1,7 +1,7 @@
 {
   "version" : 5,
   "profileName" : "Normal",
-  "headType": "SINGLE_MATERIAL_HEAD",
+  "headType": "RBX01-SM",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.3,
   "layerHeight_mm" : 0.2,
