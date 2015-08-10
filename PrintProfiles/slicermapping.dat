@@ -89,7 +89,8 @@
 		  "support_material_pattern":"supportPattern", 
 		  "support_material_spacing":"supportPatternSpacing_mm",
 		  "support_material_angle":"supportPatternAngle_degrees",
-
+		  "support_material_enforce_layers":"forcedSupportForFirstNLayers",
+		  
 		/*
 		 * Speed settings
 		 */
