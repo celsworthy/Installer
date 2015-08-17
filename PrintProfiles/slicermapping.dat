@@ -196,7 +196,7 @@
 			 */
 			"fanSpeedMin":"minFanSpeed_percent:?enableCooling=false->0",
 			"fanSpeedMax":"maxFanSpeed_percent:?enableCooling=false->0",
-			"minimalLayerTime":"slowDownIfLayerTimeLessThan_secs", 
+			"minimalLayerTime":"slowDownIfLayerTimeLessThan_secs:?enableCooling=false->0", 
 			"minimalFeedrate":"minPrintSpeed_mm_per_s",
 
 			/*
