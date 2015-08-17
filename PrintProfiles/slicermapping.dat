@@ -187,6 +187,7 @@
 			"initialLayerSpeed":"firstLayerSpeed_mm_per_s:?printRaft=true->28",
 			"insetXSpeed":"perimeterSpeed_mm_per_s",
 			"infillSpeed":"fillSpeed_mm_per_s",
+			"skinSpeed":"fillSpeed_mm_per_s",
 			"inset0Speed":"externalPerimeterSpeed_mm_per_s",
 			"printSpeed":"supportSpeed_mm_per_s", 
 			"raftSurfaceSpeed":"interfaceSpeed_mm_per_s",
