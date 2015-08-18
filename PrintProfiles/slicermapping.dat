@@ -5,7 +5,7 @@
 	   * Defaults for all profiles
 	   */
       "defaults" : [
-      		        "solid_fill_pattern:rectilinear",
+      		"solid_fill_pattern:rectilinear",
 			"avoid_crossing_perimeters:0",
 			"dont_support_bridges:1",
 			"external_perimeters_first:0",
@@ -57,7 +57,7 @@
 			
       "mappingData" : {
 
-	         /*
+	     /*
 		  * Extrusion
 		  */
 		  "layer_height":"layerHeight_mm",
@@ -150,7 +150,9 @@
 			"posx:0",
 			"posy:0",
 			"multiVolumeOverlap:150",
-			"skirtDistance:0" ],
+			"skirtDistance:0",
+            "perimeterBeforeInfill:1"
+			],
 		
 		"mappingData" : {
 			 /*
