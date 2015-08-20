@@ -10,19 +10,30 @@ version 1.02.00
        Scale in X/Y/Z independently
        Display Time and Cost estimates for Draft/Normal/Fine/Custom profiles
        Rafts
+	   Print area extent box is shown on the layout page
    
    Improved filament and print profile management
        Filament and print profile management have been moved to the Settings area (click
        on the gear icon in the top right of the application) and made simpler to user.
        Writing to the reel is now located on the Filament Library page (which is accessed
        from Settings).
+	   
    Improved consistency of look & feel    
+		Modified status page and progress bars
+		
    Improved error handling
+		Includes warnings if the printer is switched off without 
+   
+   Improvements to Cura handling of skin/solid layers
+   
+   Improvements to default print profiles
 
    Changes to the first layer print process
        The thickness of the first layer on each of the fine, normal and draft profiles has been increased
        to 0.3mm and the first layer speed has been slowed down. This has been done to improve
        the quality, reliability and repeatability of the first layer
+	   
+   Plus... Lots of minor bug fixes and preparation for the dual-material head release
 
 Lean/Twist/Turn
 ---------------
