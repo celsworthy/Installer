@@ -9,7 +9,7 @@ cp $DIR/installbuilder.sh AutoMaker-$2-osx-installer.app/Contents/MacOS
 
 mv AutoMaker-$2-osx-installer.app AutoMaker-$2-osx-installer-original.app 
 
-/Applications/BitRock\ InstallBuilder\ Professional\ 15.1.0/tools/code-signing/osx/osxsigner --identity "3rd Party Mac Developer Application" --identifier "celtech.AutoMaker" --output /tmp AutoMaker-$2-osx-installer-original.app/
+/Applications/BitRock\ InstallBuilder\ Professional\ 15.1.0/tools/code-signing/osxsigner --identity "3rd Party Mac Developer Application" --identifier "celtech.AutoMaker" --output /tmp AutoMaker-$2-osx-installer-original.app/
 
 mv AutoMaker-$2-osx-installer-original-signed.app AutoMaker-$2-osx-installer.app 
 
