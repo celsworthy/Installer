@@ -20,6 +20,7 @@ version 1.02.00
 	   
    Improved consistency of look & feel    
 		Modified status page and progress bars
+		Double-tap reprint functionality improved
 		
    Improved error handling
 		Includes warnings if the printer is switched off without 
