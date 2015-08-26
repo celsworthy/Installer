@@ -5,7 +5,7 @@
 	   * Defaults for all profiles
 	   */
       "defaults" : [
-      		        "solid_fill_pattern:rectilinear",
+      		"solid_fill_pattern:rectilinear",
 			"avoid_crossing_perimeters:0",
 			"dont_support_bridges:1",
 			"external_perimeters_first:0",
@@ -57,7 +57,7 @@
 			
       "mappingData" : {
 
-	         /*
+	     /*
 		  * Extrusion
 		  */
 		  "layer_height":"layerHeight_mm",
@@ -89,7 +89,8 @@
 		  "support_material_pattern":"supportPattern", 
 		  "support_material_spacing":"supportPatternSpacing_mm",
 		  "support_material_angle":"supportPatternAngle_degrees",
-
+		  "support_material_enforce_layers":"forcedSupportForFirstNLayers",
+		  
 		/*
 		 * Speed settings
 		 */
@@ -149,7 +150,9 @@
 			"posx:0",
 			"posy:0",
 			"multiVolumeOverlap:150",
-			"skirtDistance:0" ],
+			"skirtDistance:0",
+            "perimeterBeforeInfill:1"
+			],
 		
 		"mappingData" : {
 			 /*
@@ -183,9 +186,10 @@
 			/*
 			 * Speed settings
 			 */
-			"initialLayerSpeed":"firstLayerSpeed_mm_per_s", 
+			"initialLayerSpeed":"firstLayerSpeed_mm_per_s:?printRaft=true->28",
 			"insetXSpeed":"perimeterSpeed_mm_per_s",
 			"infillSpeed":"fillSpeed_mm_per_s",
+			"skinSpeed":"fillSpeed_mm_per_s",
 			"inset0Speed":"externalPerimeterSpeed_mm_per_s",
 			"printSpeed":"supportSpeed_mm_per_s", 
 			"raftSurfaceSpeed":"interfaceSpeed_mm_per_s",
@@ -195,7 +199,7 @@
 			 */
 			"fanSpeedMin":"minFanSpeed_percent:?enableCooling=false->0",
 			"fanSpeedMax":"maxFanSpeed_percent:?enableCooling=false->0",
-			"minimalLayerTime":"slowDownIfLayerTimeLessThan_secs", 
+			"minimalLayerTime":"slowDownIfLayerTimeLessThan_secs:?enableCooling=false->0", 
 			"minimalFeedrate":"minPrintSpeed_mm_per_s",
 
 			/*
