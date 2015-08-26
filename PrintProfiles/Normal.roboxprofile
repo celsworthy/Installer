@@ -25,11 +25,11 @@
     "diameter" : 0.3,
     "openOverVolume" : 0.0,
     "preejectionVolume" : 0.0,
-    "ejectionVolume" : 0.6,
+    "ejectionVolume" : 0.25,
     "openValueAtMidPoint" : 0.0,
     "midPointPercent" : 0.0,
     "wipeVolume" : 0.2,
-    "partialBMinimum" : 0.3,
+    "partialBMinimum" : 0.5,
     "travelBeforeForcedClose" : 0.0
   }, {
     "name" : null,
@@ -38,11 +38,11 @@
     "diameter" : 0.8,
     "openOverVolume" : 0.0,
     "preejectionVolume" : 3.0,
-    "ejectionVolume" : 1.0,
+    "ejectionVolume" : 0.55,
     "openValueAtMidPoint" : 0.0,
     "midPointPercent" : 0.0,
     "wipeVolume" : 0.4,
-    "partialBMinimum" : 0.3,
+    "partialBMinimum" : 0.5,
     "travelBeforeForcedClose" : 0.0
   } ],
   "firstLayerNozzle" : 0,
