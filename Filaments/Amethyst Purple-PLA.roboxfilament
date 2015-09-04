@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Amethyst Purple
+name = Robox Amethyst Purple
 material = PLA
 reelID = RBX-PLA-PP157
 diameter_mm = 1.75

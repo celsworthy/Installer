@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Dynamite Red
+name = Robox Dynamite Red
 material = ABS
 reelID = RBX-ABS-RD537
 diameter_mm = 1.75

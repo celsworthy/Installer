@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Mellow Yellow
+name = Robox Mellow Yellow
 material = PLA
 reelID = RBX-PLA-YL503
 diameter_mm = 1.75

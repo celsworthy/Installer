@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Cornflower Blue
+name = Robox Cornflower Blue
 material = PLA
 reelID = RBX-PLA-BL823
 diameter_mm = 1.75

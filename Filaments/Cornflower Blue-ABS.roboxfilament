@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Cornflower Blue
+name = Robox Cornflower Blue
 material = ABS
 reelID = RBX-ABS-BL824
 diameter_mm = 1.75
