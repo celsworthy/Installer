@@ -2,7 +2,7 @@
 # Robox filament definition file
 #
 name = ColorFabb_XT Black
-material = CO-PET
+material = PET
 reelID = RBX-PET-BK001
 diameter_mm = 1.75
 filament_multiplier = 0.95
