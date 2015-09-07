@@ -1,7 +1,7 @@
 {
   "version" : 5,
   "profileName" : "Normal",
-  "headType": "DUAL_MATERIAL_HEAD",
+  "headType": "RBX01-DM",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.3,
   "layerHeight_mm" : 0.2,
@@ -39,7 +39,7 @@
     "diameter" : 0.4,
     "openOverVolume" : 0.0,
     "preejectionVolume" : 0.0,
-    "ejectionVolume" : 0.6,
+    "ejectionVolume" : 0.3,
     "openValueAtMidPoint" : 0.0,
     "midPointPercent" : 0.0,
     "wipeVolume" : 0.1,

@@ -1,7 +1,7 @@
 {
   "version" : 5,
   "profileName" : "Fine",
-  "headType": "DUAL_MATERIAL_HEAD",
+  "headType": "RBX01-DM",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.3,
   "layerHeight_mm" : 0.1,
@@ -39,7 +39,7 @@
     "diameter" : 0.4,
     "openOverVolume" : 0.0,
     "preejectionVolume" : 0.0,
-    "ejectionVolume" : 0.6,
+    "ejectionVolume" : 0.3,
     "openValueAtMidPoint" : 0.0,
     "midPointPercent" : 0.0,
     "wipeVolume" : 0.1,
@@ -76,7 +76,7 @@
   "minPrintSpeed_mm_per_s" : 2,
   "maxClosesBeforeNozzleReselect" : 100,
   "raftBaseLinewidth_mm": 1.0,
-  "raftAirGapLayer0_mm": 0.280,
+  "raftAirGapLayer0_mm": 0.550,
   "interfaceLayers": 2,
   "raftBaseThickness_mm": 0.300,
   "interfaceSpeed_mm_per_s":40
