@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Hot Pink
+name = Robox Hot Pink
 material = PLA
 reelID = RBX-PLA-RD534
 diameter_mm = 1.75

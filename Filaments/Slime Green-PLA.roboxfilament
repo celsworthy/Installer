@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Slime Green
+name = Robox Slime Green
 material = PLA
 reelID = RBX-PLA-GR002
 diameter_mm = 1.75

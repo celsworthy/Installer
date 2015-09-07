@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Polar White
+name = Robox Polar White
 material = PLA
 reelID = RBX-PLA-WH170
 diameter_mm = 1.75

@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Chroma Green
+name = Robox Chroma Green
 material = ABS
 reelID = RBX-ABS-GR499
 diameter_mm = 1.75

@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Hot Pink
+name = Robox Hot Pink
 material = ABS
 reelID = RBX-ABS-RD535
 diameter_mm = 1.75

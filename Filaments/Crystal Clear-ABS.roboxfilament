@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Crystal Clear
+name = Robox Crystal Clear
 material = ABS
 reelID = RBX-ABS-TP001
 diameter_mm = 1.75
