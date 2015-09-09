@@ -4,11 +4,9 @@ M139			;Set & heat first layer Bed temp.
 Macro:Home_all_Axis_in_sequence
 
 M190			;Wait for Bed to get to temp.
-M103			;Set & heat first layer nozzle temp.
+M103 T			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
-
-Macro:Short_Purge_T0
 
 Macro:Short_Purge_T1
 
