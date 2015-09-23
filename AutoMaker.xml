@@ -2,6 +2,7 @@
     <shortName>AutoMaker</shortName>
     <fullName>CEL AutoMaker</fullName>
     <version></version>
+    <debugLevel>4</debugLevel>
     <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
@@ -28,32 +29,98 @@
                 </folder>
             </folderList>
             <postInstallationActionList>
-                <runProgram>
-                    <abortOnError>0</abortOnError>
-                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
-                    <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
-                    <programArguments></programArguments>
-                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
-                    <showMessageOnError>0</showMessageOnError>
+                <actionGroup>
+                    <explanation>x86</explanation>
+                    <actionList>
+                        <runProgram>
+                            <abortOnError>0</abortOnError>
+                            <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                            <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
+                            <programArguments>/q /sw /se /c</programArguments>
+                            <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                            <showMessageOnError>0</showMessageOnError>
+                            <ruleList>
+                                <compareText>
+                                    <logic>does_not_equal</logic>
+                                    <text>${installer_interactivity}</text>
+                                    <value>normal</value>
+                                </compareText>
+                            </ruleList>
+                        </runProgram>
+                        <runProgram>
+                            <abortOnError>0</abortOnError>
+                            <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                            <program>${commondir}\windows_drivers\dpinst_x86.exe</program>
+                            <programArguments>/c</programArguments>
+                            <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                            <showMessageOnError>0</showMessageOnError>
+                            <ruleList>
+                                <compareText>
+                                    <logic>equals</logic>
+                                    <text>${installer_interactivity}</text>
+                                    <value>normal</value>
+                                </compareText>
+                            </ruleList>
+                        </runProgram>
+                        <logMessage>
+                            <text>${program_stdout}</text>
+                        </logMessage>
+                        <logMessage>
+                            <text>${program_stderr}</text>
+                        </logMessage>
+                    </actionList>
                     <ruleList>
                         <platformTest>
                             <type>windows-x86</type>
                         </platformTest>
                     </ruleList>
-                </runProgram>
-                <runProgram>
-                    <abortOnError>0</abortOnError>
-                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
-                    <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
-                    <programArguments></programArguments>
-                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
-                    <showMessageOnError>0</showMessageOnError>
+                </actionGroup>
+                <actionGroup>
+                    <explanation>x64</explanation>
+                    <actionList>
+                        <runProgram>
+                            <abortOnError>0</abortOnError>
+                            <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                            <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
+                            <programArguments>/q /sw /se /c</programArguments>
+                            <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                            <showMessageOnError>0</showMessageOnError>
+                            <ruleList>
+                                <compareText>
+                                    <logic>does_not_equal</logic>
+                                    <text>${installer_interactivity}</text>
+                                    <value>normal</value>
+                                </compareText>
+                            </ruleList>
+                        </runProgram>
+                        <runProgram>
+                            <abortOnError>0</abortOnError>
+                            <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                            <program>${commondir}\windows_drivers\dpinst_x64.exe</program>
+                            <programArguments>/c</programArguments>
+                            <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                            <showMessageOnError>0</showMessageOnError>
+                            <ruleList>
+                                <compareText>
+                                    <logic>equals</logic>
+                                    <text>${installer_interactivity}</text>
+                                    <value>normal</value>
+                                </compareText>
+                            </ruleList>
+                        </runProgram>
+                        <logMessage>
+                            <text>${program_stdout}</text>
+                        </logMessage>
+                        <logMessage>
+                            <text>${program_stderr}</text>
+                        </logMessage>
+                    </actionList>
                     <ruleList>
                         <platformTest>
                             <type>windows-x64</type>
                         </platformTest>
                     </ruleList>
-                </runProgram>
+                </actionGroup>
             </postInstallationActionList>
         </component>
         <component>
@@ -417,27 +484,7 @@
             <substitution></substitution>
             <text>${product_version}</text>
         </setInstallerVariableFromRegEx>
-        <setInstallerVariable>
-            <name>windowsDriverDir</name>
-            <value>${installdir}/${project.shortName}/windows_drivers</value>
-        </setInstallerVariable>
     </initializationActionList>
-    <preInstallationActionList>
-        <actionGroup>
-            <actionList>
-                <setInstallerVariable name="allowComponentSelection" value="0"/>
-                <setInstallerVariable name="installationType" value="upgrade"/>
-                <componentSelection deselect="windowsdrivers">
-                    <select></select>
-                </componentSelection>
-            </actionList>
-
-            <!-- We assume an existing installation if ${installdir} directory exists -->
-            <ruleList>
-                <fileTest condition="exists" path="${installdir}"/>
-            </ruleList>
-        </actionGroup>
-    </preInstallationActionList>
     <readyToInstallActionList>
         <deleteFile>
             <path>${commondir}/Heads</path>
@@ -454,6 +501,65 @@
         <deleteFile>
             <path>${commondir}/Models</path>
         </deleteFile>
+        <actionGroup>
+            <explanation>UnattendedModeSetup</explanation>
+            <actionList>
+                <setInstallerVariable>
+                    <name>automakerdir</name>
+                    <value>${installdir}/${project.shortName}/</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>${installdir}/${project.shortName}/AutoMaker.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>commondir</name>
+                    <value>${installdir}/Common</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_jar</name>
+                    <value>AutoMaker.jar</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
+                    <ruleList>
+                        <platformTest>
+                            <negate>1</negate>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>osx</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_binary_name</name>
+                    <value>${project.shortName}.${platform_exec_suffix}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_startmenu_shortcut_name</name>
+                    <value>${project.shortName}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>windowsDriverDir</name>
+                    <value>${installdir}/${project.shortName}/windows_drivers</value>
+                </setInstallerVariable>
+            </actionList>
+            <ruleList>
+                <compareText>
+                    <logic>does_not_equal</logic>
+                    <text>${installer_interactivity}</text>
+                    <value>normal</value>
+                </compareText>
+            </ruleList>
+        </actionGroup>
     </readyToInstallActionList>
     <postInstallationActionList>
         <writeFile>
@@ -708,6 +814,10 @@ enable = 0
                 <setInstallerVariable>
                     <name>java_launcher_startmenu_shortcut_name</name>
                     <value>${project.shortName}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>windowsDriverDir</name>
+                    <value>${installdir}/${project.shortName}/windows_drivers</value>
                 </setInstallerVariable>
             </postShowPageActionList>
         </directoryParameter>
