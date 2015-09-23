@@ -1,5 +1,11 @@
 CEL AutoMaker README
 ===============
+version 1.02.01
+===============
+Enforced Windows driver installation checks even on upgrades
+Silent installation in default directory is now possible. Run the installer on the command line with parameters --mode unattended
+
+===============
 version 1.02.00
 ===============
    Updated to version 731 firmware
