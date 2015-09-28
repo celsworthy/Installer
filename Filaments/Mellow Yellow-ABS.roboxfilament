@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Mellow Yellow
+name = Robox Mellow Yellow
 material = ABS
 reelID = RBX-ABS-YL504
 diameter_mm = 1.75

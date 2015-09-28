@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Highway Orange
+name = Robox Highway Orange
 material = ABS
 reelID = RBX-ABS-OR023
 diameter_mm = 1.75

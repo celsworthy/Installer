@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Sky Blue
+name = Robox Sky Blue
 material = ABS
 reelID = RBX-ABS-BL002
 diameter_mm = 1.75

@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = T/C Purple/Pink
+name = Robox T/C Purple/Pink
 material = SPC
 reelID = RBX-SPC-TC001
 diameter_mm = 1.75
