@@ -8,7 +8,7 @@ M103 S			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
 
-Macro:Short_Purge_T1
+Macro:Short_Purge
 
 Macro:Level_Gantry_(2-points)
 
