@@ -1,4 +1,4 @@
-;Short_Purge_T1
+;Short_Purge_T1 only
 G0 Y-6 Z8
 T1
 G0 Z2
