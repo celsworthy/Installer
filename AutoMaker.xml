@@ -3,7 +3,6 @@
     <fullName>CEL AutoMaker</fullName>
     <version></version>
     <debugLevel>4</debugLevel>
-    <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
@@ -166,9 +165,9 @@
                         <distributionFile>
                             <origin>EULA_AutoMaker.txt</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>README_AutoMaker.txt</origin>
-                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>README</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>

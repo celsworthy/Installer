@@ -2,7 +2,6 @@
     <shortName>ReelProgrammer</shortName>
     <fullName>CEL SmartReel Programmer</fullName>
     <version></version>
-    <readmeFile>README_ReelProgrammer.txt</readmeFile>
     <licenseFile>EULA_ReelProgrammer.txt</licenseFile>
     <leftImage>LeftImage - ReelProgrammer 163x314.png</leftImage>
     <splashImage>Splash - ReelProgrammer 600x400.png</splashImage>
@@ -111,9 +110,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_ReelProgrammer.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>README_ReelProgrammer.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>reelProgrammer.properties</origin>
