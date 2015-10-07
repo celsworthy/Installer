@@ -10,6 +10,8 @@ M170			;Set Ambient temp.
 
 Macro:Short_Purge
 
+Macro:Short_Purge
+
 Macro:Level_Gantry_(2-points)
 
 Macro:7_point_Bed_probing-Set_Washout
