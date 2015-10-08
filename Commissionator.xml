@@ -2,7 +2,6 @@
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
     <version></version>
-    <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
@@ -113,9 +112,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_Commissionator.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>README_Commissionator.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>commissionator.properties</origin>
@@ -249,9 +245,6 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>EULA_${project.shortName}.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>README_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>

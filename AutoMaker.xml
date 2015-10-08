@@ -3,7 +3,6 @@
     <fullName>CEL AutoMaker</fullName>
     <version></version>
     <debugLevel>4</debugLevel>
-    <readmeFile>README_AutoMaker.txt</readmeFile>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
@@ -166,9 +165,9 @@
                         <distributionFile>
                             <origin>EULA_AutoMaker.txt</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>README_AutoMaker.txt</origin>
-                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>README</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -298,9 +297,6 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>EULA_${project.shortName}.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>README_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
@@ -522,7 +518,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
+                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
