@@ -144,7 +144,7 @@
 			"retractionMinimalDistance:500",
 			"retractionAmount:500",
 			"objectSink:0",
-			"fixHorrible:0",
+			"fixHorrible:1",
 			"moveSpeed:200",
 			"autoCenter:0",
 			"posx:0",

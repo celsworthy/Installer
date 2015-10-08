@@ -1,5 +1,5 @@
 ;Finish-Abort_Print
-M104 S0			;Nozzle Heater Off
+M104 S0 T0		;Nozzle Heater Off
 M140 S0			;Bed Heater Off
 M106			;Fan on full
 G0 B0			;Close Nozzle
@@ -9,7 +9,7 @@ G90 			;Absolute positioning
 G0 X15 Y115		;Move to front corner
 
 ;Open Door
-G37 S				;Unlock door
+G37 S			;Unlock door
 
 ;Every thing off
 M170 S0			;Ambient control off
