@@ -1,10 +1,9 @@
 M83				;Set Extruder to Relative moves
-M139 S			;Set & heat first layer Bed temp.
+M139			;Set & heat first layer Bed temp.
 
 Macro:Home_all_Axis_in_sequence
 
 M190			;Wait for Bed to get to temp.
-M140			;Go to bed temperature from loaded reel - don't wait
 M103 S			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
