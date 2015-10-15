@@ -1,6 +1,7 @@
 ;Short_Purge_T0
 G0 Y-6 X11 Z10
 T0
+M109
 G0 Z4
 G1 Y-4 F400
 G36 D500 F400
