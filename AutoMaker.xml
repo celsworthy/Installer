@@ -518,7 +518,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -528,7 +528,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
@@ -786,7 +786,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -796,7 +796,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>

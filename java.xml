@@ -8,19 +8,24 @@
     <!-- folders storing JRE -->
     <folderList>
         <folder>
-            <description>Java binaries - Microsoft Windows</description>
+            <description>Java binaries - Microsoft Windows 32 bit</description>
             <destination>${automakerdir}/java</destination>
             <name>java_windows</name>
             <platforms>windows</platforms>
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows/*</origin>
+                    <origin>java-windows-x86/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
             </ruleList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>windows-x86</type>
+                </platformTest>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Linux</description>
@@ -96,6 +101,26 @@
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
             </ruleList>
+        </folder>
+        <folder>
+            <description>Java binaries - Microsoft Windows 64 bit</description>
+            <destination>${automakerdir}/java</destination>
+            <name>java_windows_x64</name>
+            <platforms>windows</platforms>
+            <distributionFileList>
+                <distributionFile>
+                    <allowWildcards>1</allowWildcards>
+                    <origin>java-windows-x64/*</origin>
+                </distributionFile>
+            </distributionFileList>
+            <ruleList>
+                <isTrue value="${java_install_jre}"/>
+            </ruleList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>windows-x64</type>
+                </platformTest>
+            </shouldPackRuleList>
         </folder>
     </folderList>
 
@@ -474,23 +499,14 @@
     <readyToInstallActionList>
         <if>
             <actionList>
-                <setInstallerVariable name="java_version_major" value="1.7"/>
-                <setInstallerVariable name="java_version" value="1.7.0"/>
-                <setInstallerVariable name="java_version_full" value="1.7.0_51"/>
+                <setInstallerVariable name="java_version_major" value="1.8"/>
+                <setInstallerVariable name="java_version" value="1.8.0"/>
+                <setInstallerVariable name="java_version_full" value="1.8.0_65"/>
                 <setInstallerVariable name="java_version_vendor" value="Sun"/>
                 <setInstallerVariable name="java_bitness" value="32"/>
-
-                <!-- determine Java binary name - javaw.exe on Windows, java otherwise -->
-                <setInstallerVariable>
-                    <name>java_executable</name>
-                    <value>${automakerdir}/java/bin/java</value>
-                </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_executable</name>
                     <value>${automakerdir}/java/bin/javaw.exe</value>
-                    <ruleList>
-                        <platformTest type="windows"/>
-                    </ruleList>
                 </setInstallerVariable>
             </actionList>
             <conditionRuleList>

@@ -179,9 +179,6 @@
                         <distributionFile>
                             <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>jRegistryKey.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -581,7 +578,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -591,7 +588,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/Commissionator.png "-Xdock:name=Commissionator"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/Commissionator.png "-Xdock:name=Commissionator"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>

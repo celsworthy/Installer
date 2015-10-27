@@ -177,9 +177,6 @@
                         <distributionFile>
                             <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>jRegistryKey.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -579,7 +576,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -589,7 +586,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false -Xdock:icon=${automakerdir}/ReelProgrammer.png "-Xdock:name=ReelProgrammer"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false -Xdock:icon=${automakerdir}/ReelProgrammer.png "-Xdock:name=ReelProgrammer"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
