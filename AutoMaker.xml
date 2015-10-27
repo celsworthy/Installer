@@ -521,14 +521,31 @@
                     <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
-                            <negate>1</negate>
-                            <type>osx</type>
+                            <type>windows-x86</type>
                         </platformTest>
                     </ruleList>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx750m -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>windows-x64</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
+                    <ruleList>
+                        <platformTest>
+                            <type>linux</type>
+                        </platformTest>
+                    </ruleList>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>java_launcher_vm_parameters</name>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
