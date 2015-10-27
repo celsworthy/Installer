@@ -527,7 +527,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1500M -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <type>windows-x64</type>
@@ -536,7 +536,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1500M -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <type>linux</type>
@@ -545,7 +545,7 @@
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1.5G -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -Xmx1500M -DlibertySystems.configFile=AutoMaker.configFile.xml -Xdock:icon=${automakerdir}/AutoMaker.png "-Xdock:name=AutoMaker"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
