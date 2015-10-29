@@ -206,6 +206,7 @@
 			 * Raft
 			 */
 			"raftBaseLinewidth":"raftBaseLinewidth_mm:*1000:?printRaft=false->|",
+			"raftAirGap":"raftAirGapLayer0_mm:*1000:?printRaft=false->|",
 			"raftAirGapLayer0":"raftAirGapLayer0_mm:*1000:?printRaft=false->|",
 			"raftSurfaceLayers":"interfaceLayers:?printRaft=false->|",
 			"raftBaseThickness":"raftBaseThickness_mm:*1000:?printRaft=false->|",
