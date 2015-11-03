@@ -20,12 +20,8 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
+                <platformTest type="windows-x86"/>
             </ruleList>
-            <shouldPackRuleList>
-                <platformTest>
-                    <type>windows-x86</type>
-                </platformTest>
-            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Linux</description>
@@ -115,12 +111,8 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
+                <platformTest type="windows-x64"/>
             </ruleList>
-            <shouldPackRuleList>
-                <platformTest>
-                    <type>windows-x64</type>
-                </platformTest>
-            </shouldPackRuleList>
         </folder>
     </folderList>
 
@@ -497,27 +489,9 @@
 
     <!-- set Java information -->
     <readyToInstallActionList>
-        <if>
-            <actionList>
-                <setInstallerVariable name="java_version_major" value="1.8"/>
-                <setInstallerVariable name="java_version" value="1.8.0"/>
-                <setInstallerVariable name="java_version_full" value="1.8.0_65"/>
-                <setInstallerVariable name="java_version_vendor" value="Sun"/>
-                <setInstallerVariable name="java_bitness" value="32"/>
-                <setInstallerVariable>
-                    <name>java_executable</name>
-                    <value>${automakerdir}/java/bin/javaw.exe</value>
-                </setInstallerVariable>
-            </actionList>
-            <conditionRuleList>
-                <isTrue value="${java_install_jre}"/>
-            </conditionRuleList>
-            <elseActionList>
-                <setInstallerVariable>
-                    <name>java_executable</name>
-                    <value></value>
-                </setInstallerVariable>
-            </elseActionList>
-        </if>
+        <setInstallerVariable>
+            <name>java_executable</name>
+            <value>${automakerdir}/java/bin/javaw.exe</value>
+        </setInstallerVariable>
     </readyToInstallActionList>
 </component>
