@@ -231,9 +231,6 @@
                         <distributionFile>
                             <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>jRegistryKey.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -786,7 +783,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=AutoMaker.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
