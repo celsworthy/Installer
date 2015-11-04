@@ -13,7 +13,7 @@
   "numberOfPerimeters" : 2,
   "brimWidth_mm" : 0,
   "spiralPrint" : false,
-  "firstLayerExtrusionWidth_mm" : 0.4,
+  "firstLayerExtrusionWidth_mm" : 0.6,
   "perimeterExtrusionWidth_mm" : 0.4,
   "fillExtrusionWidth_mm" : 0.4,
   "solidFillExtrusionWidth_mm" : 0.4,
@@ -76,7 +76,7 @@
   "minPrintSpeed_mm_per_s" : 2,
   "maxClosesBeforeNozzleReselect" : 100,
   "raftBaseLinewidth_mm": 1.0,
-  "raftAirGapLayer0_mm": 0.275,
+  "raftAirGapLayer0_mm": 0.1,
   "interfaceLayers": 1,
   "raftBaseThickness_mm": 0.300,
   "interfaceSpeed_mm_per_s":40

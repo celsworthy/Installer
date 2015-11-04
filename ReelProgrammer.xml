@@ -2,7 +2,6 @@
     <shortName>ReelProgrammer</shortName>
     <fullName>CEL SmartReel Programmer</fullName>
     <version></version>
-    <readmeFile>README_ReelProgrammer.txt</readmeFile>
     <licenseFile>EULA_ReelProgrammer.txt</licenseFile>
     <leftImage>LeftImage - ReelProgrammer 163x314.png</leftImage>
     <splashImage>Splash - ReelProgrammer 600x400.png</splashImage>
@@ -113,9 +112,6 @@
                             <origin>EULA_ReelProgrammer.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>README_ReelProgrammer.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>reelProgrammer.properties</origin>
                         </distributionFile>
                     </distributionFileList>
@@ -181,9 +177,6 @@
                         <distributionFile>
                             <origin>rxtxSerial64.dll</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>jRegistryKey.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -247,9 +240,6 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>EULA_${project.shortName}.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>README_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
@@ -586,7 +576,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -596,7 +586,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Xdock:icon=${automakerdir}/ReelProgrammer.png "-Xdock:name=ReelProgrammer"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=ReelProgrammer.configFile.xml -Dglass.accessible.force=false -Xdock:icon=${automakerdir}/ReelProgrammer.png "-Xdock:name=ReelProgrammer"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>
