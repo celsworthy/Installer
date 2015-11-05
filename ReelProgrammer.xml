@@ -114,6 +114,9 @@
                         <distributionFile>
                             <origin>reelProgrammer.properties</origin>
                         </distributionFile>
+                        <distributionDirectory>
+                            <origin>../application/target/lib</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>

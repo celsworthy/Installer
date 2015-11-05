@@ -168,6 +168,9 @@
                         <distributionDirectory>
                             <origin>README</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../application/target/lib</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
