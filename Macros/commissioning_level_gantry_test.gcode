@@ -17,7 +17,7 @@ T1			;Select Nozzle 0 (T0)
 G0 X50 Y41		;Level Gantry Position 1
 G28 Z			;Home Z
 G0 Z4 			;Move up 4mm
-G0 X215 Y41		;Level Gantry Position 2
+G0 X214 Y41		;Level Gantry Position 2
 G28 Z			;Home Z
 G0 Z4 			;Move up 4mm
 G38 			;Level gantry
