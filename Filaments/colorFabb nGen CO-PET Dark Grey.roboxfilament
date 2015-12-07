@@ -2,6 +2,7 @@
 # Robox filament definition file
 #
 name = colorFabb nGen Dark Grey
+material = PET
 reelID = RBX-PET-NGFS1
 diameter_mm = 1.75
 filament_multiplier = 0.97
