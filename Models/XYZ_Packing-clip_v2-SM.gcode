@@ -54417,6 +54417,8 @@ G90 			;Absolute positioning
 T0
 G0 X210 Z8 ;move to pack position
 
+M122 E
+
 ;Open Door
 G37 S			;Unlock door
 
