@@ -74,7 +74,7 @@
   "coolIfLayerTimeLessThan_secs" : 60,
   "slowDownIfLayerTimeLessThan_secs" : 15,
   "minPrintSpeed_mm_per_s" : 2,
-  "maxClosesBeforeNozzleReselect" : 100,
+  "maxClosesBeforeNozzleReselect" : 10,
   "raftBaseLinewidth_mm": 1.0,
   "raftAirGapLayer0_mm": 0.1,
   "interfaceLayers": 1,
