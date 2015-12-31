@@ -15,11 +15,11 @@
   }   ],
   "nozzles" : [ {
     "diameter" : 0.4,
-    "defaultXOffset" : 15,
-	"minXOffset" : 14,
+    "defaultXOffset" : 14,
+	"minXOffset" : 13,
 	"maxXOffset" : 16,
-    "defaultYOffset" : 5,
-	"minYOffset" : 4.5,
+    "defaultYOffset" : 4,
+	"minYOffset" : 3.5,
 	"maxYOffset" : 5.5,
     "defaultZOffset" : -0.4,
 	"minZOffset" : -3,
@@ -28,5 +28,21 @@
 	"minBOffset" : 0.7,
 	"maxBOffset" : 2.0,
 	"associatedExtruder" : "E"
-  } ]
+  },
+{
+    "diameter" : 0.4,
+    "defaultXOffset" : 14,
+	"minXOffset" : 13,
+	"maxXOffset" : 16,
+    "defaultYOffset" : 4,
+	"minYOffset" : 3.5,
+	"maxYOffset" : 5.5,
+    "defaultZOffset" : -0.4,
+	"minZOffset" : -3,
+	"maxZOffset" : 3,
+    "defaultBOffset" : 1.1,
+	"minBOffset" : 0.7,
+	"maxBOffset" : 2.0,
+	"associatedExtruder" : "E"
+  }  ]
 }

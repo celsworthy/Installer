@@ -4,7 +4,6 @@ M139 E			;Set & heat first layer Bed temp.
 Macro:Home_all_Axis_in_sequence
 
 M190			;Wait for Bed to get to temp.
-M140 E			;Go to bed temperature from loaded reel - don't wait
 M103 T			;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170 E			;Set Ambient temp.
