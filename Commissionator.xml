@@ -2,7 +2,6 @@
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
     <version></version>
-    <readmeFile>README_Commissionator.txt</readmeFile>
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
@@ -30,6 +29,19 @@
                 </folder>
             </folderList>
             <postInstallationActionList>
+                <runProgram>
+                    <abortOnError>0</abortOnError>
+                    <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
+                    <program>${commondir}\windows_drivers\PL2303_Prolific_DriverInstaller_v1.10.0.exe</program>
+                    <programArguments></programArguments>
+                    <progressText>${msg(AutoMakerInstaller.installingWindowsDrivers)}</progressText>
+                    <showMessageOnError>0</showMessageOnError>
+                    <ruleList>
+                        <platformTest>
+                            <type>windows</type>
+                        </platformTest>
+                    </ruleList>
+                </runProgram>
                 <runProgram>
                     <abortOnError>0</abortOnError>
                     <explanation>${msg(AutoMakerInstaller.installingWindowsDrivers)}</explanation>
@@ -96,17 +108,17 @@
                             <origin>Commissionator.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../JarArtifacts/Commissionator.jar</origin>
+                            <origin>../application/target/Commissionator.jar</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>EULA_Commissionator.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>README_Commissionator.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <origin>commissionator.properties</origin>
                         </distributionFile>
+                        <distributionDirectory>
+                            <origin>../application/target/lib</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -169,9 +181,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>rxtxSerial64.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>jRegistryKey.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -238,9 +247,6 @@
                             <origin>EULA_${project.shortName}.txt</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>README_${project.shortName}.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
                             <allowWildcards>1</allowWildcards>
                             <origin>robox_r*.bin</origin>
                         </distributionFile>
@@ -258,50 +264,6 @@
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>Models</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files x86</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileslinuxx86</name>
-                    <platforms>linux</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Linux_x86/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files x64</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileslinuxx64</name>
-                    <platforms>linux-x64</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Linux_x64/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${commondir}</destination>
-                    <name>programfileswindows</name>
-                    <platforms>windows</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Windows/Slic3r</origin>
-                        </distributionDirectory>
-                    </distributionFileList>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${commondir}</destination>
-                    <name>programfilesosx</name>
-                    <platforms>osx</platforms>
-                    <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Mac/Slic3r.app</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -370,26 +332,6 @@
             </folderList>
         </component>
     </componentList>
-    <postBuildActionList>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x86</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>C:\Program Files (x86)\Windows Kits\8.0\bin\x64\signtool</program>
-            <programArguments>sign /d "${project.fullName}" /f D:\Development\CELCodeSigningCert.p12 /p bl1nk3r3d /t http://timestamp.verisign.com/scripts/timestamp.dll "${project.outputDirectory}/${project.installerFilename}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x64</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-    </postBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
             <name>vendor</name>
@@ -639,7 +581,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=Commissionator.configFile.xml -Dprism.verbose=true -Dglass.accessible.force=false</value>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -649,7 +591,7 @@ enable = 0
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_vm_parameters</name>
-                    <value>-XX:-OmitStackTraceInFastThrow -Xms512m -Xmx750m -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/Commissionator.png "-Xdock:name=Commissionator"</value>
+                    <value>-server -XX:-OmitStackTraceInFastThrow -DlibertySystems.configFile=Commissionator.configFile.xml -Xdock:icon=${automakerdir}/Commissionator.png "-Xdock:name=Commissionator"</value>
                     <ruleList>
                         <platformTest>
                             <type>osx</type>

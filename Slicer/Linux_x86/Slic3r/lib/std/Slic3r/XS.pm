@@ -18,15 +18,30 @@ use overload
     '@{}' => sub { $_[0]->arrayref },
     'fallback' => 1;
 
+package Slic3r::Point3;
+use overload
+    '@{}' => sub { [ $_[0]->x, $_[0]->y, $_[0]->z ] },  #,
+    'fallback' => 1;
+
+sub pp {
+    my ($self) = @_;
+    return [ @$self ];
+}
+
 package Slic3r::Pointf;
 use overload
-    '@{}' => sub { [ $_[0]->x, $_[0]->y ] },  #,
+    '@{}' => sub { $_[0]->arrayref },
     'fallback' => 1;
 
 package Slic3r::Pointf3;
 use overload
     '@{}' => sub { [ $_[0]->x, $_[0]->y, $_[0]->z ] },  #,
     'fallback' => 1;
+
+sub pp {
+    my ($self) = @_;
+    return [ @$self ];
+}
 
 package Slic3r::ExPolygon;
 use overload
@@ -114,7 +129,7 @@ sub new {
     my ($class, %args) = @_;
     
     my $self = $class->_new(
-        @args{qw(width spacing nozzle_diameter)},
+        @args{qw(width height nozzle_diameter)},
     );
     $self->set_bridge($args{bridge} // 0);
     return $self;
@@ -173,27 +188,60 @@ use overload
     '@{}' => sub { $_[0]->arrayref },
     'fallback' => 1;
 
+sub new {
+    my ($class, @surfaces) = @_;
+    
+    my $self = $class->_new;
+    $self->append($_) for @surfaces;
+    return $self;
+}
+
+package Slic3r::GUI::_3DScene::GLVertexArray;
+sub CLONE_SKIP { 1 }
+
 package main;
 for my $class (qw(
+        Slic3r::BridgeDetector
         Slic3r::Config
+        Slic3r::Config::Full
+        Slic3r::Config::GCode
         Slic3r::Config::Print
+        Slic3r::Config::PrintObject
+        Slic3r::Config::PrintRegion
         Slic3r::ExPolygon
+        Slic3r::ExPolygon::Collection
+        Slic3r::Extruder
         Slic3r::ExtrusionLoop
         Slic3r::ExtrusionPath
         Slic3r::ExtrusionPath::Collection
+        Slic3r::Flow
+        Slic3r::GCode::PlaceholderParser
+        Slic3r::Geometry::BoundingBox
+        Slic3r::Geometry::BoundingBoxf
         Slic3r::Geometry::BoundingBoxf3
+        Slic3r::Layer
+        Slic3r::Layer::Region
+        Slic3r::Layer::Support
         Slic3r::Line
+        Slic3r::Linef3
         Slic3r::Model
         Slic3r::Model::Instance
         Slic3r::Model::Material
         Slic3r::Model::Object
         Slic3r::Model::Volume
         Slic3r::Point
+        Slic3r::Point3
         Slic3r::Pointf
         Slic3r::Pointf3
         Slic3r::Polygon
         Slic3r::Polyline
+        Slic3r::Polyline::Collection
+        Slic3r::Print
+        Slic3r::Print::Object
+        Slic3r::Print::Region
+        Slic3r::Print::State
         Slic3r::Surface
+        Slic3r::Surface::Collection
         Slic3r::TriangleMesh
     ))
 {

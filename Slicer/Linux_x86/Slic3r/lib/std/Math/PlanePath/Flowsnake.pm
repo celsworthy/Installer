@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -40,7 +40,7 @@ use 5.004;
 use strict;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 116;
+$VERSION = 119;
 
 # inherit: new(), rect_to_n_range(), arms_count(), n_start(),
 #          parameter_info_array(), xy_is_visited()
@@ -53,7 +53,8 @@ use Math::PlanePath::Base::Generic
   'is_infinite',
   'round_nearest';
 use Math::PlanePath::Base::Digits
-  'digit_split_lowtohigh';
+  'digit_split_lowtohigh',
+  'round_up_pow';
 
 # uncomment this to run the ### lines
 # use Smart::Comments;
@@ -354,7 +355,32 @@ sub _WORKING_BUT_SECRET__n_to_turn6 {
   return $turn6[$lowdigit];
 }
 
+#------------------------------------------------------------------------------
+# levels
 
+#           arms=1       arms=2            arms=3
+# level 0  0..1  = 2    0..2  = 2+1=3     0..3   = 2+1+1=4
+# level 1  0..7  = 8    0..14 = 8+7=15    0..21  = 8+7+7=22
+# level 2  0..49 = 50   0..98 = 50+49=99  0..147 = 50+49+49=148
+#          7^k          2*7^k             3*7^k
+#
+sub level_to_n_range {
+  my ($self, $level) = @_;
+  return (0,  7**$level * $self->{'arms'});
+}
+sub n_to_level {
+  my ($self, $n) = @_;
+  ### n_to_level(): $n
+  if ($n < 0) { return undef; }
+  if (is_infinite($n)) { return $n; }
+  $n = round_nearest($n);
+  $n += $self->{'arms'}-1;  # division rounding up
+  _divrem_mutate ($n, $self->{'arms'});
+  my ($pow, $exp) = round_up_pow ($n, 7);
+  return $exp;
+}
+
+#------------------------------------------------------------------------------
 1;
 __END__
 
@@ -468,7 +494,7 @@ __END__
     #      \ /
 
 
-=for stopwords eg Ryde flowsnake Gosper ie Fukuda Shimizu Nakamura Math-PlanePath Ns
+=for stopwords eg Ryde flowsnake Gosper ie Fukuda Shimizu Nakamura Math-PlanePath Ns zdigit tdigit
 
 =head1 NAME
 
@@ -483,7 +509,10 @@ Math::PlanePath::Flowsnake -- self-similar path through hexagons
 =head1 DESCRIPTION
 
 X<Gosper, William>This path is an integer version of the flowsnake curve by
-William Gosper,
+William Gosper.
+
+A single arm of the curve fills 1/3 of the plane, spiralling around
+anti-clockwise ever fatter and with jagged self-similar edges.
 
 =cut
 
@@ -616,21 +645,19 @@ each advancing successively.  For example C<arms=E<gt>3> is as follows.
                                    ^
        -9 -8 -7 -6 -5 -4 -3 -2 -1 X=0 1  2  3  4  5  6  7  8  9
 
-Notice the N=3*k points are the plain curve, N=3*k+1 is a copy rotated by
-120 degrees (1/3 around), and N=3*k+2 is a copy rotated by 240 degrees (2/3
+The N=3*k points are the plain curve, N=3*k+1 is a copy rotated by 120
+degrees (1/3 around), and N=3*k+2 is a copy rotated by 240 degrees (2/3
 around).  The initial N=1 of the second arm and N=2 of the third correspond
 to N=3 of the first arm, rotated around.
 
 Essentially the flowsnake fills an ever expanding hexagon with one corner at
-the origin, and wiggly sides.  In the following picture the plain curve
-fills "A" and there's room for two more arms to fill B and C, rotated 120
-and 240 degrees respectively.
+the origin, and wiggly sides.
 
             *---*
            /     \
-      *---*   A   *
-     /     \     /
-    *   B   O---*
+      *---*   A   *         Plain curve in A.
+     /     \     /          Room for two more arms in B and C,
+    *   B   O---*           rotated 120 and 240 degrees.
      \     /     \
       *---*   C   *
            \     /
@@ -682,6 +709,22 @@ C<$n_hi> are the smallest and biggest in the rectangle, but don't rely on
 that yet since finding the exact range is a touch on the slow side.  (The
 advantage of which though is that it helps avoid very big ranges from a
 simple over-estimate.)
+
+=back
+
+=head2 Level Methods
+
+=over
+
+=item C<($n_lo, $n_hi) = $path-E<gt>level_to_n_range($level)>
+
+Return C<(0, 7**$level)>, or for multiple arms return C<(0, $arms *
+7**$level)>.
+
+There are 7^level + 1 points in a level, numbered starting from 0.  On the
+second and third arms the origin is omitted (so as not to repeat that point)
+and so just 7^level for them, giving 7^level+1 + (arms-1)*7^level =
+arms*7^level + 1 many points starting from 0.
 
 =back
 
@@ -788,10 +831,10 @@ lowest non-0 digit and the plain/reverse state per the lowest non-3 above
 there.
 
    N digits in base 7
-   strip low 0 digits, zcount many of them
-   zdigit = take low digit
-   strip low 3 digits
-   tdigit = take low digit (0 if no digits left)
+   strip low 0-digits, zcount many of them
+   zdigit = take next digit (lowest non-0)
+   strip 3-digits
+   tdigit = take next digit (0 if no digits left)
    plain if tdigit=0,4,5, reverse if tdigit=1,2,6
 
              if zcount=0       if zcount>=1
@@ -866,7 +909,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2010, 2011, 2012, 2013, 2014 Kevin Ryde
+Copyright 2010, 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

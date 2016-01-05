@@ -1,4 +1,4 @@
-# Copyright 2011, 2012, 2013, 2014 Kevin Ryde
+# Copyright 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 # This file is part of Math-PlanePath.
 #
@@ -30,7 +30,7 @@ use List::Util 'min'; # 'max'
 *max = \&Math::PlanePath::_max;
 
 use vars '$VERSION', '@ISA';
-$VERSION = 116;
+$VERSION = 119;
 use Math::PlanePath;
 @ISA = ('Math::PlanePath');
 *_divrem_mutate = \&Math::PlanePath::_divrem_mutate;
@@ -40,7 +40,8 @@ use Math::PlanePath::Base::Generic
   'round_nearest',
   'xy_is_even';
 use Math::PlanePath::Base::Digits
-  'digit_split_lowtohigh';
+  'digit_split_lowtohigh',
+  'round_up_pow';
 
 use Math::PlanePath::SacksSpiral;
 *_rect_to_radius_range = \&Math::PlanePath::SacksSpiral::_rect_to_radius_range;
@@ -641,6 +642,32 @@ sub rect_to_n_range {
   return ($n_lo, $n_hi);
 }
 
+#------------------------------------------------------------------------------
+# levels
+
+#           arms=1       arms=2
+# level 1  0..6  = 7    0..13 = 14
+# level 2  0..48 = 49   0..97 = 98
+#            7^k-1        2*7^k-1
+
+# level 7^k points
+# or arms*7^k
+# counting from 0
+sub level_to_n_range {
+  my ($self, $level) = @_;
+  return (0, 7**$level * $self->{'arms'} - 1);
+}
+sub n_to_level {
+  my ($self, $n) = @_;
+  if ($n < 0) { return undef; }
+  if (is_infinite($n)) { return $n; }
+  $n = round_nearest($n);
+  _divrem_mutate ($n, $self->{'arms'});
+  my ($pow, $exp) = round_up_pow ($n+1, 7);
+  return $exp;
+}
+
+#------------------------------------------------------------------------------
 1;
 __END__
 
@@ -906,6 +933,20 @@ simple over-estimate.)
 
 =back
 
+=head2 Level Methods
+
+=over
+
+=item C<($n_lo, $n_hi) = $path-E<gt>level_to_n_range($level)>
+
+Return C<(0, 7**$level - 1)>, or for multiple arms return C<(0, $arms *
+7**$level - 1)>.
+
+There are 7^level points in a level, or arms*7^level for multiple arms,
+numbered starting from 0.
+
+=back
+
 =head1 FORMULAS
 
 =head2 N to X,Y
@@ -998,7 +1039,7 @@ L<http://user42.tuxfamily.org/math-planepath/index.html>
 
 =head1 LICENSE
 
-Copyright 2011, 2012, 2013, 2014 Kevin Ryde
+Copyright 2011, 2012, 2013, 2014, 2015 Kevin Ryde
 
 This file is part of Math-PlanePath.
 

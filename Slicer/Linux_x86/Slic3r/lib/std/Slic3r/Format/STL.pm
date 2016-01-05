@@ -14,12 +14,14 @@ sub read_file {
     $mesh->ReadSTLFile($path);
     $mesh->repair;
     
+    die "This STL file couldn't be read because it's empty.\n"
+        if $mesh->facets_count == 0;
+    
     my $model = Slic3r::Model->new;
     
-    my $material_id = basename($file);
-    $model->set_material($material_id);
-    my $object = $model->add_object;
-    my $volume = $object->add_volume(mesh => $mesh, material_id => $material_id);
+    my $basename = basename($file);
+    my $object = $model->add_object(input_file => $file, name => $basename);
+    my $volume = $object->add_volume(mesh => $mesh, name => $basename);
     return $model;
 }
 

@@ -9,7 +9,7 @@ use List::Util qw(first max);
 our @Ignore = qw(duplicate_x duplicate_y multiply_x multiply_y support_material_tool acceleration
     adjust_overhang_flow standby_temperature scale rotate duplicate duplicate_grid
     rotate scale duplicate_grid start_perimeters_at_concave_points start_perimeters_at_non_overhang
-    randomize_start seal_position);
+    randomize_start seal_position bed_size print_center g0);
 
 our $Options = print_config_def();
 
@@ -63,7 +63,7 @@ sub new_from_cli {
         
         # we use set_deserialize() for bool options since GetOpt::Long doesn't handle 
         # arrays of boolean values
-        if ($opt_key =~ /^(?:print_center|bed_size|duplicate_grid|extruder_offset)$/ || $opt_def->{type} eq 'bool') {
+        if ($opt_key =~ /^(?:bed_shape|duplicate_grid|extruder_offset)$/ || $opt_def->{type} eq 'bool') {
             $self->set_deserialize($opt_key, $args{$opt_key});
         } elsif (my $shortcut = $opt_def->{shortcut}) {
             $self->set($_, $args{$opt_key}) for @$shortcut;
@@ -124,7 +124,6 @@ sub _handle_legacy {
     my ($opt_key, $value) = @_;
     
     # handle legacy options
-    return () if first { $_ eq $opt_key } @Ignore;
     if ($opt_key =~ /^(extrusion_width|bottom_layer_speed|first_layer_height)_ratio$/) {
         $opt_key = $1;
         $opt_key =~ s/^bottom_layer_speed$/first_layer_speed/;
@@ -145,6 +144,12 @@ sub _handle_legacy {
         $opt_key = 'seam_position';
         $value = 'random';
     }
+    if ($opt_key eq 'bed_size' && $value) {
+        $opt_key = 'bed_shape';
+        my ($x, $y) = split /,/, $value;
+        $value = "0x0,${x}x0,${x}x${y},0x${y}";
+    }
+    return () if first { $_ eq $opt_key } @Ignore;
     
     # For historical reasons, the world's full of configs having these very low values;
     # to avoid unexpected behavior we need to ignore them.  Banning these two hard-coded
@@ -167,19 +172,6 @@ sub _handle_legacy {
     }
     
     return ($opt_key, $value);
-}
-
-sub set_ifndef {
-    my $self = shift;
-    my ($opt_key, $value, $deserialize) = @_;
-    
-    if (!$self->has($opt_key)) {
-        if ($deserialize) {
-            $self->set_deserialize($opt_key, $value);
-        } else {
-            $self->set($opt_key, $value);
-        }
-    }
 }
 
 sub as_ini {
@@ -208,23 +200,6 @@ sub setenv {
     }
 }
 
-sub equals {
-    my ($self, $other) = @_;
-    return @{ $self->diff($other) } == 0;
-}
-
-# this will *ignore* options not present in both configs
-sub diff {
-    my ($self, $other) = @_;
-    
-    my @diff = ();
-    foreach my $opt_key (sort @{$self->get_keys}) {
-        push @diff, $opt_key
-            if $other->has($opt_key) && $other->serialize($opt_key) ne $self->serialize($opt_key);
-    }
-    return [@diff];
-}
-
 # this method is idempotent by design and only applies to ::DynamicConfig or ::Full
 # objects because it performs cross checks
 sub validate {
@@ -243,6 +218,8 @@ sub validate {
     # --first-layer-height
     die "Invalid value for --first-layer-height\n"
         if $self->first_layer_height !~ /^(?:\d*(?:\.\d+)?)%?$/;
+    die "Invalid value for --first-layer-height\n"
+        if $self->get_value('first_layer_height') <= 0;
     
     # --filament-diameter
     die "Invalid value for --filament-diameter\n"
@@ -251,10 +228,6 @@ sub validate {
     # --nozzle-diameter
     die "Invalid value for --nozzle-diameter\n"
         if grep $_ < 0, @{$self->nozzle_diameter};
-    die "--layer-height can't be greater than --nozzle-diameter\n"
-        if grep $self->layer_height > $_, @{$self->nozzle_diameter};
-    die "First layer height can't be greater than --nozzle-diameter\n"
-        if grep $self->get_value('first_layer_height') > $_, @{$self->nozzle_diameter};
     
     # --perimeters
     die "Invalid value for --perimeters\n"
@@ -270,37 +243,27 @@ sub validate {
         if !first { $_ eq $self->gcode_flavor } @{$Options->{gcode_flavor}{values}};
     
     die "--use-firmware-retraction is only supported by Marlin firmware\n"
-        if $self->use_firmware_retraction && $self->gcode_flavor ne 'reprap';
+        if $self->use_firmware_retraction && $self->gcode_flavor ne 'reprap' && $self->gcode_flavor ne 'machinekit';
     
     die "--use-firmware-retraction is not compatible with --wipe\n"
         if $self->use_firmware_retraction && first {$_} @{$self->wipe};
-    
-    # --print-center
-    die "Invalid value for --print-center\n"
-        if !ref $self->print_center 
-            && (!$self->print_center || $self->print_center !~ /^\d+,\d+$/);
     
     # --fill-pattern
     die "Invalid value for --fill-pattern\n"
         if !first { $_ eq $self->fill_pattern } @{$Options->{fill_pattern}{values}};
     
-    # --solid-fill-pattern
-    die "Invalid value for --solid-fill-pattern\n"
-        if !first { $_ eq $self->solid_fill_pattern } @{$Options->{solid_fill_pattern}{values}};
+    # --external-fill-pattern
+    die "Invalid value for --external-fill-pattern\n"
+        if !first { $_ eq $self->external_fill_pattern } @{$Options->{external_fill_pattern}{values}};
     
     # --fill-density
     die "The selected fill pattern is not supposed to work at 100% density\n"
         if $self->fill_density == 100
-            && !first { $_ eq $self->fill_pattern } @{$Options->{solid_fill_pattern}{values}};
+            && !first { $_ eq $self->fill_pattern } @{$Options->{external_fill_pattern}{values}};
     
     # --infill-every-layers
     die "Invalid value for --infill-every-layers\n"
         if $self->infill_every_layers !~ /^\d+$/ || $self->infill_every_layers < 1;
-    
-    # --bed-size
-    die "Invalid value for --bed-size\n"
-        if !ref $self->bed_size 
-            && (!$self->bed_size || $self->bed_size !~ /^\d+,\d+$/);
     
     # --skirt-height
     die "Invalid value for --skirt-height\n"
@@ -419,7 +382,8 @@ sub read_ini {
     my ($file) = @_;
     
     local $/ = "\n";
-    Slic3r::open(\my $fh, '<', $file);
+    Slic3r::open(\my $fh, '<', $file)
+        or die "Unable to open $file: $!\n";
     binmode $fh, ':utf8';
     
     my $ini = { _ => {} };
@@ -433,13 +397,16 @@ sub read_ini {
             $category = $1;
             next;
         }
-        /^(\w+) = (.*)/ or die "Unreadable configuration file (invalid data at line $.)\n";
+        /^(\w+) *= *(.*)/ or die "Unreadable configuration file (invalid data at line $.)\n";
         $ini->{$category}{$1} = $2;
     }
     close $fh;
     
     return $ini;
 }
+
+package Slic3r::Config::GCode;
+use parent 'Slic3r::Config';
 
 package Slic3r::Config::Print;
 use parent 'Slic3r::Config';

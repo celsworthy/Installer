@@ -1,7 +1,8 @@
 package Method::Generate::DemolishAll;
 
-use strictures 1;
-use base qw(Moo::Object);
+use Moo::_strictures;
+use Moo::Object ();
+our @ISA = qw(Moo::Object);
 use Sub::Quote qw(quote_sub quotify);
 use Moo::_Utils;
 
@@ -17,14 +18,16 @@ sub generate_method {
     my $e = do {
       local $?;
       local $@;
-      require Moo::_Utils;
+      require Devel::GlobalDestruction;
       eval {
-        $self->DEMOLISHALL(Moo::_Utils::_in_global_destruction);
+        $self->DEMOLISHALL(Devel::GlobalDestruction::in_global_destruction);
       };
       $@;
     };
 
-    no warnings 'misc';
+    # fatal warnings+die in DESTROY = bad times (perl rt#123398)
+    no warnings FATAL => 'all';
+    use warnings 'all';
     die $e if $e; # rethrow
   !;
 }
@@ -34,7 +37,7 @@ sub demolishall_body_for {
   my @demolishers =
     grep *{_getglob($_)}{CODE},
     map "${_}::DEMOLISH",
-    @{Moo::_Utils::_get_linear_isa($into)};
+    @{mro::get_linear_isa($into)};
   join '', map qq{    ${me}->${_}(${args});\n}, @demolishers;
 }
 
