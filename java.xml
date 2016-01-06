@@ -8,14 +8,26 @@
     <!-- folders storing JRE -->
     <folderList>
         <folder>
-            <description>Java binaries - Microsoft Windows 32 bit</description>
+            <description>Java Runtime - Common</description>
             <destination>${automakerdir}/java</destination>
+            <name>java_windows_common</name>
+            <platforms>windows</platforms>
+            <distributionFileList>
+                <distributionFile>
+                    <allowWildcards>1</allowWildcards>
+                    <origin>java-windows-both/*</origin>
+                </distributionFile>
+            </distributionFileList>
+        </folder>
+        <folder>
+            <description>Java binaries - Microsoft Windows 32 bit</description>
+            <destination>${automakerdir}/java/bin</destination>
             <name>java_windows</name>
             <platforms>windows</platforms>
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x86/*</origin>
+                    <origin>java-windows-bin-x86/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -100,13 +112,13 @@
         </folder>
         <folder>
             <description>Java binaries - Microsoft Windows 64 bit</description>
-            <destination>${automakerdir}/java</destination>
+            <destination>${automakerdir}/java/bin</destination>
             <name>java_windows_x64</name>
             <platforms>windows</platforms>
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x64/*</origin>
+                    <origin>java-windows-bin-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
