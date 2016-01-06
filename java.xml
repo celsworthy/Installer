@@ -13,9 +13,9 @@
             <name>java_windows_common</name>
             <platforms>windows</platforms>
             <distributionFileList>
-                <distributionFile>
+				<distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-both/*</origin>
+                    <origin>java-windows-common/*</origin>
                 </distributionFile>
             </distributionFileList>
         </folder>
