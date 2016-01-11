@@ -413,9 +413,14 @@
                     <preferredJavaBinary>${java_executable}</preferredJavaBinary>
                     <runInBackground>0</runInBackground>
                     <runInConsole>0</runInConsole>
-                    <usePropertiesFile>0</usePropertiesFile>
+                    <usePropertiesFile>1</usePropertiesFile>
                     <vmParameters>${java_launcher_vm_parameters}</vmParameters>
                     <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
+                    <windowsResourceLegalCopyright>${project.shortName}</windowsResourceLegalCopyright>
+                    <windowsResourceLegalTrademarks>(c) 2016 C Enterprise UK Ltd</windowsResourceLegalTrademarks>
+                    <windowsResourceOriginalFilename>${project.shortName}.exe</windowsResourceOriginalFilename>
+                    <windowsResourceProductName>${project.shortName}</windowsResourceProductName>
+                    <windowsResourceProductVersion>${project.version}</windowsResourceProductVersion>
                     <workingDirectory>${java_launcher_destination}</workingDirectory>
                 </javaLauncher>
                 <javaLauncher>
@@ -428,9 +433,14 @@
                     <preferredJavaBinary>${java_executable}</preferredJavaBinary>
                     <runInBackground>0</runInBackground>
                     <runInConsole>0</runInConsole>
-                    <usePropertiesFile>0</usePropertiesFile>
+                    <usePropertiesFile>1</usePropertiesFile>
                     <vmParameters>-Dprism.forceGPU=true ${java_launcher_vm_parameters}</vmParameters>
                     <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
+                    <windowsResourceLegalCopyright>${project.shortName}</windowsResourceLegalCopyright>
+                    <windowsResourceLegalTrademarks>(c) 2016 C Enterprise UK Ltd</windowsResourceLegalTrademarks>
+                    <windowsResourceOriginalFilename>${project.shortName}.exe</windowsResourceOriginalFilename>
+                    <windowsResourceProductName>${project.shortName}</windowsResourceProductName>
+                    <windowsResourceProductVersion>${project.version}</windowsResourceProductVersion>
                     <workingDirectory>${java_launcher_destination}</workingDirectory>
                 </javaLauncher>
             </javaLauncherList>
