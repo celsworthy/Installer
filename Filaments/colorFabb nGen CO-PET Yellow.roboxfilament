@@ -12,5 +12,5 @@ first_layer_bed_temperature_C = 85
 bed_temperature_C = 80
 first_layer_nozzle_temperature_C = 230
 nozzle_temperature_C = 225
-display_colour = #ffc800
+display_colour = #FFAA00
 cost_gbp_per_kg = 40.95
