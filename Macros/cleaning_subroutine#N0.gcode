@@ -1,4 +1,4 @@
-;Nozzle_Clean_T0
+;Nozzle clean single material head N0
 G36 E10 F1000
 G0 B1
 T0
