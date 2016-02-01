@@ -2,7 +2,6 @@
 # Robox filament definition file
 #
 name = colorFabb nGen Dark Grey
-material = PET
 reelID = RBX-PET-NGFS1
 diameter_mm = 1.75
 filament_multiplier = 0.97
@@ -12,5 +11,5 @@ first_layer_bed_temperature_C = 85
 bed_temperature_C = 80
 first_layer_nozzle_temperature_C = 230
 nozzle_temperature_C = 225
-display_colour = #5b5b5b
+display_colour = #3B3F3D
 cost_gbp_per_kg = 40.95
