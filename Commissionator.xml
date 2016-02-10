@@ -137,7 +137,7 @@
                             <origin>CommissionatorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>librxtx/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -157,7 +157,7 @@
                             <origin>CommissionatorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>librxtx/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -177,10 +177,10 @@
                             <origin>CommissionatorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial.dll</origin>
+                            <origin>librxtx/windows/rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial64.dll</origin>
+                            <origin>librxtx/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -203,7 +203,7 @@
                             <origin>Commissionator.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.jnilib</origin>
+                            <origin>librxtx/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
