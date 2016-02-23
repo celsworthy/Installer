@@ -625,37 +625,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
-        <actionGroup>
-            <actionList>
-                <runProgram>
-                    <program>defaults</program>
-
-                    <!-- The CDATA notation allow escaping a
-            block of XML characters -->
-                    <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
-&lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
-&lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
-&lt;string&gt;com.CELTech.AutoMaker&lt;/string&gt;&lt;/dict&gt;"
-           </programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </runProgram>
-
-                <!-- Restart the launch services to reload the configuration -->
-                <runProgram>
-                    <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
-                    <programArguments>-kill -domain local -domain system -domain user</programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </runProgram>
-            </actionList>
-        </actionGroup>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
