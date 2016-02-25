@@ -118,7 +118,7 @@
 
     <!-- parameters for creating Java launchers -->
     <parameterList>
-	<stringParameter name="java_launcher_destination" value="${installdir}" ask="0" />
+	<stringParameter name="java_launcher_destination" value="${automakerdir}" ask="0" />
 	<stringParameter name="java_launcher_binary_name" value="${project.shortName}-launcher.${platform_exec_suffix}" ask="0" />
 	<stringParameter name="java_launcher_arguments" value="" ask="0" />
 	<stringParameter name="java_launcher_vm_parameters" value="" ask="0" />
@@ -143,11 +143,11 @@
 		<!-- determine Java binary name - javaw.exe on Windows, java otherwise -->
 		<setInstallerVariable>
 		    <name>java_executable</name>
-		    <value>${installdir}/java/bin/java</value>
+		    <value>${automakerdir}/java/bin/java</value>
 		</setInstallerVariable>
 		<setInstallerVariable>
 		    <name>java_executable</name>
-		    <value>${installdir}/java/bin/javaw.exe</value>
+		    <value>${automakerdir}/java/bin/javaw.exe</value>
 		    <ruleList>
 			<platformTest type="windows" />
 		    </ruleList>
@@ -167,9 +167,9 @@
 
     <postInstallationActionList>
         <!-- change permissions of all binaries -->
-        <changePermissions files="${installdir}/java/bin/*" permissions="0755" abortOnError="0" showMessageOnError="0">
+        <changePermissions files="${automakerdir}/java/bin/*" permissions="0755" abortOnError="0" showMessageOnError="0">
             <ruleList>
-                <fileExists path="${installdir}/java/bin" />
+                <fileExists path="${automakerdir}/java/bin" />
                 <platformTest negate="1" type="windows" />
             </ruleList>
         </changePermissions>
@@ -180,46 +180,46 @@
                 <platformTest type="linux" />
             </ruleList>
             <actionList>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin" />
-                        <fileExists path="${installdir}/java/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/bin" />
+                        <fileExists path="${automakerdir}/java/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/jre/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/jre/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin" />
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/jre/bin" />
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/jre/lib/i386/client/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/jre/lib/i386/client/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/client" />
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/client" />
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/jre/lib/i386/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/jre/lib/i386/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/i386/server" />
-                        <fileExists path="${installdir}/java/jre/lib/i386/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/server" />
+                        <fileExists path="${automakerdir}/java/jre/lib/i386/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin" />
-                        <fileExists path="${installdir}/java/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/bin" />
+                        <fileExists path="${automakerdir}/java/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/lib/i386/client/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/lib/i386/client/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/client" />
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/lib/i386/client" />
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/lib/i386/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/lib/i386/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/i386/server" />
-                        <fileExists path="${installdir}/java/lib/i386/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/lib/i386/server" />
+                        <fileExists path="${automakerdir}/java/lib/i386/libjsig.so" />
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -230,34 +230,34 @@
                 <platformTest type="linux-x64" />
             </ruleList>
             <actionList>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin" />
-                        <fileExists path="${installdir}/java/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/bin" />
+                        <fileExists path="${automakerdir}/java/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/jre/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/jre/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin" />
-                        <fileExists path="${installdir}/java/jre/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/jre/bin" />
+                        <fileExists path="${automakerdir}/java/jre/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/jre/lib/amd64/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/jre/lib/amd64/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/amd64/server" />
-                        <fileExists path="${installdir}/java/jre/lib/amd64/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/server" />
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="jcontrol" linkName="${installdir}/java/bin/ControlPanel">
+                <createSymLink target="jcontrol" linkName="${automakerdir}/java/bin/ControlPanel">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin" />
-                        <fileExists path="${installdir}/java/bin/jcontrol" />
+                        <fileExists path="${automakerdir}/java/bin" />
+                        <fileExists path="${automakerdir}/java/bin/jcontrol" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/lib/amd64/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/lib/amd64/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/amd64/server" />
-                        <fileExists path="${installdir}/java/lib/amd64/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/lib/amd64/server" />
+                        <fileExists path="${automakerdir}/java/lib/amd64/libjsig.so" />
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -268,394 +268,394 @@
                 <platformTest type="solaris-intel" />
             </ruleList>
             <actionList>
-                <createSymLink target="../appletviewer" linkName="${installdir}/java/bin/amd64/appletviewer">
+                <createSymLink target="../appletviewer" linkName="${automakerdir}/java/bin/amd64/appletviewer">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/appletviewer" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/appletviewer" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../extcheck" linkName="${installdir}/java/bin/amd64/extcheck">
+                <createSymLink target="../extcheck" linkName="${automakerdir}/java/bin/amd64/extcheck">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/extcheck" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/extcheck" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../idlj" linkName="${installdir}/java/bin/amd64/idlj">
+                <createSymLink target="../idlj" linkName="${automakerdir}/java/bin/amd64/idlj">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/idlj" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/idlj" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jar" linkName="${installdir}/java/bin/amd64/jar">
+                <createSymLink target="../jar" linkName="${automakerdir}/java/bin/amd64/jar">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jar" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jar" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jarsigner" linkName="${installdir}/java/bin/amd64/jarsigner">
+                <createSymLink target="../jarsigner" linkName="${automakerdir}/java/bin/amd64/jarsigner">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jarsigner" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jarsigner" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/bin/amd64/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/bin/amd64/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/java" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java-rmi.cgi" linkName="${installdir}/java/bin/amd64/java-rmi.cgi">
+                <createSymLink target="../java-rmi.cgi" linkName="${automakerdir}/java/bin/amd64/java-rmi.cgi">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/java-rmi.cgi" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/java-rmi.cgi" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javac" linkName="${installdir}/java/bin/amd64/javac">
+                <createSymLink target="../javac" linkName="${automakerdir}/java/bin/amd64/javac">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/javac" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/javac" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javadoc" linkName="${installdir}/java/bin/amd64/javadoc">
+                <createSymLink target="../javadoc" linkName="${automakerdir}/java/bin/amd64/javadoc">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/javadoc" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/javadoc" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javah" linkName="${installdir}/java/bin/amd64/javah">
+                <createSymLink target="../javah" linkName="${automakerdir}/java/bin/amd64/javah">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/javah" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/javah" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javap" linkName="${installdir}/java/bin/amd64/javap">
+                <createSymLink target="../javap" linkName="${automakerdir}/java/bin/amd64/javap">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/javap" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/javap" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jcmd" linkName="${installdir}/java/bin/amd64/jcmd">
+                <createSymLink target="../jcmd" linkName="${automakerdir}/java/bin/amd64/jcmd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jcmd" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jcmd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jconsole" linkName="${installdir}/java/bin/amd64/jconsole">
+                <createSymLink target="../jconsole" linkName="${automakerdir}/java/bin/amd64/jconsole">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jconsole" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jconsole" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jdb" linkName="${installdir}/java/bin/amd64/jdb">
+                <createSymLink target="../jdb" linkName="${automakerdir}/java/bin/amd64/jdb">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jdb" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jdb" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jdeps" linkName="${installdir}/java/bin/amd64/jdeps">
+                <createSymLink target="../jdeps" linkName="${automakerdir}/java/bin/amd64/jdeps">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jdeps" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jdeps" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jhat" linkName="${installdir}/java/bin/amd64/jhat">
+                <createSymLink target="../jhat" linkName="${automakerdir}/java/bin/amd64/jhat">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jhat" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jhat" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jinfo" linkName="${installdir}/java/bin/amd64/jinfo">
+                <createSymLink target="../jinfo" linkName="${automakerdir}/java/bin/amd64/jinfo">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jinfo" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jinfo" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/bin/amd64/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/bin/amd64/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jmap" linkName="${installdir}/java/bin/amd64/jmap">
+                <createSymLink target="../jmap" linkName="${automakerdir}/java/bin/amd64/jmap">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jmap" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jmap" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jps" linkName="${installdir}/java/bin/amd64/jps">
+                <createSymLink target="../jps" linkName="${automakerdir}/java/bin/amd64/jps">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jps" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jps" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jrunscript" linkName="${installdir}/java/bin/amd64/jrunscript">
+                <createSymLink target="../jrunscript" linkName="${automakerdir}/java/bin/amd64/jrunscript">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jrunscript" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jrunscript" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jsadebugd" linkName="${installdir}/java/bin/amd64/jsadebugd">
+                <createSymLink target="../jsadebugd" linkName="${automakerdir}/java/bin/amd64/jsadebugd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jsadebugd" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jsadebugd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstack" linkName="${installdir}/java/bin/amd64/jstack">
+                <createSymLink target="../jstack" linkName="${automakerdir}/java/bin/amd64/jstack">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jstack" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jstack" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstat" linkName="${installdir}/java/bin/amd64/jstat">
+                <createSymLink target="../jstat" linkName="${automakerdir}/java/bin/amd64/jstat">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jstat" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jstat" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstatd" linkName="${installdir}/java/bin/amd64/jstatd">
+                <createSymLink target="../jstatd" linkName="${automakerdir}/java/bin/amd64/jstatd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jstatd" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jstatd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/bin/amd64/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/bin/amd64/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../native2ascii" linkName="${installdir}/java/bin/amd64/native2ascii">
+                <createSymLink target="../native2ascii" linkName="${automakerdir}/java/bin/amd64/native2ascii">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/native2ascii" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/native2ascii" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/bin/amd64/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/bin/amd64/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/bin/amd64/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/bin/amd64/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/bin/amd64/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/bin/amd64/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmic" linkName="${installdir}/java/bin/amd64/rmic">
+                <createSymLink target="../rmic" linkName="${automakerdir}/java/bin/amd64/rmic">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/rmic" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/rmic" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/bin/amd64/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/bin/amd64/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/bin/amd64/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/bin/amd64/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../schemagen" linkName="${installdir}/java/bin/amd64/schemagen">
+                <createSymLink target="../schemagen" linkName="${automakerdir}/java/bin/amd64/schemagen">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/schemagen" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/schemagen" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../serialver" linkName="${installdir}/java/bin/amd64/serialver">
+                <createSymLink target="../serialver" linkName="${automakerdir}/java/bin/amd64/serialver">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/serialver" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/serialver" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/bin/amd64/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/bin/amd64/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/bin/amd64/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/bin/amd64/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/bin/amd64/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/bin/amd64/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../wsgen" linkName="${installdir}/java/bin/amd64/wsgen">
+                <createSymLink target="../wsgen" linkName="${automakerdir}/java/bin/amd64/wsgen">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/wsgen" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/wsgen" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../wsimport" linkName="${installdir}/java/bin/amd64/wsimport">
+                <createSymLink target="../wsimport" linkName="${automakerdir}/java/bin/amd64/wsimport">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/wsimport" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/wsimport" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../xjc" linkName="${installdir}/java/bin/amd64/xjc">
+                <createSymLink target="../xjc" linkName="${automakerdir}/java/bin/amd64/xjc">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/xjc" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/xjc" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/jre/bin/amd64/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/jre/bin/amd64/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/java" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/jre/bin/amd64/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/jre/bin/amd64/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/jre/bin/amd64/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/jre/bin/amd64/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/jre/bin/amd64/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/jre/bin/amd64/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/jre/bin/amd64/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/jre/bin/amd64/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/jre/bin/amd64/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/jre/bin/amd64/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/jre/bin/amd64/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/jre/bin/amd64/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/jre/bin/amd64/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/jre/bin/amd64/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/jre/bin/amd64/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/jre/bin/amd64/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/jre/bin/amd64/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/jre/bin/amd64/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/jre/bin/amd64/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/jre/bin/amd64/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/amd64" />
-                        <fileExists path="${installdir}/java/jre/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/jre/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/jre/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/jre/lib/amd64/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/jre/lib/amd64/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/amd64/server" />
-                        <fileExists path="${installdir}/java/jre/lib/amd64/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/server" />
+                        <fileExists path="${automakerdir}/java/jre/lib/amd64/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/bin/amd64/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/bin/amd64/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/java" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/bin/amd64/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/bin/amd64/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/bin/amd64/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/bin/amd64/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/bin/amd64/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/bin/amd64/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/bin/amd64/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/bin/amd64/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/bin/amd64/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/bin/amd64/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/bin/amd64/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/bin/amd64/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/bin/amd64/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/bin/amd64/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/bin/amd64/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/bin/amd64/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/bin/amd64/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/bin/amd64/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/bin/amd64/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/bin/amd64/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/amd64" />
-                        <fileExists path="${installdir}/java/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/bin/amd64" />
+                        <fileExists path="${automakerdir}/java/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/lib/amd64/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/lib/amd64/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/amd64/server" />
-                        <fileExists path="${installdir}/java/lib/amd64/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/lib/amd64/server" />
+                        <fileExists path="${automakerdir}/java/lib/amd64/libjsig.so" />
                     </ruleList>
                 </createSymLink>
             </actionList>
@@ -666,406 +666,406 @@
                 <platformTest type="solaris-sparc" />
             </ruleList>
             <actionList>
-                <createSymLink target="../appletviewer" linkName="${installdir}/java/bin/sparcv9/appletviewer">
+                <createSymLink target="../appletviewer" linkName="${automakerdir}/java/bin/sparcv9/appletviewer">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/appletviewer" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/appletviewer" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../extcheck" linkName="${installdir}/java/bin/sparcv9/extcheck">
+                <createSymLink target="../extcheck" linkName="${automakerdir}/java/bin/sparcv9/extcheck">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/extcheck" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/extcheck" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../idlj" linkName="${installdir}/java/bin/sparcv9/idlj">
+                <createSymLink target="../idlj" linkName="${automakerdir}/java/bin/sparcv9/idlj">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/idlj" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/idlj" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jar" linkName="${installdir}/java/bin/sparcv9/jar">
+                <createSymLink target="../jar" linkName="${automakerdir}/java/bin/sparcv9/jar">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jar" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jar" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jarsigner" linkName="${installdir}/java/bin/sparcv9/jarsigner">
+                <createSymLink target="../jarsigner" linkName="${automakerdir}/java/bin/sparcv9/jarsigner">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jarsigner" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jarsigner" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/bin/sparcv9/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/bin/sparcv9/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/java" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java-rmi.cgi" linkName="${installdir}/java/bin/sparcv9/java-rmi.cgi">
+                <createSymLink target="../java-rmi.cgi" linkName="${automakerdir}/java/bin/sparcv9/java-rmi.cgi">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/java-rmi.cgi" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/java-rmi.cgi" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javac" linkName="${installdir}/java/bin/sparcv9/javac">
+                <createSymLink target="../javac" linkName="${automakerdir}/java/bin/sparcv9/javac">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/javac" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/javac" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javadoc" linkName="${installdir}/java/bin/sparcv9/javadoc">
+                <createSymLink target="../javadoc" linkName="${automakerdir}/java/bin/sparcv9/javadoc">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/javadoc" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/javadoc" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javah" linkName="${installdir}/java/bin/sparcv9/javah">
+                <createSymLink target="../javah" linkName="${automakerdir}/java/bin/sparcv9/javah">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/javah" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/javah" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../javap" linkName="${installdir}/java/bin/sparcv9/javap">
+                <createSymLink target="../javap" linkName="${automakerdir}/java/bin/sparcv9/javap">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/javap" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/javap" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jcmd" linkName="${installdir}/java/bin/sparcv9/jcmd">
+                <createSymLink target="../jcmd" linkName="${automakerdir}/java/bin/sparcv9/jcmd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jcmd" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jcmd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jconsole" linkName="${installdir}/java/bin/sparcv9/jconsole">
+                <createSymLink target="../jconsole" linkName="${automakerdir}/java/bin/sparcv9/jconsole">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jconsole" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jconsole" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jdb" linkName="${installdir}/java/bin/sparcv9/jdb">
+                <createSymLink target="../jdb" linkName="${automakerdir}/java/bin/sparcv9/jdb">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jdb" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jdb" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jdeps" linkName="${installdir}/java/bin/sparcv9/jdeps">
+                <createSymLink target="../jdeps" linkName="${automakerdir}/java/bin/sparcv9/jdeps">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jdeps" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jdeps" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jhat" linkName="${installdir}/java/bin/sparcv9/jhat">
+                <createSymLink target="../jhat" linkName="${automakerdir}/java/bin/sparcv9/jhat">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jhat" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jhat" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jinfo" linkName="${installdir}/java/bin/sparcv9/jinfo">
+                <createSymLink target="../jinfo" linkName="${automakerdir}/java/bin/sparcv9/jinfo">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jinfo" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jinfo" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/bin/sparcv9/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/bin/sparcv9/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jmap" linkName="${installdir}/java/bin/sparcv9/jmap">
+                <createSymLink target="../jmap" linkName="${automakerdir}/java/bin/sparcv9/jmap">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jmap" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jmap" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jps" linkName="${installdir}/java/bin/sparcv9/jps">
+                <createSymLink target="../jps" linkName="${automakerdir}/java/bin/sparcv9/jps">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jps" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jps" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jrunscript" linkName="${installdir}/java/bin/sparcv9/jrunscript">
+                <createSymLink target="../jrunscript" linkName="${automakerdir}/java/bin/sparcv9/jrunscript">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jrunscript" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jrunscript" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jsadebugd" linkName="${installdir}/java/bin/sparcv9/jsadebugd">
+                <createSymLink target="../jsadebugd" linkName="${automakerdir}/java/bin/sparcv9/jsadebugd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jsadebugd" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jsadebugd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstack" linkName="${installdir}/java/bin/sparcv9/jstack">
+                <createSymLink target="../jstack" linkName="${automakerdir}/java/bin/sparcv9/jstack">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jstack" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jstack" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstat" linkName="${installdir}/java/bin/sparcv9/jstat">
+                <createSymLink target="../jstat" linkName="${automakerdir}/java/bin/sparcv9/jstat">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jstat" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jstat" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jstatd" linkName="${installdir}/java/bin/sparcv9/jstatd">
+                <createSymLink target="../jstatd" linkName="${automakerdir}/java/bin/sparcv9/jstatd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jstatd" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jstatd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/bin/sparcv9/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/bin/sparcv9/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../native2ascii" linkName="${installdir}/java/bin/sparcv9/native2ascii">
+                <createSymLink target="../native2ascii" linkName="${automakerdir}/java/bin/sparcv9/native2ascii">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/native2ascii" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/native2ascii" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/bin/sparcv9/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/bin/sparcv9/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/bin/sparcv9/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/bin/sparcv9/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/bin/sparcv9/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/bin/sparcv9/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmic" linkName="${installdir}/java/bin/sparcv9/rmic">
+                <createSymLink target="../rmic" linkName="${automakerdir}/java/bin/sparcv9/rmic">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/rmic" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/rmic" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/bin/sparcv9/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/bin/sparcv9/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/bin/sparcv9/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/bin/sparcv9/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../schemagen" linkName="${installdir}/java/bin/sparcv9/schemagen">
+                <createSymLink target="../schemagen" linkName="${automakerdir}/java/bin/sparcv9/schemagen">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/schemagen" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/schemagen" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../serialver" linkName="${installdir}/java/bin/sparcv9/serialver">
+                <createSymLink target="../serialver" linkName="${automakerdir}/java/bin/sparcv9/serialver">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/serialver" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/serialver" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/bin/sparcv9/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/bin/sparcv9/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/bin/sparcv9/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/bin/sparcv9/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/bin/sparcv9/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/bin/sparcv9/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../wsgen" linkName="${installdir}/java/bin/sparcv9/wsgen">
+                <createSymLink target="../wsgen" linkName="${automakerdir}/java/bin/sparcv9/wsgen">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/wsgen" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/wsgen" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../wsimport" linkName="${installdir}/java/bin/sparcv9/wsimport">
+                <createSymLink target="../wsimport" linkName="${automakerdir}/java/bin/sparcv9/wsimport">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/wsimport" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/wsimport" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../xjc" linkName="${installdir}/java/bin/sparcv9/xjc">
+                <createSymLink target="../xjc" linkName="${automakerdir}/java/bin/sparcv9/xjc">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/xjc" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/xjc" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/jre/bin/sparcv9/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/jre/bin/sparcv9/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/java" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/jre/bin/sparcv9/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/jre/bin/sparcv9/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/jre/bin/sparcv9/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/jre/bin/sparcv9/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/jre/bin/sparcv9/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/jre/bin/sparcv9/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/jre/bin/sparcv9/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/jre/bin/sparcv9/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/jre/bin/sparcv9/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/jre/bin/sparcv9/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/jre/bin/sparcv9/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/jre/bin/sparcv9/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/jre/bin/sparcv9/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/jre/bin/sparcv9/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/jre/bin/sparcv9/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/jre/bin/sparcv9/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/jre/bin/sparcv9/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/jre/bin/sparcv9/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/jre/bin/sparcv9/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/jre/bin/sparcv9/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/jre/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="libjdgaSUNWffb.so" linkName="${installdir}/java/jre/lib/sparcv9/libjdgaSUNWafb.so">
+                <createSymLink target="libjdgaSUNWffb.so" linkName="${automakerdir}/java/jre/lib/sparcv9/libjdgaSUNWafb.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/sparcv9" />
-                        <fileExists path="${installdir}/java/jre/lib/sparcv9/libjdgaSUNWffb.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/sparcv9" />
+                        <fileExists path="${automakerdir}/java/jre/lib/sparcv9/libjdgaSUNWffb.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/jre/lib/sparcv9/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/jre/lib/sparcv9/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/jre/lib/sparcv9/server" />
-                        <fileExists path="${installdir}/java/jre/lib/sparcv9/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/jre/lib/sparcv9/server" />
+                        <fileExists path="${automakerdir}/java/jre/lib/sparcv9/libjsig.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../java" linkName="${installdir}/java/bin/sparcv9/java">
+                <createSymLink target="../java" linkName="${automakerdir}/java/bin/sparcv9/java">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/java" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/java" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../jjs" linkName="${installdir}/java/bin/sparcv9/jjs">
+                <createSymLink target="../jjs" linkName="${automakerdir}/java/bin/sparcv9/jjs">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/jjs" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/jjs" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../keytool" linkName="${installdir}/java/bin/sparcv9/keytool">
+                <createSymLink target="../keytool" linkName="${automakerdir}/java/bin/sparcv9/keytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/keytool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/keytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../orbd" linkName="${installdir}/java/bin/sparcv9/orbd">
+                <createSymLink target="../orbd" linkName="${automakerdir}/java/bin/sparcv9/orbd">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/orbd" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/orbd" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../pack200" linkName="${installdir}/java/bin/sparcv9/pack200">
+                <createSymLink target="../pack200" linkName="${automakerdir}/java/bin/sparcv9/pack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/pack200" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/pack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../policytool" linkName="${installdir}/java/bin/sparcv9/policytool">
+                <createSymLink target="../policytool" linkName="${automakerdir}/java/bin/sparcv9/policytool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/policytool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/policytool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmid" linkName="${installdir}/java/bin/sparcv9/rmid">
+                <createSymLink target="../rmid" linkName="${automakerdir}/java/bin/sparcv9/rmid">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/rmid" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/rmid" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../rmiregistry" linkName="${installdir}/java/bin/sparcv9/rmiregistry">
+                <createSymLink target="../rmiregistry" linkName="${automakerdir}/java/bin/sparcv9/rmiregistry">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/rmiregistry" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/rmiregistry" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../servertool" linkName="${installdir}/java/bin/sparcv9/servertool">
+                <createSymLink target="../servertool" linkName="${automakerdir}/java/bin/sparcv9/servertool">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/servertool" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/servertool" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../tnameserv" linkName="${installdir}/java/bin/sparcv9/tnameserv">
+                <createSymLink target="../tnameserv" linkName="${automakerdir}/java/bin/sparcv9/tnameserv">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/tnameserv" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/tnameserv" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../unpack200" linkName="${installdir}/java/bin/sparcv9/unpack200">
+                <createSymLink target="../unpack200" linkName="${automakerdir}/java/bin/sparcv9/unpack200">
                     <ruleList>
-                        <fileExists path="${installdir}/java/bin/sparcv9" />
-                        <fileExists path="${installdir}/java/bin/unpack200" />
+                        <fileExists path="${automakerdir}/java/bin/sparcv9" />
+                        <fileExists path="${automakerdir}/java/bin/unpack200" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="libjdgaSUNWffb.so" linkName="${installdir}/java/lib/sparcv9/libjdgaSUNWafb.so">
+                <createSymLink target="libjdgaSUNWffb.so" linkName="${automakerdir}/java/lib/sparcv9/libjdgaSUNWafb.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/sparcv9" />
-                        <fileExists path="${installdir}/java/lib/sparcv9/libjdgaSUNWffb.so" />
+                        <fileExists path="${automakerdir}/java/lib/sparcv9" />
+                        <fileExists path="${automakerdir}/java/lib/sparcv9/libjdgaSUNWffb.so" />
                     </ruleList>
                 </createSymLink>
-                <createSymLink target="../libjsig.so" linkName="${installdir}/java/lib/sparcv9/server/libjsig.so">
+                <createSymLink target="../libjsig.so" linkName="${automakerdir}/java/lib/sparcv9/server/libjsig.so">
                     <ruleList>
-                        <fileExists path="${installdir}/java/lib/sparcv9/server" />
-                        <fileExists path="${installdir}/java/lib/sparcv9/libjsig.so" />
+                        <fileExists path="${automakerdir}/java/lib/sparcv9/server" />
+                        <fileExists path="${automakerdir}/java/lib/sparcv9/libjsig.so" />
                     </ruleList>
                 </createSymLink>
             </actionList>
