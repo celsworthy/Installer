@@ -12,7 +12,6 @@
 	<osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
 	<windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
 	<windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
-	<windowsSigningTimestampServer>http://timestamp.verisign.com/scripts/timestamp.dll</windowsSigningTimestampServer>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -479,6 +478,21 @@
         <setInstallerVariable>
             <name>update_xml_url</name>
             <value>http://downloads.cel-robox.com:8001/0abc523fc24/AutoMaker-update.xml</value>
+	        <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
+        </setInstallerVariable>
+		<setInstallerVariable>
+            <name>update_xml_url</name>
+            <value>http://downloads.cel-robox.com:8001/0abc523fc24_x86/AutoMaker-update.xml</value>
+	        <ruleList>
+                <platformTest>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
