@@ -8,7 +8,10 @@
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
 	<createOsxBundleDmg>1</createOsxBundleDmg>
-	<osxDmgBackgroundImage>${build_project_directory}/AutoMaker.png</osxDmgBackgroundImage>
+	<osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
+	<osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
+	<windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
+	<windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
     <componentList>
         <component>
             <name>windowsdrivers</name>
