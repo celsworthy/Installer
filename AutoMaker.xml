@@ -7,6 +7,8 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
+	<createOsxBundleDmg>1</createOsxBundleDmg>
+	<osxDmgBackgroundImage>AutoMaker.png</osxDmgBackgroundImage>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -598,33 +600,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </addDirectoriesToUninstaller>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>plutil</program>
-            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
