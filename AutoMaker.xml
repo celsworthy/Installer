@@ -615,6 +615,15 @@ enable = 0
                 </platformTest>
             </ruleList>
         </addDirectoriesToUninstaller>
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
