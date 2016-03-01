@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name =Polymaker PC-Plus™ Black
+name =Polymaker PC-Plus\u2122 Black
 material = PCP
 reelID = RBX-PCP-BK001
 diameter_mm = 1.750
