@@ -642,15 +642,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleSignature ${project.vendor} ${project.fullName}"</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
 		 <runProgram>
             <program>plutil</program>
             <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
