@@ -14,7 +14,7 @@
      <!-- Launch the installer -->
      <runProgram>
          <program>hdiutil</program>
-         <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen</programArguments>
+         <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen &amp;</programArguments>
              <ruleList>
                   <platformTest>
                       <type>osx</type>
@@ -23,6 +23,7 @@
      </runProgram>
      <runProgram>
          <program>${downloadedFilePath}</program>
+         <programArguments>&amp;</programArguments>
              <ruleList>
                   <platformTest>
                       <negate>1</negate>
