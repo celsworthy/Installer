@@ -6,6 +6,10 @@
     <leftImage>LeftImage - ReelProgrammer 163x314.png</leftImage>
     <splashImage>Splash - ReelProgrammer 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
+	<osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
+	<windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -351,9 +355,24 @@
             <name>install_menu_shortcut</name>
             <value>0</value>
         </setInstallerVariable>
+	    <setInstallerVariable>
+            <name>update_xml_url</name>
+            <value>http://downloads.cel-robox.com:8001/14f690bc22c/ReelProgrammer-update.xml</value>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
+        </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/1532f2c4ab/ReelProgrammer-update.xml</value>
+            <value>http://downloads.cel-robox.com:8001/14f690bc22c_x86/ReelProgrammer-update.xml</value>
+            <ruleList>
+                <platformTest>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
@@ -443,15 +462,6 @@ enable = 0
         </addDirectoriesToUninstaller>
         <runProgram>
             <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>defaults</program>
             <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
             <ruleList>
                 <platformTest>
@@ -460,6 +470,24 @@ enable = 0
             </ruleList>
         </runProgram>
         <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+		 <runProgram>
             <program>plutil</program>
             <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
             <ruleList>
@@ -468,37 +496,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
-        <actionGroup>
-            <actionList>
-                <runProgram>
-                    <program>defaults</program>
-
-                    <!-- The CDATA notation allow escaping a
-            block of XML characters -->
-                    <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
-&lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
-&lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
-&lt;string&gt;com.CELTech.ReelProgrammer&lt;/string&gt;&lt;/dict&gt;"
-           </programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </runProgram>
-
-                <!-- Restart the launch services to reload the configuration -->
-                <runProgram>
-                    <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
-                    <programArguments>-kill -domain local -domain system -domain user</programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
-                </runProgram>
-            </actionList>
-        </actionGroup>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
