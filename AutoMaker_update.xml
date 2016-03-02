@@ -10,4 +10,25 @@
 	<singleInstanceCheck>1</singleInstanceCheck>
 	<osxApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon.icns</osxApplicationBundleIcon>
 	<windowsExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon.ico</windowsExecutableIcon>
+                <postUpdateDownloadActionList>
+     <!-- Launch the installer -->
+     <runProgram>
+         <program>hdiutil</program>
+         <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen</programArguments>
+             <ruleList>
+                  <platformTest>
+                      <type>osx</type>
+                  </platformTest>
+             </ruleList>
+     </runProgram>
+     <runProgram>
+         <program>${downloadedFilePath}</program>
+             <ruleList>
+                  <platformTest>
+                      <negate>1</negate>
+                      <type>osx</type>
+                  </platformTest>
+             </ruleList>
+     </runProgram>
+</postUpdateDownloadActionList>
 </autoUpdateProject>
