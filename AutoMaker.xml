@@ -668,6 +668,7 @@ enable = 0
         </actionGroup>
     </postUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
+	<createOsxBundleDmg>1</createOsxBundleDmg>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
