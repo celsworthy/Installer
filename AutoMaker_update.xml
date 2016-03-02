@@ -3,13 +3,13 @@
 	<shortName>AutoMaker</shortName>
 	<vendor>C Enterprise (UK) Limited</vendor>
 	<version>1.0</version>
-        <leftImage>D:/Development/RoboxResources/PrintSoftware/installer/InstallerLeftImage.png</leftImage>
-	<logoImage>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon48x48.png</logoImage>
-	 <splashImage>D:/Development/RoboxResources/PrintSoftware/installer/AutoMakerSplash.png</splashImage>
-    <wmImage>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon48x48.png</wmImage>
+        <leftImage>D:/Development/NetBeansProjects/installer/InstallerLeftImage.png</leftImage>
+	<logoImage>D:/Development/NetBeansProjects/installer/RoboxIcon48x48.png</logoImage>
+	 <splashImage>D:/Development/NetBeansProjects/installer/AutoMakerSplash.png</splashImage>
+    <wmImage>D:/Development/NetBeansProjects/installer/RoboxIcon48x48.png</wmImage>
 	<singleInstanceCheck>1</singleInstanceCheck>
-	<osxApplicationBundleIcon>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon.icns</osxApplicationBundleIcon>
-	<windowsExecutableIcon>D:/Development/RoboxResources/PrintSoftware/installer/RoboxIcon.ico</windowsExecutableIcon>
+	<osxApplicationBundleIcon>D:/Development/NetBeansProjects/installer/RoboxIcon.icns</osxApplicationBundleIcon>
+	<windowsExecutableIcon>D:/Development/NetBeansProjects/installer/RoboxIcon.ico</windowsExecutableIcon>
                 <postUpdateDownloadActionList>
      <!-- Launch the installer -->
      <runProgram>
