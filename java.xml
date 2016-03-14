@@ -15,7 +15,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x86/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-windows-x86/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -31,7 +31,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-linux/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-linux/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -46,7 +46,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-linux-x64/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-linux-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -61,7 +61,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-solaris-sparc/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-solaris-sparc/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -76,7 +76,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-solaris-intel/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-solaris-intel/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -91,7 +91,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-osx/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-osx/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
@@ -106,7 +106,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x64/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-windows-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <ruleList>
