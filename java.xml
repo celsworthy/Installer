@@ -21,7 +21,7 @@
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
 				<compareText>
-                        <text>${buildX86}</text>
+                        <text>${buildWithX86Java}</text>
                         <nocase>1</nocase>
                         <logic>equals</logic>
                         <value>Y</value>
@@ -118,7 +118,7 @@
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
 				<compareText>
-                        <text>${buildX86}</text>
+                        <text>${buildWithX86Java}</text>
                         <nocase>1</nocase>
                         <logic>does_not_equal</logic>
                         <value>Y</value>
