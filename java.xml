@@ -20,12 +20,11 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
-				<compareText>
-                        <text>${buildWithX86Java}</text>
-                        <nocase>1</nocase>
+				<compareValues>
                         <logic>equals</logic>
-                        <value>Y</value>
-                </compareText>
+                        <value1>Y</value1>
+                        <value2>${buildWithX86Java}</value2>
+                </compareValues>
             </ruleList>
         </folder>
         <folder>
@@ -116,12 +115,11 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
-				<compareText>
-                        <text>${buildWithX86Java}</text>
-                        <nocase>1</nocase>
+				<compareValues>
                         <logic>does_not_equal</logic>
-                        <value>Y</value>
-                </compareText>
+                        <value1>Y</value1>
+                        <value2>${buildWithX86Java}</value2>
+                </compareValues>
             </ruleList>
         </folder>
     </folderList>
