@@ -26,7 +26,6 @@
                         <logic>equals</logic>
                         <value>Y</value>
                 </compareText>
-                <platformTest type="windows-x86"/>
             </ruleList>
         </folder>
         <folder>
@@ -123,7 +122,6 @@
                         <logic>does_not_equal</logic>
                         <value>Y</value>
                 </compareText>
-                <platformTest type="windows-x64"/>
             </ruleList>
         </folder>
     </folderList>
