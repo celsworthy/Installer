@@ -20,6 +20,12 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
+				<compareValue>
+                        <text>${buildX86}</text>
+                        <nocase>1</nocase>
+                        <logic>equals</logic>
+                        <value>Y</value>
+                </compareValue>
                 <platformTest type="windows-x86"/>
             </ruleList>
         </folder>
@@ -111,6 +117,12 @@
             </distributionFileList>
             <ruleList>
                 <isTrue value="${java_install_jre}"/>
+				<compareValue>
+                        <text>${buildX86}</text>
+                        <nocase>1</nocase>
+                        <logic>does_not_equal</logic>
+                        <value>Y</value>
+                </compareValue>
                 <platformTest type="windows-x64"/>
             </ruleList>
         </folder>
