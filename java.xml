@@ -15,13 +15,17 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x86/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-windows-x86/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-                <platformTest type="windows-x86"/>
-            </ruleList>
+				<compareValues>
+                        <logic>equals</logic>
+                        <value1>Y</value1>
+                        <value2>${buildWithX86Java}</value2>
+                </compareValues>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Linux</description>
@@ -31,12 +35,12 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-linux/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-linux/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-            </ruleList>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Linux-x64</description>
@@ -46,12 +50,12 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-linux-x64/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-linux-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-            </ruleList>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Solaris Sparc</description>
@@ -61,12 +65,12 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-solaris-sparc/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-solaris-sparc/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-            </ruleList>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Solaris Intel</description>
@@ -76,12 +80,12 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-solaris-intel/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-solaris-intel/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-            </ruleList>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Mac OS X</description>
@@ -91,12 +95,12 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-osx/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-osx/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-            </ruleList>
+            </shouldPackRuleList>
         </folder>
         <folder>
             <description>Java binaries - Microsoft Windows 64 bit</description>
@@ -106,13 +110,17 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>java-windows-x64/*</origin>
+                    <origin>/root/.jenkins/javaDistros/java-windows-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
-            <ruleList>
+            <shouldPackRuleList>
                 <isTrue value="${java_install_jre}"/>
-                <platformTest type="windows-x64"/>
-            </ruleList>
+				<compareValues>
+                        <logic>does_not_equal</logic>
+                        <value1>Y</value1>
+                        <value2>${buildWithX86Java}</value2>
+                </compareValues>
+            </shouldPackRuleList>
         </folder>
     </folderList>
 
@@ -1174,7 +1182,7 @@
             <actionList>
                 <setInstallerVariable name="java_version_major" value="1.8"/>
                 <setInstallerVariable name="java_version" value="1.8.0"/>
-                <setInstallerVariable name="java_version_full" value="1.8.0_73"/>
+                <setInstallerVariable name="java_version_full" value="1.8.0_74"/>
                 <setInstallerVariable name="java_version_vendor" value="Sun"/>
                 <setInstallerVariable name="java_bitness" value="64"/>
 
