@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Light Blue
+name = colorFabb nGen\u2122 Light Blue
 material = PET
 reelID = RBX-PET-NGBL2
 diameter_mm = 1.75

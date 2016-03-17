@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Metallic Gold
+name = colorFabb nGen\u2122 Metal Gold
 material = PET
 reelID = RBX-PET-NGMG1
 diameter_mm = 1.75

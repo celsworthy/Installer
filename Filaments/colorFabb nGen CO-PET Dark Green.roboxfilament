@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Dark Green
+name = colorFabb nGen\u2122 Dark Green
 material = PET
 reelID = RBX-PET-NGGR1
 diameter_mm = 1.75

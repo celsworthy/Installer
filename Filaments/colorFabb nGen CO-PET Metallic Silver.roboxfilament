@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Metallic Silver
+name = colorFabb nGen\u2122 Metal Silver
 material = PET
 reelID = RBX-PET-NGMS1
 diameter_mm = 1.75
