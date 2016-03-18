@@ -586,35 +586,78 @@ enable = 0
                 </platformTest>
             </ruleList>
         </addDirectoriesToUninstaller>
-        <runProgram>
+		<actionGroup>
+			<actionList>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>${schemeName} URI</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name>Content Type</name>
+					<type>REG_SZ</type>
+					<value>Application/x-${schemeName}</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name>URL Protocol</name>
+					<type>REG_SZ</type>
+					<value></value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\DefaultIcon</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>"${installdir}\${project.shortName}\${project.shortName}.${platform_exec_suffix}",0</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>open</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value></value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open\command</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>"${installdir}\${project.shortName}\${project.shortName}.${platform_exec_suffix}" "%1"</value>
+				</registrySet>
+			</actionList>
+			<ruleList>
+			    <platformTest>
+                <type>windows</type>
+            </platformTest>
+			</ruleList>
+		</actionGroup>
+        <actionGroup>
+            <actionList>
+			       <runProgram>
             <program>defaults</program>
             <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
         </runProgram>
         <runProgram>
             <program>defaults</program>
             <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
         </runProgram>
         <runProgram>
             <program>plutil</program>
             <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
         </runProgram>
-        <actionGroup>
-            <actionList>
                 <runProgram>
                     <program>defaults</program>
 
@@ -625,24 +668,19 @@ enable = 0
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
 &lt;string&gt;com.CELTech.AutoMaker&lt;/string&gt;&lt;/dict&gt;"
            </programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
                 </runProgram>
 
                 <!-- Restart the launch services to reload the configuration -->
                 <runProgram>
                     <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
                     <programArguments>-kill -domain local -domain system -domain user</programArguments>
-                    <ruleList>
-                        <platformTest>
-                            <type>osx</type>
-                        </platformTest>
-                    </ruleList>
                 </runProgram>
             </actionList>
+			<ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
         </actionGroup>
     </postInstallationActionList>
     <postUninstallationActionList>
@@ -802,6 +840,10 @@ enable = 0
                 <setInstallerVariable>
                     <name>windowsDriverDir</name>
                     <value>${installdir}/${project.shortName}/windows_drivers</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>schemeName</name>
+                    <value>automaker</value>
                 </setInstallerVariable>
             </postShowPageActionList>
         </directoryParameter>
