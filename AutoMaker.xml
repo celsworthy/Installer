@@ -614,7 +614,7 @@ enable = 0
 					<key>HKEY_CLASSES_ROOT\${schemeName}\DefaultIcon</key>
 					<name></name>
 					<type>REG_SZ</type>
-					<value>"${installdir}\${project.shortName}\${project.shortName}.${platform_exec_suffix}",0</value>
+					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}",0</value>
 				</registrySet>
 				<registrySet>
 					<breakpoint>1</breakpoint>
@@ -635,7 +635,7 @@ enable = 0
 					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open\command</key>
 					<name></name>
 					<type>REG_SZ</type>
-					<value>"${installdir}\${project.shortName}\${project.shortName}.${platform_exec_suffix}" "%1"</value>
+					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}" "%1"</value>
 				</registrySet>
 			</actionList>
 			<ruleList>
@@ -647,35 +647,32 @@ enable = 0
         <actionGroup>
             <actionList>
 			       <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier com.CEL.${project.shortName}</programArguments>
-        </runProgram>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
-        </runProgram>
-        <runProgram>
-            <program>plutil</program>
-            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
-        </runProgram>
-                <runProgram>
-                    <program>defaults</program>
-
-                    <!-- The CDATA notation allow escaping a
-            block of XML characters -->
-                    <programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
+						<program>defaults</program>
+							<programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier celtech.automaker.${project.shortName}</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>defaults</program>
+						<programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>plutil</program>
+							<programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+					</runProgram>
+					<runProgram>
+						<program>defaults</program>
+						<!-- The CDATA notation allow escaping a block of XML characters -->
+						<programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
 &lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
 &lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
 &lt;string&gt;com.CELTech.AutoMaker&lt;/string&gt;&lt;/dict&gt;"
            </programArguments>
-                </runProgram>
-
-                <!-- Restart the launch services to reload the configuration -->
-                <runProgram>
-                    <program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
-                    <programArguments>-kill -domain local -domain system -domain user</programArguments>
-                </runProgram>
-            </actionList>
+					</runProgram>
+					<!-- Restart the launch services to reload the configuration -->
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-kill -domain local -domain system -domain user</programArguments>
+					</runProgram>
+			</actionList>
 			<ruleList>
                 <platformTest>
                     <type>osx</type>
