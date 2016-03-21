@@ -683,11 +683,14 @@ enable = 0
 					<runProgram>
 						<program>defaults</program>
 						<!-- The CDATA notation allow escaping a block of XML characters -->
-						<programArguments>write com.apple.LaunchServices LSHandlers -array-add "&lt;dict&gt;&lt;key&gt;LSHandlerContentTag&lt;/key&gt;
-&lt;string&gt;${projectFileExtension}&lt;/string&gt;&lt;key&gt;LSHandlerContentTagClass&lt;/key&gt;
-&lt;string&gt;public.filename-extension&lt;/string&gt;&lt;key&gt;LSHandlerRoleAll&lt;/key&gt;
-&lt;string&gt;com.CELTech.AutoMaker&lt;/string&gt;&lt;/dict&gt;"
-           </programArguments>
+						<programArguments>write /Applications/CEL/AutoMaker/AutoMaker.app/Contents/Info.plist "CFBundleURLTypes" -array "<dict>
+	<key>CFBundleURLName</key>
+		<string>${project.shortName}</string>
+	<key>CFBundleURLSchemes</key>
+		<array>
+			<string>${schemeName}</string>
+            	</array>
+    	</dict>"
 					</runProgram>
 					<!-- Restart the launch services to reload the configuration -->
 					<runProgram>
