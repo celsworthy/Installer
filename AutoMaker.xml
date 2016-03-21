@@ -189,7 +189,7 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>librxtx/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -209,7 +209,7 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>librxtx/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -229,10 +229,10 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial.dll</origin>
+                            <origin>librxtx/windows/rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial64.dll</origin>
+                            <origin>librxtx/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -256,6 +256,7 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
+                            <origin>librxtx/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -437,6 +438,16 @@
             </folderList>
         </component>
     </componentList>
+    <preBuildActionList>
+        <setInstallerVariable>
+            <name>java_launcher_binary_name</name>
+            <value>${project.shortName}.${platform_exec_suffix}</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>buildWithX86Java</name>
+            <value>${buildX86}</value>
+        </setInstallerVariable>
+    </preBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
             <name>vendor</name>
@@ -461,6 +472,21 @@
         <setInstallerVariable>
             <name>update_xml_url</name>
             <value>http://downloads.cel-robox.com:8001/0abc523fc24/AutoMaker-update.xml</value>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>update_xml_url</name>
+            <value>http://downloads.cel-robox.com:8001/0abc523fc24_x86/AutoMaker-update.xml</value>
+            <ruleList>
+                <platformTest>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
         </setInstallerVariable>
         <setInstallerVariableFromRegEx>
             <name>installerVersionID</name>
@@ -522,10 +548,6 @@
                             <type>osx</type>
                         </platformTest>
                     </ruleList>
-                </setInstallerVariable>
-                <setInstallerVariable>
-                    <name>java_launcher_binary_name</name>
-                    <value>${project.shortName}.${platform_exec_suffix}</value>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>java_launcher_startmenu_shortcut_name</name>
@@ -679,6 +701,35 @@ enable = 0
                 </platformTest>
             </ruleList>
         </actionGroup>
+        </runProgram>
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+		 <runProgram>
+            <program>plutil</program>
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+>>>>>>> ed29a8297aabee6b863cec9dfb44be3a3e2bc6cd
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
@@ -696,10 +747,13 @@ enable = 0
         </actionGroup>
     </postUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
+	<createOsxBundleDmg>1</createOsxBundleDmg>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
     <osxApplicationBundleIcon>AutoMaker.icns</osxApplicationBundleIcon>
+    <osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
     <osxUninstallerApplicationBundleIcon>AutoMaker.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
@@ -714,6 +768,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>AutoMaker.ico</windowsExecutableIcon>
+    <windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>
         <language>
