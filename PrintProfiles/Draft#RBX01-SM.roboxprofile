@@ -9,7 +9,7 @@
   "fillPattern" : "LINE",
   "fillEveryNLayers" : 1,
   "solidLayersAtTop" : 3,
-  "solidLayersAtBottom" : 2,
+  "solidLayersAtBottom" : 3,
   "numberOfPerimeters" : 2,
   "brimWidth_mm" : 0,
   "spiralPrint" : false,
