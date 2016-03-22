@@ -73,7 +73,7 @@
   "disableFanFirstNLayers" : 0,
   "coolIfLayerTimeLessThan_secs" : 60,
   "slowDownIfLayerTimeLessThan_secs" : 15,
-  "minPrintSpeed_mm_per_s" : 2,
+  "minPrintSpeed_mm_per_s" : 8,
   "maxClosesBeforeNozzleReselect" : 10,
   "raftBaseLinewidth_mm": 1.00,
   "raftAirGapLayer0_mm": 0.150,
