@@ -326,9 +326,6 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Linux_x86/Slic3r</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
                             <origin>Slicer/Linux_x86/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
@@ -340,9 +337,6 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Linux_x64/Slic3r</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
                             <origin>Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
@@ -353,9 +347,6 @@
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
                     <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Windows/x86/Slic3r</origin>
-                        </distributionDirectory>
                         <distributionFile>
                             <origin>icons/STL File.ico</origin>
                         </distributionFile>
@@ -376,9 +367,6 @@
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
-                        <distributionDirectory>
-                            <origin>Slicer/Mac/Slic3r.app</origin>
-                        </distributionDirectory>
                         <distributionDirectory>
                             <origin>Slicer/Mac/Cura</origin>
                         </distributionDirectory>
