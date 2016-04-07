@@ -336,6 +336,16 @@
             </folderList>
         </component>
     </componentList>
+	<preBuildActionList>
+        <setInstallerVariable>
+            <name>java_launcher_binary_name</name>
+            <value>${project.shortName}.${platform_exec_suffix}</value>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>buildWithX86Java</name>
+            <value>${buildX86}</value>
+        </setInstallerVariable>
+    </preBuildActionList>
     <initializationActionList>
         <setInstallerVariable>
             <name>vendor</name>
