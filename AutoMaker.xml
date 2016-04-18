@@ -682,8 +682,7 @@ enable = 0
 					</runProgram>
 					<runProgram>
 						<program>defaults</program>
-						<!-- The CDATA notation allow escaping a block of XML characters -->
-						<programArguments>write /Applications/CEL/AutoMaker/AutoMaker.app/Contents/Info.plist "CFBundleURLTypes" -array "<dict>
+						<programArguments>write /${automakerdir}/${project.shortName}.app/Contents/Info.plist "CFBundleURLTypes" -array "<dict>
 	<key>CFBundleURLName</key>
 		<string>${project.shortName}</string>
 	<key>CFBundleURLSchemes</key>
@@ -692,11 +691,48 @@ enable = 0
             	</array>
     	</dict>"
 					</runProgram>
-					<!-- Restart the launch services to reload the configuration -->
+        <runProgram>^M
+            <program>defaults</program>^M
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>^M
+            <ruleList>^M
+                <platformTest>^M
+                    <type>osx</type>^M
+                </platformTest>^M
+            </ruleList>^M
+        </runProgram>^M
+        <runProgram>^M
+            <program>defaults</program>^M
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>^M
+            <ruleList>^M
+                <platformTest>^M
+                    <type>osx</type>^M
+                </platformTest>^M
+            </ruleList>^M
+        </runProgram>^M
+                 <runProgram>^M
+            <program>plutil</program>^M
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>^M
+            <ruleList>^M
+                <platformTest>^M
+                    <type>osx</type>^M
+                </platformTest>^M
+            </ruleList>^M
+        </runProgram>^M
+					<!-- Clear the launch services database -->
 					<runProgram>
 						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
 						<programArguments>-kill -domain local -domain system -domain user</programArguments>
 					</runProgram>
+					<!-- Restart the launcher -->
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-r /${automakerdir}/${project.shortName}MacURLLauncher.app</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-r /${automakerdir}/${project.shortName}.app</programArguments>
+					</runProgram>
+
 			</actionList>
 			<ruleList>
                 <platformTest>
@@ -705,34 +741,6 @@ enable = 0
             </ruleList>
         </actionGroup>
         </runProgram>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
-		 <runProgram>
-            <program>plutil</program>
-            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
->>>>>>> ed29a8297aabee6b863cec9dfb44be3a3e2bc6cd
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
