@@ -255,7 +255,7 @@
                             <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.jnilib</origin>
+                            <origin>librxtx/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
