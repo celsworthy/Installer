@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Pink
+name = colorFabb nGen\u2122 Pink
 material = PET
 reelID = RBX-PET-NGPK1
 diameter_mm = 1.75

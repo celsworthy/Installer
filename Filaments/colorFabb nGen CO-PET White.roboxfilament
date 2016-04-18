@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen White
+name = colorFabb nGen\u2122 White
 material = PET
 reelID = RBX-PET-NGWH1
 diameter_mm = 1.75

@@ -816,34 +816,6 @@ enable = 0
             <file>InstallerLanguage/custom-zh_TW.lng</file>
         </language>
     </customLanguageFileList>
-    <finalPageActionList>
-        <runProgram>
-            <!-- On Mac OS X, use 'open' command for asynchronous launch -->
-            <program>open</program>
-            <programArguments>${automakerdir}/${launcherName}.app</programArguments>
-            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
-            <ruleList>
-                <platformTest type="osx"/>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <!-- On Windows, use ampersand for asynchronous launch -->
-            <program>${automakerdir}/${launcherName}.exe</program>
-            <programArguments>&amp;</programArguments>
-            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
-            <ruleList>
-                <platformTest type="windows"/>
-            </ruleList>
-        </runProgram>
-        <runProgram>
-            <program>${automakerdir}/${launcherName}.run</program>
-            <programArguments>&amp;</programArguments>
-            <progressText>${msg(AutoMakerInstaller.doYouWantToLaunch_part1)} ${product_fullname} ${msg(AutoMakerInstaller.doYouWantToLaunch_part2)}</progressText>
-            <ruleList>
-                <platformTest type="linux"/>
-            </ruleList>
-        </runProgram>
-    </finalPageActionList>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>

@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb_XT Yellow
+name = colorFabb_XT\u2122 Yellow
 material = PET
 reelID = RBX-PET-YL001
 diameter_mm = 1.75

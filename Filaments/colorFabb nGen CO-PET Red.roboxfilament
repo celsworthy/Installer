@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Red
+name = colorFabb nGen\u2122 Red
 material = PET
 reelID = RBX-PET-NGRD1
 diameter_mm = 1.75
