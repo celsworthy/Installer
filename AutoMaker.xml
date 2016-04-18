@@ -256,7 +256,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>librxtxSerial.jnilib</origin>
-                            <origin>librxtx/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -692,33 +691,33 @@ enable = 0
     	</dict>"
 		</programArguments>
 					</runProgram>
-        <runProgram>^M
-            <program>defaults</program>^M
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>^M
-            <ruleList>^M
-                <platformTest>^M
-                    <type>osx</type>^M
-                </platformTest>^M
-            </ruleList>^M
-        </runProgram>^M
-        <runProgram>^M
-            <program>defaults</program>^M
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>^M
-            <ruleList>^M
-                <platformTest>^M
-                    <type>osx</type>^M
-                </platformTest>^M
-            </ruleList>^M
-        </runProgram>^M
-                 <runProgram>^M
-            <program>plutil</program>^M
-            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>^M
-            <ruleList>^M
-                <platformTest>^M
-                    <type>osx</type>^M
-                </platformTest>^M
-            </ruleList>^M
-        </runProgram>^M
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>defaults</program>
+            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleShortVersionString ${product_version}</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+                 <runProgram>
+            <program>plutil</program>
+            <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
 					<!-- Clear the launch services database -->
 					<runProgram>
 						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
@@ -733,7 +732,6 @@ enable = 0
 						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
 						<programArguments>-r /${automakerdir}/${project.shortName}.app</programArguments>
 					</runProgram>
-
 			</actionList>
 			<ruleList>
                 <platformTest>
@@ -741,7 +739,6 @@ enable = 0
                 </platformTest>
             </ruleList>
         </actionGroup>
-        </runProgram>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
