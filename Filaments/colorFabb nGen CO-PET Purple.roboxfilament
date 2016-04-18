@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = colorFabb nGen Purple
+name = colorFabb nGen\u2122 Purple
 material = PET
 reelID = RBX-PET-NGPP1
 diameter_mm = 1.75
