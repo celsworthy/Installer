@@ -690,6 +690,7 @@ enable = 0
 			<string>${schemeName}</string>
             	</array>
     	</dict>"
+		</programArguments>
 					</runProgram>
         <runProgram>^M
             <program>defaults</program>^M
