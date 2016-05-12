@@ -470,7 +470,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/0abc523fc24/AutoMaker-update.xml</value>
+            <value>http://www.cel-robox.com/wp-content/uploads/Software/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -480,7 +480,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/0abc523fc24_x86/AutoMaker-update.xml</value>
+            <value>>http://www.cel-robox.com/wp-content/uploads/Software/x86/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>
