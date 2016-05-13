@@ -1104,8 +1104,8 @@
         <!-- create Java launcher using preferred JRE -->
         <createJavaLaunchers>
             <destination>${java_launcher_destination}</destination>
-            <explanation>${msg(Installer.Java.CreateLaunchers.Explanation)}</explanation>
-            <progressText>${msg(Installer.Java.CreateLaunchers.Text)}</progressText>
+            <explanation>${msg(AutoMakerInstaller.creatingLauncher)}</explanation>
+            <progressText>${msg(AutoMakerInstaller.creatingLauncher)}</progressText>
             <javaLauncherList>
                 <javaLauncher>
                     <allowCommandLineArguments>1</allowCommandLineArguments>
@@ -1122,7 +1122,22 @@
                     <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
                     <workingDirectory>${java_launcher_destination}</workingDirectory>
                 </javaLauncher>
-            </javaLauncherList>
+                <javaLauncher>
+                    <allowCommandLineArguments>1</allowCommandLineArguments>
+                    <arguments>${java_launcher_arguments}</arguments>
+                    <binaryName>${java_launcher_binary_name}</binaryName>
+                    <classpath>${java_launcher_classpath}</classpath>
+                    <jarFile>${java_launcher_jar}</jarFile>
+                    <mainClass>${java_launcher_mainClass}</mainClass>
+                    <preferredJavaBinary>${java_executable}</preferredJavaBinary>
+                    <runInBackground>0</runInBackground>
+                    <runInConsole>0</runInConsole>
+                    <usePropertiesFile>0</usePropertiesFile>
+                    <vmParameters>-Dprism.forceGPU=true ${java_launcher_vm_parameters}</vmParameters>
+                    <windowsResourceFileVersion>${project.version}</windowsResourceFileVersion>
+                    <workingDirectory>${java_launcher_destination}</workingDirectory>
+                </javaLauncher>
+				</javaLauncherList>
             <ruleList>
                 <isTrue value="${java_create_launcher}"/>
             </ruleList>

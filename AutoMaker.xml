@@ -607,15 +607,90 @@ enable = 0
                 </platformTest>
             </ruleList>
         </addDirectoriesToUninstaller>
-        <runProgram>
-            <program>defaults</program>
-            <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
-            <ruleList>
-                <platformTest>
-                    <type>osx</type>
-                </platformTest>
-            </ruleList>
-        </runProgram>
+		<actionGroup>
+			<actionList>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>${schemeName} URI</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name>Content Type</name>
+					<type>REG_SZ</type>
+					<value>Application/x-${schemeName}</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<name>URL Protocol</name>
+					<type>REG_SZ</type>
+					<value></value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\DefaultIcon</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}",0</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>open</value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value></value>
+				</registrySet>
+				<registrySet>
+					<breakpoint>1</breakpoint>
+					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open\command</key>
+					<name></name>
+					<type>REG_SZ</type>
+					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}" "%1"</value>
+				</registrySet>
+			</actionList>
+			<ruleList>
+			    <platformTest>
+                <type>windows</type>
+            </platformTest>
+			</ruleList>
+		</actionGroup>
+        <actionGroup>
+            <actionList>
+			       <runProgram>
+						<program>defaults</program>
+							<programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleIdentifier celtech.automaker.${project.shortName}</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>defaults</program>
+						<programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleName ${project.shortName}</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>plutil</program>
+							<programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
+					</runProgram>
+					<runProgram>
+						<program>defaults</program>
+						<programArguments>write /${automakerdir}/${project.shortName}.app/Contents/Info.plist "CFBundleURLTypes" -array "<dict>
+	<key>CFBundleURLName</key>
+		<string>${project.shortName}</string>
+	<key>CFBundleURLSchemes</key>
+		<array>
+			<string>${schemeName}</string>
+            	</array>
+    	</dict>"
+		</programArguments>
+					</runProgram>
         <runProgram>
             <program>defaults</program>
             <programArguments>write "/${automakerdir}/${project.shortName}.app/Contents/Info" CFBundleVersion ${product_version}</programArguments>
@@ -634,7 +709,7 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
-		 <runProgram>
+                 <runProgram>
             <program>plutil</program>
             <programArguments>-convert xml1 "${automakerdir}/${project.shortName}.app/Contents/Info.plist" </programArguments>
             <ruleList>
@@ -643,6 +718,27 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
+					<!-- Clear the launch services database -->
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-kill -domain local -domain system -domain user</programArguments>
+					</runProgram>
+					<!-- Restart the launcher -->
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-r /${automakerdir}/${project.shortName}MacURLLauncher.app</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
+						<programArguments>-r /${automakerdir}/${project.shortName}.app</programArguments>
+					</runProgram>
+			</actionList>
+			<ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </actionGroup>
     </postInstallationActionList>
     <postUninstallationActionList>
         <actionGroup>
