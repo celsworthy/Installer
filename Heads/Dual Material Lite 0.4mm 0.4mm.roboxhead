@@ -2,7 +2,7 @@
   "version" : 1,
   "name" : "Dual Material LITE 0.4mm",
   "typeCode" : "RBX01-DL",
-  "type" : "DUAL_MATERIAL_HEAD",
+  "type" : "DUAL_MATERIAL_HEAD_NO_VALVES",
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 300,
     "beta" : 4380.0,
