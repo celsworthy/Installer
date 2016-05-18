@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "name" : "Single Material Lite 0.4mm",
+  "name" : "QuickFill Lite",
   "typeCode" : "RBX01-SL",
   "type" : "SINGLE_MATERIAL_HEAD_NO_VALVES",
   "nozzleHeaters" : [ {

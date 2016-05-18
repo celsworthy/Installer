@@ -1,6 +1,6 @@
 {
   "version" : 2,
-  "name" : "Single Material v2 0.8mm/0.3mm",
+  "name" : "QuickFill Head v2",
   "typeCode" : "RBX01-S2",
   "type" : "SINGLE_MATERIAL_HEAD",
   "nozzleHeaters" : [ {

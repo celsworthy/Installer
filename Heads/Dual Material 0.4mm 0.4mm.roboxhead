@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "name" : "Dual Material 0.4mm/0.4mm",
+  "name" : "Dual Material Head",
   "typeCode" : "RBX01-DM",
   "type" : "DUAL_MATERIAL_HEAD",
   "nozzleHeaters" : [ {
