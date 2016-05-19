@@ -1,8 +1,8 @@
 {
   "version" : 2,
-  "name" : "QuickFill v2 Lab",
   "typeCode" : "RBX01-SF",
   "type" : "SINGLE_MATERIAL_HEAD",
+  "valves" : "FITTED",
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 280,
     "beta" : 4380.0,

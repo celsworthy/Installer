@@ -308,9 +308,15 @@
                         <distributionDirectory>
                             <origin>PrintProfiles</origin>
                         </distributionDirectory>
-                        <distributionDirectory>
-                            <origin>Heads</origin>
-                        </distributionDirectory>
+						<distributionFile>
+                            <origin>Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                        </distributionFile>
                         <distributionDirectory>
                             <origin>Filaments</origin>
                         </distributionDirectory>

@@ -1,8 +1,8 @@
 {
-  "version" : 1,
-  "name" : "QuickFill Head",
+  "version" : 2,
   "typeCode" : "RBX01-SM",
   "type" : "SINGLE_MATERIAL_HEAD",
+  "valves" : "FITTED",
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 260,
     "beta" : 4380.0,

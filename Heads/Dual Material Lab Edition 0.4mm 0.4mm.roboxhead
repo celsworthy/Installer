@@ -1,15 +1,15 @@
 {
-  "version" : 1,
-  "name" : "Dual Material Lab",
+  "version" : 2,
   "typeCode" : "RBX01-DF",
   "type" : "DUAL_MATERIAL_HEAD",
+  "valves" : "FITTED",
   "nozzleHeaters" : [ {
-    "maximum_temperature_C" : 300,
+    "maximum_temperature_C" : 280,
     "beta" : 4380.0,
     "tcal" : 19193.0
   },
   {
-    "maximum_temperature_C" : 300,
+    "maximum_temperature_C" : 280,
     "beta" : 4380.0,
     "tcal" : 19193.0
   }   ],
