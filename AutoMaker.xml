@@ -310,7 +310,7 @@
                         </distributionDirectory>
 						<distributionFile>
                             <origin>Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
-							<destination>Heads/Single Material 0.3mm 0.8mm.roboxhead<>
+							<destination>Heads/Single Material 0.3mm 0.8mm.roboxhead</destination>
                         </distributionFile>
 						<distributionFile>
                             <origin>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
