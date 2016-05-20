@@ -323,13 +323,13 @@
                     <platforms>all</platforms>
                     <distributionFileList>
 						<distributionFile>
-                            <origin>Single Material 0.3mm 0.8mm.roboxhead</origin>
+                            <origin>Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Single Material v2 0.3mm 0.8mm.roboxhead</origin>
+                            <origin>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                            <origin>Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
