@@ -310,12 +310,15 @@
                         </distributionDirectory>
 						<distributionFile>
                             <origin>Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
+							<destination>Heads/Single Material 0.3mm 0.8mm.roboxhead<>
                         </distributionFile>
 						<distributionFile>
                             <origin>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
+                            <destination>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</destination>
                         </distributionFile>
 						<distributionFile>
                             <origin>Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                            <destination>Heads/Dual Material 0.4mm 0.4mm.roboxhead</destination>
                         </distributionFile>
                         <distributionDirectory>
                             <origin>Filaments</origin>
