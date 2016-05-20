@@ -308,24 +308,29 @@
                         <distributionDirectory>
                             <origin>PrintProfiles</origin>
                         </distributionDirectory>
-						<distributionFile>
-                            <origin>Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
-							<destination>Heads/Single Material 0.3mm 0.8mm.roboxhead</destination>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
-                            <destination>Heads/Single Material v2 0.3mm 0.8mm.roboxhead</destination>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
-                            <destination>Heads/Dual Material 0.4mm 0.4mm.roboxhead</destination>
-                        </distributionFile>
                         <distributionDirectory>
                             <origin>Filaments</origin>
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>Models</origin>
                         </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Heads</description>
+                    <destination>${commondir}/Heads</destination>
+                    <name>heads</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+						<distributionFile>
+                            <origin>Single Material 0.3mm 0.8mm.roboxhead</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>Single Material v2 0.3mm 0.8mm.roboxhead</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
