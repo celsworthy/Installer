@@ -10,5 +10,6 @@ G0 D-50			;Eject Filament
 M104 S125		;Go to snap temperature
 M109			;Wait for Nozzle to get to temp.
 G0 D-1200		;Eject Filament
+M104 S0			;Turn heater off
 M107			;Turn off Fan
 M84				;Motors Off
