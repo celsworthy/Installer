@@ -1,5 +1,5 @@
 T0 B0				;Select left hand nozzle				
-M104 S155 T155		;Set & heat nozzles to eject temp
+M104 S160 T160		;Set & heat nozzles to eject temp
 M109				;Wait for left nozzle to get to temp.
 T1					;Select right hand nozzle
 M109				;Wait for right nozzle to get to temp.

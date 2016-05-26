@@ -54414,7 +54414,7 @@ G0 Y-5			;Move forward 5mm
 G0 Z5			;Move up 5mm
 T0				:Select Left Nozzle
 G90 			;Absolute positioning
-M104 S155		;Set & heat nozzle to eject temp
+M104 S160		;Set & heat nozzle to eject temp
 M109			;Wait for Nozzle to get to temp.
 G0 E-50			;Create 'neck' in filament
 M104 S125		;Set Heater to snap temp.
