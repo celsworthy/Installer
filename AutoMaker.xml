@@ -7,6 +7,8 @@
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
     <wmImage>RoboxIcon48x48.png</wmImage>
+	<windowsSoftwareRegistryPrefix></windowsSoftwareRegistryPrefix>
+	<installationType>normal</installationType>
     <componentList>
         <component>
             <name>windowsdrivers</name>
@@ -624,50 +626,43 @@ enable = 0
 		<actionGroup>
 			<actionList>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<key>HKEY_CLASSES_ROOT\automaker</key>
 					<name></name>
 					<type>REG_SZ</type>
 					<value>${schemeName} URI</value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<key>HKEY_CLASSES_ROOT\automaker</key>
 					<name>Content Type</name>
 					<type>REG_SZ</type>
-					<value>Application/x-${schemeName}</value>
+					<value>Application/x-automaker</value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}</key>
+					<key>HKEY_CLASSES_ROOT\automaker</key>
 					<name>URL Protocol</name>
 					<type>REG_SZ</type>
 					<value></value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}\DefaultIcon</key>
+					<key>HKEY_CLASSES_ROOT\automaker\DefaultIcon</key>
 					<name></name>
 					<type>REG_SZ</type>
 					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}",0</value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}\shell</key>
+					<key>HKEY_CLASSES_ROOT\automaker\shell</key>
 					<name></name>
 					<type>REG_SZ</type>
 					<value>open</value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open</key>
+					<key>HKEY_CLASSES_ROOT\automaker\shell\open</key>
 					<name></name>
 					<type>REG_SZ</type>
 					<value></value>
 				</registrySet>
 				<registrySet>
-					<breakpoint>1</breakpoint>
-					<key>HKEY_CLASSES_ROOT\${schemeName}\shell\open\command</key>
+					<key>HKEY_CLASSES_ROOT\automaker\shell\open\command</key>
 					<name></name>
 					<type>REG_SZ</type>
 					<value>"${automakerdir}\${project.shortName}.${platform_exec_suffix}" "%1"</value>
@@ -754,21 +749,12 @@ enable = 0
             </ruleList>
         </actionGroup>
     </postInstallationActionList>
-    <postUninstallationActionList>
-        <actionGroup>
-            <actionList>
-                <registryDelete>
-                    <key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.vendor} ${project.fullName} ${project.version}</key>
-                    <name></name>
-                </registryDelete>
-            </actionList>
-            <ruleList>
-                <platformTest>
-                    <type>windows</type>
-                </platformTest>
-            </ruleList>
-        </actionGroup>
-    </postUninstallationActionList>
+    <preUninstallationActionList>
+				<registryDelete>
+					<key>HKEY_CLASSES_ROOT\automaker</key>
+					<name></name>
+				</registryDelete>
+    </preUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
 	<createOsxBundleDmg>1</createOsxBundleDmg>
     <enableRollback>0</enableRollback>
