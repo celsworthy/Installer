@@ -308,9 +308,6 @@
                             <origin>Macros</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>PrintProfiles</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
                             <origin>Filaments</origin>
                         </distributionDirectory>
                         <distributionDirectory>
@@ -332,6 +329,35 @@
                         </distributionFile>
 						<distributionFile>
                             <origin>Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+				<folder>
+                    <description>PrintProfiles</description>
+                    <destination>${commondir}/PrintProfiles</destination>
+                    <name>printprofiles</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+						<distributionFile>
+                            <origin>PrintProfiles/slicermapping.dat</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Draft#RBX01-DM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
