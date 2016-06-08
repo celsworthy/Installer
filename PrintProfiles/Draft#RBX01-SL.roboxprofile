@@ -47,8 +47,8 @@
     "travelBeforeForcedClose" : 0.0
   } ],
   "firstLayerNozzle" : 0,
-  "perimeterNozzle" : 1,
-  "fillNozzle" : 1,
+  "perimeterNozzle" : 0,
+  "fillNozzle" : 0,
   "supportNozzle" : 0,
   "supportInterfaceNozzle" : 0,
   "supportOverhangThreshold_degrees" : 40,
