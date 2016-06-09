@@ -6,7 +6,7 @@
         <ApplicationShortName>Commissionator</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
         <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
-        <requiredFirmwareVersion>750</requiredFirmwareVersion>
+        <requiredFirmwareVersion>751</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
