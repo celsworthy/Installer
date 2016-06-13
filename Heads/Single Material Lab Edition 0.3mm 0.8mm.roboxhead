@@ -1,10 +1,10 @@
 {
   "version" : 2,
-  "typeCode" : "RBX01-SM",
+  "typeCode" : "RBX01-SF",
   "type" : "SINGLE_MATERIAL_HEAD",
   "valves" : "FITTED",
   "nozzleHeaters" : [ {
-    "maximum_temperature_C" : 260,
+    "maximum_temperature_C" : 280,
     "beta" : 4380.0,
     "tcal" : 19193.0
   } ],

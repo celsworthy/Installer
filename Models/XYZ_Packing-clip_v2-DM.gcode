@@ -37901,19 +37901,26 @@ G1 F12000 X165.796 Y98.532 Z17.001
 ; Macro Start - Finish-Abort_Print
 ;
 ;Finish-Abort_Print
-M104 S0 T0		;Nozzle Heater Off
 M140 S0			;Bed Heater Off
 M106			;Fan on full
 G0 B0			;Close Nozzle
 G91				;Relative positioning
+G0 Y-5			;Move forward 5mm
 G0 Z5			;Move up 5mm
+T0				:Select Left Nozzle
 G90 			;Absolute positioning
-
-T0
-G0 X210 Z8 ;move to pack position
-
-M122 E
-M122 D
+M104 S160 T160	;Set & heat nozzle to eject temp
+M109			;Wait for Nozzle to get to temp.
+T1				;Select Right Nozzle
+M109			;Wait for Nozzle to get to temp.
+G0 E-50	D-50	;Create 'neck' in filament
+M104 S125 T125	;Set Heater to snap temp.
+M109			;Wait for Nozzle to get to temp.
+G0 E-1200 D-1200;Eject Filament
+M104 S59 T59	;Set & cool nozzle to <60
+G0 X210 Z8 		;move to pack position
+M109			;Wait for head to cool down.
+M104 S0 T0		;Turn heater Off
 
 ;Open Door
 G37 S			;Unlock door

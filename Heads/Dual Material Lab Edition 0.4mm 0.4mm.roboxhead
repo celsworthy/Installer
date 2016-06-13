@@ -1,15 +1,20 @@
 {
   "version" : 2,
-  "typeCode" : "RBX01-SM",
-  "type" : "SINGLE_MATERIAL_HEAD",
+  "typeCode" : "RBX01-DF",
+  "type" : "DUAL_MATERIAL_HEAD",
   "valves" : "FITTED",
   "nozzleHeaters" : [ {
-    "maximum_temperature_C" : 260,
+    "maximum_temperature_C" : 280,
     "beta" : 4380.0,
     "tcal" : 19193.0
-  } ],
+  },
+  {
+    "maximum_temperature_C" : 280,
+    "beta" : 4380.0,
+    "tcal" : 19193.0
+  }   ],
   "nozzles" : [ {
-    "diameter" : 0.3,
+    "diameter" : 0.4,
     "defaultXOffset" : 14,
 	"minXOffset" : 13,
 	"maxXOffset" : 16,
@@ -22,9 +27,9 @@
     "defaultBOffset" : 1.1,
 	"minBOffset" : 0.7,
 	"maxBOffset" : 2.0,
-	"associatedExtruder" : "E"
+	"associatedExtruder" : "D"
   }, {
-    "diameter" : 0.8,
+    "diameter" : 0.4,
     "defaultXOffset" : 0,
 	"minXOffset" : -1.0,
 	"maxXOffset" : 1.5,

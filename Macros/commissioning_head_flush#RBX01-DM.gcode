@@ -1,10 +1,9 @@
-M104
+M104 S210 T210
 
 M106			;Fan on Full
 M109			;Wait for Nozzle to get to temp.
 
-G36 E800 F800
-G36 D800 F800
+G36 E1500 D1500 F800
 
 G0 B1
 

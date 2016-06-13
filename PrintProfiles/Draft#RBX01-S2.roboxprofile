@@ -1,7 +1,7 @@
 {
   "version" : 5,
   "profileName" : "Draft",
-  "headType": "RBX01-SL",
+  "headType": "RBX01-S2",
   "slicerOverride" : null,
   "firstLayerHeight_mm" : 0.3,
   "layerHeight_mm" : 0.3,
@@ -47,8 +47,8 @@
     "travelBeforeForcedClose" : 0.0
   } ],
   "firstLayerNozzle" : 0,
-  "perimeterNozzle" : 0,
-  "fillNozzle" : 0,
+  "perimeterNozzle" : 1,
+  "fillNozzle" : 1,
   "supportNozzle" : 0,
   "supportInterfaceNozzle" : 0,
   "supportOverhangThreshold_degrees" : 40,
