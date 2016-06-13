@@ -348,16 +348,25 @@
                             <origin>PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
+                            <origin>PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
                             <origin>PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
                             <origin>PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
+                            <origin>PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
                             <origin>PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
                             <origin>PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
