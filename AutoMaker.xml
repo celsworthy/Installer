@@ -191,7 +191,7 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -211,7 +211,7 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.so</origin>
+                            <origin>binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -231,10 +231,10 @@
                             <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial.dll</origin>
+                            <origin>binaries/windows/rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>rxtxSerial64.dll</origin>
+                            <origin>binaries/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -257,7 +257,7 @@
                             <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtxSerial.jnilib</origin>
+                            <origin>binaries/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
