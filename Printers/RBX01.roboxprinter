@@ -1,0 +1,66 @@
+{
+  "version" : 1,
+  "typeCode" : "RBX01",
+  "friendlyName" : "Robox version 1",
+  "editions" : [ {
+    "typeCode" : "KS",
+    "friendlyName" : "Kickstarter Edition"
+  },
+  {
+    "typeCode" : "TS",
+    "friendlyName" : "Trade Sample"
+  },
+  {
+    "typeCode" : "BK",
+    "friendlyName" : "First Edition UK"
+  },
+  {
+    "typeCode" : "BE",
+    "friendlyName" : "First Edition Europe"
+  },
+  {
+    "typeCode" : "BU",
+    "friendlyName" : "First Edition USA"
+  },
+  {
+    "typeCode" : "BA",
+    "friendlyName" : "First Edition South Asia / Australia"
+  },
+  {
+    "typeCode" : "BN",
+    "friendlyName" : "First Edition Japan"
+  },
+  {
+    "typeCode" : "BC",
+    "friendlyName" : "First Edition China"
+  },
+  {
+    "typeCode" : "BV",
+    "friendlyName" : "First Edition Switzerland"
+  },
+  {
+    "typeCode" : "BW",
+    "friendlyName" : "First Edition Worldwide"
+  },
+  {
+    "typeCode" : "BR",
+    "friendlyName" : "First Edition Korea"
+  },
+  {
+    "typeCode" : "BI",
+    "friendlyName" : "First Edition Israel"
+  }
+  ],
+    "compatibleHeads" : [
+	"RBX01-SM",
+	"RBX01-DM",
+	"RBX01-S2",
+	"RBX01-DL",
+	"RBX01-SL",
+	"RBX01-DF",
+	"RBX01-SF"
+  ],
+  "printVolumeWidth" : 210,
+  "printVolumeDepth" : 150,
+  "printVolumeHeight" : 100
+}
