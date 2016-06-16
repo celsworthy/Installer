@@ -313,6 +313,9 @@
                         <distributionDirectory>
                             <origin>Models</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Printers</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
