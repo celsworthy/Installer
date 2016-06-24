@@ -174,7 +174,7 @@
                             <origin>../application/target/lib</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>AutoMaker/i18n</origin>
+                            <origin>AutoMaker/Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -320,7 +320,7 @@
                             <origin>Common/Printers</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Common/i18n</origin>
+                            <origin>Common/Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
