@@ -6,7 +6,7 @@
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
-    <wmImage>RoboxIcon48x48.png</wmImage>
+    <wmImage>../RoboxIcon48x48.png</wmImage>
 	<windowsSoftwareRegistryPrefix></windowsSoftwareRegistryPrefix>
 	<installationType>normal</installationType>
     <componentList>
@@ -24,7 +24,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Common/windows_drivers</origin>
+                            <origin>../Common/windows_drivers</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -159,22 +159,22 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.configFile.xml</origin>
+                            <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>../application/target/AutoMaker.jar</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/EULA_AutoMaker.txt</origin>
+                            <origin>EULA_AutoMaker.txt</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>AutoMaker/README</origin>
+                            <origin>README</origin>
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>../application/target/lib</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>AutoMaker/Language</origin>
+                            <origin>Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -185,16 +185,16 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker-update-linux.run</origin>
+                            <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>binaries/linux/librxtxSerial.so</origin>
+                            <origin>../binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -205,16 +205,16 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker-update-linux-x64.run</origin>
+                            <origin>AutoMaker-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>binaries/linux/librxtxSerial.so</origin>
+                            <origin>../binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -225,16 +225,16 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker-update-windows.exe</origin>
+                            <origin>AutoMaker-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMakerUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>binaries/windows/rxtxSerial.dll</origin>
+                            <origin>../binaries/windows/rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>binaries/windows/rxtxSerial64.dll</origin>
@@ -248,19 +248,19 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker-update-osx.app</origin>
+                            <origin>AutoMaker-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.icns</origin>
+                            <origin>AutoMaker.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/utoMakerUninstallIcon.icns</origin>
+                            <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>AutoMaker/AutoMaker.png</origin>
+                            <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>binaries/osx/librxtxSerial.jnilib</origin>
+                            <origin>../binaries/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -308,19 +308,19 @@
                             <origin>robox_r*.bin</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>Common/Macros</origin>
+                            <origin>../Common/Macros</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Common/Filaments</origin>
+                            <origin>../Common/Filaments</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Common/Models</origin>
+                            <origin>../Common/Models</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Common/Printers</origin>
+                            <origin>../Common/Printers</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Common/Language</origin>
+                            <origin>../Common/Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -331,13 +331,13 @@
                     <platforms>all</platforms>
                     <distributionFileList>
 						<distributionFile>
-                            <origin>Common/Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
+                            <origin>../Common/Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
+                            <origin>../Common/Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
+                            <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -348,34 +348,34 @@
                     <platforms>all</platforms>
                     <distributionFileList>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/slicermapping.dat</origin>
+                            <origin>../Common/PrintProfiles/slicermapping.dat</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Draft#RBX01-DM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Draft#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>Common/PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
+                            <origin>../Common/PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -386,7 +386,7 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Linux_x86/Cura</origin>
+                            <origin>../Slicer/Linux_x86/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -397,7 +397,7 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Linux_x64/Cura</origin>
+                            <origin>../Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -408,16 +408,16 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>icons/STL File.ico</origin>
+                            <origin>../icons/STL File.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>icons/OBJ File.ico</origin>
+                            <origin>../icons/OBJ File.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>icons/RBX File.ico</origin>
+                            <origin>../icons/RBX File.ico</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>Slicer/Windows/x86/Cura</origin>
+                            <origin>../Slicer/Windows/x86/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -428,7 +428,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>Slicer/Mac/Cura</origin>
+                            <origin>../Slicer/Mac/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -442,7 +442,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Common/bin/RoboxDetector.mac.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.mac.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -456,13 +456,13 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Common/bin/RoboxDetector.exe</origin>
+                            <origin>../Common/bin/RoboxDetector.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Common/bin/msvcp100.dll</origin>
+                            <origin>../Common/bin/msvcp100.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Common/bin/msvcr100.dll</origin>
+                            <origin>../Common/bin/msvcr100.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -476,7 +476,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Common/bin/RoboxDetector.linux.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -490,7 +490,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Common/bin/RoboxDetector.linux.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -827,35 +827,35 @@ enable = 0
     <customLanguageFileList>
         <language>
             <code>en</code>
-            <file>InstallerLanguage/custom-en.lng</file>
+            <file>../InstallerLanguage/custom-en.lng</file>
         </language>
         <language>
             <code>de</code>
-            <file>InstallerLanguage/custom-de.lng</file>
+            <file>../InstallerLanguage/custom-de.lng</file>
         </language>
         <language>
             <code>fi</code>
-            <file>InstallerLanguage/custom-fi.lng</file>
+            <file>../InstallerLanguage/custom-fi.lng</file>
         </language>
         <language>
             <code>ko</code>
-            <file>InstallerLanguage/custom-ko.lng</file>
+            <file>../InstallerLanguage/custom-ko.lng</file>
         </language>
         <language>
             <code>ru</code>
-            <file>InstallerLanguage/custom-ru.lng</file>
+            <file>../InstallerLanguage/custom-ru.lng</file>
         </language>
         <language>
             <code>sv</code>
-            <file>InstallerLanguage/custom-sv.lng</file>
+            <file>../InstallerLanguage/custom-sv.lng</file>
         </language>
         <language>
             <code>zh_CN</code>
-            <file>InstallerLanguage/custom-zh_CN.lng</file>
+            <file>../InstallerLanguage/custom-zh_CN.lng</file>
         </language>
         <language>
             <code>zh_TW</code>
-            <file>InstallerLanguage/custom-zh_TW.lng</file>
+            <file>../InstallerLanguage/custom-zh_TW.lng</file>
         </language>
     </customLanguageFileList>
     <parameterList>
