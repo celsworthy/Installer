@@ -1,5 +1,5 @@
 {
-  "version" : 5,
+  "version" : 7,
   "profileName" : "Normal",
   "headType": "RBX01-SL",
   "slicerOverride" : null,
@@ -79,5 +79,8 @@
   "raftAirGapLayer0_mm": 0.1,
   "interfaceLayers": 1,
   "raftBaseThickness_mm": 0.300,
-  "interfaceSpeed_mm_per_s":40
+  "interfaceSpeed_mm_per_s":40,
+  "supportGapEnabled": false,
+  "supportZDistance_mm": 0.15,
+  "supportXYDistance_mm": 0.7
 }
