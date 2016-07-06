@@ -15,7 +15,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-windows-x86/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-windows-x86/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -35,7 +35,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-linux/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-linux/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -50,7 +50,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-linux-x64/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-linux-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -65,7 +65,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-solaris-sparc/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-solaris-sparc/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -80,7 +80,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-solaris-intel/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-solaris-intel/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -95,7 +95,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-osx/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-osx/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -110,7 +110,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/root/.jenkins/javaDistros/java-windows-x64/*</origin>
+                    <origin>/home/wildfly/.jenkins/javaDistros/java-windows-x64/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
