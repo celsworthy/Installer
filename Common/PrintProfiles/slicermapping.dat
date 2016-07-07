@@ -132,14 +132,12 @@
 		 */	 
 		"defaults" : [ 
 			"initialSpeedupLayers:2",
-			"supportXYDistance:700",
 			"retractionZHop:0",
 			"retractionSpeed:30",
 			"filamentFlow:100",
 			"infillOverlap:10",
 			"coolHeadLift:0",
 			"enableCombing:1",
-			"supportZDistance:150",
 			"minimalExtrusionBeforeRetraction:0",
 			"retractionMinimalDistance:500",
 			"retractionAmount:500",
@@ -166,6 +164,8 @@
 			"sparseInfillLineDistance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm:*1000",
 			"skirtLineCount":"brimWidth_mm",
 			"spiralizeMode":"spiralPrint",
+			"supportZDistance":"supportZDistance_mm:*1000:?supportGapEnabled=false->0",
+			"supportXYDistance":"supportXYDistance_mm:*1000",
 			
 			/*
 			 * Nozzle data
