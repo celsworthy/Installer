@@ -11,6 +11,7 @@ doPackage()
 
         echo ------------------------------------------------
         echo Creating package named ${packagename} for ${applicationname} using ${javaversion}
+		echo User is `id`
         echo Origin dir is ${origindir}
         echo Installer dir is ${installerdir}
         echo Application dir is ${applicationdir}
