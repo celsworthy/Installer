@@ -51,7 +51,7 @@ doPackage()
         echo ------------------------------------------------
 }
 
-doPackage Root Pi java-arm-32bit
+doPackage Root ARM-32bit java-arm-32bit
 doPackage Root Windows-x64 java-windows-x64
 doPackage Root MacOSX java-osx
 doPackage Root Linux-x86 java-linux
