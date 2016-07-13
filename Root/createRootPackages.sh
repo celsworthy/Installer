@@ -15,7 +15,7 @@ doPackage()
         echo Origin dir is ${origindir}
         echo Installer dir is ${installerdir}
         echo Application dir is ${applicationdir}
-        packagedir=${installerdir}/LatestBuilds/${packagename}
+        packagedir=${installerdir}/${packagename}
         echo "Package dir is " ${packagedir}
         mkdir -p ${packagedir}
         cd ${packagedir}
@@ -43,10 +43,10 @@ doPackage()
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
 
-        cd ${installerdir}/LatestBuilds/${packagename}
+        cd ${installerdir}/${packagename}
         zipfilename=${applicationname}${packagename}.zip
         zip -r ${zipfilename} *
-        mv ${zipfilename} ${installerdir}/LatestBuilds
+        mv ${zipfilename} ${installerdir}
 
         echo ------------------------------------------------
 }
