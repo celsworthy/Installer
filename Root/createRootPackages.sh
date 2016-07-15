@@ -11,10 +11,11 @@ doPackage()
 
         echo ------------------------------------------------
         echo Creating package named ${packagename} for ${applicationname} using ${javaversion}
+		echo User is `id`
         echo Origin dir is ${origindir}
         echo Installer dir is ${installerdir}
         echo Application dir is ${applicationdir}
-        packagedir=${installerdir}/LatestBuilds/${packagename}
+        packagedir=${installerdir}/${packagename}
         echo "Package dir is " ${packagedir}
         mkdir -p ${packagedir}
         cd ${packagedir}
@@ -42,13 +43,16 @@ doPackage()
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
 
-        cd ${installerdir}/LatestBuilds/${packagename}
+        cd ${installerdir}/${packagename}
         zipfilename=${applicationname}${packagename}.zip
         zip -r ${zipfilename} *
-        mv ${zipfilename} ${installerdir}/LatestBuilds
+        mv ${zipfilename} ${installerdir}
 
         echo ------------------------------------------------
 }
 
-doPackage Root Pi java-arm-32bit
+doPackage Root ARM-32bit java-arm-32bit
 doPackage Root Windows-x64 java-windows-x64
+doPackage Root MacOSX java-osx
+doPackage Root Linux-x86 java-linux
+doPackage Root Linux-x64 java-linux-x64
