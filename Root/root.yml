@@ -1,0 +1,45 @@
+## YAML Template.
+template: Hello, %s!
+defaultName: Stranger
+
+server:
+  rootPath: /api/*
+  applicationContextPath: /
+  applicationConnectors:
+  - type: http 
+    port: 9000
+  adminConnectors:
+  - type: http
+    port: 9001
+  requestLog:
+    timeZone: UTC
+    appenders: []
+
+    
+logging:
+  level: ERROR
+  loggers:
+    "io.dropwizard": 
+      level: ERROR
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: dw.log
+          archivedLogFilenamePattern: dw.log-%d.log.gz
+          archivedFileCount: 5
+    "org.hibernate.SQL":
+      level: ERROR
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: sql.log
+          archivedLogFilenamePattern: sql.log-%d.log.gz
+          archivedFileCount: 5
+    "org.eclipse.jetty.server":
+      level: ERROR
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: jetty.log
+          archivedLogFilenamePattern: jetty.log-%d.log.gz
+          archivedFileCount: 5

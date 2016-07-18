@@ -37,7 +37,9 @@ doPackage()
         #App-specific files
         #
         mkdir -p ${packagedir}/${applicationname}
+        cp ${origindir}/robox ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
+        cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
