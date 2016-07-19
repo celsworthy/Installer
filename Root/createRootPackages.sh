@@ -25,7 +25,11 @@ doPackage()
         #
         mkdir -p ${packagedir}/Common
         mkdir -p ${packagedir}/Common/bin
-        cp ${installerdir}/Common/bin/RoboxDetector.linux.sh ${packagedir}/Common/bin
+
+        for binFile in $4; do
+            cp ${installerdir}/Common/bin/${bindFile} ${packagedir}/Common/bin
+        done
+
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
         cp -R ${installerdir}/Common/Heads ${packagedir}/Common
         cp -R ${installerdir}/Common/Language ${packagedir}/Common
@@ -56,8 +60,8 @@ doPackage()
         echo ------------------------------------------------
 }
 
-doPackage Root ARM-32bit java-arm-32bit
-doPackage Root Windows-x64 java-windows-x64
-doPackage Root MacOSX java-osx
-doPackage Root Linux-x86 java-linux
-doPackage Root Linux-x64 java-linux-x64
+doPackage Root ARM-32bit java-arm-32bit RoboxDetector.linux.sh
+doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
+doPackage Root MacOSX java-osx RoboxDetector.mac.sh
+doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
+doPackage Root Linux-x64 java-linux-x64 RoboxDetector.linux.sh
