@@ -5,12 +5,12 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-serviceDir=/lib/systemd/system
 serviceFinalDir=/etc/systemd/system
 serviceFile=roboxroot.service
 
-sysctl ${serviceFile} stop
-rm -f ${serviceDir}/${serviceFile}
+systemctl stop ${serviceFile}
+systemctl daemon-reload
+
 rm -f ${serviceFinalDir}/${serviceFile}
 
 echo Robox Root Node uninstalled
