@@ -57,7 +57,7 @@ doPackage()
 	cat 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
 
         cd ${installerdir}/${packagename}
-        zipfilename=${applicationname}${packagename}.zip
+        zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
         zip -r ${zipfilename} *
         mv ${zipfilename} ${installerdir}
 
