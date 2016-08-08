@@ -28,7 +28,7 @@ doPackage()
         mkdir -p ${packagedir}/Common/bin
 
         for binFile in $4; do
-            cp ${installerdir}/Common/bin/${bindFile} ${packagedir}/Common/bin
+            cp ${installerdir}/Common/bin/${binFile} ${packagedir}/Common/bin
         done
 
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
@@ -42,7 +42,7 @@ doPackage()
         #App-specific files
         #
         mkdir -p ${packagedir}/${applicationname}
-        cp ${origindir}/robox ${packagedir}/${applicationname}
+        cp ${origindir}/robox${packagename} ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
