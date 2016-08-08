@@ -2,6 +2,7 @@
 origindir=`pwd`
 installerdir=$(dirname ${origindir})
 applicationdir=${installerdir}/../application
+FINAL_BUILD_LABEL=$1
 
 doPackage()
 {
@@ -10,7 +11,7 @@ doPackage()
         javaversion=$3
 
         echo ------------------------------------------------
-        echo Creating package named ${packagename} for ${applicationname} using ${javaversion}
+        echo Creating package named ${packagename} for ${applicationname} at version ${FINAL_BUILD_NAME} using ${javaversion}
 		echo User is `id`
         echo Origin dir is ${origindir}
         echo Installer dir is ${installerdir}
@@ -51,6 +52,9 @@ doPackage()
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
+
+        # Version number
+	cat 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
 
         cd ${installerdir}/${packagename}
         zipfilename=${applicationname}${packagename}.zip
