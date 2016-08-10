@@ -1,4 +1,11 @@
 CEL Commissionator Readme
+
+version 2.01.03
+Added new machine types for RBX02
+Altered Production and Final QC menus to include RBX02 machine test option
+Added default length to filament profiles
+Commissionator now uses a separate working folder to AutoMaker - this prevents Commissionator using preferences selected in AutoMaker
+
 version 1.02.00
 Harmonised version of Commissionator with AutoMaker
 Version 731 firmware

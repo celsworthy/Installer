@@ -14,3 +14,4 @@ first_layer_nozzle_temperature_C = 200
 nozzle_temperature_C = 190
 display_colour = #CFA075
 cost_gbp_per_kg = 50.000
+default_length_m = 240
