@@ -2,6 +2,7 @@
 origindir=`pwd`
 installerdir=$(dirname ${origindir})
 applicationdir=${installerdir}/../application
+FINAL_BUILD_LABEL=$1
 
 doPackage()
 {
@@ -10,7 +11,7 @@ doPackage()
         javaversion=$3
 
         echo ------------------------------------------------
-        echo Creating package named ${packagename} for ${applicationname} using ${javaversion}
+        echo Creating package named ${packagename} for ${applicationname} at version ${FINAL_BUILD_NAME} using ${javaversion}
 		echo User is `id`
         echo Origin dir is ${origindir}
         echo Installer dir is ${installerdir}
@@ -27,7 +28,7 @@ doPackage()
         mkdir -p ${packagedir}/Common/bin
 
         for binFile in $4; do
-            cp ${installerdir}/Common/bin/${bindFile} ${packagedir}/Common/bin
+            cp ${installerdir}/Common/bin/${binFile} ${packagedir}/Common/bin
         done
 
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
@@ -41,7 +42,7 @@ doPackage()
         #App-specific files
         #
         mkdir -p ${packagedir}/${applicationname}
-        cp ${origindir}/robox ${packagedir}/${applicationname}
+        cp ${origindir}/robox${packagename} ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
@@ -52,8 +53,11 @@ doPackage()
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
 
+        # Version number
+	echo 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
+
         cd ${installerdir}/${packagename}
-        zipfilename=${applicationname}${packagename}.zip
+        zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
         zip -r ${zipfilename} *
         mv ${zipfilename} ${installerdir}
 
