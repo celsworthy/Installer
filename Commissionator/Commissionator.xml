@@ -5,7 +5,7 @@
     <licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
-    <wmImage>RoboxIcon48x48.png</wmImage>
+    <wmImage>../RoboxIcon48x48.png</wmImage>
     <defaultLanguage>auto</defaultLanguage>
 	<osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
     <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
