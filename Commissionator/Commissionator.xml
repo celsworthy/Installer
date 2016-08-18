@@ -252,25 +252,22 @@
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>robox_r*.bin</origin>
+                            <origin>../robox_r*.bin</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>Macros</origin>
+                            <origin>../Common/Macros</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>PrintProfiles</origin>
+                            <origin>../Common/Filaments</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Heads</origin>
+                            <origin>../Common/Models</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Filaments</origin>
+                            <origin>../Common/Printers</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>Models</origin>
-                        </distributionDirectory>
-						<distributionDirectory>
-                            <origin>Printers</origin>
+                            <origin>../Common/Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -298,13 +295,13 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>bin/RoboxDetector.exe</origin>
+                            <origin>../Common/bin/RoboxDetector.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>bin/msvcp100.dll</origin>
+                            <origin>../Common/bin/msvcp100.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>bin/msvcr100.dll</origin>
+                            <origin>../Common/bin/msvcr100.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -318,7 +315,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>bin/RoboxDetector.linux.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -332,7 +329,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>bin/RoboxDetector.linux.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -372,20 +369,10 @@
         </setInstallerVariable>
 		<setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/1532f2c4ab/Commissionator-update.xml</value>
+            <value>http://www.cel-robox.com/wp-content/uploads/Software/Commissionator-update.xml</value>
             <ruleList>
                 <platformTest>
-                    <negate>1</negate>
-                    <type>windows-x86</type>
-                </platformTest>
-            </ruleList>
-        </setInstallerVariable>
-        <setInstallerVariable>
-            <name>update_xml_url</name>
-            <value>http://downloads.cel-robox.com:8001/1532f2c4ab_x86/Commissionator-update.xml</value>
-            <ruleList>
-                <platformTest>
-                    <type>windows-x86</type>
+                    <type>windows</type>
                 </platformTest>
             </ruleList>
         </setInstallerVariable>

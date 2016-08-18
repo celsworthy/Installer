@@ -305,7 +305,7 @@
                         </distributionFile>
                         <distributionFile>
                             <allowWildcards>1</allowWildcards>
-                            <origin>robox_r*.bin</origin>
+                            <origin>../robox_r*.bin</origin>
                         </distributionFile>
                         <distributionDirectory>
                             <origin>../Common/Macros</origin>
