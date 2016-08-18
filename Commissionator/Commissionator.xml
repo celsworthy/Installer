@@ -117,9 +117,9 @@
                         <distributionFile>
                             <origin>EULA_Commissionator.txt</origin>
                         </distributionFile>
-                        <distributionDirectory>
-                            <origin>README</origin>
-                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>README_Commissionator.txt</origin>
+                        </distributionFile>
                         <distributionDirectory>
                             <origin>../../application/target/lib</origin>
                         </distributionDirectory>
