@@ -231,7 +231,7 @@
             </startMenuShortcutList>
         </component>
         <include>
-            <file>java.xml</file>
+            <file>../java.xml</file>
         </include>
         <component>
             <name>Common</name>
