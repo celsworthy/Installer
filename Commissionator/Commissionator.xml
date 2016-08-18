@@ -123,9 +123,6 @@
                         <distributionDirectory>
                             <origin>../../application/target/lib</origin>
                         </distributionDirectory>
-                        <distributionDirectory>
-                            <origin>Language</origin>
-                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
