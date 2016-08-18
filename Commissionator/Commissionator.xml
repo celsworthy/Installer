@@ -535,15 +535,14 @@ enable = 0
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
-    <customLanguageFileList>
+  <customLanguageFileList>
         <language>
             <code>en</code>
-            <file>InstallerLanguage/custom-en.lng</file>
+            <file>../InstallerLanguage/custom-en.lng</file>
         </language>
         <language>
             <code>zh_CN</code>
-            <encoding>utf-8</encoding>
-            <file>InstallerLanguage/custom-zh_CN.lng</file>
+            <file>../InstallerLanguage/custom-zh_CN.lng</file>
         </language>
     </customLanguageFileList>
     <parameterList>
