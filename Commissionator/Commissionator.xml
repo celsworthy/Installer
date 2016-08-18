@@ -101,7 +101,7 @@
                     </ruleList>
                 </shortcut>
             </desktopShortcutList>
-            <folderList>
+             <folderList>
                 <folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
@@ -109,19 +109,22 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Commissionator.configFile.xml</origin>
+                            <origin>AutoMaker.configFile.xml</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../application/target/Commissionator.jar</origin>
+                            <origin>../../application/target/AutoMaker.jar</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>EULA_Commissionator.txt</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>commissionator.properties</origin>
+                            <origin>EULA_AutoMaker.txt</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>../application/target/lib</origin>
+                            <origin>README</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../../application/target/lib</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -132,16 +135,16 @@
                     <platforms>linux</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Commissionator-update-linux.run</origin>
+                            <origin>AutoMaker-update-linux.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>CommissionatorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtx/linux/librxtxSerial.so</origin>
+                            <origin>../binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -152,16 +155,16 @@
                     <platforms>linux-x64</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Commissionator-update-linux-x64.run</origin>
+                            <origin>AutoMaker-update-linux-x64.run</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>CommissionatorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtx/linux/librxtxSerial.so</origin>
+                            <origin>../binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -172,19 +175,19 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Commissionator-update-windows.exe</origin>
+                            <origin>AutoMaker-update-windows.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator.ico</origin>
+                            <origin>AutoMaker.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>CommissionatorUninstallIcon.ico</origin>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtx/windows/rxtxSerial.dll</origin>
+                            <origin>../binaries/windows/rxtxSerial.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtx/windows/rxtxSerial64.dll</origin>
+                            <origin>../binaries/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -195,19 +198,19 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>Commissionator-update-osx.app</origin>
+                            <origin>AutoMaker-update-osx.app</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator.icns</origin>
+                            <origin>AutoMaker.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>CommissionatorUninstallIcon.icns</origin>
+                            <origin>AutoMakerUninstallIcon.icns</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>Commissionator.png</origin>
+                            <origin>AutoMaker.png</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>librxtx/osx/librxtxSerial.jnilib</origin>
+                            <origin>../binaries/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
