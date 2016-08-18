@@ -10,7 +10,7 @@
 	<osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
     <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
 	<windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
+    <windowsSigningPkcs12Password>5TQZ@a6n:b</windowsSigningPkcs12Password>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
@@ -27,7 +27,7 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>windows_drivers</origin>
+                            <origin>../Common/windows_drivers</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
