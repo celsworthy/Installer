@@ -7,10 +7,6 @@
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
     <wmImage>../RoboxIcon48x48.png</wmImage>
     <defaultLanguage>auto</defaultLanguage>
-	<osxSigningPkcs12File>${build_project_directory}/build_tools/osx-cert.p12</osxSigningPkcs12File>
-    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
-	<windowsSigningPkcs12File>${build_project_directory}/build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>5TQZ@a6n:b</windowsSigningPkcs12Password>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
@@ -237,7 +233,7 @@
             <name>Common</name>
             <description>Common files</description>
             <canBeEdited>0</canBeEdited>
-            <detailedDescription>Common files required by all CEL applications</detailedDescription>
+            <detailedDescription>${msg{(AutoMakerInstaller.commonFilesRequiredByAllPlatforms)}</detailedDescription>
             <selected>1</selected>
             <show>0</show>
             <folderList>
@@ -281,7 +277,7 @@
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>bin/RoboxDetector.mac.sh</origin>
+                            <origin>../Common/bin/RoboxDetector.mac.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -367,12 +363,22 @@
             <name>install_menu_shortcut</name>
             <value>0</value>
         </setInstallerVariable>
-		<setInstallerVariable>
+        <setInstallerVariable>
             <name>update_xml_url</name>
             <value>http://www.cel-robox.com/wp-content/uploads/Software/Commissionator-update.xml</value>
             <ruleList>
                 <platformTest>
-                    <type>windows</type>
+                    <negate>1</negate>
+                    <type>windows-x86</type>
+                </platformTest>
+            </ruleList>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>update_xml_url</name>
+            <value>>http://www.cel-robox.com/wp-content/uploads/Software/x86/Commissionator-update.xml</value>
+            <ruleList>
+                <platformTest>
+                    <type>windows-x86</type>
                 </platformTest>
             </ruleList>
         </setInstallerVariable>
@@ -520,6 +526,8 @@ enable = 0
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
     <osxApplicationBundleIcon>Commissionator.icns</osxApplicationBundleIcon>
+    <osxSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
     <osxUninstallerApplicationBundleIcon>Commissionator.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/Commissionator.ico</productDisplayIcon>
@@ -534,6 +542,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCert-Exp-18_03_17.p12</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
   <customLanguageFileList>
         <language>
@@ -601,6 +611,10 @@ enable = 0
                 <setInstallerVariable>
                     <name>java_launcher_startmenu_shortcut_name</name>
                     <value>${project.shortName}</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>windowsDriverDir</name>
+                    <value>${installdir}/${project.shortName}/windows_drivers</value>
                 </setInstallerVariable>
             </postShowPageActionList>
         </directoryParameter>
