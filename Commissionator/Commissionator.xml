@@ -271,6 +271,9 @@
                         <distributionDirectory>
                             <origin>../Common/Language</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../Common/PrintProfiles</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
