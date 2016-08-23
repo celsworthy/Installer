@@ -274,6 +274,9 @@
                         <distributionDirectory>
                             <origin>../Common/PrintProfiles</origin>
                         </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../Common/Heads</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
