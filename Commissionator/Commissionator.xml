@@ -270,7 +270,6 @@
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>../Common/Language</origin>
-							<includeFiles>*/NoUI_*.properties</includeFiles>
                         </distributionDirectory>
                         <distributionDirectory>
                             <origin>../Common/PrintProfiles</origin>

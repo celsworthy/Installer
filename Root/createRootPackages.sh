@@ -26,6 +26,7 @@ doPackage()
         #
         mkdir -p ${packagedir}/Common
         mkdir -p ${packagedir}/Common/bin
+        mkdir -p ${packagedir}/Common/Language
 
         for binFile in $4; do
             cp ${installerdir}/Common/bin/${binFile} ${packagedir}/Common/bin
@@ -33,7 +34,7 @@ doPackage()
 
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
         cp -R ${installerdir}/Common/Heads ${packagedir}/Common
-        cp -R ${installerdir}/Common/Language ${packagedir}/Common
+        cp -R ${installerdir}/Common/Language/NoUI*.properties ${packagedir}/Common/Language
         cp -R ${installerdir}/Common/Macros ${packagedir}/Common
         cp -R ${installerdir}/Common/Printers ${packagedir}/Common
         cp -R ${installerdir}/Common/PrintProfiles ${packagedir}/Common
