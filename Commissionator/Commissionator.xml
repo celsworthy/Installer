@@ -113,11 +113,17 @@
                         <distributionFile>
                             <origin>EULA_Commissionator.txt</origin>
                         </distributionFile>
+						<distributionFile>
+                            <origin>commissionator.properties</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>README_Commissionator.txt</origin>
                         </distributionFile>
                         <distributionDirectory>
                             <origin>../../application/target/lib</origin>
+                        </distributionDirectory>
+						<distributionDirectory>
+                            <origin>Language</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
