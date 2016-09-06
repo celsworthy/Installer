@@ -1,3 +1,4 @@
+T1
 M103 T			;Set & heat first layer nozzle temp.
 
 Macro:Home_all_Axis_in_sequence

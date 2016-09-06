@@ -1,3 +1,4 @@
+T0
 M103 S
 
 Macro:Home_all_Axis_in_sequence
