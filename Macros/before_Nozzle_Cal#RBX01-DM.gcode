@@ -13,7 +13,4 @@ Macro:Short_Purge#RBX01-DM#N0
 
 Macro:Short_Purge#RBX01-DM#N1
 
-;Centre head
-G0 X105 Y75 Z50
-
 M129			;Head LED on
