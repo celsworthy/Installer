@@ -15,6 +15,8 @@ function outputToServiceFile
     echo $1 >> ${serviceFinalDir}/${serviceFile}
 }
 
+cp -R html/ /var/www/
+
 rm -f ${serviceFinalDir}/${serviceFile}
 
 outputToServiceFile '[Unit]'
