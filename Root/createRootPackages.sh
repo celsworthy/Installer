@@ -56,7 +56,7 @@ doPackage()
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
 
         # Version number
-	echo 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
+	echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
 
         cd ${installerdir}
         zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
