@@ -12,9 +12,7 @@ server:
   - type: http
     port: 9001
   requestLog:
-    timeZone: UTC
     appenders: []
-
     
 logging:
   level: ERROR

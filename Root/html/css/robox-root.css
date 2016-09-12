@@ -354,7 +354,7 @@
         left: 0;
         clip: initial;
         float: left;
-        width: 15%;
+        width: 20%;
         background: none;
         -webkit-transition: none !important;
         -moz-transition: none !important;
@@ -377,7 +377,7 @@
         margin-bottom: 3em;
     }
     .robox-root .jqm-content {
-        width: 77%;
+        width: 70%;
         padding-top: 2em;
         padding-left: 5%;
         padding-right: 3%;
@@ -806,3 +806,5 @@
     background-color: #eeeeee; /* non-RGBA fallback  */
     background-color: rgba(0,0,0,.04);
 }
+
+ /*.ui-menu { width: 150px; }*/

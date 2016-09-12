@@ -58,9 +58,9 @@ doPackage()
         # Version number
 	echo 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
 
-        cd ${installerdir}/${packagename}
+        cd ${installerdir}
         zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
-        zip -r ${zipfilename} *
+        zip -r ${zipfilename} ${packagename}
         mv ${zipfilename} ${installerdir}
 
         echo ------------------------------------------------

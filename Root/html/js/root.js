@@ -1,3 +1,5 @@
+var hostname = window.location.hostname;
+var connectedToServer = false;
 var isMobile = false; //initiate as false
 var connectedPrinterIDs = new Array();
 var connectedPrinters = new Array();
@@ -158,7 +160,7 @@ function printGCodeFile(printerID)
 //        data.append('file-' + i, file);
 //    });
     jQuery.ajax({
-        url: 'http://localhost:9000/api/' + printerID + '/remoteControl/upload/',
+        url: 'http://' + hostname + ':9000/api/' + printerID + '/remoteControl/upload/',
         data: data,
         cache: false,
         contentType: false,
@@ -233,7 +235,7 @@ function configurePrinterButtons(printerID, printerData)
                 var formData = new FormData($(this)[0]);
 
                 $.ajax({
-                    url: 'http://localhost:9000/api/' + printerID + '/remoteControl/printGCodeFile/',
+                    url: 'http://' + hostname + ':9000/api/' + printerID + '/remoteControl/printGCodeFile/',
                     type: 'POST',
                     data: formData,
                     cache: false,
@@ -273,7 +275,7 @@ function updateAndDisplayPrinterStatus(printerID)
 
 function postCommandToRoot(printerID, service, successCallback, dataToSend)
 {
-    var printerURL = "http://localhost:9000/api/" + printerID + "/remoteControl/" + service;
+    var printerURL = "http://" + hostname + ":9000/api/" + printerID + "/remoteControl/" + service;
     $.ajax({
         url: printerURL,
         dataType: "xml/html/script/json", // expected format for response
@@ -293,7 +295,7 @@ function postCommandToRoot(printerID, service, successCallback, dataToSend)
 
 function getPrinterStatus(printerID, callback)
 {
-    var printerURL = "http://localhost:9000/api/" + printerID + "/remoteControl";
+    var printerURL = "http://" + hostname + ":9000/api/" + printerID + "/remoteControl";
     $.ajax({
         url: printerURL,
         dataType: 'json',
@@ -325,27 +327,55 @@ function updateServerStatus(serverVersion)
     $('#serverVersion').text('Server version: ' + serverVersion);
 }
 
-function getPrinters()
+function getServerStatus()
 {
     $.ajax({
-        url: 'http://localhost:9000/api/discovery',
+        url: 'http://' + hostname + ':9000/api/discovery/whoareyou',
         dataType: 'json',
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-//            $('#printerList').html('');
-            processAddedAndRemovedPrinters(data.printerIDs);
-            updatePrinterStatuses();
             $('#serverOnline').text('Server ONLINE');
             updateServerStatus(data.serverVersion);
+            connectedToServer = true;
         },
         error: function (xhr, ajaxOptions, thrownError) {
-//                        alert(xhr.status);
-//                        alert(thrownError);
+            connectedToServer = false;
             $('#serverOnline').text('Server OFFLINE');
             removeAllPrinterTabs();
             updateServerStatus("-");
         }
     });
+}
+
+function getPrinters()
+{
+    $.ajax({
+        url: 'http://' + hostname + ':9000/api/discovery/listPrinters',
+        dataType: 'json',
+        type: 'GET',
+        success: function (data, textStatus, jqXHR) {
+            processAddedAndRemovedPrinters(data.printerIDs);
+            updatePrinterStatuses();
+            connectedToServer = true;
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            connectedToServer = false;
+            $('#serverOnline').text('Server OFFLINE');
+            removeAllPrinterTabs();
+        }
+    });
+}
+
+function getStatus()
+{
+    if (!connectedToServer)
+    {
+        getServerStatus();
+    }
+    else
+    {
+        getPrinters();
+    }
 }
 
 function safetiesOn()
@@ -363,7 +393,8 @@ $(document).ready(function () {
         isMobile = true;
     }
 
-    setInterval(getPrinters, 2000);
+    getServerStatus();
+    setInterval(getStatus, 2000);
     $('#printerTabs').tabs({
         active: 1
     });
