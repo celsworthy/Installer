@@ -5,11 +5,6 @@ installDir=`pwd`
 
 echo ${installDir}
 
-rm -fr /var/www/html
-cp -R html/ /var/www/
-apt-get -y update
-apt-get -y install nginx
-
 if [ "$(id -u)" != "0" ]; then
     echo "The installer must be run as root. Try sudo $0"
     exit 1
