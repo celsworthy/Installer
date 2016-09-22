@@ -10,6 +10,9 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+apt-get -y update
+apt-get -y install avahi-daemon
+
 function outputToServiceFile
 {
     echo $1 >> ${serviceFinalDir}/${serviceFile}
@@ -30,6 +33,7 @@ outputToServiceFile '[Install]'
 outputToServiceFile 'WantedBy=multi-user.target'
 
 systemctl daemon-reload
+systemctl enable ${serviceFile}
 systemctl start ${serviceFile}
 
 echo Installed Robox Root Node
