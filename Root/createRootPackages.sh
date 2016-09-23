@@ -49,17 +49,18 @@ doPackage()
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
+        cp -R ${origindir}/html ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
 
         # Version number
-	echo 'version = '${FINAL_BUILD_LABEL} > ${applicationdir}/target/application.properties
+	echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
 
-        cd ${installerdir}/${packagename}
+        cd ${installerdir}
         zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
-        zip -r ${zipfilename} *
+        zip -r ${zipfilename} ${packagename}
         mv ${zipfilename} ${installerdir}
 
         echo ------------------------------------------------
