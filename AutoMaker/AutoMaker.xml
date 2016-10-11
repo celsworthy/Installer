@@ -774,6 +774,10 @@ enable = 0
                 </platformTest>
             </ruleList>
         </runProgram>
+		<changePermissions>
+			<files>${automakerdir}/${project.shortName}.app/Contents/Info.plist</files>
+			<permissions>666</permissions>
+		</changePermissions>
 					<!-- Clear the launch services database -->
 					<runProgram>
 						<program>/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister</program>
