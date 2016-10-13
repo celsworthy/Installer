@@ -1,6 +1,6 @@
-;-----------------------
+;------------------------
 ; ROBOX driver file
-;-----------------------
+;------------------------
 [Version]
 CatalogFile.ntx86=RoboxX86.cat
 CatalogFile.ntamd64=RoboxX64.cat
