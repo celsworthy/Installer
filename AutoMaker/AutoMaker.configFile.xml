@@ -4,8 +4,8 @@
 	<AppFolderName>CEL Robox</AppFolderName>
         <ApplicationName>CEL AutoMaker</ApplicationName>
         <ApplicationShortName>AutoMaker</ApplicationShortName>
-        <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/DEV/</ApplicationDataStorageDirectory>
-        <UserDataStorageDirectory>$USER_HOME$/DEV/</UserDataStorageDirectory>
+        <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
+        <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
         <requiredFirmwareVersion>752</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
