@@ -13,4 +13,4 @@ for f in $rootUpgradeFileBase; do
     break
 done
 
-java/bin/java -Djava.net.preferIPv4Stack=true -DlibertySystems.configFile=Root.configFile.xml -jar Root.jar server Root.yml
+java/bin/java -Dglass.platform=Monocle -Dmonocle.platform=Headless -Djava.net.preferIPv4Stack=true -DlibertySystems.configFile=Root.configFile.xml -jar Root.jar server Root.yml
