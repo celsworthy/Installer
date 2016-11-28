@@ -29,6 +29,7 @@ outputToServiceFile "WorkingDirectory=${installDir}"
 outputToServiceFile "ExecStart=${installDir}/runRoot.sh"
 outputToServiceFile 'Restart=on-failure'
 outputToServiceFile 'LimitNOFILE=10000'
+outputToServiceFile 'User=pi'
 outputToServiceFile '[Install]'
 outputToServiceFile 'WantedBy=multi-user.target'
 
