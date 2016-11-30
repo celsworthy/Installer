@@ -32,6 +32,11 @@ doPackage()
             cp ${installerdir}/Common/bin/${binFile} ${packagedir}/Common/bin
         done
 
+        for binFile in ${origindir}/*${packagename}*.sh; do
+		newFile=`echo $binFile | sed -e 's/${packagename}\.//'`
+		cp $binFile ${packagedir}/Common/bin/$newFile
+        done
+
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
         cp -R ${installerdir}/Common/Heads ${packagedir}/Common
         cp -R ${installerdir}/Common/Language/NoUI*.properties ${packagedir}/Common/Language
