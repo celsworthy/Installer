@@ -3,7 +3,7 @@ wifion=$(networksetup -getairportpower en0 | cut -d : -f2 | sed 's/^[ \t]*//;s/[
 ssid=$(networksetup -getairportnetwork en0 | cut -d : -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
 
 associated='no'
-if [ ${ssid} == "You are not associated with an AirPort network." ]
+if [ ${ssid} != "You are not associated with an AirPort network." ]
 then
    associated='yes'	
 fi
