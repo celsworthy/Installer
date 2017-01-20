@@ -2,7 +2,7 @@
 # Robox filament definition file
 #
 name = Robox Woody Beech
-material = SPC
+material = PLA
 reelID = RBX-SPC-WD001
 diameter_mm = 1.75
 filament_multiplier = 0.93
@@ -12,6 +12,6 @@ first_layer_bed_temperature_C = 65
 bed_temperature_C = 65
 first_layer_nozzle_temperature_C = 200
 nozzle_temperature_C = 190
-display_colour = #cfa075
-cost_gbp_per_kg = 50
+display_colour = #CFA075
+cost_gbp_per_kg = 82.39
 default_length_m = 240
