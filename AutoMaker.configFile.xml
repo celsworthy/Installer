@@ -2,7 +2,7 @@
 <root>
 	<ApplicationConfiguration>
 	<AppFolderName>CEL Robox</AppFolderName>
-        <ApplicationName>CEL Robox</ApplicationName>
+        <ApplicationName>CEL AutoMaker</ApplicationName>
         <ApplicationShortName>AutoMaker</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
         <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
