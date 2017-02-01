@@ -4,6 +4,7 @@
 name = Robox Slime Green
 material = PLA
 reelID = RBX-PLA-GR003
+category = Robox
 diameter_mm = 1.75
 filament_multiplier = 1.0
 feed_rate_multiplier = 1.0

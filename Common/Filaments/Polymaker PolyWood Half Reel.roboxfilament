@@ -4,6 +4,7 @@
 name = Polymaker PolyWood\u2122 \u00bd
 material = PLA
 reelID = RLH-SPC-WD001
+category = Polymaker
 diameter_mm = 1.75
 filament_multiplier = 0.93
 feed_rate_multiplier = 1.0

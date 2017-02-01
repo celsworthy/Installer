@@ -4,6 +4,7 @@
 name = colorFabb nGen\u2122 Light Blue
 material = PET
 reelID = RBX-PET-NGBL2
+category = ColorFabb nGen
 diameter_mm = 1.75
 filament_multiplier = 0.97
 feed_rate_multiplier = 1.00

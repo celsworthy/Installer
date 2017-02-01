@@ -4,6 +4,7 @@
 name = colorFabb_XT\u2122 Pink
 material = PET
 reelID = RBX-PET-PK001
+category = ColorFabb XT
 diameter_mm = 1.75
 filament_multiplier = 0.95
 feed_rate_multiplier = 1.00

@@ -4,6 +4,7 @@
 name = Robox Mellow Yellow
 material = ABS
 reelID = RBX-ABS-YL504
+category = Robox
 diameter_mm = 1.75
 filament_multiplier = 0.95
 feed_rate_multiplier = 1.0

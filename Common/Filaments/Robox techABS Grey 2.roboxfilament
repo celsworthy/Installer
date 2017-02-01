@@ -4,6 +4,7 @@
 name = Robox tech Grey
 material = ABS
 reelID = RBX-ABS-TCFS2
+category = Robox Tech
 diameter_mm = 1.75
 display_colour = #A0A0A0
 filament_multiplier = 0.93

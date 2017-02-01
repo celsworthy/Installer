@@ -4,6 +4,7 @@
 name = Robox tech Black
 material = ABS
 reelID = RBX-ABS-TCBK2
+category = Robox Tech
 diameter_mm = 1.75
 display_colour = #000000
 filament_multiplier = 0.93
