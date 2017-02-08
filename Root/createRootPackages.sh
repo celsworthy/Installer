@@ -33,8 +33,9 @@ doPackage()
         done
 
         for binFile in ${origindir}/*${packagename}*.sh; do
-		newFile=`echo $binFile | sed -e 's/${packagename}\.//'`
-		cp $binFile ${packagedir}/Common/bin/$newFile
+			binFileNoPath=$(basename $binFile)
+			newFile=`echo $binFileNoPath | sed -e "s/${packagename}\.//"`
+			cp $binFile ${packagedir}/Common/bin/$newFile
         done
 
         cp -R ${installerdir}/Common/Filaments ${packagedir}/Common
@@ -48,13 +49,11 @@ doPackage()
         #App-specific files
         #
         mkdir -p ${packagedir}/${applicationname}
-        cp ${origindir}/robox${packagename} ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
-        cp -R ${origindir}/html ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
