@@ -4,7 +4,8 @@
 name =Polymaker PC-Plus\u2122 White
 material = PCP
 reelID = RBX-PCP-WH001
-category = Polymaker
+brand = Polymaker
+category = PC-Plus
 diameter_mm = 1.750
 filament_multiplier = 1.000
 feed_rate_multiplier = 1.200

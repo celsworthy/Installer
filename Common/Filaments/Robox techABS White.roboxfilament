@@ -4,7 +4,8 @@
 name = Robox tech White
 material = ABS
 reelID = RBX-ABS-TCWH1
-category = Robox Tech
+brand = Robox
+category = Tech
 diameter_mm = 1.75
 display_colour = #FFFFFF
 filament_multiplier = 0.93

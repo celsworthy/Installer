@@ -4,7 +4,8 @@
 name = colorFabb nGen\u2122 Metal Grey
 material = PET
 reelID = RBX-PET-NGMF1
-category = ColorFabb nGen
+brand = ColorFabb
+category = nGen
 diameter_mm = 1.75
 filament_multiplier = 0.97
 feed_rate_multiplier = 1.00

@@ -4,7 +4,8 @@
 name = Robox tech Blue
 material = ABS
 reelID = RBX-ABS-TCBL1
-category = Robox Tech
+brand = Robox
+category = Tech
 diameter_mm = 1.75
 display_colour = #3C5FAF
 filament_multiplier = 0.93

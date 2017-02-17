@@ -4,7 +4,8 @@
 name = Robox Natural
 material = HIP
 reelID = RBX-HIP-NT002
-category = Robox
+brand = Robox
+category = Classic
 diameter_mm = 1.75
 filament_multiplier = 0.90
 feed_rate_multiplier = 1.0

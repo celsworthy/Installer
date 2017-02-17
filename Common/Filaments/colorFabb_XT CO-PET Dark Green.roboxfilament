@@ -4,7 +4,8 @@
 name = colorFabb_XT\u2122 Dark Green
 material = PET
 reelID = RBX-PET-GR001
-category = ColorFabb XT
+brand = ColorFabb
+category = XT
 diameter_mm = 1.75
 filament_multiplier = 0.95
 feed_rate_multiplier = 1.00

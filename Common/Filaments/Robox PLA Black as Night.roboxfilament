@@ -4,7 +4,8 @@
 name = Robox Black as Night
 material = PLA
 reelID = RBX-PLA-BK092
-category = Robox
+brand = Robox
+category = Classic
 diameter_mm = 1.75
 filament_multiplier = 1.0
 feed_rate_multiplier = 1.0

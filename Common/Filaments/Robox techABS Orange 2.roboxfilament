@@ -4,7 +4,8 @@
 name = Robox tech Orange
 material = ABS
 reelID = RBX-ABS-TCOR2
-category = Robox Tech
+brand = Robox
+category = Tech
 diameter_mm = 1.75
 display_colour = #FF5A00
 filament_multiplier = 0.93

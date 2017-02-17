@@ -4,7 +4,8 @@
 name = Robox Sky Blue
 material = PLA
 reelID = RBX-PLA-BL004
-category = Robox
+brand = Robox
+category = Classic
 diameter_mm = 1.75
 filament_multiplier = 1.0
 feed_rate_multiplier = 1.0

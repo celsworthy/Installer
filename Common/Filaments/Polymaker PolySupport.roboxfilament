@@ -4,7 +4,8 @@
 name =Polymaker PolySupport\u2122
 material = PLA
 reelID = RBX-SPC-SP001
-category = Polymaker
+brand = Polymaker
+category = PolySupport
 diameter_mm = 1.750
 filament_multiplier = 1.000
 feed_rate_multiplier = 1.000

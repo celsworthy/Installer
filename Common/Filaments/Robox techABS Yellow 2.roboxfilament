@@ -4,7 +4,8 @@
 name = Robox tech Yellow
 material = ABS
 reelID = RBX-ABS-TCYL2
-category = Robox Tech
+brand = Robox
+category = Tech
 diameter_mm = 1.75
 display_colour = #FFC83C
 filament_multiplier = 0.93
