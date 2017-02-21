@@ -10,9 +10,6 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-apt-get -y update
-apt-get -y install avahi-daemon
-
 function outputToServiceFile
 {
     echo $1 >> ${serviceFinalDir}/${serviceFile}

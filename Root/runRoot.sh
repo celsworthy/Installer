@@ -2,12 +2,14 @@
 
 rootUpgradeFileBase="/tmp/RootARM*"
 
+logger Checking for Robox Root upgrade files
 #Handle pre-run upgrade
 for f in $rootUpgradeFileBase; do
     if [ -e "$f" ]
     then
 	upgradeFile=$(ls -t $rootUpgradeFileBase | head -1)
-	echo unzip $upgradeFile -d ..
+	logger Found $upgradeFile - upgrading Robox Root
+	unzip -o -d /home/pi/ $upgradeFile
 	rm -f $rootUpgradeFileBase
     fi
     break
