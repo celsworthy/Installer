@@ -58,6 +58,7 @@ doPackage()
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
+        cp -R ${origindir}/StaticPage ${packagedir}/${applicationname}
 
         # Version number
 	echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
