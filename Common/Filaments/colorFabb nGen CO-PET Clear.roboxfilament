@@ -4,7 +4,7 @@
 name = colorFabb nGen\u2122 Clear
 material = PET
 reelID = RBX-PET-NGTP1
-brand = ColorFabb
+brand = colorFabb
 category = nGen
 diameter_mm = 1.75
 filament_multiplier = 0.97
