@@ -8,16 +8,16 @@ for /f "tokens=2*delims=:" %%a in ('netsh wlan show interfaces ^| findstr Radio'
 set ssid=
 for /f "tokens=2*delims=: " %%a in ('netsh wlan show interfaces ^| findstr /C:" SSID"') do @set ssid=%%a
 
-set associated=no
-set powered=off
+set associated=false
+set powered=false
 
 if "%isConnected%"=="connected" (
-	set associated=yes
-	set powered=on
+	set associated=true
+	set powered=true
 ) else (
 	if "%radioStatus%"==" Hardware On" (
-		set powered=on
+		set powered=true
 	)
 )
 
-echo {\"power\":\"%powered%\", \"associated\":\"%associated%\", \"ssid\":\"%ssid%\"}
+echo {"poweredOn":"%powered%", "associated":"%associated%", "ssid":"%ssid%"}

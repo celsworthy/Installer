@@ -3,16 +3,16 @@ poweredInput=$(sudo ifdown -n wlan0 2>&1 | sed 's/^[ \t]*//;s/[ \t]*$//' | awk '
 associatedInput=$(iwconfig wlan0 | cut -d ' ' -f15 | sed 's/^[ \t]*//;s/[ \t]*$//' )
 ssid=$(iwgetid wlan0 | cut -d : -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
 
-powered='off'
+powered='false'
 if [[ ${poweredInput} != *"not configured"* ]]
 then
-   powered='on'	
+   powered='true'	
 fi
 
-associated='no'
+associated='false'
 if [[ ${associatedInput} != *"Not-Associated"* ]]
 then
-   associated='yes'	
+   associated='true'	
 fi
 
-echo {\"power\":\"${powered}\", \"associated\":\"${associated}\", \"ssid\":${ssid}}
+echo {"poweredOn":"${powered}", "associated":"${associated}", "ssid":${ssid}}
