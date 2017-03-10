@@ -4,6 +4,8 @@
 name = Robox PA12 Tough Natural
 material = NYL
 reelID = RLH-P12-NT001
+brand = Robox
+category = Classic
 diameter_mm = 1.75
 filament_multiplier = 0.9
 feed_rate_multiplier = 1.0
