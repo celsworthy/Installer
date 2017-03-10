@@ -15,4 +15,4 @@ then
    associated='true'	
 fi
 
-echo {"poweredOn":"${powered}", "associated":"${associated}", "ssid":${ssid}}
+echo {\"poweredOn\":${powered}, \"associated\":${associated}, \"ssid\":${ssid}}

@@ -52,6 +52,7 @@ doPackage()
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
+        cp ${origindir}/restart${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
