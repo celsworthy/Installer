@@ -1,7 +1,7 @@
 #
 # Robox filament definition file
 #
-name = Polymaker PolyWood\u2122 \u00bd
+name = Polymaker PolyWood\u2122
 material = PLA
 reelID = RLH-SPC-WD001
 brand = Polymaker
