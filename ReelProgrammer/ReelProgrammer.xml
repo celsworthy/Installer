@@ -168,9 +168,6 @@
                             <origin>EULA_ReelProgrammer.txt</origin>
                         </distributionFile>
                         <distributionDirectory>
-                            <origin>README</origin>
-                        </distributionDirectory>
-                        <distributionDirectory>
                             <origin>../../application/target/lib</origin>
                         </distributionDirectory>
                         <distributionDirectory>
