@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<ApplicationConfiguration>
-	<AppFolderName>CEL Robox</AppFolderName>
+	<AppFolderName>CEL ReelProgrammer</AppFolderName>
         <ApplicationName>CEL Reel Programmer</ApplicationName>
         <ApplicationShortName>ReelProgrammer</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
