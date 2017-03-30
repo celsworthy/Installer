@@ -1,5 +1,5 @@
 M139 S90
-M103
+M103 S235
 
 ;Home_all_Axis_in_sequence
 G90 			;Use X Y Z Absolute positioning
