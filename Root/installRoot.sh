@@ -34,7 +34,7 @@ echo '[Service]' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'Type=simple' >> ${serviceFinalDir}/${browserServiceFile}
 echo "WorkingDirectory=${installDir}" >> ${serviceFinalDir}/${browserServiceFile}
 echo "Environment=DISPLAY=:0.0" >> ${serviceFinalDir}/${browserServiceFile}
-echo "ExecStart=/home/pi/scripts/startBrowser.sh" >> ${serviceFinalDir}/${browserServiceFile}
+echo "ExecStart=${installDir}/startBrowser.sh" >> ${serviceFinalDir}/${browserServiceFile}
 echo 'Restart=always' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'LimitNOFILE=10000' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'User=pi' >> ${serviceFinalDir}/${browserServiceFile}
