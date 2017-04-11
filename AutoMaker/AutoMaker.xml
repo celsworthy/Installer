@@ -339,9 +339,6 @@
 						<distributionFile>
                             <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
-						<distributionFile>
-                            <origin>../Common/Heads/Stylus lite.roboxhead</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
 				<folder>
