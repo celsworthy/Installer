@@ -1,64 +1,60 @@
 {
   "version" : 1,
   "typeCode" : "RBX01",
-  "friendlyName" : "Robox version 1",
+  "friendlyName" : "Robox",
   "editions" : [ {
     "typeCode" : "KS",
-    "friendlyName" : "Kickstarter Edition"
+    "friendlyName" : "Robox (Kickstarter Edition)"
   },
   {
     "typeCode" : "TS",
-    "friendlyName" : "Trade Sample"
+    "friendlyName" : "Robox (Trade Sample)"
   },
   {
     "typeCode" : "BK",
-    "friendlyName" : "First Edition UK"
+    "friendlyName" : "Robox (UK)"
   },
   {
     "typeCode" : "BE",
-    "friendlyName" : "First Edition Europe"
+    "friendlyName" : "Robox (Europe)"
   },
   {
     "typeCode" : "BU",
-    "friendlyName" : "First Edition USA"
+    "friendlyName" : "Robox (USA)"
   },
   {
     "typeCode" : "BA",
-    "friendlyName" : "First Edition South Asia / Australia"
+    "friendlyName" : "Robox (SAA)"
   },
   {
     "typeCode" : "BN",
-    "friendlyName" : "First Edition Japan"
+    "friendlyName" : "Robox (Japan)"
   },
   {
     "typeCode" : "BC",
-    "friendlyName" : "First Edition China"
+    "friendlyName" : "Robox (China)"
   },
   {
     "typeCode" : "BV",
-    "friendlyName" : "First Edition Switzerland"
+    "friendlyName" : "Robox (Switzerland)"
   },
   {
     "typeCode" : "BW",
-    "friendlyName" : "First Edition Worldwide"
+    "friendlyName" : "Robox (Worldwide)"
   },
   {
     "typeCode" : "BR",
-    "friendlyName" : "First Edition Korea"
+    "friendlyName" : "Robox (Korea)"
   },
   {
     "typeCode" : "BI",
-    "friendlyName" : "First Edition Israel"
+    "friendlyName" : "Robox (Israel)"
   }
   ],
     "compatibleHeads" : [
 	"RBX01-SM",
 	"RBX01-DM",
-	"RBX01-S2",
-	"RBX01-DL",
-	"RBX01-SL",
-	"RBX01-DF",
-	"RBX01-SF"
+	"RBX01-S2"
   ],
   "printVolumeWidth" : 210,
   "printVolumeDepth" : 150,
