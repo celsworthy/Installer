@@ -1,0 +1,62 @@
+{
+  "version" : 1,
+  "typeCode" : "RBX10",
+  "friendlyName" : "Brobox",
+  "editions" : [ {
+    "typeCode" : "KS",
+    "friendlyName" : "Brobox (Kickstarter Edition)"
+  },
+  {
+    "typeCode" : "TS",
+    "friendlyName" : "Brobox (Trade Sample)"
+  },
+  {
+    "typeCode" : "BK",
+    "friendlyName" : "Brobox (UK)"
+  },
+  {
+    "typeCode" : "BE",
+    "friendlyName" : "Brobox (Europe)"
+  },
+  {
+    "typeCode" : "BU",
+    "friendlyName" : "Brobox (USA/Canada)"
+  },
+  {
+    "typeCode" : "BA",
+    "friendlyName" : "Brobox (SAA)"
+  },
+  {
+    "typeCode" : "BN",
+    "friendlyName" : "Brobox (Japan)"
+  },
+  {
+    "typeCode" : "BC",
+    "friendlyName" : "Brobox (China)"
+  },
+  {
+    "typeCode" : "BV",
+    "friendlyName" : "Brobox (Switzerland)"
+  },
+  {
+    "typeCode" : "BW",
+    "friendlyName" : "Brobox (Worldwide)"
+  },
+  {
+    "typeCode" : "BR",
+    "friendlyName" : "Brobox (Korea)"
+  },
+  {
+    "typeCode" : "BI",
+    "friendlyName" : "Brobox (Israel)"
+  }
+  ],
+    "compatibleHeads" : [
+	"RBX01-SM",
+	"RBX01-DM",
+	"RBX01-S2"
+  ],
+  "printVolumeWidth" : 300,
+  "printVolumeDepth" : 210,
+  "printVolumeHeight" : 400
+}
