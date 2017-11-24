@@ -337,6 +337,9 @@
                             <origin>../Common/Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
+                            <origin>../Common/Heads/Single Material Development 0.6mm.roboxhead</origin>
+                        </distributionFile>
+						<distributionFile>
                             <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
                     </distributionFileList>
@@ -360,6 +363,9 @@
                             <origin>../Common/PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
+                            <origin>../Common/PrintProfiles/Draft#RBXDV-S1.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
                             <origin>../Common/PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
@@ -369,6 +375,9 @@
                             <origin>../Common/PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
+                            <origin>../Common/PrintProfiles/Normal#RBXDV-S1.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
                             <origin>../Common/PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
                         </distributionFile>
 						<distributionFile>
@@ -376,6 +385,9 @@
                         </distributionFile>
 						<distributionFile>
                             <origin>../Common/PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>../Common/PrintProfiles/Fine#RBXDV-S1.roboxprofile</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
