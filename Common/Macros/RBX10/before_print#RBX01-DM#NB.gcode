@@ -11,13 +11,13 @@ T1
 M109
 M170			;Set Ambient temp.
 
-Macro:Short_Purge#RBX01-DM#N0
-
-Macro:Short_Purge#RBX01-DM#N1
-
 Macro:Level_Gantry_(2-points)
 
 Macro:7_point_Bed_probing-Set_Washout
+
+Macro:Short_Purge#RBX01-DM#N0
+
+Macro:Short_Purge#RBX01-DM#N1
 
 ;Prime
 G1 E0.5 D0.5 F400
