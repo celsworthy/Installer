@@ -27,5 +27,6 @@ ${endOfSection}" $fileToChange
 ${endOfSection}" $fileToChange
 	fi
 	sudo ifdown wlan0 > /dev/null 2>&1
+	sleep 5
 	sudo ifup wlan0 > /dev/null 2>&1
 fi
