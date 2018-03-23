@@ -1,12 +1,13 @@
 #!/bin/bash
-poweredInput=$(sudo ifdown -n wlan0 2>&1 | sed 's/^[ \t]*//;s/[ \t]*$//' | awk '{print tolower($0)}' )
+#poweredInput=$(sudo ifdown -n wlan0 2>&1 | sed 's/^[ \t]*//;s/[ \t]*$//' | awk '{print tolower($0)}' )
+poweredInput=$(sudo ip link show wlan0 2>&1 | sed -ne 's/.*wlan0: <\(.*\)>.*/\1/p')
 associatedInput=$(iwconfig wlan0 2>/dev/null | cut -d ' ' -f15 | sed 's/^[ \t]*//;s/[ \t]*$//' )
 ssid=$(iwgetid wlan0 | cut -d : -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
 
-powered='false'
-if [[ ${poweredInput} != *"not configured"* ]]
+powered='true'
+if [[ ${poweredInput} != *"UP"* ]]
 then
-   powered='true'	
+   powered='false'	
 fi
 
 associated='false'

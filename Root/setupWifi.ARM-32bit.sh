@@ -26,7 +26,9 @@ ${endOfSection}" $fileToChange
 	psk=\"$pw\"\n\
 ${endOfSection}" $fileToChange
 	fi
-	sudo ifdown wlan0 > /dev/null 2>&1
+	sudo ip link set wlan0 down > /dev/null 2>&1
+	#sudo ifdown wlan0 > /dev/null 2>&1
 	sleep 5
-	sudo ifup wlan0 > /dev/null 2>&1
+	sudo ip link set wlan0 up > /dev/null 2>&1
+	#sudo ifup wlan0 > /dev/null 2>&1
 fi
