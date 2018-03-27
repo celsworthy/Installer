@@ -56,6 +56,7 @@ doPackage()
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
+        cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
