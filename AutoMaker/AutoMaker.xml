@@ -337,9 +337,6 @@
                             <origin>../Common/Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
-                            <origin>../Common/Heads/Single Material Development 0.6mm.roboxhead</origin>
-                        </distributionFile>
-						<distributionFile>
                             <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
 						<distributionFile>
