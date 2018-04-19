@@ -18,5 +18,5 @@ Macro:7_point_Bed_probing-Set_Washout
 
 ;Centre head and prime
 G0 X105 Y75 Z5
-G1 E0.5 F1000
+G1 E5 F1000
 M129			;Head LED on

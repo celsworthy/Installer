@@ -17,5 +17,5 @@ Macro:Short_Purge#N0
 Macro:Short_Purge#N1
 
 ;Prime
-G1 E0.5 F1000
+G1 E5 F1000
 M129			;Head LED on
