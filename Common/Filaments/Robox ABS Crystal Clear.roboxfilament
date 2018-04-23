@@ -2,7 +2,7 @@
 # Robox filament definition file
 #
 name = Robox Crystal Clear
-material = ABS
+material = MBS
 reelID = RBX-ABS-TP001
 brand = Robox
 category = Classic

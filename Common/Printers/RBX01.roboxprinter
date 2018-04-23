@@ -54,7 +54,8 @@
     "compatibleHeads" : [
 	"RBX01-SM",
 	"RBX01-DM",
-	"RBX01-S2"
+	"RBX01-S2",
+	"RBXDV-S1"
   ],
   "printVolumeWidth" : 210,
   "printVolumeDepth" : 150,

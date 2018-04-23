@@ -3,50 +3,15 @@
   "typeCode" : "RBX10",
   "friendlyName" : "RoboxPRO",
   "editions" : [ {
-    "typeCode" : "BK",
+    "typeCode" : "SK",
     "friendlyName" : "RoboxPRO (UK)"
-  },
-  {
-    "typeCode" : "BE",
-    "friendlyName" : "RoboxPRO (Europe)"
-  },
-  {
-    "typeCode" : "BU",
-    "friendlyName" : "RoboxPRO (USA/Canada)"
-  },
-  {
-    "typeCode" : "BA",
-    "friendlyName" : "RoboxPRO (SAA)"
-  },
-  {
-    "typeCode" : "BN",
-    "friendlyName" : "RoboxPRO (Japan)"
-  },
-  {
-    "typeCode" : "BC",
-    "friendlyName" : "RoboxPRO (China)"
-  },
-  {
-    "typeCode" : "BV",
-    "friendlyName" : "RoboxPRO (Switzerland)"
-  },
-  {
-    "typeCode" : "BW",
-    "friendlyName" : "RoboxPRO (Worldwide)"
-  },
-  {
-    "typeCode" : "BR",
-    "friendlyName" : "RoboxPRO (Korea)"
-  },
-  {
-    "typeCode" : "BI",
-    "friendlyName" : "RoboxPRO (Israel)"
   }
   ],
     "compatibleHeads" : [
 	"RBX01-SM",
 	"RBX01-DM",
-	"RBX01-S2"
+	"RBX01-S2",
+	"RBXDV-S1"
   ],
   "printVolumeWidth" : 300,
   "printVolumeDepth" : 210,

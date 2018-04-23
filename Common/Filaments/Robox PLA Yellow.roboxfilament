@@ -1,9 +1,9 @@
 #
 # Robox filament definition file
 #
-name = Robox Chroma Green
+name = Robox Yellow
 material = PLA
-reelID = RBX-PLA-GR005
+reelID = RBX-PLA-YL003
 brand = Robox
 category = Classic
 diameter_mm = 1.75
@@ -14,6 +14,6 @@ first_layer_bed_temperature_C = 70
 bed_temperature_C = 65
 first_layer_nozzle_temperature_C = 205
 nozzle_temperature_C = 195
-display_colour = #64AA1E
+display_colour = #F2FE52
 cost_gbp_per_kg = 37.89
 default_length_m = 240

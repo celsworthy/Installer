@@ -2,7 +2,7 @@
 # Robox filament definition file
 #
 name = Robox PA12 Tough Natural
-material = NYL
+material = P12
 reelID = RLH-P12-NT001
 brand = Robox
 category = Classic
