@@ -17,3 +17,4 @@ nozzle_temperature_C = 205
 display_colour = #E6E6E6
 cost_gbp_per_kg = 62.36
 default_length_m = 240
+filled = no

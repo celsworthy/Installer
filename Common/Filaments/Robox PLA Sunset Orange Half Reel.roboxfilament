@@ -17,3 +17,4 @@ nozzle_temperature_C = 205
 display_colour = #FF8400
 cost_gbp_per_kg = 37.89
 default_length_m = 120
+filled = no
