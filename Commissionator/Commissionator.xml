@@ -554,8 +554,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCert.p12</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>slat3d</windowsSigningPkcs12Password>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCertificate-Exp-01_05_19.pfx</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>8M9Ix4Q6nzjO47Pa</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
   <customLanguageFileList>
         <language>
