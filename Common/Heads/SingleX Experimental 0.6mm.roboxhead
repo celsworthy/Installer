@@ -3,6 +3,7 @@
   "typeCode" : "RBXDV-S1",
   "type" : "SINGLE_MATERIAL_HEAD",
   "valves" : "NOT_FITTED",
+  "zReduction" : 4.0,
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 300,
     "beta" : 4380.0,

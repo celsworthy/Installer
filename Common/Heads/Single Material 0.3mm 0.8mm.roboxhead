@@ -3,6 +3,7 @@
   "typeCode" : "RBX01-SM",
   "type" : "SINGLE_MATERIAL_HEAD",
   "valves" : "FITTED",
+  "zReduction" : 0.0,
   "nozzleHeaters" : [ {
     "maximum_temperature_C" : 260,
     "beta" : 4380.0,
