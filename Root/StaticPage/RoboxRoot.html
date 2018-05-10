@@ -1,47 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="RoboxRoot.css">
-    <script type="text/javascript">
-    var rootLocation="http://localhost:8080/index.html";
-    function checkForRoot()
-    {
-        var request = new XMLHttpRequest();  
-        request.open('GET', rootLocation, true);
-        request.onreadystatechange = function(){
-            if (request.readyState === 4){
-                if (request.status === 200)
-                {
-                     window.location.replace(rootLocation);
-                }
-                else
-                {
-                    setTimeout(checkForRoot, 3000);
-                }
-            }
-        };
-        request.send();
-    }
-    window.onload = checkForRoot;
-    </script>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Robox - Loading...</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900">
+	<link rel="stylesheet" href="RoboxRoot.css">
+
+    <script type="text/javascript">
+		var rootLocation="http://localhost:8080/index.html";
+		function checkForRoot()
+		{
+			var request = new XMLHttpRequest();  
+			request.open('GET', rootLocation, true);
+			request.onreadystatechange = function(){
+				if (request.readyState === 4){
+					if (request.status === 200)
+					{
+						 window.location.replace(rootLocation);
+					}
+					else
+					{
+						setTimeout(checkForRoot, 3000);
+					}
+				}
+			};
+			request.send();
+		}
+		window.onload = checkForRoot;
+    </script>
+</head>
+
+<body class="canvas-blue no-touch-action">
     <div class="container splash">
-        <div class="row">
-            <div style="padding:15vh 7.5vh 0vh;"><img src="Logo-RoboxPro-Inverse.svg" class="machine-logo" /></div>
+        <div class="row" style="height:33.75vh;">
+            <div style="padding:0vh 10vh; position: relative; top: 50%; transform: translateY(-50%);"><img src="Logo-Robox-Text-White.svg" class="machine-logo"></div>
         </div>
         <div class="row">
-            <div style="padding:15vh 0vh; text-align: center;"><img src="Loading1.gif" /></div>
+            <div style="text-align: center;"><img src="Robox-Loading.gif" style="height:32vh;"></div>
         </div>
-        <div class="row">
+        <div class="row" style="height: 34.25vh;">
             <div>
-                <h1 class="rbx-text-bigbody" style="text-align: center; color: #fff; padding-bottom: 10vh;">Loading...</h1>
-                <h1 class="rbx-text-small" style="text-align: center; color: #fff; font-weight: 300;">© 2018 C Enterprise (UK) Ltd.</h1>
-                <h1 class="rbx-text-small" style="text-align: center; color: #fff; font-weight: 300;">All Rights Reserved.</h1>
+                <h1 style="font-size: 2.75vh; text-align: center; color: #fff; font-weight: 300; padding-top: 22vh">© 2018 C Enterprise (UK) Ltd.</h1>
+                <h1 style="font-size: 2vh; text-align: center; color: #fff; font-weight: 300; padding-top: 1vh;">All Rights Reserved.</h1>
             </div>
         </div>
     </div>
-  </body>
+</body>
+
 </html>
