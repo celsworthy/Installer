@@ -11,6 +11,8 @@ for f in $rootUpgradeFileBase; do
 	logger Found $upgradeFile - upgrading Robox Root
 	unzip -o -d /home/pi/ $upgradeFile
 	rm -f $rootUpgradeFileBase
+	# Clear the Chromium cache
+	rm -rf ~/.cache/chromium/Default
     fi
     break
 done
