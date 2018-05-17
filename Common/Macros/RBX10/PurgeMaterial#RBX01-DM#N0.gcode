@@ -8,7 +8,7 @@ M109			;wait to get to nozzle temp
 M129			;Head LED on
 M106			;Fan on
 
-G36 D1000 F12000 ; Un-Park
+G36 D1500 F400 ; Un-Park
 
 G0 X20 Y20
 Macro:Purge_T0

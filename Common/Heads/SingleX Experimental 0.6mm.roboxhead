@@ -11,9 +11,9 @@
   }],
   "nozzles" : [ {
     "diameter" : 0.6,
-    "defaultXOffset" : 12,
-	"minXOffset" : 9,
-	"maxXOffset" : 15,
+    "defaultXOffset" : 1.5,
+	"minXOffset" : 0,
+	"maxXOffset" : 3,
     "defaultYOffset" : 4,
 	"minYOffset" : 3.5,
 	"maxYOffset" : 5.5,
