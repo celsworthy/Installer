@@ -10,15 +10,18 @@ M106			;Fan on
 
 G36 D1500 F400 ; Un-Park
 
+;Prime
+G1 E3 F500
+
 G0 X20 Y20
 Macro:Purge_T0
-G0 X20 Y23
+G0 X20 Y24
 Macro:Purge_T0
-G0 X20 Y26
-Macro:Purge_T0
-G0 X20 Y29
+G0 X20 Y28
 Macro:Purge_T0
 G0 X20 Y32
+Macro:Purge_T0
+G0 X20 Y36
 Macro:Purge_T0
 
 Macro:Finish-Abort_Print

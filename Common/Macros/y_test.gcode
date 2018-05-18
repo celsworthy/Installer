@@ -40,4 +40,6 @@ G0 Y-6
 G0 Y154
 G0 Y-6
 
-Macro:Finish-Abort_Print
+G37 S			;Unlock door
+M128			;Head Light off
+M84				;Motors off

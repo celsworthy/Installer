@@ -12,13 +12,13 @@ G36 E1500 F400 ; Un-Park
 
 G0 X190 Y20
 Macro:Purge_T1
-G0 X190 Y23
+G0 X190 Y24
 Macro:Purge_T1
-G0 X190 Y26
-Macro:Purge_T1
-G0 X190 Y29
+G0 X190 Y28
 Macro:Purge_T1
 G0 X190 Y32
+Macro:Purge_T1
+G0 X190 Y36
 Macro:Purge_T1
 
 Macro:Finish-Abort_Print

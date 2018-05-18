@@ -76,7 +76,7 @@
   "minPrintSpeed_mm_per_s" : 8,
   "maxClosesBeforeNozzleReselect" : 10,
   "raftBaseLinewidth_mm": 1.0,
-  "raftAirGapLayer0_mm": 0.1,
+  "raftAirGapLayer0_mm": 0.2,
   "interfaceLayers": 1,
   "raftBaseThickness_mm": 0.300,
   "interfaceSpeed_mm_per_s":40,

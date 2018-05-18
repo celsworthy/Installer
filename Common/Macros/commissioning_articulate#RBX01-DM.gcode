@@ -5,7 +5,7 @@ M109			;Wait for Nozzle to get to temp.
 T1
 M109
 
-G36 E1500 D1500 F800
+G36 E1500 D1500 F400
 
 T0
 T0
@@ -135,4 +135,4 @@ T1
 T1
 
 M104 S0 T0
-M106 S0
+M107

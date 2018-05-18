@@ -1,11 +1,12 @@
 ;Finish-Abort_Print#RBXDV-S1
+G0 E-25			;Retract
 M104 S0 T0		;Nozzle Heater Off
 M140 S0			;Bed Heater Off
 M106			;Fan on full
 G91				;Relative positioning
 G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
-G0 X15 Y115		;Move to front corner
+G0 X5			;Move to front corner
 
 ;Open Door
 G37 S			;Unlock door

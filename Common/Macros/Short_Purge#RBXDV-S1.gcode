@@ -1,7 +1,8 @@
-;Short_Purge#RBXDV-S1 (Single Material Lite Head)
-G0 Y2 X175 Z0.4
-M109
-G36 E100 F1200
-G1 E30 X135 F200
-G0 Z1
-G0 X175 E-30		;Retract
+;Short_Purge#RBXDV-S1 (SingleX Head)
+G0 Z4
+G36 E1200 F1200
+G1 X36 E45 F150
+G0 E-25
+G0 Z4.5
+G1 X31 F50
+G0 Y3

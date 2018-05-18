@@ -5,7 +5,7 @@ G0 Z5			;Move up 5mm if homed
 G28 Y			;Home Y
 G0 Y175			;Position Y
 T0				;Select Nozzle 0
-G39				;Clear the bed leveling points
+G39				;Clear the bed levelling points
 G28 Z			;Home Z
-G0 Z5			;Move up 5mm
+G0 Z10			;Move up 10mm if homed
 G28 X			;Home X

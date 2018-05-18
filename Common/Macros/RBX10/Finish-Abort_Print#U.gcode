@@ -6,7 +6,7 @@ G0 B0			;Close Nozzle
 G91				;Relative positioning
 G0 Z5			;Move up 5mm
 G90 			;Absolute positioning
-G0 X20 Y175		;Move to front corner
+G0 X5			;Move to front corner
 
 ;Open Door
 G37 S			;Unlock door

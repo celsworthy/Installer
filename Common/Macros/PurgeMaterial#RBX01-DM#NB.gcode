@@ -13,23 +13,23 @@ G36 D1500 F400 ; Un-Park
 
 G0 X20 Y20
 Macro:Purge_T0
-G0 Y23
+G0 Y24
 Macro:Purge_T1
-G0 Y26
+G0 Y28
 Macro:Purge_T0
-G0 Y29
-Macro:Purge_T1
 G0 Y32
-Macro:Purge_T0
-G0 Y35
 Macro:Purge_T1
-G0 Y38
+G0 Y36
 Macro:Purge_T0
-G0 Y41
+G0 Y40
 Macro:Purge_T1
 G0 Y44
 Macro:Purge_T0
-G0 Y47
+G0 Y48
+Macro:Purge_T1
+G0 Y52
+Macro:Purge_T0
+G0 Y56
 Macro:Purge_T1
 
 Macro:Finish-Abort_Print

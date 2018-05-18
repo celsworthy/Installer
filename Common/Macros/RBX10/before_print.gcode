@@ -12,10 +12,11 @@ Macro:Level_Gantry_(2-points)
 
 Macro:7_point_Bed_probing-Set_Washout
 
+M129			;Head LED on
+
 Macro:Short_Purge#N0
 
 Macro:Short_Purge#N1
 
 ;Prime
-G1 E5 F1000
-M129			;Head LED on
+G1 E5 F500
