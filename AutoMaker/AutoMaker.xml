@@ -245,7 +245,7 @@
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
-                    <platforms>osx</platforms>
+                    <platforms>osx-intel osx-x86_64</platforms>
                     <distributionFileList>
                         <distributionFile>
                             <origin>AutoMaker-update-osx.app</origin>
