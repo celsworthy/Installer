@@ -3,6 +3,7 @@
     <fullName>CEL AutoMaker</fullName>
     <version></version>
     <debugLevel>4</debugLevel>
+	<osxPlatforms>osx-intel osx-x86_64</osxPlatforms>
     <licenseFile>EULA_AutoMaker.txt</licenseFile>
     <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
     <splashImage>Splash - AutoMaker 600x400.png</splashImage>
@@ -245,7 +246,7 @@
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
-                    <platforms>osx-intel osx-x86_64</platforms>
+                    <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
                             <origin>AutoMaker-update-osx.app</origin>
