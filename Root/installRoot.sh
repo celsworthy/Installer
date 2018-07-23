@@ -29,11 +29,13 @@ echo 'WantedBy=multi-user.target' >> ${serviceFinalDir}/${rootServiceFile}
 
 echo '[Unit]' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'Description=Robox Root Browser' >> ${serviceFinalDir}/${browserServiceFile}
-echo 'After=syslog.target network.target remote-fs.target nss-lookup.target' >> ${serviceFinalDir}/${browserServiceFile}
+echo "After=syslog.target network.target remote-fs.target nss-lookup.target ${rootServiceFile}" >> ${serviceFinalDir}/${browserServiceFile}
+echo "Requires=${rootServiceFile}" >> ${serviceFinalDir}/${browserServiceFile}
 echo '[Service]' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'Type=simple' >> ${serviceFinalDir}/${browserServiceFile}
 echo "WorkingDirectory=${installDir}" >> ${serviceFinalDir}/${browserServiceFile}
 echo "Environment=DISPLAY=:0.0" >> ${serviceFinalDir}/${browserServiceFile}
+echo "ExecStartPre=${installDir}/waitForRoot.sh" >> ${serviceFinalDir}/${browserServiceFile}
 echo "ExecStart=${installDir}/startBrowser.sh" >> ${serviceFinalDir}/${browserServiceFile}
 echo 'Restart=always' >> ${serviceFinalDir}/${browserServiceFile}
 echo 'LimitNOFILE=10000' >> ${serviceFinalDir}/${browserServiceFile}
