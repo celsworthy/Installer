@@ -1,12 +1,31 @@
 #!/bin/bash
+# Root upgrade script.
+#
+# This script does two things:
+# If the resize_fs file exists, then it resizes the root filesystem using raspi-config, deletes the resize_fs file and reboots.
+# If there is an upgrade package, it unpacks it and installs it.
+#
 
-ROOT_PARENT="/home/pi"
+EXPAND_REQUIRED_FILE=/boot/expand_rfs
 ROOT_DIR="ARM-32bit"
-ROOT_HOME=${ROOT_PARENT}/${ROOT_DIR}
-TMP_UPGRADE_DIR="/tmp/root-upgrade"
+ROOT_PARENT="/home/pi"
 ROOT_UPGRADE_FILE_BASE="/tmp/RootARM*"
+TMP_UPGRADE_DIR="/tmp/root-upgrade"
 
-logger Checking for Robox Root upgrade files
+ROOT_HOME=${ROOT_PARENT}/${ROOT_DIR}
+
+ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade.sh
+
+# Expand the root file system if the expand requiired file exists.
+if [ -e ${EXPAND_REQUIRED_FILE} ]
+then
+	logger Expanding root file system.
+	# Delete the file first, so the expansion is done once only.
+	sudo rm -f ${EXPAND_REQUIRED_FILE}
+	sudo raspi-config --expand-rootfs
+	sudo reboot
+fi
+
 #Handle pre-run upgrade
 for f in ${ROOT_UPGRADE_FILE_BASE}; do
         if [ -e "$f" ]
@@ -43,11 +62,11 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 		cd ${ROOT_HOME}/Root
 
                 # Run the upgrade script if one exists.
-                if [ -e ${ROOT_HOME}/upgrade.sh ]
+                if [ -e ${ROOT_UPGRADE_SCRIPT} ]
                 then
-                        ${ROOT_HOME}/upgrade.sh
-			# Rename the upgrade script so it is not run again.
-                        mv ${ROOT_HOME}/upgrade.sh ${ROOT_HOME}/upgrade_done.sh
+                        ${ROOT_UPGRADE_SCRIPT}
+			# Delete the upgrade script so it is not run again.
+                        rm -f ${ROOT_UPGRADE_SCRIPT}
                 fi
 
                 # Clear the Chromium cache
