@@ -5,6 +5,10 @@
   "editions" : [ {
     "typeCode" : "SK",
     "friendlyName" : "RoboxPRO (UK)"
+  },
+  {
+    "typeCode" : "SU",
+    "friendlyName" : "RoboxPRO (USA/Canada)"
   }
   ],
     "compatibleHeads" : [
