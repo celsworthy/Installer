@@ -389,6 +389,12 @@
 						<distributionFile>
                             <origin>../Common/PrintProfiles/Fine#RBXDV-S1.roboxprofile</origin>
                         </distributionFile>
+						<distributionFile>
+                            <origin>../Common/PrintProfiles/fdmextruder.def.json</origin>
+                        </distributionFile>
+						<distributionFile>
+                            <origin>../Common/PrintProfiles/fdmprinter.def.json</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -430,6 +436,9 @@
                         </distributionFile>
                         <distributionDirectory>
                             <origin>../Slicer/Windows/x86/Cura</origin>
+                        </distributionDirectory>
+						<distributionDirectory>
+                            <origin>../Slicer/Windows/x64/Cura3</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
