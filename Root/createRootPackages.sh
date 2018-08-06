@@ -52,19 +52,26 @@ doPackage()
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
+        cp ${origindir}/upgrade${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/restart${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
+        cp ${origindir}/launchBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
+        cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
+        cp ${origindir}/RoboxLoading.gif ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
-        cp -R ${origindir}/StaticPage ${packagedir}/${applicationname}
+ 
+		# Upgrade files
+        cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
+        cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}
 
         # Version number
-	echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
+        echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
 
         cd ${installerdir}
         zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip

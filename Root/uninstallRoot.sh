@@ -7,13 +7,10 @@ fi
 
 serviceFinalDir=/etc/systemd/system
 rootServiceFile=roboxroot.service
-browserServiceFile=roboxbrowser.service
 
 systemctl stop ${rootServiceFile}
-systemctl stop ${browserServiceFile}
 systemctl daemon-reload
 
 rm -f ${serviceFinalDir}/${rootServiceFile}
-rm -f ${serviceFinalDir}/${browserServiceFile}
 
-echo Robox Root Node and browser services uninstalled
+echo Robox Root Node service uninstalled
