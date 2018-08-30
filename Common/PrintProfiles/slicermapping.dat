@@ -258,6 +258,8 @@
 			"wall_extruder_nr":"perimeterNozzle",
 			"wall_0_extruder_nr":"perimeterNozzle",
 			"wall_x_extruder_nr":"perimeterNozzle",
+			"top_bottom_extruder_nr":"perimeterNozzle",
+			"roofing_extruder_nr":"perimeterNozzle",
 			"infill_extruder_nr":"fillNozzle",
 			"support_extruder_nr":"supportNozzle",
 			"support_infill_extruder_nr":"supportNozzle",
