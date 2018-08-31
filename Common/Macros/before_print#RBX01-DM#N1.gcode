@@ -5,6 +5,7 @@ Macro:Home_all_Axis_in_sequence
 
 M190			;Wait for Bed to get to temp.
 M103 T			;Set & heat first layer nozzle temp.
+T1
 M109			;Wait for Nozzle to get to temp.
 M170 E			;Set Ambient temp.
 
