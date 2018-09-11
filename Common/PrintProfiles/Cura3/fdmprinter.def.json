@@ -3364,7 +3364,7 @@
                     "label": "Avoid Printed Parts When Traveling",
                     "description": "The nozzle avoids already printed parts when traveling. This option is only available when combing is enabled.",
                     "type": "bool",
-                    "default_value": true,
+                    "default_value": false,
                     "enabled": "resolveOrValue('retraction_combing') != 'off'",
                     "settable_per_mesh": false,
                     "settable_per_extruder": true
