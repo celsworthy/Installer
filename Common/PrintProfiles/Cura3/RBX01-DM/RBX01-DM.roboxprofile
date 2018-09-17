@@ -25,11 +25,12 @@ fillExtrusionWidth_mm=0.4
 solidFillExtrusionWidth_mm=0.4
 topSolidFillExtrusionWidth_mm=0.4
 supportExtrusionWidth_mm=0.4
-firstLayerNozzle=1
-perimeterNozzle=1
-fillNozzle=1
+firstLayerNozzle=2
+perimeterNozzle=2
+fillNozzle=2
 supportNozzle=1
 supportInterfaceNozzle=1
+raftBrimNozzle=1
 
 //==============
 //Valves

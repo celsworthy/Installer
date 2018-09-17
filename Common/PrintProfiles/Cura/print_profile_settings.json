@@ -144,7 +144,7 @@
 				"settingName":"extrusion.supportInterface",
 				"value":"0",
 				"valueType":"nozzle",
-				"tooltip":"",
+				"tooltip":"profileLibraryHelp.supportInterface",
 				"perExtruder":false
 			}
 		],

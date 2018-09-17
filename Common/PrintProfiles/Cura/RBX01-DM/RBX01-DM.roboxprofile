@@ -30,6 +30,7 @@ perimeterNozzle=1
 fillNozzle=1
 supportNozzle=1
 supportInterfaceNozzle=1
+raftBrimNozzle=1
 
 //==============
 //Valves

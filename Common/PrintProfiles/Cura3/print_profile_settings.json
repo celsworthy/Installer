@@ -44,6 +44,14 @@
 				}
 			},
 			{
+				"id":"fillDirection",
+				"settingName":"extrusion.fillDirection",
+				"value":"",
+				"valueType":"numbers",
+				"tooltip":"profileLibraryHelp.fillDirection",
+				"perExtruder":false
+			},
+			{
 				"id":"gradualInfillSteps",
 				"settingName":"extrusion.gradualInfill",
 				"value":"0",
@@ -85,6 +93,7 @@
 				"valueType":"nozzle",
 				"tooltip":"profileLibraryHelp.firstLayerExtrusionWidth",
 				"perExtruder":false,
+				"nonOverrideAllowed":true,
 				"children":
 				[
 					{
@@ -105,6 +114,7 @@
 				"valueType":"nozzle",
 				"tooltip":"profileLibraryHelp.perimeterExtrusionWidth",
 				"perExtruder":false,
+				"nonOverrideAllowed":true,
 				"children":
 				[
 					{
@@ -125,6 +135,7 @@
 				"valueType":"nozzle",
 				"tooltip":"profileLibraryHelp.infillExtrusionWidth",
 				"perExtruder":false,
+				"nonOverrideAllowed":true,
 				"children":
 				[
 					{
@@ -139,30 +150,13 @@
 				]
 			},
 			{
-				"id":"solidFillExtrusionWidth_mm",
-				"settingName":"extrusion.solidInfill",
-				"value":"0.6",
-				"valueType":"extrusion",
-				"tooltip":"profileLibraryHelp.solidInfillExtrusionWidth",
-				"unit":"misc.mm",
-				"perExtruder":false
-			},
-			{
-				"id":"topSolidFillExtrusionWidth_mm",
-				"settingName":"extrusion.topSolidInfill",
-				"value":"0.6",
-				"valueType":"extrusion",
-				"tooltip":"profileLibraryHelp.topSolidInfillExtrusionWidth",
-				"unit":"misc.mm",
-				"perExtruder":false
-			},
-			{
 				"id":"supportNozzle",
 				"settingName":"extrusion.support",
 				"value":"0",
 				"valueType":"nozzle",
 				"tooltip":"profileLibraryHelp.supportExtrusionWidth",
 				"perExtruder":false,
+				"nonOverrideAllowed":false,
 				"children":
 				[
 					{
@@ -181,8 +175,18 @@
 				"settingName":"extrusion.supportInterface",
 				"value":"0",
 				"valueType":"nozzle",
-				"tooltip":"",
-				"perExtruder":false
+				"tooltip":"profileLibraryHelp.supportInterface",
+				"perExtruder":false,
+				"nonOverrideAllowed":false
+			},
+			{
+				"id":"raftBrimNozzle",
+				"settingName":"extrusion.raftBrim",
+				"value":"0",
+				"valueType":"nozzle",
+				"tooltip":"profileLibraryHelp.raftBrim",
+				"perExtruder":false,
+				"nonOverrideAllowed":false
 			}
 		],
 		"nozzles":

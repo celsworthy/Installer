@@ -245,6 +245,7 @@
 			"support_z_distance":"supportZDistance_mm:?supportGapEnabled=false->0",
 			"support_xy_distance":"supportXYDistance_mm",
 			"infill_pattern":"fillPattern",
+			"infill_angles":"fillDirection",
 			"gradual_infill_steps":"gradualInfillSteps",
 
 			
@@ -267,6 +268,7 @@
 			"support_interface_extruder_nr":"supportInterfaceNozzle",
 			"support_roof_extruder_nr":"supportInterfaceNozzle",
 			"support_bottom_extruder_nr":"supportInterfaceNozzle",
+			"adhesion_extruder_nr":"raftBrimNozzle",
 			
 			/*
 			 * Support
@@ -283,14 +285,18 @@
 			/*
 			 * Speed settings
 			 */
-			"speed_layer_0":"firstLayerSpeed_mm_per_s:?adhesionType=none->28",
+			"speed_layer_0":"firstLayerSpeed_mm_per_s",
+			"speed_print_layer_0":"firstLayerSpeed_mm_per_s",
 			"speed_wall":"perimeterSpeed_mm_per_s",
+			"speed_wall_x":"perimeterSpeed_mm_per_s",
 			"speed_infill":"fillSpeed_mm_per_s",
 			"speed_print":"fillSpeed_mm_per_s",
 			"speed_wall_0":"externalPerimeterSpeed_mm_per_s",
 			"speed_support":"supportSpeed_mm_per_s", 
 			"speed_support_infill":"supportSpeed_mm_per_s",
-			"raft_surface_speed":"interfaceSpeed_mm_per_s",
+			"speed_support_interface":"interfaceSpeed_mm_per_s",
+			"speed_support_roof":"interfaceSpeed_mm_per_s",
+			"speed_support_bottom":"interfaceSpeed_mm_per_s",
 
 			/*
 			 * Cooling
