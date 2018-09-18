@@ -80,7 +80,7 @@
                 {
                     "label": "Wait for Build Plate Heatup",
                     "description": "Whether to insert a command to wait until the build plate temperature is reached at the start.",
-                    "default_value": true,
+                    "default_value": false,
                     "type": "bool",
                     "settable_per_mesh": false,
                     "settable_per_extruder": false,
@@ -90,7 +90,7 @@
                 {
                     "label": "Wait for Nozzle Heatup",
                     "description": "Whether to wait until the nozzle temperature is reached at the start.",
-                    "default_value": true,
+                    "default_value": false,
                     "type": "bool",
                     "enabled": "machine_nozzle_temp_enabled",
                     "settable_per_mesh": false,
@@ -101,7 +101,7 @@
                 {
                     "label": "Include Material Temperatures",
                     "description": "Whether to include nozzle temperature commands at the start of the gcode. When the start_gcode already contains nozzle temperature commands Cura frontend will automatically disable this setting.",
-                    "default_value": true,
+                    "default_value": false,
                     "type": "bool",
                     "enabled": "machine_nozzle_temp_enabled",
                     "settable_per_mesh": false,
@@ -285,7 +285,7 @@
                 {
                     "label": "Enable Nozzle Temperature Control",
                     "description": "Whether to control temperature from Cura. Turn this off to control nozzle temperature from outside of Cura.",
-                    "default_value": true,
+                    "default_value": false,
                     "value": "machine_gcode_flavor != \"UltiGCode\"",
                     "type": "bool",
                     "settable_per_mesh": false,
