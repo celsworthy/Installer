@@ -173,6 +173,9 @@
                         <distributionDirectory>
                             <origin>../../application/target/lib</origin>
                         </distributionDirectory>
+						<distributionDirectory>
+                            <origin>Key</origin>
+                        </distributionDirectory>
                         <distributionDirectory>
                             <origin>Language</origin>
                         </distributionDirectory>
