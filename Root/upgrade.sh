@@ -21,7 +21,10 @@ then
 fi
 
 # Remove the old touch screen calibration scripts
-rm -rf ${PI_HOME}/scripts
+if [ -e ${PI_HOME}/scripts ]
+then
+	rm -rf ${PI_HOME}/scripts
+fi
 
 # Install imagemagick and unclutter.
 sudo apt-get update
@@ -65,6 +68,25 @@ then
 		fi
 	fi
 fi
+
+# Enable and start the SSH server if it is not active.
+if service ssh status | grep -q inactive; then
+	sudo update-rc.d ssh enable
+    sudo invoke-rc.d ssh start
+fi
+
+# Copy the ssh public key if it is not already there.
+mkdir -p /home/pi/.ssh
+if [ -e /home/pi/.ssh/authorized_keys ]
+then
+	# Backup the original keys.
+	cp /home/pi/.ssh/authorized_keys /home/pi/.ssh/authorized_keys~
+	# Remove any existing key.
+	sed -i /automaker-root/d /home/pi/.ssh/authorized_keys
+fi
+# Append new key.
+cat ${ROOT_HOME}/upgrade_data/authorized_keys >> /home/pi/.ssh/authorized_keys
+chmod 600 /home/pi/.ssh/authorized_keys
 
 # Remove upgrade data and this file.
 rm -rf ${ROOT_HOME}/upgrade_data
