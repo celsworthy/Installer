@@ -54,18 +54,13 @@ then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/cmdline.txt /boot
 fi
 
-# Add RoboxPro file if required. Detect this by checking if it exists in the previous installation, or if the display_rotate value is 1
+# Add RoboxPro file if required. Detect this by checking if the display_rotate value is 1
 if [ ! -e /boot/RoboxPro ]
 then
-	if [ -e ${ARM_HOME}-1/${ROOT_DIR}/RoboxPro ]
+	dr=`sed -n -e 's/display_rotate=\(.*\)/\1/p' /boot/config.txt`
+	if [ $dr = "1" ]
 	then
 		sudo touch /boot/RoboxPro
-	else
-		dr=`sed -n -e 's/display_rotate=\(.*\)/\1/p' /boot/config.txt`
-		if [ $dr = "1" ]
-		then
-			sudo touch /boot/RoboxPro
-		fi
 	fi
 fi
 
