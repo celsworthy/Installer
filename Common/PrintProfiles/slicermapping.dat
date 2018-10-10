@@ -236,7 +236,7 @@
 			"layer_height":"layerHeight_mm",
 			"layer_height_0":"firstLayerHeight_mm",
 			"wall_line_count":"numberOfPerimeters",
-			"roofing_layer_count":"solidLayersAtTop", 
+			"top_layers":"solidLayersAtTop", 
 			"bottom_layers":"solidLayersAtBottom",
 			"infill_sparse_density":"fillDensity_normalised:*100",
 			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm",
