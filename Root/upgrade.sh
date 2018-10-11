@@ -26,10 +26,6 @@ then
 	rm -rf ${PI_HOME}/scripts
 fi
 
-# Install imagemagick and unclutter.
-sudo apt-get update
-sudo apt-get --yes install imagemagick unclutter
-
 # Replace lxsession autostart.
 cp -f ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
 

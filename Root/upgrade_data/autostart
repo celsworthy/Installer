@@ -8,7 +8,7 @@
 @xset s off
 @xset -dpms
 @xset s noblank
-@unclutter -idle 0.01 -root
+@/home/pi/ARM-32bit/Root/unclutter.sh
 @/home/pi/ARM-32bit/Root/swapTSAxes.sh
 @/home/pi/ARM-32bit/Root/launchBrowser.sh
 

@@ -58,17 +58,29 @@ doPackage()
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/launchBrowser.sh ${packagedir}/${applicationname}
+        cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
         cp ${origindir}/RoboxLoading.gif ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
+		chmod ug+x ${packagedir}/${applicationname}/*.sh
+		
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
  
+		# X applications, used to display animated startup image and to hide cursor.
+		cp -R ${origindir}/sources/x-apps ${packagedir}/${applicationname}
+		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate
+		chmod ug+x ${packagedir}/${applicationname}/x-apps/unclutter
+		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate/lib/lib*
+		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate/lib/ld*
+
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
         cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}
+		
+		chmod ug+x ${packagedir}/${applicationname}/*.sh
 
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
@@ -81,8 +93,9 @@ doPackage()
         echo ------------------------------------------------
 }
 
+# Only build the RPi version.
 doPackage Root ARM-32bit java-arm-32bit RoboxDetector.linux.sh
-doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
-doPackage Root MacOSX java-osx RoboxDetector.mac.sh
-doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
-doPackage Root Linux-x64 java-linux-x64 RoboxDetector.linux.sh
+#doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
+#doPackage Root MacOSX java-osx RoboxDetector.mac.sh
+#doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
+#doPackage Root Linux-x64 java-linux-x64 RoboxDetector.linux.sh
