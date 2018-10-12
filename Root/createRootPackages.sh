@@ -69,18 +69,12 @@ doPackage()
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
  
-		# X applications, used to display animated startup image and to hide cursor.
-		cp -R ${origindir}/sources/x-apps ${packagedir}/${applicationname}
-		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate
-		chmod ug+x ${packagedir}/${applicationname}/x-apps/unclutter
-		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate/lib/lib*
-		chmod ug+x ${packagedir}/${applicationname}/x-apps/animate/lib/ld*
-
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
         cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}
 		
-		chmod ug+x ${packagedir}/${applicationname}/*.sh
+		# Set the execute permission of all the scripts.		
+		find ${packagedir}/${applicationname} -name "*.sh" -exec chmod ug+x {} \;
 
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties

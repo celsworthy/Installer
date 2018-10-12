@@ -20,11 +20,20 @@ then
 	sudo systemctl daemon-reload
 fi
 
-# Remove the old touch screen calibration scripts
-if [ -e ${PI_HOME}/scripts ]
+if [ ! -e /usr/local/bin/animate ]
 then
-	rm -rf ${PI_HOME}/scripts
+	# Install imagemagick.
+	${ROOT_HOME}/upgrade_data/offline/imagemagick/install.sh
 fi
+
+if [ ! -e /usr/local/bin/unclutter ]
+then
+	# Install unclutter.
+	${ROOT_HOME}/upgrade_data/offline/unclutter/install.sh
+fi
+
+# Remove the old touch screen calibration scripts
+rm -rf ${PI_HOME}/scripts
 
 # Replace lxsession autostart.
 cp -f ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
