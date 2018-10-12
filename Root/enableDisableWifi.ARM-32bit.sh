@@ -1,11 +1,14 @@
 #!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
 command=down
 
 if [ $1 == 'on' ]
 then
-   command=up 
+	command=up
+	sudo ip link set wlan0 up > /dev/null 2>&1 
 else
-	./setupWifi.sh clear
+	$DIR/setupWifi.sh clear
 fi
 
-sudo if${command} wlan0 > /dev/null 2>&1
+#sudo ip link set wlan0 ${command} > /dev/null 2>&1

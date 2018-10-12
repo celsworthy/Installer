@@ -9,7 +9,7 @@ fileToChange='/etc/wpa_supplicant/wpa_supplicant.conf'
 if [ $1 == "clear" ]
 then
 	sudo sed -i -e "/$startOfSection/,/$endOfSection/d" $fileToChange
-	sudo ifdown wlan0 > /dev/null 2>&1
+	sudo ip link set wlan0 down > /dev/null 2>&1
 else
 	ssid=$(echo "$1" | cut -d : -f1)
 	pw=$(echo "$1" | cut -d : -f2)
@@ -27,8 +27,9 @@ ${endOfSection}" $fileToChange
 ${endOfSection}" $fileToChange
 	fi
 	sudo ip link set wlan0 down > /dev/null 2>&1
-	#sudo ifdown wlan0 > /dev/null 2>&1
-	sleep 5
+	# Allow time for changes to come into effect.
+	sleep 1
 	sudo ip link set wlan0 up > /dev/null 2>&1
-	#sudo ifup wlan0 > /dev/null 2>&1
+	# Allow time for changes to come into effect.
+	sleep 6
 fi
