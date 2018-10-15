@@ -23,13 +23,17 @@ fi
 if [ ! -e /usr/bin/animate ]
 then
 	# Install imagemagick.
-	${ROOT_HOME}/upgrade_data/offline/imagemagick/install.sh
+	pushd ${ROOT_HOME}/upgrade_data/offline/imagemagick
+	./install.sh
+	popd
 fi
 
 if [ ! -e /usr/bin/unclutter ]
 then
 	# Install unclutter.
+	pushd ${ROOT_HOME}/upgrade_data/offline/unclutter
 	${ROOT_HOME}/upgrade_data/offline/unclutter/install.sh
+	popd
 fi
 
 # Remove the old touch screen calibration scripts

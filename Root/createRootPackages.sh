@@ -72,10 +72,13 @@ doPackage()
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
         cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}
-		
-		# Set the execute permission of all the scripts.		
-		find ${packagedir}/${applicationname} -name "*.sh" -exec chmod ug+x {} \;
 
+		# Set the execute permission of all the scripts and libraries.		
+		find ${packagedir}/${applicationname} -regex ".*\.s[ho]" -exec chmod ug+x '{}' \;
+		# Set permissions of executables.		
+		find ${packagedir}/${applicationname} -regex ".*/bin/.*" -exec chmod ug+x '{}' \;
+
+		
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
 

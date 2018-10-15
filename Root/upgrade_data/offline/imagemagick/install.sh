@@ -1,34 +1,34 @@
 #!/bin/sh
-sudo dpkg -i fonts-droid-fallback_6.0.1r16-1.1_all.deb
-sudo dpkg -i liblqr-1-0_0.4.2-2_armhf.deb
-sudo dpkg -i libfftw3-double3_3.3.5-3_armhf.deb
-sudo dpkg -i libopenjp2-7_2.1.2-1.1+deb9u2_armhf.deb
-sudo dpkg -i imagemagick-6-common_6.9.7.4+dfsg-11+deb9u5_all.deb
-sudo dpkg -i libmagickcore-6.q16-3_6.9.7.4+dfsg-11+deb9u5_armhf.deb
-sudo dpkg -i libmagickwand-6.q16-3_6.9.7.4+dfsg-11+deb9u5_armhf.deb
-sudo dpkg -i poppler-data_0.4.7-8_all.deb
-sudo dpkg -i fonts-noto-mono_20161116-1_all.deb
-sudo dpkg -i libcupsimage2_2.2.1-8+deb9u2_armhf.deb
-sudo dpkg -i libijs-0.35_0.35-12_armhf.deb
-sudo dpkg -i libjbig2dec0_0.13-4.1_armhf.deb
-sudo dpkg -i libpaper1_1.1.24+nmu5_armhf.deb
-sudo dpkg -i libgs9-common_9.20~dfsg-3.2+deb9u5_all.deb
-sudo dpkg -i libgs9_9.20~dfsg-3.2+deb9u5_armhf.deb
-sudo dpkg -i ghostscript_9.20~dfsg-3.2+deb9u5_armhf.deb
-sudo dpkg -i gsfonts_8.11+urwcyr1.0.7~pre44-4.3_all.deb
-sudo dpkg -i imagemagick-6.q16_6.9.7.4+dfsg-11+deb9u5_armhf.deb
-sudo dpkg -i libcupsfilters1_1.11.6-3+rpi1_armhf.deb
-sudo dpkg -i libdjvulibre-text_3.5.27.1-7_all.deb
-sudo dpkg -i libdjvulibre21_3.5.27.1-7_armhf.deb
-sudo dpkg -i libilmbase12_2.2.0-12_armhf.deb
-sudo dpkg -i libjxr0_1.1-6_armhf.deb
-sudo dpkg -i libjxr-tools_1.1-6_armhf.deb
-sudo dpkg -i libopenexr22_2.2.0-11_armhf.deb
-sudo dpkg -i libwmf0.2-7_0.2.8.4-10.6_armhf.deb
-sudo dpkg -i libmagickcore-6.q16-3-extra_6.9.7.4+dfsg-11+deb9u5_armhf.deb
-sudo dpkg -i libnetpbm10_10.0-15.3_armhf.deb
-sudo dpkg -i libpaper-utils_1.1.24+nmu5_armhf.deb
-sudo dpkg -i libpng12-0_1.2.54-6_armhf.deb
-sudo dpkg -i netpbm_10.0-15.3_armhf.deb
-sudo dpkg -i imagemagick_6.9.7.4+dfsg-11+deb9u5_armhf.deb
+sudo dpkg -G -i fonts-droid-fallback_6.0.1r16-1.1_all.deb
+sudo dpkg -G -i liblqr-1-0_0.4.2-2_armhf.deb
+sudo dpkg -G -i libfftw3-double3_3.3.5-3_armhf.deb
+sudo dpkg -G -i libopenjp2-7_2.1.2-1.1+deb9u2_armhf.deb
+sudo dpkg -G -i imagemagick-6-common_6.9.7.4+dfsg-11+deb9u5_all.deb
+sudo dpkg -G -i libmagickcore-6.q16-3_6.9.7.4+dfsg-11+deb9u5_armhf.deb
+sudo dpkg -G -i libmagickwand-6.q16-3_6.9.7.4+dfsg-11+deb9u5_armhf.deb
+sudo dpkg -G -i poppler-data_0.4.7-8_all.deb
+sudo dpkg -G -i fonts-noto-mono_20161116-1_all.deb
+sudo dpkg -G -i libcupsimage2_2.2.1-8+deb9u2_armhf.deb
+sudo dpkg -G -i libijs-0.35_0.35-12_armhf.deb
+sudo dpkg -G -i libjbig2dec0_0.13-4.1_armhf.deb
+sudo dpkg -G -i libpaper1_1.1.24+nmu5_armhf.deb
+sudo dpkg -G -i libgs9-common_9.20~dfsg-3.2+deb9u5_all.deb
+sudo dpkg -G -i libgs9_9.20~dfsg-3.2+deb9u5_armhf.deb
+sudo dpkg -G -i ghostscript_9.20~dfsg-3.2+deb9u5_armhf.deb
+sudo dpkg -G -i gsfonts_8.11+urwcyr1.0.7~pre44-4.3_all.deb
+sudo dpkg -G -i imagemagick-6.q16_6.9.7.4+dfsg-11+deb9u5_armhf.deb
+sudo dpkg -G -i libcupsfilters1_1.11.6-3+rpi1_armhf.deb
+sudo dpkg -G -i libdjvulibre-text_3.5.27.1-7_all.deb
+sudo dpkg -G -i libdjvulibre21_3.5.27.1-7_armhf.deb
+sudo dpkg -G -i libilmbase12_2.2.0-12_armhf.deb
+sudo dpkg -G -i libjxr0_1.1-6_armhf.deb
+sudo dpkg -G -i libjxr-tools_1.1-6_armhf.deb
+sudo dpkg -G -i libopenexr22_2.2.0-11_armhf.deb
+sudo dpkg -G -i libwmf0.2-7_0.2.8.4-10.6_armhf.deb
+sudo dpkg -G -i libmagickcore-6.q16-3-extra_6.9.7.4+dfsg-11+deb9u5_armhf.deb
+sudo dpkg -G -i libnetpbm10_10.0-15.3_armhf.deb
+sudo dpkg -G -i libpaper-utils_1.1.24+nmu5_armhf.deb
+sudo dpkg -G -i libpng12-0_1.2.54-6_armhf.deb
+sudo dpkg -G -i netpbm_10.0-15.3_armhf.deb
+sudo dpkg -G -i imagemagick_6.9.7.4+dfsg-11+deb9u5_armhf.deb
 sudo apt-get install -f
