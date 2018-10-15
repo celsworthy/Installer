@@ -30,9 +30,6 @@ ${endOfSection}" $fileToChange
 	fi
 	sudo ip link set wlan0 down > /dev/null 2>&1
 	# Try to force wpa-supplicant to restart with the new configuration.
-	# At least one person on the interweb claimed this worked!
-	sudo systemctl daemon-reload
-	sudo systemctl restart dhcpcd
 	# Allow time for changes to come into effect.
 	sleep 1
 	# Bring up the interface.
