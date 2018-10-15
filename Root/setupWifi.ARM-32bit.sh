@@ -28,10 +28,10 @@ ${endOfSection}" $fileToChange
 	psk=\"$pw\"\n\
 ${endOfSection}" $fileToChange
 	fi
+	# Bring down the interface.
 	sudo ip link set wlan0 down > /dev/null 2>&1
-	# Try to force wpa-supplicant to restart with the new configuration.
-	# Allow time for changes to come into effect.
-	sleep 1
+	# Force wpa-supplicant to reload it's configuration.
+	sudo wpa_cli -i wlan0 reconfigure > /dev/null 2>&1
 	# Bring up the interface.
 	sudo ip link set wlan0 up > /dev/null 2>&1
 	# Allow time for changes to come into effect.
