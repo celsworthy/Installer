@@ -3,6 +3,10 @@
 poweredInput=$(sudo ip link show wlan0 2>&1 | sed -ne 's/.*wlan0: <\(.*\)>.*/\1/p')
 associatedInput=$(iwconfig wlan0 2>/dev/null | cut -d ' ' -f15 | sed 's/^[ \t]*//;s/[ \t]*$//' )
 ssid=$(iwgetid wlan0 | cut -d : -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
+if [[ -z ${ssid} ]]
+then
+   ssid=\"\"
+fi
 
 powered='true'
 if [[ ${poweredInput} != *"UP"* ]]
