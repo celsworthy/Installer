@@ -9,7 +9,7 @@ G90 			;Absolute positioning
 G0 X5			;Move to front corner
 
 ;Open Door
-G37				;Unlock door
+G37 S			;Unlock door
 
 ;Every thing off
 M170 S0			;Ambient control off
