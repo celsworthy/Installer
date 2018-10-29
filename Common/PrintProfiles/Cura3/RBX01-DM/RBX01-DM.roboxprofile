@@ -28,9 +28,9 @@ supportExtrusionWidth_mm=0.4
 firstLayerNozzle=2
 perimeterNozzle=2
 fillNozzle=2
-supportNozzle=1
-supportInterfaceNozzle=1
-raftBrimNozzle=1
+supportNozzle=0
+supportInterfaceNozzle=0
+raftBrimNozzle=0
 
 //==============
 //Valves
