@@ -82,6 +82,44 @@
 				"valueType":"int",
 				"tooltip":"profileLibraryHelp.numberOfPerimeters",
 				"perExtruder":false
+			},
+			{
+				"id":"coastingEnable",
+				"settingName":"extrusion.coastingEnable",
+				"value":"false",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.coastingEnable",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingVolume",
+				"settingName":"extrusion.coastingVolume",
+				"value":"0.064",
+				"valueType":"float",
+				"minimumValue":"0",
+				"tooltip":"profileLibraryHelp.coastingVolume",
+				"unit":"misc.mm3",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingMinVolume",
+				"settingName":"extrusion.coastingMinVolume",
+				"value":"0.8",
+				"valueType":"float",
+				"minimumValue":"0",
+				"tooltip":"profileLibraryHelp.coastingMinVolume",
+				"unit":"misc.mm3",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingSpeed",
+				"settingName":"extrusion.coastingSpeed",
+				"value":"90",
+				"valueType":"float",
+				"minimumValue":"0.0001",
+				"tooltip":"profileLibraryHelp.coastingSpeed",
+				"unit":"misc.percent",
+				"perExtruder":false
 			}
 		],
 		"extrusionControl":

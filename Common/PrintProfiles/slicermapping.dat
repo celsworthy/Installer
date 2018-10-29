@@ -247,6 +247,10 @@
 			"infill_pattern":"fillPattern",
 			"infill_angles":"fillDirection",
 			"gradual_infill_steps":"gradualInfillSteps",
+			"coasting_enable":"coastingEnable",
+			"coasting_volume":"coastingVolume",
+			"coasting_min_volume":"coastingMinVolume",
+			"coasting_speed":"coastingSpeed",
 
 			
 			/*
