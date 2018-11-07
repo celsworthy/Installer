@@ -46,7 +46,7 @@ doPackage()
         cp -R ${installerdir}/Common/PrintProfiles ${packagedir}/Common
 
         #
-        #App-specific files
+        # App-specific files
         #
         mkdir -p ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
@@ -57,11 +57,10 @@ doPackage()
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
-        cp ${origindir}/launchBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
-        cp ${origindir}/RoboxLoading.gif ${packagedir}/${applicationname}
+        cp -R ${origindir}/www ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
 		
