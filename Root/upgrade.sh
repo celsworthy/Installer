@@ -19,6 +19,7 @@ then
 	sudo rm -f ${BROWSER_SERVICE_PATH}
 	sudo systemctl daemon-reload
 fi
+pkill chromium
 
 if [ ! -e /usr/bin/animate ]
 then
@@ -26,6 +27,11 @@ then
 	pushd ${ROOT_HOME}/upgrade_data/offline/imagemagick
 	./install.sh
 	popd
+fi
+# Show upgrading logo.
+if [ -e /usr/bin/animate ] && [ -e ${ROOT_HOME}/Root/RoboxUpgrading.gif ]
+then
+	animate -window root -delay 10 ${ROOT_HOME}/Root/RoboxUpgrading.gif &
 fi
 
 if [ ! -e /usr/bin/unclutter ]

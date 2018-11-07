@@ -64,6 +64,7 @@ doPackage()
         cp ${origindir}/RoboxLoading.gif ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
+		
 		chmod ug+x ${packagedir}/${applicationname}/*.sh
 		
         mkdir -p ${packagedir}/${applicationname}/java
@@ -78,10 +79,14 @@ doPackage()
 		# Set permissions of executables.		
 		find ${packagedir}/${applicationname} -regex ".*/bin/.*" -exec chmod ug+x '{}' \;
 
-		
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
 
+		# Generate md5 checksums.
+		pushd ${packagedir}/${applicationname}
+		md5sum Root.jar lib/*.jar > Root.md5
+		popd
+				
         cd ${installerdir}
         zipfilename=${applicationname}${packagename}-${FINAL_BUILD_LABEL}.zip
         zip -r ${zipfilename} ${packagename}
