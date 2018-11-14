@@ -1,5 +1,4 @@
 ;Finish-Abort_Print#RBXDV-S1
-G0 E-25			;Retract
 M104 S0 T0		;Nozzle Heater Off
 M140 S0			;Bed Heater Off
 M106			;Fan on full
