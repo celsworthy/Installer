@@ -8,7 +8,7 @@ M190			;Wait for Bed to get to temp.
 G0 Y-6 X11 Z8	;Wait over tip wipe blade
 G0 Z3
 
-M104 S395 		;Set & heat first layer nozzle temp.
+M103 	 		;Set & heat first layer nozzle temp.
 M109			;Wait for Nozzle to get to temp.
 M170			;Set Ambient temp.
 
