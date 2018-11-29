@@ -45,6 +45,14 @@
 				}
 			},
 			{
+				"id":"infillLayerThickness",
+				"settingName":"extrusion.infillLayerThickness",
+				"value":"0.3",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.infillLayerThickness",
+				"perExtruder":false
+			},
+			{
 				"id":"fillDirection",
 				"settingName":"extrusion.fillDirection",
 				"value":"",
@@ -276,6 +284,14 @@
 					"zigzag":"Zig Zag",
 					"cross":"Cross"
 				}
+			},
+			{
+				"id":"supportInfillLayerThickness",
+				"settingName":"extrusion.supportInfillLayerThickness",
+				"value":"0.3",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
+				"perExtruder":false
 			},
 			{
 				"id":"gradualSupportInfillSteps",

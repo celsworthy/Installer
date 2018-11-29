@@ -251,6 +251,7 @@
 			"coasting_volume":"coastingVolume",
 			"coasting_min_volume":"coastingMinVolume",
 			"coasting_speed":"coastingSpeed",
+			"infill_sparse_thickness":"infillLayerThickness",
 
 			
 			/*
@@ -285,6 +286,7 @@
 			"support_interface_enable":"enableSupportInterface",
 			"support_roof_enable":"enableSupportInterface",
 			"support_bottom_enable":"enableSupportInterface",
+			"support_infill_sparse_thickness":"supportInfillLayerThickness",
 
 			/*
 			 * Speed settings
