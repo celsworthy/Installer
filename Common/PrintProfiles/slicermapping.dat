@@ -222,6 +222,116 @@
 			"raftInterfaceLinewidth":"400:?printRaft=false->|",
 			"raftInterfaceThickness":"280:?printRaft=false->|"
 		}
+	},
+	"Cura3" : {
+		/*
+		 * Defaults for all profiles
+		 */	 
+		"defaults" : [
+		],
+		"mappingData" : {
+			/*
+			 * Extrusion
+			 */
+			"layer_height":"layerHeight_mm",
+			"layer_height_0":"firstLayerHeight_mm",
+			"wall_line_count":"numberOfPerimeters",
+			"top_layers":"solidLayersAtTop", 
+			"bottom_layers":"solidLayersAtBottom",
+			"infill_sparse_density":"fillDensity_normalised:*100",
+			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm",
+			"brim_line_count":"brimWidth_mm",
+			"magic_spiralize":"spiralPrint",
+			"support_z_distance":"supportZDistance_mm:?supportGapEnabled=false->0",
+			"support_xy_distance":"supportXYDistance_mm",
+			"infill_pattern":"fillPattern",
+			"infill_angles":"fillDirection",
+			"gradual_infill_steps":"gradualInfillSteps",
+			"coasting_enable":"coastingEnable",
+			"coasting_volume":"coastingVolume",
+			"coasting_min_volume":"coastingMinVolume",
+			"coasting_speed":"coastingSpeed",
+			"infill_sparse_thickness":"infillLayerThickness",
+
+			
+			/*
+			 * Nozzle data
+			 */
+			"line_width":"firstLayerExtrusionWidth_mm",
+			"wall_line_width":"perimeterExtrusionWidth_mm",
+			"infill_line_width":"fillExtrusionWidth_mm",
+			"support_line_width":"supportExtrusionWidth_mm",
+			"wall_extruder_nr":"perimeterNozzle",
+			"wall_0_extruder_nr":"perimeterNozzle",
+			"wall_x_extruder_nr":"perimeterNozzle",
+			"top_bottom_extruder_nr":"perimeterNozzle",
+			"roofing_extruder_nr":"perimeterNozzle",
+			"infill_extruder_nr":"fillNozzle",
+			"support_extruder_nr":"supportNozzle",
+			"support_infill_extruder_nr":"supportNozzle",
+			"support_extruder_nr_layer_0":"supportNozzle",
+			"support_interface_extruder_nr":"supportInterfaceNozzle",
+			"support_roof_extruder_nr":"supportInterfaceNozzle",
+			"support_bottom_extruder_nr":"supportInterfaceNozzle",
+			"adhesion_extruder_nr":"raftBrimNozzle",
+			
+			/*
+			 * Support
+			 */
+			"support_enable":"generateSupportMaterial",
+			"support_angle":"supportOverhangThreshold_degrees:?generateSupportMaterial=false->-1",
+			"support_pattern":"supportPattern",
+			"support_line_distance":"supportPatternSpacing_mm",
+			"gradual_support_infill_steps":"gradualSupportInfillSteps",
+			"support_interface_enable":"enableSupportInterface",
+			"support_roof_enable":"enableSupportInterface",
+			"support_bottom_enable":"enableSupportInterface",
+			"support_infill_sparse_thickness":"supportInfillLayerThickness",
+
+			/*
+			 * Speed settings
+			 */
+			"speed_layer_0":"firstLayerSpeed_mm_per_s",
+			"speed_print_layer_0":"firstLayerSpeed_mm_per_s",
+			"speed_wall":"perimeterSpeed_mm_per_s",
+			"speed_wall_x":"perimeterSpeed_mm_per_s",
+			"speed_infill":"fillSpeed_mm_per_s",
+			"speed_print":"fillSpeed_mm_per_s",
+			"speed_wall_0":"externalPerimeterSpeed_mm_per_s",
+			"speed_support":"supportSpeed_mm_per_s", 
+			"speed_support_infill":"supportSpeed_mm_per_s",
+			"speed_support_interface":"interfaceSpeed_mm_per_s",
+			"speed_support_roof":"interfaceSpeed_mm_per_s",
+			"speed_support_bottom":"interfaceSpeed_mm_per_s",
+
+			/*
+			 * Cooling
+			 */
+			"cool_fan_enabled":"enableCooling",
+			"cool_fan_speed_min":"minFanSpeed_percent",
+			"cool_fan_speed_max":"maxFanSpeed_percent",
+			"cool_min_layer_time":"slowDownIfLayerTimeLessThan_secs",
+			"cool_min_speed":"minPrintSpeed_mm_per_s",
+
+			/*
+			 * Raft
+			 */
+			"adhesion_type":"adhesionType",
+			"raft_base_line_width":"raftBaseLinewidth_mm:?adhesionType=none->|",
+			"raft_airgap":"raftAirGapLayer0_mm:?adhesionType=none->|",
+			"raft_surface_layers":"interfaceLayers:?adhesionType=none->|",
+			"raft_base_thickness":"raftBaseThickness_mm:?adhesionType=none->|",
+			"raft_base_line_spacing":"2:?adhesionType=none->|",
+			"raft_margin":"3:?adhesionType=none->|",
+			"raft_surface_line_width":"0.3:?adhesionType=none->|",
+			"raft_surface_line_spacing":"0.3:?adhesionType=none->|",
+			"raft_surface_thickness":"0.27:?adhesionType=none->|",
+			"raft_interface_line_width":"0.4:?adhesionType=none->|",
+			"raft_interface_line_spacing":"0.8:?adhesionType=none->|",
+			"raft_interface_thickness":"0.28:?adhesionType=none->|",
+			"raft_fan_speed":"100:?adhesionType=none->|",  
+			"raft_base_speed":"15:?adhesionType=none->|"
+		}
 	}
 	}
 }

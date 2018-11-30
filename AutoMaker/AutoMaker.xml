@@ -356,42 +356,12 @@
 						<distributionFile>
                             <origin>../Common/PrintProfiles/slicermapping.dat</origin>
                         </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBXDV-S1.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBXDV-S1.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBXDV-S1.roboxprofile</origin>
-                        </distributionFile>
+						<distributionDirectory>
+                            <origin>../Common/PrintProfiles/Cura</origin>
+                        </distributionDirectory>
+						<distributionDirectory>
+                            <origin>../Common/PrintProfiles/Cura3</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -433,6 +403,9 @@
                         </distributionFile>
                         <distributionDirectory>
                             <origin>../Slicer/Windows/x86/Cura</origin>
+                        </distributionDirectory>
+						<distributionDirectory>
+                            <origin>../Slicer/Windows/x64/Cura3</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
