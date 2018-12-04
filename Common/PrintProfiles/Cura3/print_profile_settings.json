@@ -40,8 +40,7 @@
 					"concentric":"Concentric",
 					"zigzag":"Zig Zag",
 					"cross":"Cross",
-					"cross_3d":"Cross 3D",
-					"gyroid": "Gyroid"
+					"cross_3d":"Cross 3D"
 				}
 			},
 			{
