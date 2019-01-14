@@ -482,6 +482,22 @@
                         </distributionFile>
                     </distributionFileList>
                 </folder>
+                <folder>
+                    <description>GCodeViewer</description>
+                    <destination>${commondir}/GCodeViewer</destination>
+                    <name>gcodeviewer</name>
+                    <platforms>all</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/GCodeViewer/GCodeViewer.java" permissions="0755"/>
+                    </actionList>
+                    <distributionFileList>
+                        <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../Common/GCodeViewer</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+
             </folderList>
         </component>
     </componentList>
