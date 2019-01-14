@@ -491,7 +491,6 @@
                         <changePermissions files="${commondir}/GCodeViewer/GCodeViewer.java" permissions="0755"/>
                     </actionList>
                     <distributionFileList>
-                        <distributionFileList>
                         <distributionDirectory>
                             <origin>../Common/GCodeViewer</origin>
                         </distributionDirectory>
