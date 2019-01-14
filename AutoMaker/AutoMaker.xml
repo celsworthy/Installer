@@ -492,11 +492,10 @@
                     </actionList>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../Common/GCodeViewer</origin>
+                            <origin>../GCodeViewer</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
-
             </folderList>
         </component>
     </componentList>
