@@ -9,6 +9,7 @@ headType=RBX01-S2
 //==============
 layerHeight_mm=0.3
 fillDensity_normalised=0.2
+infillLayerThickness=0.3
 
 //==============
 //Nozzles

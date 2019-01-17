@@ -15,6 +15,7 @@ fillEveryNLayers=1
 solidLayersAtTop=3
 solidLayersAtBottom=3
 numberOfPerimeters=2
+infillLayerThickness=0.3
 
 //==============
 //Nozzles

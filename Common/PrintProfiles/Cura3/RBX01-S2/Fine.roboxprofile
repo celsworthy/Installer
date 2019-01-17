@@ -12,6 +12,7 @@ fillDensity_normalised=0.4
 solidLayersAtTop=10
 solidLayersAtBottom=10
 numberOfPerimeters=2
+infillLayerThickness=0.1
 
 //==============
 //Nozzles

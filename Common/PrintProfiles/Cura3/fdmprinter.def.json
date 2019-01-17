@@ -1813,7 +1813,7 @@
                     "label": "Infill Before Walls",
                     "description": "Print the infill before printing the walls. Printing the walls first may lead to more accurate walls, but overhangs print worse. Printing the infill first leads to sturdier walls, but the infill pattern might sometimes show through the surface.",
                     "type": "bool",
-                    "default_value": true,
+                    "default_value": false,
                     "enabled": "infill_sparse_density > 0 and wall_x_extruder_nr == infill_extruder_nr",
                     "settable_per_mesh": true
                 },
