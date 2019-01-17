@@ -482,6 +482,17 @@
                         </distributionFile>
                     </distributionFileList>
                 </folder>
+                <folder>
+                    <description>GCodeViewer</description>
+                    <destination>${commondir}</destination>
+                    <name>gcodeviewer</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../GCodeViewer</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
             </folderList>
         </component>
     </componentList>
