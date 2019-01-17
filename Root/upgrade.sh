@@ -29,6 +29,30 @@ then
 	popd
 fi
 
+#==============================
+# pmount and all files needed for mounting of USB drives
+#==============================
+if [ ! -e /usr/bin/pmount ]
+then
+	${ROOT_HOME}/upgrade_data/offline/pmount/install.sh
+fi
+
+if [ ! -e /etc/udev/rules.d/usbstick.rules]
+then
+	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick.rules /etc/udev/rules.d
+fi
+
+if [ ! -e /lib/systemd/system/usbstick-handler@.service]
+then
+	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick-handler@.service /lib/systemd/system
+fi
+
+if [ ! -e /usr/local/bin/cpmount]
+then
+	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/cpmount /usr/local/bin
+fi
+#==============================
+
 # Remove the old touch screen calibration scripts
 rm -rf ${PI_HOME}/scripts
 
