@@ -34,20 +34,22 @@ fi
 #==============================
 if [ ! -e /usr/bin/pmount ]
 then
+	pushd ${ROOT_HOME}/upgrade_data/offline/pmount
 	${ROOT_HOME}/upgrade_data/offline/pmount/install.sh
+	popd
 fi
 
-if [ ! -e /etc/udev/rules.d/usbstick.rules]
+if [ ! -e /etc/udev/rules.d/usbstick.rules ]
 then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick.rules /etc/udev/rules.d
 fi
 
-if [ ! -e /lib/systemd/system/usbstick-handler@.service]
+if [ ! -e /lib/systemd/system/usbstick-handler@.service ]
 then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick-handler@.service /lib/systemd/system
 fi
 
-if [ ! -e /usr/local/bin/cpmount]
+if [ ! -e /usr/local/bin/cpmount ]
 then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/cpmount /usr/local/bin
 fi
