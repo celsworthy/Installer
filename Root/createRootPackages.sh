@@ -78,7 +78,7 @@ doPackage()
 		# Set permissions of executables.		
 		find ${packagedir}/${applicationname} -regex ".*/bin/.*" -exec chmod ug+x '{}' \;
 		# Set permissions of cpmount.
-		find /usr/local/bin -name "cpmount" -exec chmod ug+x '{}' \;
+		find /usr/local/bin -name 'cpmount' -exec chmod ug+x '{}' \;
 
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
