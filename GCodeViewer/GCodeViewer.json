@@ -1,9 +1,10 @@
 {
 "typeColourMap":[
-    {"type":"FILL",       "colour":[0.7882, 0.8667, 0.2039]},
-    {"type":"SKIN",       "colour":[0.3020, 0.9569, 0.9804]},
-    {"type":"SKIRT",      "colour":[0.2000, 0.5489, 0.8645]},
-    {"type":"SUPPORT",    "colour":[0.0703, 0.8471, 0.3176]},
+    {"type":"FILL", "colour":[0.7882, 0.8667, 0.2039]},
+    {"type":"SKIN", "colour":[0.3020, 0.9569, 0.9804]},
+    {"type":"SKIRT", "colour":[0.2000, 0.5489, 0.8645]},
+    {"type":"SUPPORT","colour":[0.0703, 0.8471, 0.3176]},
+    {"type":"SUPPORT-INTERFACE", "colour":[0.1703, 0.8510, 0.5142]},
     {"type":"WALL-INNER", "colour":[0.4235, 0.3020, 0.9804]},
     {"type":"WALL-OUTER", "colour":[0.9804, 0.3020, 0.5373]}],
 "dataColourPalette":[[0.0314, 0.9922, 0.1569],
@@ -67,7 +68,13 @@
 "moveColour":[0.0, 0.0, 1.0],
 "selectColour":[0.9098, 0.0471, 0.6196],
 "defaultFilamentFactor":1.0,
-"printVolume":[210.0, 150.0, 100.0],
+"printVolumeDetailsMap":[
+	{"type":"RBX01", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
+	{"type":"RBX02", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
+	{"type":"RBX10", "dimensions":[300.0, 210.0, 400.0], "offset":[0.0, 0.0, 0.0]},
+	{"type":"RBX02C", "dimensions":[210.0, 150.0, 100.0], "offset":[105.0, -75.0, 0.0]}],
+"defaultPrintVolumeDetails":{"dimensions":[210.0, 150.0, 100.0],
+							 "offset":[0.0, 0.0, 0.0]},
 "lightPosition":[105.0, 37.5, 200.0],
 "lightColour":[1.0, 1.0, 1.0]
 }
