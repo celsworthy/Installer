@@ -1,10 +1,11 @@
 {
 "typeColourMap":[
     {"type":"FILL", "colour":[0.7882, 0.8667, 0.2039]},
+    {"type":"NOZZLE-MOVE", "colour":[0.9804, 0.9804, 0.6549]},
     {"type":"SKIN", "colour":[0.3020, 0.9569, 0.9804]},
     {"type":"SKIRT", "colour":[0.2000, 0.5489, 0.8645]},
     {"type":"SUPPORT","colour":[0.0703, 0.8471, 0.3176]},
-    {"type":"SUPPORT-INTERFACE", "colour":[0.1703, 0.8510, 0.5142]},
+    {"type":"SUPPORT-INTERFACE", "colour":[0.7373, 0.3882, 0.2706]},
     {"type":"WALL-INNER", "colour":[0.4235, 0.3020, 0.9804]},
     {"type":"WALL-OUTER", "colour":[0.9804, 0.3020, 0.5373]}],
 "dataColourPalette":[[0.0314, 0.9922, 0.1569],
@@ -67,7 +68,9 @@
 "defaultColour":[0.9882, 0.3608, 0.0471],
 "moveColour":[0.0, 0.0, 1.0],
 "selectColour":[0.9098, 0.0471, 0.6196],
+"hasNozzleValves":true,
 "defaultFilamentFactor":1.0,
+"nozzleEjectVolume":0.3,
 "printVolumeDetailsMap":[
 	{"type":"RBX01", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
 	{"type":"RBX02", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
