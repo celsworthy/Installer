@@ -72,12 +72,13 @@
 "defaultFilamentFactor":1.0,
 "nozzleEjectVolume":0.3,
 "printVolumeDetailsMap":[
-	{"type":"RBX01", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
-	{"type":"RBX02", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0]},
-	{"type":"RBX10", "dimensions":[300.0, 210.0, 400.0], "offset":[0.0, 0.0, 0.0]},
-	{"type":"RBX02C", "dimensions":[210.0, 150.0, 100.0], "offset":[-105.0, -75.0, 0.0]}],
+	{"type":"RBX01", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0], "defaultCameraDistance":300.0},
+	{"type":"RBX02", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0], "defaultCameraDistance":300.0},
+	{"type":"RBX10", "dimensions":[300.0, 210.0, 400.0], "offset":[0.0, 0.0, 0.0], "defaultCameraDistance":680.0},
+	{"type":"RBX02C", "dimensions":[210.0, 150.0, 100.0], "offset":[-105.0, -75.0, 0.0], "defaultCameraDistance":300.0}],
 "defaultPrintVolumeDetails":{"dimensions":[210.0, 150.0, 100.0],
-							 "offset":[0.0, 0.0, 0.0]},
+							 "offset":[0.0, 0.0, 0.0],
+							 "defaultCameraDistance":300.0},
 "lightPosition":[105.0, 37.5, 200.0],
 "lightColour":[1.0, 1.0, 1.0]
 }
