@@ -11,7 +11,7 @@ then
 	#xinput --set-prop 'ADS7846 Touchscreen' --type=float 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
 	xinput --set-prop 'ADS7846 Touchscreen' --type=float 'Coordinate Transformation Matrix' 0.0 1.047 -0.026 -1.076 0.0 1.041 0 0 1
 	xinput --set-prop 'eGalax Inc. eGalaxTouch EXC3000-0783-45.00.00' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
-	#xinput --set-prop 'FT5406 memory based driver' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
+	xinput --set-prop 'FT5406 memory based driver' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
 else
 	# This is a Root/Mote.
 	# Default calibration for GPIO-based screen
