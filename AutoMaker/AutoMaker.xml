@@ -385,6 +385,11 @@
                             <origin>../Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
                     </distributionFileList>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../Slicer/Linux_x64/Cura3</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
                 </folder>
                 <folder>
                     <description>Program Files</description>
@@ -404,6 +409,17 @@
                         <distributionDirectory>
                             <origin>../Slicer/Windows/x86/Cura</origin>
                         </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files x64</description>
+                    <destination>${commondir}</destination>
+                    <name>programfileswindowsx64</name>
+                    <platforms>windows</platforms>
+					<ruleList>
+						<platformTest type="windows-x64" />
+					</ruleList>
+                    <distributionFileList>
 						<distributionDirectory>
                             <origin>../Slicer/Windows/x64/Cura3</origin>
                         </distributionDirectory>
@@ -417,6 +433,11 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../Slicer/Mac/Cura3</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
