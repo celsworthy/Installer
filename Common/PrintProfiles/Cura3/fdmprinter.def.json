@@ -1231,7 +1231,7 @@
                     "label": "Outer Before Inner Walls",
                     "description": "Prints walls in order of outside to inside when enabled. This can help improve dimensional accuracy in X and Y when using a high viscosity plastic like ABS; however it can decrease outer surface print quality, especially on overhangs.",
                     "type": "bool",
-                    "default_value": false,
+                    "default_value": true,
                     "enabled": "wall_0_extruder_nr == wall_x_extruder_nr",
                     "settable_per_mesh": true
                 },
