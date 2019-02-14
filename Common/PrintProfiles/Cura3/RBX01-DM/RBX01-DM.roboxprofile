@@ -55,6 +55,7 @@ interfaceLayers=1
 raftBaseThickness_mm=0.300
 interfaceSpeed_mm_per_s=40
 supportGapEnabled=false
+supportInfillLayerThickness=0.2
   
 //==============
 //speed

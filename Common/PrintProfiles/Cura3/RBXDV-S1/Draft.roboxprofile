@@ -28,6 +28,7 @@ topSolidFillExtrusionWidth_mm=0.6
 //==============
 supportPatternSpacing_mm=2.0
 raftAirGapLayer0_mm=0.25
+supportInfillLayerThickness=0.3
   
 //==============
 //speed

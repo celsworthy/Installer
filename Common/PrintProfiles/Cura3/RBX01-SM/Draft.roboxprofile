@@ -33,6 +33,7 @@ partialBMinimum=0.5:0.5
 //==============
 supportPatternSpacing_mm=2.0
 raftAirGapLayer0_mm=0.25
+supportInfillLayerThickness=0.3
   
 //==============
 //speed

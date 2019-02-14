@@ -32,6 +32,7 @@ fillNozzle=1
 supportPatternSpacing_mm=2.0
 supportPatternAngle_degrees=0
 raftAirGapLayer0_mm=0.25
+supportInfillLayerThickness=0.3
 
 //==============
 //speed
