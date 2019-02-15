@@ -68,9 +68,10 @@
 "defaultColour":[0.9882, 0.3608, 0.0471],
 "moveColour":[0.0, 0.0, 1.0],
 "selectColour":[0.9098, 0.0471, 0.6196],
-"hasNozzleValves":true,
 "defaultFilamentFactor":1.0,
-"nozzleEjectVolume":0.3,
+"hasNozzleValves":true,
+"defaultNozzleEjectVolume":0.3,
+"toolNozzleEjectVolumes":[0.3, 0.3, 0.3, 0.3],
 "printVolumeDetailsMap":[
 	{"type":"RBX01", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0], "defaultCameraDistance":300.0},
 	{"type":"RBX02", "dimensions":[210.0, 150.0, 100.0], "offset":[0.0, 0.0, 0.0], "defaultCameraDistance":300.0},
@@ -80,5 +81,6 @@
 							 "offset":[0.0, 0.0, 0.0],
 							 "defaultCameraDistance":300.0},
 "lightPosition":[105.0, 37.5, 200.0],
-"lightColour":[1.0, 1.0, 1.0]
+"lightColour":[1.0, 1.0, 1.0],
+"windowAlwaysOnTop":false
 }
