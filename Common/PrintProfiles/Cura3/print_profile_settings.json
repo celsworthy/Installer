@@ -4,6 +4,15 @@
 		"extrusion":
 		[
 			{
+				"id":"firstLayerHeight_mm",
+				"settingName":"First Layer Height",
+				"value":"0.2",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.firstLayerHeight",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
 				"id":"layerHeight_mm",
 				"settingName":"extrusion.layerHeight",
 				"value":"0.3",
@@ -13,11 +22,81 @@
 				"perExtruder":false
 			},
 			{
+				"id":"numberOfPerimeters",
+				"settingName":"sidePanel_settings.numberOfPerimeters",
+				"value":"2",
+				"valueType":"int",
+				"tooltip":"profileLibraryHelp.numberOfPerimeters",
+				"perExtruder":false
+			},
+			{
+				"id":"solidLayersAtTop",
+				"settingName":"extrusion.solidLayersTop",
+				"value":"3",
+				"valueType":"int",
+				"tooltip":"profileLibraryHelp.solidLayersTop",
+				"unit":"Layer(s)",
+				"perExtruder":false
+			},
+			{
+				"id":"solidLayersAtBottom",
+				"settingName":"extrusion.solidLayersBottom",
+				"value":"3",
+				"valueType":"int",
+				"tooltip":"profileLibraryHelp.solidLayersBottom",
+				"unit":"Layer(s)",
+				"perExtruder":false
+			},
+			{
+				"id":"skin_angles",
+				"settingName":"Top & bottom angle",
+				"value":"",
+				"valueType":"numbers",
+				"tooltip":"CJGJG",
+				"unit":"misc.degrees",
+				"perExtruder":false
+			},
+			{
+				"id":"top_bottom_pattern",
+				"settingName":"Top and bottom pattern",
+				"value":"lines",
+				"valueType":"option",
+				"tooltip":"profileLibraryHelp.fillPattern",
+				"perExtruder":false,
+				"options":
+				{
+					"lines":"Lines",
+					"concentric":"Concentric",
+					"zigzag":"Zig Zag"
+				}
+			}
+		],
+		"infill":
+		[
+			{
+				"id":"infill_before_walls",
+				"settingName":"Infill before walls",
+				"value":"false",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.coastingEnable",
+				"perExtruder":false
+			},
+			{
 				"id":"fillDensity_normalised",
 				"settingName":"extrusion.fillDensity",
 				"value":"0.2",
 				"valueType":"float",
 				"tooltip":"profileLibraryHelp.fillDensity",
+				"unit":"%",
+				"perExtruder":false
+			},
+			{
+				"id":"infillLayerThickness",
+				"settingName":"extrusion.infillLayerThickness",
+				"value":"0.2",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.infillLayerThickness",
+				"unit":"Layer(s)",
 				"perExtruder":false
 			},
 			{
@@ -44,19 +123,12 @@
 				}
 			},
 			{
-				"id":"infillLayerThickness",
-				"settingName":"extrusion.infillLayerThickness",
-				"value":"0.3",
-				"valueType":"float",
-				"tooltip":"profileLibraryHelp.infillLayerThickness",
-				"perExtruder":false
-			},
-			{
 				"id":"fillDirection",
 				"settingName":"extrusion.fillDirection",
 				"value":"",
 				"valueType":"numbers",
 				"tooltip":"profileLibraryHelp.fillDirection",
+				"unit":"misc.degrees",
 				"perExtruder":false
 			},
 			{
@@ -65,68 +137,6 @@
 				"value":"0",
 				"valueType":"int",
 				"tooltip":"profileLibraryHelp.gradualInfill",
-				"perExtruder":false
-			},
-			{
-				"id":"solidLayersAtTop",
-				"settingName":"extrusion.solidLayersTop",
-				"value":"3",
-				"valueType":"int",
-				"tooltip":"profileLibraryHelp.solidLayersTop",
-				"perExtruder":false
-			},
-			{
-				"id":"solidLayersAtBottom",
-				"settingName":"extrusion.solidLayersBottom",
-				"value":"3",
-				"valueType":"int",
-				"tooltip":"profileLibraryHelp.solidLayersBottom",
-				"perExtruder":false
-			},
-			{
-				"id":"numberOfPerimeters",
-				"settingName":"sidePanel_settings.numberOfPerimeters",
-				"value":"2",
-				"valueType":"int",
-				"tooltip":"profileLibraryHelp.numberOfPerimeters",
-				"perExtruder":false
-			},
-			{
-				"id":"coastingEnable",
-				"settingName":"extrusion.coastingEnable",
-				"value":"false",
-				"valueType":"boolean",
-				"tooltip":"profileLibraryHelp.coastingEnable",
-				"perExtruder":false
-			},
-			{
-				"id":"coastingVolume",
-				"settingName":"extrusion.coastingVolume",
-				"value":"0.064",
-				"valueType":"float",
-				"minimumValue":"0",
-				"tooltip":"profileLibraryHelp.coastingVolume",
-				"unit":"misc.mm3",
-				"perExtruder":false
-			},
-			{
-				"id":"coastingMinVolume",
-				"settingName":"extrusion.coastingMinVolume",
-				"value":"0.8",
-				"valueType":"float",
-				"minimumValue":"0",
-				"tooltip":"profileLibraryHelp.coastingMinVolume",
-				"unit":"misc.mm3",
-				"perExtruder":false
-			},
-			{
-				"id":"coastingSpeed",
-				"settingName":"extrusion.coastingSpeed",
-				"value":"90",
-				"valueType":"float",
-				"minimumValue":"0.0001",
-				"tooltip":"profileLibraryHelp.coastingSpeed",
-				"unit":"misc.percent",
 				"perExtruder":false
 			}
 		],
@@ -252,7 +262,79 @@
 				"value":"0.5",
 				"valueType":"float",
 				"tooltip":"profileLibraryHelp.nozzlePartialOpen",
+				"unit":"%",
 				"perExtruder":true
+			},
+			{
+				"id":"retraction_hop_enabled",
+				"settingName":"Hop After Nozzle Close",
+				"value":"false",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.retraction_hop_enabled",
+				"perExtruder":false
+			},
+			{
+				"id":"retraction_hop",
+				"settingName":"Hop Height",
+				"value":"0.5",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.retraction_hop",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
+				"id":"travel_retract_before_outer_wall",
+				"settingName":"Close Nozzle Before Moving to Outer Wall",
+				"value":"false",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.retraction_hop_enabled",
+				"perExtruder":false
+			},
+			{
+				"id":"optimize_wall_printing_order",
+				"settingName":"Optimize wall printing order",
+				"value":"True",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.coastingEnable",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingEnable",
+				"settingName":"extrusion.coastingEnable",
+				"value":"false",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.coastingEnable",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingVolume",
+				"settingName":"extrusion.coastingVolume",
+				"value":"0.064",
+				"valueType":"float",
+				"minimumValue":"0",
+				"tooltip":"profileLibraryHelp.coastingVolume",
+				"unit":"misc.mm3",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingMinVolume",
+				"settingName":"extrusion.coastingMinVolume",
+				"value":"0.8",
+				"valueType":"float",
+				"minimumValue":"0",
+				"tooltip":"profileLibraryHelp.coastingMinVolume",
+				"unit":"misc.mm3",
+				"perExtruder":false
+			},
+			{
+				"id":"coastingSpeed",
+				"settingName":"extrusion.coastingSpeed",
+				"value":"90",
+				"valueType":"float",
+				"minimumValue":"0.0001",
+				"tooltip":"profileLibraryHelp.coastingSpeed",
+				"unit":"misc.percent",
+				"perExtruder":false
 			}
 		],
 		"support":
@@ -283,22 +365,6 @@
 					"zigzag":"Zig Zag",
 					"cross":"Cross"
 				}
-			},
-			{
-				"id":"supportInfillLayerThickness",
-				"settingName":"extrusion.supportInfillLayerThickness",
-				"value":"0.3",
-				"valueType":"float",
-				"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
-				"perExtruder":false
-			},
-			{
-				"id":"gradualSupportInfillSteps",
-				"settingName":"extrusion.gradualSupportInfill",
-				"value":"0",
-				"valueType":"int",
-				"tooltip":"profileLibraryHelp.gradualSupportInfill",
-				"perExtruder":false
 			},
 			{
 				"id":"supportPatternSpacing_mm",
@@ -359,11 +425,110 @@
 				"value":"1",
 				"valueType":"int",
 				"tooltip":"profileLibraryHelp.interfaceLayers",
+				"unit":"Layer(s)",
+				"perExtruder":false
+			},
+			{
+				"id":"support_interface_pattern",
+				"settingName":"support Interface Pattern",
+				"value":"concentric",
+				"valueType":"option",
+				"tooltip":"profileLibraryHelp.supportPattern",
+				"unit":"misc.degrees",
+				"perExtruder":false,
+				"options":
+				{
+					"lines":"Lines",
+					"grid":"Grid",
+					"triangles":"Triangles",
+					"concentric":"Concentric",
+					"zigzag":"Zig Zag"
+				}
+			},
+			{
+				"id":"gradualSupportInfillSteps",
+				"settingName":"extrusion.gradualSupportInfill",
+				"value":"0",
+				"valueType":"int",
+				"tooltip":"profileLibraryHelp.gradualSupportInfill",
+				"perExtruder":false
+			},
+			{
+				"id":"supportInfillLayerThickness",
+				"settingName":"extrusion.supportInfillLayerThickness",
+				"value":"0.3",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
+				"unit":"Layer(s)",
+				"perExtruder":false
+			}
+		],
+		"advancedSupport":
+		[
+			{
+				"id":"support_offset",
+				"settingName":"Support Horizontal Expansion",
+				"value":"0.2",
+				"valueType":"float",
+				"tooltip":"Amount of offset applied to all support polygons in each layer. Positive values can smooth out the support areas and result in more sturdy support.",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
+				"id":"support_join_distance",
+				"settingName":"Support Join Distance",
+				"value":"2",
+				"valueType":"float",
+				"tooltip":"The maximum distance between support structures in the X/Y directions. When seperate structures are closer together than this value, the structures merge into one.",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
+				"id":"support_use_towers",
+				"settingName":"Support Use Towers",
+				"value":"true",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.support_use_towers",
+				"perExtruder":false
+			},
+			{
+				"id":"support_tower_diameter",
+				"settingName":"Support Tower Diameter",
+				"value":"3",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.support_tower_diameter",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
+				"id":"support_minimal_diameter",
+				"settingName":"Support Tower Minimal Feature Diameter",
+				"value":"3",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.support_minimal_diameter",
+				"unit":"misc.mm",
+				"perExtruder":false
+			},
+			{
+				"id":"support_tower_roof_angle",
+				"settingName":"Supportn Tower Roof Angle",
+				"value":"65",
+				"valueType":"float",
+				"tooltip":"profileLibraryHelp.support_tower_roof_angle",
+				"unit":"misc.degrees",
 				"perExtruder":false
 			}
 		],
 		"speed":
 		[
+			{
+				"id":"retraction_combing",
+				"settingName":"Enable Combing",
+				"value":"true",
+				"valueType":"boolean",
+				"tooltip":"profileLibraryHelp.retraction_combing",
+				"perExtruder":false
+			},
 			{
 				"id":"firstLayerSpeed_mm_per_s",
 				"settingName":"speed.firstLayer",
@@ -466,14 +631,6 @@
 		],
 		"hidden":
 		[
-			{
-				"id":"firstLayerHeight_mm",
-				"settingName":"",
-				"value":"0.3",
-				"valueType":"float",
-				"tooltip":"",
-				"perExtruder":false
-			},
 			{
 				"id":"adhesionType",
 				"settingName":"",

@@ -238,6 +238,7 @@
 			"wall_line_count":"numberOfPerimeters",
 			"top_layers":"solidLayersAtTop", 
 			"bottom_layers":"solidLayersAtBottom",
+			"top_bottom_pattern":"top_bottom_pattern",
 			"infill_sparse_density":"fillDensity_normalised:*100",
 			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm",
 			"brim_line_count":"brimWidth_mm",
@@ -252,6 +253,12 @@
 			"coasting_min_volume":"coastingMinVolume",
 			"coasting_speed":"coastingSpeed",
 			"infill_sparse_thickness":"infillLayerThickness",
+			"optimize_wall_printing_order":"optimize_wall_printing_order",
+			"infill_before_walls":"infill_before_walls",
+			"skin_angles":"skin_angles",
+			"roofing_pattern":"roofing_pattern",
+			"roofing_angles":"roofing_angles",
+			"roofing_layer_count":"roofing_layer_count",
 
 			
 			/*
