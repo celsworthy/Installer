@@ -9,7 +9,7 @@
         <DefaultLocaleLanguageTag>en-GB</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>
     <Stenographer>
-       <logfilename>#ApplicationConfiguration:ApplicationDataStorageDirectory#\GCodeViewer.log</logfilename>
+       <logfilename>#ApplicationConfiguration:ApplicationDataStorageDirectory#GCodeViewer.log</logfilename>
        <logmode>LOCAL</logmode>
        <logtee>T</logtee>
     </Stenographer>
