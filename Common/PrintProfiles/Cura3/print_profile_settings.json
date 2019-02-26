@@ -523,11 +523,17 @@
 		[
 			{
 				"id":"retraction_combing",
-				"settingName":"Enable Combing",
-				"value":"true",
-				"valueType":"boolean",
-				"tooltip":"profileLibraryHelp.retraction_combing",
-				"perExtruder":false
+				"settingName":"speed.retractionCombing",
+				"value":"all",
+				"valueType":"option",
+				"tooltip":"profileLibraryHelp.combing",
+				"perExtruder":false,
+				"options":
+				{
+					"off": "Off",
+					"all": "All",
+					"noskin": "Not in Skin"
+				}
 			},
 			{
 				"id":"firstLayerSpeed_mm_per_s",

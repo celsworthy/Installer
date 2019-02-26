@@ -298,6 +298,7 @@
 			/*
 			 * Speed settings
 			 */
+			"retraction_combing":"retraction_combing",
 			"speed_layer_0":"firstLayerSpeed_mm_per_s",
 			"speed_print_layer_0":"firstLayerSpeed_mm_per_s",
 			"speed_wall":"perimeterSpeed_mm_per_s",
