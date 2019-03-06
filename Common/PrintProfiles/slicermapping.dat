@@ -294,6 +294,7 @@
 			"support_roof_enable":"enableSupportInterface",
 			"support_bottom_enable":"enableSupportInterface",
 			"support_infill_sparse_thickness":"supportInfillLayerThickness",
+			"support_wall_count":"support_wall_count",
 
 			/*
 			 * Speed settings
