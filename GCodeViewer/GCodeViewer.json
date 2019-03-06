@@ -1,7 +1,7 @@
 {
 "typeColourMap":[
     {"type":"FILL", "colour":[0.7882, 0.8667, 0.2039]},
-    {"type":"NOZZLE-MOVE", "colour":[0.9804, 0.9804, 0.6549]},
+    {"type":"VALVE-MOVE", "colour":[0.9804, 0.9804, 0.6549]},
     {"type":"SKIN", "colour":[0.3020, 0.9569, 0.9804]},
     {"type":"SKIRT", "colour":[0.2000, 0.5489, 0.8645]},
     {"type":"SUPPORT","colour":[0.0703, 0.8471, 0.3176]},
