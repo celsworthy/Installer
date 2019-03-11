@@ -25,7 +25,7 @@ supportExtrusionWidth_mm=0.3
 //Valves
 //==============
 ejectionVolume=0.3:0.6
-partialBMinimum=0.5:0.5
+partialBMinimum=50:50
 
 //==============
 //Support

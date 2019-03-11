@@ -96,7 +96,9 @@
 				{
 					"id":"fillDensity_normalised",
 					"settingName":"extrusion.fillDensity",
-					"value":"0.2",
+					"value":"20",
+					"minimumValue":"0",
+					"maximumValue":"100",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.fillDensity",
 					"unit":"%",
@@ -105,7 +107,7 @@
 				{
 					"id":"infillLayerThickness",
 					"settingName":"extrusion.infillLayerThickness",
-					"value":"0.2",
+					"value":"1",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.infillLayerThickness",
 					"unit":"Layer(s)",
@@ -279,7 +281,7 @@
 				{
 					"id":"partialBMinimum",
 					"settingName":"nozzle.partialOpenValue",
-					"value":"0.5",
+					"value":"50",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.nozzlePartialOpen",
 					"unit":"%",
@@ -488,7 +490,7 @@
 				{
 					"id":"supportInfillLayerThickness",
 					"settingName":"extrusion.supportInfillLayerThickness",
-					"value":"0.3",
+					"value":"1",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
 					"unit":"Layer(s)",

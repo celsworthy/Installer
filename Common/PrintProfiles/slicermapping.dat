@@ -239,8 +239,8 @@
 			"top_layers":"solidLayersAtTop", 
 			"bottom_layers":"solidLayersAtBottom",
 			"top_bottom_pattern":"top_bottom_pattern",
-			"infill_sparse_density":"fillDensity_normalised:*100",
-			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm",
+			"infill_sparse_density":"fillDensity_normalised",
+			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm:*100",
 			"brim_line_count":"brimWidth_mm",
 			"magic_spiralize":"spiralPrint",
 			"support_z_distance":"supportZDistance_mm:?supportGapEnabled=false->0",
@@ -252,7 +252,7 @@
 			"coasting_volume":"coastingVolume",
 			"coasting_min_volume":"coastingMinVolume",
 			"coasting_speed":"coastingSpeed",
-			"infill_sparse_thickness":"infillLayerThickness",
+			"infill_sparse_thickness":"infillLayerThickness:*layerHeight_mm",
 			"optimize_wall_printing_order":"optimize_wall_printing_order",
 			"infill_before_walls":"infill_before_walls",
 			"skin_angles":"skin_angles",
@@ -293,7 +293,7 @@
 			"support_interface_enable":"enableSupportInterface",
 			"support_roof_enable":"enableSupportInterface",
 			"support_bottom_enable":"enableSupportInterface",
-			"support_infill_sparse_thickness":"supportInfillLayerThickness",
+			"support_infill_sparse_thickness":"supportInfillLayerThickness:*layerHeight_mm",
 			"support_wall_count":"support_wall_count",
 
 			/*

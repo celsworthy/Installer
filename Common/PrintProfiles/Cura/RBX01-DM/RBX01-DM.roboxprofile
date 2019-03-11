@@ -36,7 +36,7 @@ raftBrimNozzle=1
 //Valves
 //==============
 ejectionVolume=0.3:0.3
-partialBMinimum=0.5:0.5
+partialBMinimum=50:50
 
 //==============
 //Support

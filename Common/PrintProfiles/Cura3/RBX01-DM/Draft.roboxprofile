@@ -8,11 +8,11 @@ headType=RBX01-DM
 //Extrusion
 //==============
 layerHeight_mm=0.3
-fillDensity_normalised=0.2
+fillDensity_normalised=20
 solidLayersAtTop=3
 solidLayersAtBottom=3
 numberOfPerimeters=2
-infillLayerThickness=0.3
+infillLayerThickness=1
 
 //==============
 //Nozzles
@@ -29,7 +29,7 @@ topSolidFillExtrusionWidth_mm=0.6
 supportPatternSpacing_mm=2.0
 raftAirGapLayer0_mm=0.250
 interfaceLayers=1
-supportInfillLayerThickness=0.3
+supportInfillLayerThickness=1
 
 //==============
 //speed

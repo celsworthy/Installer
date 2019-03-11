@@ -175,7 +175,7 @@
 				{
 					"id":"partialBMinimum",
 					"settingName":"nozzle.partialOpenValue",
-					"value":"0.5",
+					"value":"50",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.nozzlePartialOpen",
 					"perExtruder":true

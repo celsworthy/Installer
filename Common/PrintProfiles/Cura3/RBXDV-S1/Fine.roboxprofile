@@ -8,11 +8,11 @@ headType=RBXDV-S1
 //Extrusion
 //==============
 layerHeight_mm=0.1
-fillDensity_normalised=0.4
+fillDensity_normalised=40
 solidLayersAtTop=10
 solidLayersAtBottom=10
 numberOfPerimeters=3
-infillLayerThickness=0.1
+infillLayerThickness=1
 
 //==============
 //Nozzles
@@ -34,7 +34,7 @@ supportExtrusionWidth_mm=0.5
 supportPatternSpacing_mm=1.0
 raftAirGapLayer0_mm=0.1
 interfaceLayers=2
-supportInfillLayerThickness=0.1
+supportInfillLayerThickness=1
   
 //==============
 //speed

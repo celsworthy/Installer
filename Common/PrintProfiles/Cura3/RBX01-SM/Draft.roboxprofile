@@ -8,8 +8,8 @@ headType=RBX01-SM
 //Extrusion
 //==============
 layerHeight_mm=0.3
-fillDensity_normalised=0.2
-infillLayerThickness=0.3
+fillDensity_normalised=20
+infillLayerThickness=1
 
 //==============
 //Nozzles
@@ -26,14 +26,14 @@ fillNozzle=1
 //Valves
 //==============
 ejectionVolume=0.3:0.6
-partialBMinimum=0.5:0.5
+partialBMinimum=50:50
 
 //==============
 //Support
 //==============
 supportPatternSpacing_mm=2.0
 raftAirGapLayer0_mm=0.25
-supportInfillLayerThickness=0.3
+supportInfillLayerThickness=1
   
 //==============
 //speed
