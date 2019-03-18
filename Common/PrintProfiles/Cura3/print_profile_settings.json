@@ -163,7 +163,7 @@
 				{
 					"id":"firstLayerNozzle",
 					"settingName":"extrusion.firstLayer",
-					"value":"0",
+					"value":"2",
 					"valueType":"nozzle",
 					"tooltip":"profileLibraryHelp.firstLayerExtrusionWidth",
 					"perExtruder":false,
@@ -171,12 +171,12 @@
 					"children":
 					[
 						{
-							"id":"firstLayerExtrusionWidth_mm",
-							"settingName":"extrusion.firstLayer",
-							"value":"0.6",
-							"valueType":"extrusion",
-							"tooltip":"profileLibraryHelp.firstLayerExtrusionWidth",
-							"unit":"misc.mm",
+							"id":"initial_layer_line_width_factor",
+							"settingName":"Multiplier",
+							"value":"125",
+							"valueType":"float",
+							"tooltip":"profileLibraryHelp.initial_layer_line_width_factor",
+							"unit":"misc.percent",
 							"perExtruder":false
 						}
 					]
@@ -184,7 +184,7 @@
 				{
 					"id":"perimeterNozzle",
 					"settingName":"extrusion.perimeter",
-					"value":"0",
+					"value":"2",
 					"valueType":"nozzle",
 					"tooltip":"profileLibraryHelp.perimeterExtrusionWidth",
 					"perExtruder":false,
@@ -193,8 +193,8 @@
 					[
 						{
 							"id":"perimeterExtrusionWidth_mm",
-							"settingName":"extrusion.perimeter",
-							"value":"0.6",
+							"settingName":"Width",
+							"value":"0.4",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.perimeterExtrusionWidth",
 							"unit":"misc.mm",
@@ -203,9 +203,30 @@
 					]
 				},
 				{
+					"id":"skinNozzle",
+					"settingName":"Top and Bottom",
+					"value":"2",
+					"valueType":"nozzle",
+					"tooltip":"profileLibraryHelp.infillExtrusionWidth",
+					"perExtruder":false,
+					"nonOverrideAllowed":true,
+					"children":
+					[
+						{
+							"id":"skinExtrusionWidth_mm",
+							"settingName":"Width",
+							"value":"0.4",
+							"valueType":"extrusion",
+							"tooltip":"profileLibraryHelp.infillExtrusionWidth",
+							"unit":"misc.mm",
+							"perExtruder":false
+						}
+					]
+				},
+				{
 					"id":"fillNozzle",
 					"settingName":"extrusion.infill",
-					"value":"0",
+					"value":"2",
 					"valueType":"nozzle",
 					"tooltip":"profileLibraryHelp.infillExtrusionWidth",
 					"perExtruder":false,
@@ -214,8 +235,8 @@
 					[
 						{
 							"id":"fillExtrusionWidth_mm",
-							"settingName":"extrusion.infill",
-							"value":"0.6",
+							"settingName":"Width",
+							"value":"0.4",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.infillExtrusionWidth",
 							"unit":"misc.mm",
@@ -235,7 +256,7 @@
 					[
 						{
 							"id":"supportExtrusionWidth_mm",
-							"settingName":"extrusion.support",
+							"settingName":"Width",
 							"value":"0.5",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.supportExtrusionWidth",
@@ -281,7 +302,7 @@
 				{
 					"id":"partialBMinimum",
 					"settingName":"nozzle.partialOpenValue",
-					"value":"50",
+					"value":"0.5",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.nozzlePartialOpen",
 					"unit":"%",
@@ -368,7 +389,7 @@
 				{
 					"id":"supportOverhangThreshold_degrees",
 					"settingName":"support.overhangThreshold",
-					"value":"0.3",
+					"value":"45",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.supportOverhangThreshold",
 					"unit":"misc.degrees",
@@ -377,7 +398,7 @@
 				{
 					"id":"supportPattern",
 					"settingName":"support.supportPattern",
-					"value":"lines",
+					"value":"zigzag",
 					"valueType":"option",
 					"tooltip":"profileLibraryHelp.supportPattern",
 					"unit":"misc.degrees",
@@ -393,20 +414,21 @@
 					}
 				},
 				{
-					"id":"support_wall_count",
-					"settingName":"Support wall count",
-					"value":"0",
-					"valueType":"int",
-					"tooltip":"The number of walls with which to surround support infill. Adding a wall can make support print more reliably and can support overhangs better, but increases print time and material used.",
-					"perExtruder":false
-				},
-				{
 					"id":"supportPatternSpacing_mm",
 					"settingName":"support.patternSpacing",
 					"value":"2.0",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.supportPatternSpacing",
 					"unit":"misc.mm",
+					"perExtruder":false
+				},
+				{
+					"id":"supportInfillLayerThickness",
+					"settingName":"extrusion.supportInfillLayerThickness",
+					"value":"1",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
+					"unit":"Layer(s)",
 					"perExtruder":false
 				},
 				{
@@ -428,21 +450,11 @@
 					"perExtruder":false
 				},
 				{
-					"id":"raftBaseLinewidth_mm",
-					"settingName":"support.raftBaseLinewidth",
-					"value":"1.00",
-					"valueType":"float",
-					"tooltip":"profileLibraryHelp.raftBaseLinewidth",
-					"unit":"misc.mm",
-					"perExtruder":false
-				},
-				{
-					"id":"raftAirGapLayer0_mm",
-					"settingName":"support.raftAirGapLayer0",
-					"value":"0.250",
-					"valueType":"float",
-					"tooltip":"profileLibraryHelp.raftAirGapLayer0",
-					"unit":"misc.mm",
+					"id":"support_wall_count",
+					"settingName":"Support wall count",
+					"value":"0",
+					"valueType":"int",
+					"tooltip":"The number of walls with which to surround support infill. Adding a wall can make support print more reliably and can support overhangs better, but increases print time and material used.",
 					"perExtruder":false
 				},
 				{
@@ -454,17 +466,17 @@
 					"perExtruder":false
 				},
 				{
-					"id":"interfaceLayers",
-					"settingName":"support.interfaceLayers",
+					"id":"support_interface_height",
+					"settingName":"Support Interface Layers",
 					"value":"1",
-					"valueType":"int",
-					"tooltip":"profileLibraryHelp.interfaceLayers",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.support_interface_height",
 					"unit":"Layer(s)",
 					"perExtruder":false
 				},
 				{
 					"id":"support_interface_pattern",
-					"settingName":"support Interface Pattern",
+					"settingName":"Support interface pattern",
 					"value":"concentric",
 					"valueType":"option",
 					"tooltip":"profileLibraryHelp.supportPattern",
@@ -478,23 +490,6 @@
 						"concentric":"Concentric",
 						"zigzag":"Zig Zag"
 					}
-				},
-				{
-					"id":"gradualSupportInfillSteps",
-					"settingName":"extrusion.gradualSupportInfill",
-					"value":"0",
-					"valueType":"int",
-					"tooltip":"profileLibraryHelp.gradualSupportInfill",
-					"perExtruder":false
-				},
-				{
-					"id":"supportInfillLayerThickness",
-					"settingName":"extrusion.supportInfillLayerThickness",
-					"value":"1",
-					"valueType":"float",
-					"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
-					"unit":"Layer(s)",
-					"perExtruder":false
 				}
 			]
 		},
@@ -503,6 +498,14 @@
 			"fxmlIconName":"advancedSupportIcon",
 			"settings":
 			[
+				{
+					"id":"limit_support_retractions",
+					"settingName":"Limit support nozzle closes",
+					"value":"true",
+					"valueType":"boolean",
+					"tooltip":"profileLibraryHelp.limit_support_retractions",
+					"perExtruder":false
+				},
 				{
 					"id":"support_offset",
 					"settingName":"Support Horizontal Expansion",
@@ -524,7 +527,7 @@
 				{
 					"id":"support_use_towers",
 					"settingName":"Support Use Towers",
-					"value":"true",
+					"value":"false",
 					"valueType":"boolean",
 					"tooltip":"profileLibraryHelp.support_use_towers",
 					"perExtruder":false
@@ -549,11 +552,38 @@
 				},
 				{
 					"id":"support_tower_roof_angle",
-					"settingName":"Supportn Tower Roof Angle",
+					"settingName":"Support Tower Roof Angle",
 					"value":"65",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.support_tower_roof_angle",
 					"unit":"misc.degrees",
+					"perExtruder":false
+				},
+				{
+					"id":"raftBaseLinewidth_mm",
+					"settingName":"Raft base line width",
+					"value":"1.00",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.raftBaseLinewidth",
+					"unit":"misc.mm",
+					"perExtruder":false
+				},
+				{
+					"id":"raftInterfaceLayers",
+					"settingName":"support.raftInterfaceLayers",
+					"value":"1",
+					"valueType":"int",
+					"tooltip":"profileLibraryHelp.raftInterfaceLayers",
+					"unit":"Layer(s)",
+					"perExtruder":false
+				},
+				{
+					"id":"raftAirGapLayer0_mm",
+					"settingName":"support.raftAirGapLayer0",
+					"value":"0.250",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.raftAirGapLayer0",
+					"unit":"misc.mm",
 					"perExtruder":false
 				}
 			]

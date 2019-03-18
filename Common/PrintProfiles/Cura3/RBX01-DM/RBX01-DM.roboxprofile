@@ -28,6 +28,7 @@ topSolidFillExtrusionWidth_mm=0.4
 supportExtrusionWidth_mm=0.4
 firstLayerNozzle=2
 perimeterNozzle=2
+skinNozzle=2
 fillNozzle=2
 supportNozzle=0
 supportInterfaceNozzle=0
