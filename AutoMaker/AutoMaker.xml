@@ -360,7 +360,7 @@
                             <origin>../Common/PrintProfiles/Cura</origin>
                         </distributionDirectory>
 						<distributionDirectory>
-                            <origin>../Common/PrintProfiles/Cura3</origin>
+                            <origin>../Common/PrintProfiles/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -387,7 +387,7 @@
                     </distributionFileList>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../Slicer/Linux_x64/Cura3</origin>
+                            <origin>../Slicer/Linux_x64/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -421,7 +421,7 @@
 					</ruleList>
                     <distributionFileList>
 						<distributionDirectory>
-                            <origin>../Slicer/Windows/x64/Cura3</origin>
+                            <origin>../Slicer/Windows/x64/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -437,7 +437,7 @@
                     </distributionFileList>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../Slicer/Mac/Cura3</origin>
+                            <origin>../Slicer/Mac/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>

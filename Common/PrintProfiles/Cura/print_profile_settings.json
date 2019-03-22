@@ -79,7 +79,7 @@
 					[
 						{
 							"id":"firstLayerExtrusionWidth_mm",
-							"settingName":"extrusion.firstLayer",
+							"settingName":"misc.width",
 							"value":"0.6",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.firstLayerExtrusionWidth",
@@ -99,7 +99,7 @@
 					[
 						{
 							"id":"perimeterExtrusionWidth_mm",
-							"settingName":"extrusion.perimeter",
+							"settingName":"misc.width",
 							"value":"0.6",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.perimeterExtrusionWidth",
@@ -119,7 +119,7 @@
 					[
 						{
 							"id":"fillExtrusionWidth_mm",
-							"settingName":"extrusion.infill",
+							"settingName":"misc.width",
 							"value":"0.6",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.infillExtrusionWidth",
@@ -139,7 +139,7 @@
 					[
 						{
 							"id":"supportExtrusionWidth_mm",
-							"settingName":"extrusion.support",
+							"settingName":"misc.width",
 							"value":"0.5",
 							"valueType":"extrusion",
 							"tooltip":"profileLibraryHelp.supportExtrusionWidth",

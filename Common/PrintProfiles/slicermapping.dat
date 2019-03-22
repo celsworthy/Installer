@@ -223,7 +223,7 @@
 			"raftInterfaceThickness":"280:?printRaft=false->|"
 		}
 	},
-	"Cura3" : {
+	"Cura4" : {
 		/*
 		 * Defaults for all profiles
 		 */	 
@@ -291,7 +291,9 @@
 			"support_line_distance":"supportPatternSpacing_mm",
 			"support_infill_sparse_thickness":"supportInfillLayerThickness:*layerHeight_mm",
 			"support_xy_distance":"supportXYDistance_mm",			
-			"support_z_distance":"supportZDistance_mm:?supportGapEnabled=false->0",
+			"support_z_distance":"support_top_distance:?supportGapEnabled=false->0:*layerHeight_mm",
+			"support_top_distance":"support_top_distance:?supportGapEnabled=false->0:*layerHeight_mm",
+			"support_bottom_distance":"support_bottom_distance:?supportGapEnabled=false->0:*layerHeight_mm",
 			"support_wall_count":"support_wall_count",
 			"support_interface_enable":"enableSupportInterface",
 			"support_roof_enable":"enableSupportInterface",

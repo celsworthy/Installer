@@ -20,7 +20,6 @@ infillLayerThickness=1
 //==============
 //Nozzles
 //==============
-firstLayerExtrusionWidth_mm=0.8
 perimeterExtrusionWidth_mm=0.6
 fillExtrusionWidth_mm=0.6
 solidFillExtrusionWidth_mm=0.6
@@ -76,13 +75,13 @@ gapFillSpeed_mm_per_s=20
 //Cooling
 //==============
 enableCooling=true
-minFanSpeed_percent=60:60
-maxFanSpeed_percent=100:100
+minFanSpeed_percent=60
+maxFanSpeed_percent=100
 bridgeFanSpeed_percent=100
 disableFanFirstNLayers=0
 coolIfLayerTimeLessThan_secs=60
-slowDownIfLayerTimeLessThan_secs=15:15
-minPrintSpeed_mm_per_s=8:8
+slowDownIfLayerTimeLessThan_secs=15
+minPrintSpeed_mm_per_s=8
 
 maxClosesBeforeNozzleReselect=10
 brimWidth_mm=0
