@@ -1,17 +1,18 @@
+M83					;Set Extruder to Relative moves
+
 Macro:Home_all_Axis_in_sequence
+
+M190 S				;Wait for right time to start heating nozzles
+M109				;wait to get to nozzle temp
 
 Macro:Level_Gantry_(2-points)
 
-M190			;wait to get to Bed temp
-M109			;wait to get to nozzle temp
+Macro:7_point_Bed_probing-Set_Washout
 
-M129			;Head LED on
-M106			;Fan on
+M129				;Head LED on
+M106				;Fan on
 
-G36 E1500 F400 ; Un-Park
-
-;Prime
-G1 E3 F500
+G36 E1500 F400		;Un-Park
 
 G0 X280 Y20
 Macro:Purge_T1
