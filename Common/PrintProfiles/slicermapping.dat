@@ -239,6 +239,7 @@
 			"top_layers":"solidLayersAtTop", 
 			"bottom_layers":"solidLayersAtBottom",
 			"top_bottom_pattern":"top_bottom_pattern",
+			"top_bottom_pattern_0":"top_bottom_pattern",
 			"infill_sparse_density":"fillDensity_normalised",
 			"infill_line_distance":"fillDensity_normalised:?0->-1:[fillExtrusionWidth_mm:*100",
 			"brim_line_count":"brimWidth_mm",
@@ -307,6 +308,7 @@
 			/*
 			 * Support Advanced
 			 */
+			"support_type":"support_type",
 			"limit_support_retractions":"limit_support_retractions",
 			"support_offset":"support_offset",
 			"support_join_distance":"support_join_distance",
@@ -339,11 +341,13 @@
 			 */
 			"retraction_combing":"retraction_combing",
 			"speed_layer_0":"firstLayerSpeed_mm_per_s",
+			"speed_slowdown_layers":"speed_slowdown_layers",
 			"speed_print_layer_0":"firstLayerSpeed_mm_per_s",
 			"speed_wall":"perimeterSpeed_mm_per_s",
 			"speed_wall_x":"perimeterSpeed_mm_per_s",
 			"speed_infill":"fillSpeed_mm_per_s",
 			"speed_print":"fillSpeed_mm_per_s",
+			"speed_topbottom":"speed_topbottom",
 			"speed_wall_0":"externalPerimeterSpeed_mm_per_s",
 			"speed_support":"supportSpeed_mm_per_s", 
 			"speed_support_infill":"supportSpeed_mm_per_s",

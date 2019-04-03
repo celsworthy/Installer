@@ -4,7 +4,7 @@
 		{
 			"id":"firstLayerHeight_mm",
 			"settingName":"extrusion.firstLayerHeight",
-			"value":"0.2",
+			"value":"0.3",
 			"valueType":"float",
 			"tooltip":"profileLibraryHelp.firstLayerHeight",
 			"unit":"misc.mm",
@@ -13,7 +13,7 @@
 		{
 			"id":"layerHeight_mm",
 			"settingName":"extrusion.layerHeight",
-			"value":"0.3",
+			"value":"0.2",
 			"valueType":"float",
 			"tooltip":"profileLibraryHelp.layerHeight",
 			"unit":"misc.mm",
@@ -42,7 +42,7 @@
 					"value":"3",
 					"valueType":"int",
 					"tooltip":"profileLibraryHelp.solidLayersTop",
-					"unit":"Layer(s)",
+					"unit":"misc.layers",
 					"perExtruder":false
 				},
 				{
@@ -51,7 +51,7 @@
 					"value":"3",
 					"valueType":"int",
 					"tooltip":"profileLibraryHelp.solidLayersBottom",
-					"unit":"Layer(s)",
+					"unit":"misc.layers",
 					"perExtruder":false
 				},
 				{
@@ -110,7 +110,7 @@
 					"value":"1",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.infillLayerThickness",
-					"unit":"Layer(s)",
+					"unit":"misc.layers",
 					"perExtruder":false
 				},
 				{
@@ -428,7 +428,7 @@
 					"value":"1",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.supportInfillLayerThickness",
-					"unit":"Layer(s)",
+					"unit":"misc.layers",
 					"perExtruder":false
 				},
 				{
@@ -507,6 +507,19 @@
 			"fxmlIconName":"advancedSupportIcon",
 			"settings":
 			[
+				{
+					"id":"support_type",
+					"settingName":"advancedSupport.supportPlacement",
+					"value":"everywhere",
+					"valueType":"option",
+					"tooltip":"profileLibraryHelp.supportPlacement",
+					"perExtruder":false,
+					"options":
+					{
+					    "buildplate": "Touching Buildplate",
+                        "everywhere": "Everywhere"
+					}
+				},
 				{
 					"id":"limit_support_retractions",
 					"settingName":"advancedSupport.limitNozzleCloses",
@@ -626,6 +639,15 @@
 					"perExtruder":false
 				},
 				{
+					"id":"speed_slowdown_layers",
+					"settingName":"speed.numberOfSlowLayers",
+					"value":"2",
+					"valueType":"int",
+					"tooltip":"profileLibraryHelp.numberOfSlowLayers",
+					"unit":"misc.layers",
+					"perExtruder":false
+				},
+				{
 					"id":"perimeterSpeed_mm_per_s",
 					"settingName":"speed.perimeters",
 					"value":"30",
@@ -640,6 +662,15 @@
 					"value":"30",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.externalPerimeterSpeed",
+					"unit":"misc.mmpersec",
+					"perExtruder":false
+				},
+				{
+					"id":"speed_topbottom",
+					"settingName":"Top and Bottom",
+					"value":"30",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.Top&bottomSpeed",
 					"unit":"misc.mmpersec",
 					"perExtruder":false
 				},
