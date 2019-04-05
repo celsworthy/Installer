@@ -667,10 +667,10 @@
 				},
 				{
 					"id":"speed_topbottom",
-					"settingName":"Top and Bottom",
+					"settingName":"speed.topAndBottom",
 					"value":"30",
 					"valueType":"float",
-					"tooltip":"profileLibraryHelp.Top&bottomSpeed",
+					"tooltip":"profileLibraryHelp.topAndbottomSpeed",
 					"unit":"misc.mmpersec",
 					"perExtruder":false
 				},
