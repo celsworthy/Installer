@@ -521,6 +521,14 @@
 					}
 				},
 				{
+					"id":"gradual_support_infill_steps",
+					"settingName":"extrusion.gradualSupportInfill",
+					"value":"0",
+					"valueType":"int",
+					"tooltip":"profileLibraryHelp.gradualSupportInfill",
+					"perExtruder":false
+				},
+				{
 					"id":"limit_support_retractions",
 					"settingName":"advancedSupport.limitNozzleCloses",
 					"value":"true",
