@@ -256,11 +256,11 @@
 					"perExtruder":false
 				},
 				{
-					"id":"interfaceLayers",
-					"settingName":"support.interfaceLayers",
+					"id":"raftInterfaceLayers",
+					"settingName":"support.raftInterfaceLayers",
 					"value":"1",
 					"valueType":"int",
-					"tooltip":"profileLibraryHelp.interfaceLayers",
+					"tooltip":"profileLibraryHelp.raftInterfaceLayers",
 					"perExtruder":false
 				}
 			]
