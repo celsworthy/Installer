@@ -339,6 +339,7 @@
 			"raft_interface_thickness":"0.28:?adhesionType=none->|",
 			"raft_fan_speed":"100:?adhesionType=none->|",  
 			"raft_base_speed":"15:?adhesionType=none->|",
+			"layer_0_z_overlap":"raftAirGapLayer0_mm:/2",
 
 			/*
 			 * Speed settings
