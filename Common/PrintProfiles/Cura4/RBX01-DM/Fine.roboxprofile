@@ -31,7 +31,7 @@ supportExtrusionWidth_mm=0.5
 //==============
 supportPatternSpacing_mm=1.0
 raftAirGapLayer0_mm=0.1
-interfaceLayers=2
+raftInterfaceLayers=2
 supportInfillLayerThickness=1
   
 //==============
