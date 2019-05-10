@@ -29,7 +29,6 @@ fillNozzle=1
 //Support
 //==============
 supportPatternSpacing_mm=2.0
-supportPatternAngle_degrees=0
 raftAirGapLayer0_mm=0.25
 
 //==============

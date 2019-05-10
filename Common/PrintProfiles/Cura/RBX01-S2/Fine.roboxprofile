@@ -11,7 +11,7 @@ layerHeight_mm=0.1
 fillDensity_normalised=0.4
 solidLayersAtTop=10
 solidLayersAtBottom=10
-numberOfPerimeters=2
+numberOfPerimeters=3
 
 //==============
 //Nozzles
@@ -30,7 +30,7 @@ supportExtrusionWidth_mm=0.3
 //==============
 supportPatternSpacing_mm=1.0
 raftAirGapLayer0_mm=0.1
-interfaceLayers=2
+raftInterfaceLayers=2
   
 //==============
 //speed
