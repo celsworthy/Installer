@@ -206,8 +206,8 @@
 					"perExtruder":false,
 					"options":
 					{
-						"rectlinear":"Rectlinear",
-						"rectlinear_grid":"Rectlinear Grid"
+						"rectlinear":"Lines",
+						"rectlinear_grid":"Grid"
 					}
 				},
 				{
