@@ -17,6 +17,7 @@ ROOT_HOME=${ROOT_PARENT}/${ROOT_ARM}
 TMP_UPGRADE_HOME=${TMP_UPGRADE_DIR}/${ROOT_ARM}
 
 ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade.sh
+ROOT_UPGRADE_LOG=${ROOT_HOME}/Root/upgrade.log
 
 # Expand the root file system if the expand required file exists.
 if [ -e ${EXPAND_REQUIRED_FILE} ]
@@ -93,7 +94,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			# Run the upgrade script if one exists.
 			if [ -e ${ROOT_UPGRADE_SCRIPT} ]
 			then
-				${ROOT_UPGRADE_SCRIPT}
+				${ROOT_UPGRADE_SCRIPT} >${ROOT_UPGRADE_LOG} 2>&1
 				# Delete the upgrade script so it is not run again.
 				rm -f ${ROOT_UPGRADE_SCRIPT}
 			fi
