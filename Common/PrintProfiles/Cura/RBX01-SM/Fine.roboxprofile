@@ -24,22 +24,20 @@ supportExtrusionWidth_mm=0.3
 //==============
 //Valves
 //==============
-ejectionVolume=0.3:0.6
-partialBMinimum=50:50
 
 //==============
 //Support
 //==============
 supportPatternSpacing_mm=1.0
 raftAirGapLayer0_mm=0.1
-interfaceLayers=2
+raftInterfaceLayers=2
   
 //==============
 //speed
 //==============
 perimeterSpeed_mm_per_s=25
 externalPerimeterSpeed_mm_per_s=25
-fillSpeed_mm_per_s=2
+fillSpeed_mm_per_s=25
 topSolidFillSpeed_mm_per_s=20
 bridgeSpeed_mm_per_s=20
 

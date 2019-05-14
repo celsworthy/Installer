@@ -24,8 +24,6 @@ fillNozzle=1
 //==============
 //Valves
 //==============
-ejectionVolume=0.3:0.6
-partialBMinimum=50:50
 
 //==============
 //Support

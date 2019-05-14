@@ -459,6 +459,17 @@
 					"perExtruder":false
 				},
 				{
+					"id":"support_infill_angle",
+					"settingName":"support.supportInfillAngle",
+					"value":"0",
+					"minimumValue":"0",
+					"maximumValue":"180",
+					"valueType":"int",
+					"tooltip":"profileLibraryHelp.supportInfillAngle",
+					"unit":"misc.degrees",
+					"perExtruder":false
+				},
+				{
 					"id":"support_wall_count",
 					"settingName":"support.supportWallCount",
 					"value":"0",
