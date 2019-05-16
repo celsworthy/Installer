@@ -133,7 +133,8 @@
 						"concentric":"Concentric",
 						"zigzag":"Zig Zag",
 						"cross":"Cross",
-						"cross_3d":"Cross 3D"
+						"cross_3d":"Cross 3D",
+						"gyroid": "Gyroid"
 					}
 				},
 				{
@@ -487,6 +488,22 @@
 					"perExtruder":false
 				},
 				{
+					"id":"support_brim_enable",
+					"settingName":"support.supportBrimEnable",
+					"value":"false",
+					"valueType":"boolean",
+					"tooltip":"profileLibraryHelp.supportBrimEnable",
+					"perExtruder":false
+				},
+				{
+					"id":"support_brim_line_count",
+					"settingName":"support.supportBrimLines",
+					"value":"10",
+					"valueType":"int",
+					"tooltip":"profileLibraryHelp.supportBrimLines",
+					"perExtruder":false
+				},
+				{
 					"id":"enableSupportInterface",
 					"settingName":"support.enableSupportInterface",
 					"value":"false",
@@ -542,7 +559,7 @@
 				},
 				{
 					"id":"gradual_support_infill_steps",
-					"settingName":"extrusion.gradualSupportInfill",
+					"settingName":"advancedSupport.gradualSupportInfill",
 					"value":"0",
 					"valueType":"int",
 					"tooltip":"profileLibraryHelp.gradualSupportInfill",
@@ -550,7 +567,7 @@
 				},
 				{
 					"id":"gradual_support_infill_step_height",
-					"settingName":"extrusion.gradualSupportInfillStepHeight",
+					"settingName":"advancedSupport.gradualSupportInfillStepHeight",
 					"value":"10",
 					"valueType":"float",
 					"tooltip":"profileLibraryHelp.gradualSupportInfillStepHeight",

@@ -314,6 +314,8 @@
 			 * Support Advanced
 			 */
 			"support_type":"support_type",
+			"support_brim_enable":"support_brim_enable",
+			"support_brim_line_count":"support_brim_line_count",
 			"gradual_support_infill_steps":"gradual_support_infill_steps",
 			"gradual_support_infill_step_height":"gradual_support_infill_step_height",
 			"limit_support_retractions":"limit_support_retractions",
