@@ -247,6 +247,7 @@
 			"infill_pattern":"fillPattern",
 			"infill_angles":"fillDirection",
 			"gradual_infill_steps":"gradualInfillSteps",
+			"gradual_infill_step_height":"gradual_infill_step_height",
 			"retraction_hop_enabled":"retraction_hop_enabled",
 			"retraction_hop":"retraction_hop",
 			"travel_retract_before_outer_wall":"travel_retract_before_outer_wall",
@@ -314,6 +315,7 @@
 			 */
 			"support_type":"support_type",
 			"gradual_support_infill_steps":"gradual_support_infill_steps",
+			"gradual_support_infill_step_height":"gradual_support_infill_step_height",
 			"limit_support_retractions":"limit_support_retractions",
 			"support_offset":"support_offset",
 			"support_join_distance":"support_join_distance",

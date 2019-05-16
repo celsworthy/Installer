@@ -152,6 +152,15 @@
 					"valueType":"int",
 					"tooltip":"profileLibraryHelp.gradualInfill",
 					"perExtruder":false
+				},
+				{
+					"id":"gradual_infill_step_height",
+					"settingName":"extrusion.gradualInfillStepHeight",
+					"value":"10",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.gradualInfillStepHeight",
+					"unit":"misc.mm",
+					"perExtruder":false
 				}
 			]
 		},
@@ -537,6 +546,15 @@
 					"value":"0",
 					"valueType":"int",
 					"tooltip":"profileLibraryHelp.gradualSupportInfill",
+					"perExtruder":false
+				},
+				{
+					"id":"gradual_support_infill_step_height",
+					"settingName":"extrusion.gradualSupportInfillStepHeight",
+					"value":"10",
+					"valueType":"float",
+					"tooltip":"profileLibraryHelp.gradualSupportInfillStepHeight",
+					"unit":"misc.mm",
 					"perExtruder":false
 				},
 				{
