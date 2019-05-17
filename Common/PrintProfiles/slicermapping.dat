@@ -308,7 +308,8 @@
 			"support_roof_height":"support_interface_height:*layerHeight_mm",
 			"support_bottom_height":"support_interface_height:*layerHeight_mm",
 			"support_interface_pattern":"support_interface_pattern",
-
+			"support_roof_pattern":"support_interface_pattern",
+			"support_bottom_pattern":"support_interface_pattern",
 			
 			/*
 			 * Support Advanced
