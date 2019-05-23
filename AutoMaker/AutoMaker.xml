@@ -387,8 +387,6 @@
                         <distributionDirectory>
                             <origin>../Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
-                    </distributionFileList>
-                    <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Linux_x64/Cura4</origin>
                         </distributionDirectory>
@@ -437,8 +435,6 @@
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura</origin>
                         </distributionDirectory>
-                    </distributionFileList>
-                    <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura4</origin>
                         </distributionDirectory>
