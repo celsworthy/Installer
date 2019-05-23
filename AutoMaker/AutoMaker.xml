@@ -250,7 +250,7 @@
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
                     <actionList>
-                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                        <changePermissions files="${automakerdir}/AutoMaker-update-osx.app/Contents/MacOS/*.sh" permissions="0755"/>
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
