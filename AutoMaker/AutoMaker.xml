@@ -249,6 +249,9 @@
                     <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
+                    <actionList>
+                        <changePermissions files="${commondir}/bin/*" permissions="0755"/>
+                    </actionList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>AutoMaker-update-osx.app</origin>
