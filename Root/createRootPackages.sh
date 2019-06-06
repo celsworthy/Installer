@@ -97,7 +97,7 @@ doPackage()
 }
 
 # Only build the RPi version.
-doPackage Root ARM-32bit java-arm-32bit "RoboxDetector.linux.sh takeTimelapsePhoto.sh"
+doPackage Root ARM-32bit java-arm-32bit "RoboxDetector.linux.sh startMotion.sh takePhoto.sh"
 #doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
 #doPackage Root MacOSX java-osx RoboxDetector.mac.sh
 #doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
