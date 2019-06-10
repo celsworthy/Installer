@@ -3,5 +3,5 @@ Description=Start Motion for USB webcam in pause mode (no motion detection)
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/ARM-32bit/Common/bin/startMotion.sh
+ExecStart=/home/pi/ARM-32bit/Root/startMotion.sh
 RemainAfterExit=yes
