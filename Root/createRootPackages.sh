@@ -97,7 +97,7 @@ doPackage()
 }
 
 # Only build the RPi version.
-doPackage Root ARM-32bit arm32-hflt RoboxDetector.linux.sh
+doPackage Root ARM-32bit arm32-hflt/jdk-11.0.2 RoboxDetector.linux.sh
 #doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
 #doPackage Root MacOSX java-osx RoboxDetector.mac.sh
 #doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
