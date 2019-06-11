@@ -224,7 +224,7 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
-                    <name>programfileswindows</name>
+                    <name>programfileswindowsx86</name>
                     <platforms>windows</platforms>
                     <ruleList>
 						<platformTest type="windows-x86" />
@@ -247,7 +247,7 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
-                    <name>programfileswindows</name>
+                    <name>programfileswindowsx64</name>
                     <platforms>windows</platforms>
                     <ruleList>
 						<platformTest type="windows-x64" />

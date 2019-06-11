@@ -59,6 +59,8 @@ doPackage()
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
+		cp ${origindir}/startMotion.sh ${packagedir}/${applicationname}
+		cp ${origindir}/takePhoto.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
         cp -R ${origindir}/www ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
@@ -67,7 +69,7 @@ doPackage()
 		chmod ug+x ${packagedir}/${applicationname}/*.sh
 		
         mkdir -p ${packagedir}/${applicationname}/java
-        cp -R /home/wildfly/.jenkins/javaDistros/${javaversion}/* ${packagedir}/${applicationname}/java
+        cp -R /home/wildfly/.jenkins/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
  
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
@@ -97,7 +99,7 @@ doPackage()
 }
 
 # Only build the RPi version.
-doPackage Root ARM-32bit java-arm-32bit RoboxDetector.linux.sh
+doPackage Root ARM-32bit arm32-hflt/jdk-11.0.2 RoboxDetector.linux.sh
 #doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
 #doPackage Root MacOSX java-osx RoboxDetector.mac.sh
 #doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
