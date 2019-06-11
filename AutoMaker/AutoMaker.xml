@@ -224,8 +224,11 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
-                    <name>programfileswindows</name>
+                    <name>programfileswindowsx86</name>
                     <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x86" />
+					</ruleList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>AutoMaker-update-windows.exe</origin>
@@ -239,6 +242,26 @@
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial.dll</origin>
                         </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${automakerdir}</destination>
+                    <name>programfileswindowsx64</name>
+                    <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x64" />
+					</ruleList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>AutoMaker-update-windows-x64.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutoMaker.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>AutoMakerUninstallIcon.ico</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
@@ -249,6 +272,9 @@
                     <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
+                    <actionList>
+                        <changePermissions files="${automakerdir}/AutoMaker-update-osx.app/Contents/MacOS/*.sh" permissions="0755"/>
+                    </actionList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>AutoMaker-update-osx.app</origin>
@@ -384,8 +410,6 @@
                         <distributionDirectory>
                             <origin>../Slicer/Linux_x64/Cura</origin>
                         </distributionDirectory>
-                    </distributionFileList>
-                    <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Linux_x64/Cura4</origin>
                         </distributionDirectory>
@@ -434,8 +458,6 @@
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura</origin>
                         </distributionDirectory>
-                    </distributionFileList>
-                    <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura4</origin>
                         </distributionDirectory>
@@ -550,7 +572,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://www.cel-robox.com/wp-content/uploads/Software/AutoMaker-update.xml</value>
+            <value>http://downloads.cel-robox.com/0abc523fc24/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -560,7 +582,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>>http://www.cel-robox.com/wp-content/uploads/Software/x86/AutoMaker-update.xml</value>
+            <value>>http://downloads.cel-robox.com/0abc523fc24_x86/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>

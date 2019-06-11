@@ -1,35 +1,35 @@
 <autoUpdateProject>
-	<fullName>AutoMaker</fullName>
-	<shortName>AutoMaker</shortName>
-	<vendor>C Enterprise (UK) Limited</vendor>
-	<version>1.0</version>
-        <leftImage>D:/Development/NetBeansProjects/installer/InstallerLeftImage.png</leftImage>
-	<logoImage>D:/Development/NetBeansProjects/installer/RoboxIcon48x48.png</logoImage>
-	 <splashImage>D:/Development/NetBeansProjects/installer/AutoMakerSplash.png</splashImage>
-    <wmImage>D:/Development/NetBeansProjects/installer/RoboxIcon48x48.png</wmImage>
-	<singleInstanceCheck>1</singleInstanceCheck>
-	<osxApplicationBundleIcon>D:/Development/NetBeansProjects/installer/RoboxIcon.icns</osxApplicationBundleIcon>
-	<windowsExecutableIcon>D:/Development/NetBeansProjects/installer/RoboxIcon.ico</windowsExecutableIcon>
-                <postUpdateDownloadActionList>
-     <!-- Launch the installer -->
-     <runProgram>
-         <program>hdiutil</program>
-         <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen &amp;</programArguments>
-             <ruleList>
-                  <platformTest>
-                      <type>osx</type>
-                  </platformTest>
-             </ruleList>
-     </runProgram>
-     <runProgram>
-         <program>${downloadedFilePath}</program>
-         <programArguments>&amp;</programArguments>
-             <ruleList>
-                  <platformTest>
-                      <negate>1</negate>
-                      <type>osx</type>
-                  </platformTest>
-             </ruleList>
-     </runProgram>
-</postUpdateDownloadActionList>
+    <fullName>AutoMaker</fullName>
+    <shortName>AutoMaker</shortName>
+    <vendor>C Enterprise (UK) Limited</vendor>
+    <version>1.0</version>
+    <leftImage>LeftImage - AutoMaker 163x314.png</leftImage>
+    <logoImage>../RoboxIcon48x48.png</logoImage>
+    <splashImage>Splash - AutoMaker 600x400.png</splashImage>
+    <wmImage>../RoboxIcon48x48.png</wmImage>
+    <singleInstanceCheck>1</singleInstanceCheck>
+    <osxApplicationBundleIcon>../RoboxIcon.icns</osxApplicationBundleIcon>
+    <windowsExecutableIcon>../RoboxIcon.ico</windowsExecutableIcon>
+    <postUpdateDownloadActionList>
+        <!-- Launch the installer -->
+        <runProgram>
+            <program>hdiutil</program>
+            <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen &amp;</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${downloadedFilePath}</program>
+            <programArguments>&amp;</programArguments>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+    </postUpdateDownloadActionList>
 </autoUpdateProject>
