@@ -4670,7 +4670,7 @@
                     "description": "The minimum length of the skirt or brim. If this length is not reached by all skirt or brim lines together, more skirt or brim lines will be added until the minimum length is reached. Note: If the line count is set to 0 this is ignored.",
                     "unit": "mm",
                     "type": "float",
-                    "default_value": 250,
+                    "default_value": 0,
                     "minimum_value": "0",
                     "minimum_value_warning": "25",
                     "maximum_value_warning": "2500",
