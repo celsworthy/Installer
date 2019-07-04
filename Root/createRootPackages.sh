@@ -59,6 +59,8 @@ doPackage()
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
+		cp ${origindir}/startMotion.sh ${packagedir}/${applicationname}
+		cp ${origindir}/takePhoto.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
         cp -R ${origindir}/www ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}

@@ -1,0 +1,1 @@
+ACTION=="add", KERNEL=="video0", SUBSYSTEM=="video4linux", TAG+="systemd", ENV{SYSTEMD_WANTS}="start-motion.service"
