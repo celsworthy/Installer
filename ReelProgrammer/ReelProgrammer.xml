@@ -132,7 +132,7 @@
             <show>1</show>
             <desktopShortcutList>
                 <shortcut>
-                    <comment>r</comment>
+                    <comment>ReelProgrammer</comment>
                     <exec>${automakerdir}/${project.shortName}.${platform_exec_suffix}</exec>
                     <icon>${automakerdir}/ReelProgrammer.ico</icon>
                     <name>ReelProgrammer</name>
@@ -218,8 +218,11 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
-                    <name>programfileswindows</name>
+                    <name>programfileswindowsx86</name>
                     <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x86" />
+					</ruleList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>ReelProgrammer-update-windows.exe</origin>
@@ -233,6 +236,26 @@
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial.dll</origin>
                         </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${automakerdir}</destination>
+                    <name>programfileswindowsx64</name>
+                    <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x64" />
+					</ruleList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>ReelProgrammer-update-windows-x64.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>ReelProgrammer.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>ReelProgrammerUninstallIcon.ico</origin>
+                        </distributionFile>
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
@@ -243,6 +266,9 @@
                     <destination>${automakerdir}</destination>
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
+                    <actionList>
+                        <changePermissions files="${automakerdir}/ReelProgrammer-update-osx.app/Contents/MacOS/*.sh" permissions="0755"/>
+                    </actionList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>ReelProgrammer-update-osx.app</origin>
@@ -336,6 +362,9 @@
 						<distributionFile>
                             <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>../Common/Heads/SingleX Experimental 0.6mm.roboxhead</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
 				<folder>
@@ -347,33 +376,12 @@
 						<distributionFile>
                             <origin>../Common/PrintProfiles/slicermapping.dat</origin>
                         </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Draft#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Normal#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-DM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-SM.roboxprofile</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/PrintProfiles/Fine#RBX01-S2.roboxprofile</origin>
-                        </distributionFile>
+						<distributionDirectory>
+                            <origin>../Common/PrintProfiles/Cura</origin>
+                        </distributionDirectory>
+						<distributionDirectory>
+                            <origin>../Common/PrintProfiles/Cura4</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -395,6 +403,9 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Linux_x64/Cura</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../Slicer/Linux_x64/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -419,6 +430,20 @@
                     </distributionFileList>
                 </folder>
                 <folder>
+                    <description>Program Files x64</description>
+                    <destination>${commondir}</destination>
+                    <name>programfileswindowsx64</name>
+                    <platforms>windows</platforms>
+					<ruleList>
+						<platformTest type="windows-x64" />
+					</ruleList>
+                    <distributionFileList>
+						<distributionDirectory>
+                            <origin>../Slicer/Windows/x64/Cura4</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
                     <description>Program Files</description>
                     <destination>${commondir}</destination>
                     <name>programfilesosx</name>
@@ -426,6 +451,9 @@
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>../Slicer/Mac/Cura</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../Slicer/Mac/Cura4</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -527,7 +555,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://www.cel-robox.com/wp-content/uploads/Software/ReelProgrammer-update.xml</value>
+            <value>http://downloads.cel-uk.com/software/update/14f690bc22c/ReelProgrammer-update.xml</value>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -537,7 +565,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>>http://www.cel-robox.com/wp-content/uploads/Software/x86/ReelProgrammer-update.xml</value>
+            <value>>http://downloads.cel-uk.com/software/update/14f690bc22c_x86/ReelProgrammer-update.xml<</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>
