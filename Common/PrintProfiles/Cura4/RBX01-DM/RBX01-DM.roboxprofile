@@ -45,7 +45,7 @@ partialBMinimum=50:50
 //==============
 supportOverhangThreshold_degrees=40
 forcedSupportForFirstNLayers=0
-supportPattern=lines
+supportPattern=zigzag
 supportPatternSpacing_mm=1.5
 supportPatternAngle_degrees=0
 supportZDistance_mm=0.15
