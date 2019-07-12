@@ -16,6 +16,6 @@ first_layer_bed_temperature_C = 80
 bed_temperature_C = 75
 first_layer_nozzle_temperature_C = 240
 nozzle_temperature_C = 235
-display_colour = #FFFFFF
+display_colour = #F4F8F4
 cost_gbp_per_kg = 44.17
 default_length_m = 120
