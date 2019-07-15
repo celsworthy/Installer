@@ -3,11 +3,34 @@
 	<shortName>ReelProgrammer</shortName>
 	<vendor>C Enterprise (UK) Limited</vendor>
 	<version>1.0</version>
-        <leftImage>D:\Development\NetBeansProjects\installer\InstallerLeftImage.png</leftImage>
-	<logoImage>D:\Development\NetBeansProjects\installer\ReelProgrammerIcon48x48.png</logoImage>
-	 <splashImage>D:\Development\NetBeansProjects\installer\CommissionatorSplash.png</splashImage>
-    <wmImage>D:\Development\NetBeansProjects\installer\ReelProgrammerIcon48x48.png</wmImage>
+        <leftImage>./LeftImage - ReelProgrammer 163x314.png</leftImage>
+	<logoImage>./ReelProgrammerIcon48x48.png</logoImage>
+	 <splashImage>./Splash - ReelProgrammer 600x400.png</splashImage>
+    <wmImage>./ReelProgrammerIcon48x48.png</wmImage>
 	<singleInstanceCheck>1</singleInstanceCheck>
-	<osxApplicationBundleIcon>D:\Development\NetBeansProjects\installer\ReelProgrammerIcon.icns</osxApplicationBundleIcon>
-	<windowsExecutableIcon>D:\Development\NetBeansProjects\installer\ReelProgrammerIcon.ico</windowsExecutableIcon>
+	<osxApplicationBundleIcon>./ReelProgrammer.icns</osxApplicationBundleIcon>
+	<windowsExecutableIcon>./ReelProgrammer.ico</windowsExecutableIcon>
+    <postUpdateDownloadActionList>
+        <!-- Launch the installer -->
+        <runProgram>
+            <program>hdiutil</program>
+            <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen &amp;</programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+        <runProgram>
+            <program>${downloadedFilePath}</program>
+            <programArguments>&amp;</programArguments>
+            <ruleList>
+                <platformTest>
+                    <negate>1</negate>
+                    <type>osx</type>
+                </platformTest>
+            </ruleList>
+        </runProgram>
+    </postUpdateDownloadActionList>
 </autoUpdateProject>
+
