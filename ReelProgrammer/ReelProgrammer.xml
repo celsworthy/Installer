@@ -565,7 +565,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>>http://downloads.cel-uk.com/software/update/14f690bc22c_x86/ReelProgrammer-update.xml<</value>
+            <value>>http://downloads.cel-uk.com/software/update/14f690bc22c_x86/ReelProgrammer-update.xml</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>
