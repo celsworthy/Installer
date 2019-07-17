@@ -419,6 +419,14 @@
 			"perExtruder":false
 		},
 		{
+			"id":"spiralPrint",
+			"settingName":"",
+			"value":"false",
+			"valueType":"boolean",
+			"tooltip":"",
+			"perExtruder":false
+		},
+		{
 			"id":"supportGapEnabled",
 			"settingName":"",
 			"value":"false",
