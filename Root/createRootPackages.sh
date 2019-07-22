@@ -79,8 +79,6 @@ doPackage()
 		find ${packagedir}/${applicationname} -regex ".*/bin/.*" -exec chmod ug+x '{}' \;
 		# Set permissions of cpmount.
 		find ${packagedir}/${applicationname}/upgrade_data/usb_mount -name 'cpmount' -exec chmod ug+x '{}' \;
-		# Set permissions in Common/bin
-		find ${packagedir}/Common -regex "bin/.*" -exec chmod ug+x '{}' \;
 
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
