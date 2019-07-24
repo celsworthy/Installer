@@ -572,7 +572,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-uk.com/software/update/0abc523fc24/AutoMaker-update.xml</value>
+            <value>https://downloads.cel-uk.com/software/update/0abc523fc24/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -582,7 +582,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://downloads.cel-uk.com/software/update/0abc523fc24_x86/AutoMaker-update.xml</value>
+            <value>https://downloads.cel-uk.com/software/update/0abc523fc24_x86/AutoMaker-update.xml</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>
