@@ -475,6 +475,9 @@
                         <distributionFile>
                             <origin>../Common/bin/RoboxDetector.mac.sh</origin>
                         </distributionFile>
+                        <distributionFile>
+                            <origin>../Common/bin/KillCuraEngine.mac.sh</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -508,6 +511,9 @@
                     <distributionFileList>
                         <distributionFile>
                             <origin>../Common/bin/RoboxDetector.linux.sh</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../Common/bin/KillCuraEngine.linux.sh</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
