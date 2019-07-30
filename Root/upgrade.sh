@@ -53,31 +53,7 @@ if [ ! -e /usr/local/bin/cpmount ]
 then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/cpmount /usr/local/bin
 fi
-
 #==============================
-# install motion and overwrite config file
-#==============================
-if [ ! -e /usr/bin/motion ]
-then
-	pushd ${ROOT_HOME}/upgrade_data/offline/motion
-	${ROOT_HOME}/upgrade_data/offline/motion/install.sh
-	popd
-fi
-
-if [ -e /etc/motion/motion.conf ]
-then
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/motion.conf /etc/motion/motion.conf
-fi
-
-if [ ! -e /etc/udev/rules.d/00-webcam.rules ]
-then
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/00-webcam.rules /etc/udev/rules.d
-fi
-
-if [ ! -e /lib/systemd/system/start-motion.service ]
-then
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/start-motion.service /lib/systemd/system
-fi
 
 # Remove the old touch screen calibration scripts
 rm -rf ${PI_HOME}/scripts
