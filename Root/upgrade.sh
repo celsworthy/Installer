@@ -59,6 +59,10 @@ fi
 rm -rf ${PI_HOME}/scripts
 
 # Replace lxsession autostart.
+if [ ! -e ${PI_HOME}/.config/lxsession/LXDE-pi ]
+then
+	mkdir -p ${PI_HOME}/.config/lxsession/LXDE-pi
+fi
 cp -f ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
 
 # Add robox device
