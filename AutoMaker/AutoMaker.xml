@@ -618,6 +618,9 @@
         <deleteFile>
             <path>${commondir}/Models</path>
         </deleteFile>
+		<deleteFile>
+			<path>${automakerdir}/java</path>
+		</deleteFile>
         <actionGroup>
             <explanation>UnattendedModeSetup</explanation>
             <actionList>
