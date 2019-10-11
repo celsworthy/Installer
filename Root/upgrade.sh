@@ -122,16 +122,17 @@ if [ -e ${GROOT_HOME} ]
 then
 	if [ -e /etc/systemd/system/roboxgroot.service ]
 	then
-		# Stop GRoot service.
-		sudo ${GROOT_HOME}/uninstallGRoot.sh
-	fi
+		# Restart GRoot service.
+		sudo ${GROOT_HOME}/restartGRoot.sh
+		
+		#Assume it is already booting to command line.
+	else
+		# Install GRoot service.
+		sudo ${GROOT_HOME}/installGRoot.sh
 	
-	# Boot to command line with auto-login.
-	# The desktop GUI is not started, and hence 
-	# neither is the Chromium Kiosk that displayed
-    # the Web-based interface to Root.
-	sudo raspi-config nonint do_boot_behaviour B2
-	
-	# Install GRoot service.
-	sudo ${GROOT_HOME}/installGRoot.sh
+		# Boot to command line without auto-login.
+		# The desktop GUI is not started, and hence 
+		# neither is the Chromium Kiosk that displayed
+		# the Web-based interface to Root.
+		sudo raspi-config nonint do_boot_behaviour B1
 fi
