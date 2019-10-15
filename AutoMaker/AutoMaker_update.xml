@@ -15,7 +15,7 @@
         <!-- Launch the installer -->
         <runProgram>
             <program>hdiutil</program>
-            <programArguments>mount -imagekey diskimage-class=CRawDiskImage ${downloadedFilePath} -autoopen &amp;</programArguments>
+            <programArguments>attach ${downloadedFilePath} -autoopen &amp;</programArguments>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
