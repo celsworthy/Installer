@@ -10,6 +10,7 @@
     <singleInstanceCheck>1</singleInstanceCheck>
     <osxApplicationBundleIcon>../RoboxIcon.icns</osxApplicationBundleIcon>
     <windowsExecutableIcon>../RoboxIcon.ico</windowsExecutableIcon>
+    <enableSslSupport>1</enableSslSupport>
     <postUpdateDownloadActionList>
         <!-- Launch the installer -->
         <runProgram>
