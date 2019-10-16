@@ -7,7 +7,7 @@ machine_arch=`uname -m`
 if [ "${os_version:0:1}" == "6" ];then
     executable="none"
 elif [ "${machine_platform}" == "i386" ];then
-  executable=osx-intel
+  executable=osx-x86_64
 else
     executable="none"
 fi

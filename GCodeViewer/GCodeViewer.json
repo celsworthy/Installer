@@ -68,6 +68,8 @@
 "defaultColour":[0.9882, 0.3608, 0.0471],
 "moveColour":[0.0, 0.0, 1.0],
 "selectColour":[0.9098, 0.0471, 0.6196],
+"stylusColour":[0.5686, 0.0157, 0.2],
+"stylusHeight":0.1,
 "defaultFilamentFactor":1.0,
 "hasNozzleValves":true,
 "defaultNozzleEjectVolume":0.3,
