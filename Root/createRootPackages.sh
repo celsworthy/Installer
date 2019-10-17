@@ -59,6 +59,8 @@ doPackage()
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
+		cp ${origindir}/startMotion.sh ${packagedir}/${applicationname}
+		cp ${origindir}/takePhoto.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
         cp -R ${origindir}/www ${packagedir}/${applicationname}
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
@@ -79,8 +81,6 @@ doPackage()
 		find ${packagedir}/${applicationname} -regex ".*/bin/.*" -exec chmod ug+x '{}' \;
 		# Set permissions of cpmount.
 		find ${packagedir}/${applicationname}/upgrade_data/usb_mount -name 'cpmount' -exec chmod ug+x '{}' \;
-		# Set permissions in Common/bin
-		find ${packagedir}/Common -regex "bin/.*" -exec chmod ug+x '{}' \;
 
         # Version number
         echo 'version = '${FINAL_BUILD_LABEL} > ${packagedir}/${applicationname}/application.properties
@@ -99,7 +99,7 @@ doPackage()
 }
 
 # Only build the RPi version.
-doPackage Root ARM-32bit arm32-hflt/jdk-11.0.2 "RoboxDetector.linux.sh startMotion.sh takePhoto.sh"
+doPackage Root ARM-32bit arm32-hflt/jdk-11.0.2 RoboxDetector.linux.sh
 #doPackage Root Windows-x64 java-windows-x64 "RoboxDetector.exe msvcp100.dll msvcr100.dll"
 #doPackage Root MacOSX java-osx RoboxDetector.mac.sh
 #doPackage Root Linux-x86 java-linux RoboxDetector.linux.sh
