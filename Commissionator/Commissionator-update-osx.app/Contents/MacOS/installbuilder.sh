@@ -1,13 +1,15 @@
 #!/bin/sh
 
+runtimes_dir=$(cd "$(dirname "${0}")" && pwd)
 os_version=`uname -r`
 machine_platform=`uname -p`
+machine_arch=`uname -m`
 if [ "${os_version:0:1}" == "6" ];then
-    executable="osx-10.2"
+    executable="none"
 elif [ "${machine_platform}" == "i386" ];then
-    executable="osx-intel"
+  executable=osx-x86_64
 else
-    executable="osx-ppc"
+    executable="none"
 fi
 
 if [ "$executable" == "none" ]; then
