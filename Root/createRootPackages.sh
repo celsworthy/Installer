@@ -68,7 +68,7 @@ doPackage()
         cp ${applicationdir}/target/${applicationname}.jar ${packagedir}/${applicationname}
         cp -R ${applicationdir}/target/lib ${packagedir}/${applicationname}
 		
-		chmod ug+x ${packagedir}/${applicationname}/*.sh
+		chmod ugo+x ${packagedir}/${applicationname}/*.sh
 		
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
