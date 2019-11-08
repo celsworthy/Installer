@@ -4,10 +4,12 @@
 
 ARM_DIR="ARM-32bit"
 ROOT_DIR="Root"
+GROOT_DIR="GRoot"
 PI_HOME="/home/pi"
 
 ARM_HOME=${PI_HOME}/${ARM_DIR}
 ROOT_HOME=${ARM_HOME}/${ROOT_DIR}
+GROOT_HOME=${ARM_HOME}/${GROOT_DIR}
 
 # Remove the roboxbrowser service if present.
 SERVICE_DIR=/etc/systemd/system
@@ -135,14 +137,26 @@ then
 	# Remove any existing key.
 	sed -i /automaker-root/d /home/pi/.ssh/authorized_keys
 fi
+
 # Append new key.
 cat ${ROOT_HOME}/upgrade_data/authorized_keys >> /home/pi/.ssh/authorized_keys
 chmod 600 /home/pi/.ssh/authorized_keys
 
-# Remove upgrade data and this file.
-rm -rf ${ROOT_HOME}/upgrade_data
-rm -f ${ROOT_HOME}/upgrade.sh
-
-# Cross fingers and reboot.
-sudo reboot
-
+if [ -e ${GROOT_HOME} ]
+then
+	if [ -e /etc/systemd/system/roboxgroot.service ]
+	then
+		# Restart GRoot service.
+		sudo ${GROOT_HOME}/restartGRoot.sh
+		
+		#Assume it is already booting to command line.
+	else
+		# Install GRoot service.
+		sudo ${GROOT_HOME}/installGRoot.sh
+	
+		# Boot to command line without auto-login.
+		# The desktop GUI is not started, and hence 
+		# neither is the Chromium Kiosk that displayed
+		# the Web-based interface to Root.
+		sudo raspi-config nonint do_boot_behaviour B1
+fi
