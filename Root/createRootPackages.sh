@@ -68,7 +68,13 @@ doPackage()
 		
         mkdir -p ${packagedir}/${applicationname}/java
         cp -R /home/wildfly/.jenkins/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
- 
+
+		# Copy GRoot (Gui for Root) application
+        cp -R ${installerdir}/GRoot ${packagedir}/GRoot
+		chmod ug+x ${packagedir}/GRoot/*.sh
+		# Generate md5 checksums for GRoot.
+		md5sum ${packagedir}/GRoot/GRoot.jar ${packagedir}/GRoot/lib/*.jar > ${packagedir}/GRoot/GRoot.md5
+		
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
         cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}

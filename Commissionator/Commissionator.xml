@@ -2,7 +2,7 @@
     <shortName>Commissionator</shortName>
     <fullName>CEL Commissionator</fullName>
     <version></version>
-    <licenseFile>EULA_Commissionator.txt</licenseFile>
+	<licenseFile>EULA_Commissionator.txt</licenseFile>
     <leftImage>LeftImage - Commissionator 163x314.png</leftImage>
     <splashImage>Splash - Commissionator 600x400.png</splashImage>
     <wmImage>../RoboxIcon48x48.png</wmImage>
@@ -167,11 +167,14 @@
                         </distributionFile>
                     </distributionFileList>
                 </folder>
-                <folder>
+				<folder>
                     <description>Program Files</description>
                     <destination>${automakerdir}</destination>
-                    <name>programfileswindows</name>
+                    <name>programfileswindowsx86</name>
                     <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x86" />
+					</ruleList>
                     <distributionFileList>
                         <distributionFile>
                             <origin>Commissionator-update-windows.exe</origin>
@@ -184,6 +187,26 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial.dll</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${automakerdir}</destination>
+                    <name>programfileswindowsx64</name>
+                    <platforms>windows</platforms>
+                    <ruleList>
+						<platformTest type="windows-x64" />
+					</ruleList>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>Commissionator-update-windows-x64.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>Commissionator.ico</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>CommissionatorUninstallIcon.ico</origin>
                         </distributionFile>
                         <distributionFile>
                             <origin>../binaries/windows/rxtxSerial64.dll</origin>
@@ -377,7 +400,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>http://www.cel-robox.com/wp-content/uploads/Software/Commissionator-update.xml</value>
+            <value>https://downloads.cel-uk.com/software/update/1532f2c4ab/Commissionator-update.xml</value>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -387,7 +410,7 @@
         </setInstallerVariable>
         <setInstallerVariable>
             <name>update_xml_url</name>
-            <value>>http://www.cel-robox.com/wp-content/uploads/Software/x86/Commissionator-update.xml</value>
+            <value>>https://downloads.cel-uk.com/software/update/1532f2c4ab_x86/Commissionator-update.xml</value>
             <ruleList>
                 <platformTest>
                     <type>windows-x86</type>
@@ -554,8 +577,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCertificate-Exp-01_05_19.pfx</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>8M9Ix4Q6nzjO47Pa</windowsSigningPkcs12Password>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCertificate-Exp-20_05_20.pfx</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>I35gNmjHyqFM</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
   <customLanguageFileList>
         <language>

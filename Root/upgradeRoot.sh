@@ -10,14 +10,10 @@ EXPAND_REQUIRED_FILE=/boot/expand_rfs
 ROOT_ARM="ARM-32bit"
 ROOT_PARENT="/home/pi"
 ROOT_UPGRADE_FILE_BASE="/tmp/RootARM*"
-TMP_UPGRADE_DIR="/tmp/root-upgrade"
-
 ROOT_HOME=${ROOT_PARENT}/${ROOT_ARM}
-
+ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade_wrapper.sh
+TMP_UPGRADE_DIR="/tmp/root-upgrade"
 TMP_UPGRADE_HOME=${TMP_UPGRADE_DIR}/${ROOT_ARM}
-
-ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade.sh
-ROOT_UPGRADE_LOG=${ROOT_HOME}/Root/upgrade.log
 
 # Expand the root file system if the expand required file exists.
 if [ -e ${EXPAND_REQUIRED_FILE} ]
@@ -40,7 +36,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 		# Stop chromium so it doesn't display "Can't find page".
 		pkill chromium
 
-		# Display CEL logoupgrade gif.
+		# Display CEL logo gif.
 		if [ -e /usr/bin/xsetroot ] && [ -e ${ROOT_HOME}/Root/cel.xbm ]
 		then
 			xsetroot -bitmap ${ROOT_HOME}/Root/cel.xbm
@@ -91,17 +87,15 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			# The current directory has moved under our feet, so cd to the root directory.
 			cd ${ROOT_HOME}/Root
 
+			# Clear the Chromium cache
+			rm -rf ~/.cache/chromium/Default
+			
 			# Run the upgrade script if one exists.
 			if [ -e ${ROOT_UPGRADE_SCRIPT} ]
 			then
-				${ROOT_UPGRADE_SCRIPT} >${ROOT_UPGRADE_LOG} 2>&1
-				# Delete the upgrade script so it is not run again.
-				rm -f ${ROOT_UPGRADE_SCRIPT}
+				${ROOT_UPGRADE_SCRIPT}
 			fi
-
-			# Clear the Chromium cache
-			rm -rf ~/.cache/chromium/Default
-
+			
 			# Exit with status 1, causing a restart.
 			exit 1
 		else
@@ -110,8 +104,11 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			# Delete the invalid zip.
 			rm -rf ${ROOT_UPGRADE_FILE_BASE} $TMP_UPGRADE_DIR
 			
-			# Restart Chrome.
-			/home/pi/ARM-32bit/Root/launchBrowser.sh &
+			if [ ! -e /etc/systemd/system/roboxgroot.service ]
+			then
+				# Restart Chrome if no GRoot service.
+				/home/pi/ARM-32bit/Root/launchBrowser.sh &
+			fi
 		fi
 	fi
 	break
