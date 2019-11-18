@@ -135,4 +135,8 @@ then
 		# neither is the Chromium Kiosk that displayed
 		# the Web-based interface to Root.
 		sudo raspi-config nonint do_boot_behaviour B2
+		
+		# And reboot
+		sudo reboot
+	fi
 fi

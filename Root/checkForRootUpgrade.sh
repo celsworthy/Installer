@@ -1,5 +1,5 @@
 #!/bin/bash
-# Root upgrade script.
+# Root checkForUpgrade script.
 #
 # This script does two things:
 # If the resize_fs file exists, then it resizes the root filesystem using raspi-config, deletes the resize_fs file and reboots.
@@ -37,7 +37,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 		pkill chromium
 
 		# Display CEL logo gif.
-		if [ -e /usr/bin/xsetroot ] && [ -e ${ROOT_HOME}/Root/cel.xbm ]
+		if [ ! -z "$DISPLAY" ] && [ -e /usr/bin/xsetroot ] && [ -e ${ROOT_HOME}/Root/cel.xbm ]
 		then
 			xsetroot -bitmap ${ROOT_HOME}/Root/cel.xbm
 		fi
@@ -93,10 +93,12 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			# Run the upgrade script if one exists.
 			if [ -e ${ROOT_UPGRADE_SCRIPT} ]
 			then
+				logger Running upgrade script ${ROOT_UPGRADE_SCRIPT}
 				${ROOT_UPGRADE_SCRIPT}
 			fi
 			
 			# Exit with status 1, causing a restart.
+			logger Upgrade complete - restarting.
 			exit 1
 		else
 			logger Archive invalid - not upgrading Robox Root.
