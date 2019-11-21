@@ -52,7 +52,7 @@ doPackage()
         cp ${origindir}/${applicationname}.configFile.xml ${packagedir}/${applicationname}
         cp ${origindir}/${applicationname}.yml ${packagedir}/${applicationname}
         cp ${origindir}/run${applicationname}.sh ${packagedir}/${applicationname}
-        cp ${origindir}/upgrade${applicationname}.sh ${packagedir}/${applicationname}
+        cp ${origindir}/checkFor${applicationname}Upgrade.sh ${packagedir}/${applicationname}
         cp ${origindir}/restart${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
