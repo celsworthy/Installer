@@ -95,6 +95,8 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			then
 				logger Running upgrade script ${ROOT_UPGRADE_SCRIPT}
 				${ROOT_UPGRADE_SCRIPT}
+			else
+				logger No upgrade script: ${ROOT_UPGRADE_SCRIPT}
 			fi
 			
 			# Exit with status 1, causing a restart.
