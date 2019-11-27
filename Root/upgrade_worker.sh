@@ -100,10 +100,10 @@ fi
 # Add RoboxPro file if required. Detect this by checking if the display_rotate value is 1
 if [ ! -e /boot/RoboxPro ]
 then
-	echo "Adding RoboxPro file ..."
 	dr=`sed -n -e 's/display_rotate=\(.*\)/\1/p' /boot/config.txt`
 	if [ $dr = "1" ]
 	then
+		echo "Adding RoboxPro file ..."
 		sudo touch /boot/RoboxPro
 	fi
 fi
