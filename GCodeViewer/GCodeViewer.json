@@ -84,5 +84,8 @@
 							 "defaultCameraDistance":300.0},
 "lightPosition":[105.0, 37.5, 200.0],
 "lightColour":[1.0, 1.0, 1.0],
+"animationFrameInterval":0.01,
+"animationFrameStep":1,
+"animationFastFactor":100,
 "windowAlwaysOnTop":false
 }
