@@ -11,7 +11,7 @@ ROOT_ARM="ARM-32bit"
 ROOT_PARENT="/home/pi"
 ROOT_UPGRADE_FILE_BASE="/tmp/RootARM*"
 ROOT_HOME=${ROOT_PARENT}/${ROOT_ARM}
-ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade_wrapper.sh
+ROOT_UPGRADE_SCRIPT=${ROOT_HOME}/Root/upgrade.sh
 TMP_UPGRADE_DIR="/tmp/root-upgrade"
 TMP_UPGRADE_HOME=${TMP_UPGRADE_DIR}/${ROOT_ARM}
 
@@ -95,6 +95,8 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			then
 				logger Running upgrade script ${ROOT_UPGRADE_SCRIPT}
 				${ROOT_UPGRADE_SCRIPT}
+			else
+				logger No upgrade script: ${ROOT_UPGRADE_SCRIPT}
 			fi
 			
 			# Exit with status 1, causing a restart.

@@ -81,6 +81,7 @@ doPackage()
 		
 		# Upgrade files
         cp ${origindir}/upgrade.sh ${packagedir}/${applicationname}
+        cp ${origindir}/upgrade_worker.sh ${packagedir}/${applicationname}
         cp -R ${origindir}/upgrade_data ${packagedir}/${applicationname}
 
 		# Set the execute permission of all the scripts and libraries.		
