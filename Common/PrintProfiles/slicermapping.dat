@@ -354,6 +354,7 @@
 			"speed_layer_0":"firstLayerSpeed_mm_per_s",
 			"speed_slowdown_layers":"speed_slowdown_layers",
 			"speed_print_layer_0":"firstLayerSpeed_mm_per_s",
+			"skirt_brim_speed":"firstLayerSpeed_mm_per_s",
 			"speed_wall":"perimeterSpeed_mm_per_s",
 			"speed_wall_x":"perimeterSpeed_mm_per_s",
 			"speed_infill":"fillSpeed_mm_per_s",
