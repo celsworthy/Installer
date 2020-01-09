@@ -214,7 +214,7 @@
 				},
 				{
 					"id":"skinNozzle",
-					"settingName":"Top and Bottom",
+					"settingName":"extrusion.skin",
 					"value":"2",
 					"valueType":"nozzle",
 					"tooltip":"profileLibraryHelp.infillExtrusionWidth",
