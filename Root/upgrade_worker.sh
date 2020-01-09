@@ -17,7 +17,7 @@ echo "Upgrading Root ..."
 SERVICE_DIR=/etc/systemd/system
 BROWSER_SERVICE_FILE=roboxbrowser.service
 BROWSER_SERVICE_PATH=${SERVICE_DIR}/${BROWSER_SERVICE_FILE}
-if [ -e ${BROWSER_SERVICE_PATH} ]
+if [[ -e ${BROWSER_SERVICE_PATH} ]]
 then
 	echo "Removing the roboxbrowser service ..."
 	sudo systemctl stop ${BROWSER_SERVICE_FILE}
@@ -26,7 +26,7 @@ then
 fi
 pkill chromium
 
-if [ ! -e /usr/bin/unclutter ]
+if [[ ! -e /usr/bin/unclutter ]]
 then
 	echo "Installing unclutter ..."
 	pushd ${ROOT_HOME}/upgrade_data/offline/unclutter
@@ -37,7 +37,7 @@ fi
 #==============================
 # pmount and all files needed for mounting of USB drives
 #==============================
-if [ ! -e /usr/bin/pmount ]
+if [[ ! -e /usr/bin/pmount ]]
 then
 	echo "Installing pmount ..."
 	pushd ${ROOT_HOME}/upgrade_data/offline/pmount
@@ -45,19 +45,19 @@ then
 	popd
 fi
 
-if [ ! -e /etc/udev/rules.d/usbstick.rules ]
+if [[ ! -e /etc/udev/rules.d/usbstick.rules ]]
 then
 	echo "Installing usbstick.rules ..."
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick.rules /etc/udev/rules.d
 fi
 
-if [ ! -e /lib/systemd/system/usbstick-handler@.service ]
+if [[ ! -e /lib/systemd/system/usbstick-handler@.service ]]
 then
 	echo "Installing usbstick-handler service ..."
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/usbstick-handler@.service /lib/systemd/system
 fi
 
-if [ ! -e /usr/local/bin/cpmount ]
+if [[ ! -e /usr/local/bin/cpmount ]]
 then
 	echo "Installing cpmount ..."
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/cpmount /usr/local/bin
@@ -68,21 +68,21 @@ fi
 rm -rf ${PI_HOME}/scripts
 
 # Replace lxsession autostart.
-if [ ! -e ${PI_HOME}/.config/lxsession/LXDE-pi ]
+if [[ ! -e ${PI_HOME}/.config/lxsession/LXDE-pi ]]
 then
 	mkdir -p ${PI_HOME}/.config/lxsession/LXDE-pi
 fi
 cp -f ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
 
 # Add robox device
-if [ ! -e /etc/udev/rules.d/robox.rules ]
+if [[ ! -e /etc/udev/rules.d/robox.rules ]]
 then
 	echo "Adding robox device ..."
 	sudo cp -f ${ROOT_HOME}/upgrade_data/robox.rules /etc/udev/rules.d
 fi
 
 # Add CEL boot splash screen.
-if [ ! -e /usr/share/plymouth/themes/celrobox/splash.png ]
+if [[ ! -e /usr/share/plymouth/themes/celrobox/splash.png ]]
 then
 	echo "Adding CEL boot splash screen ..."
 	sudo cp -r ${ROOT_HOME}/upgrade_data/celrobox /usr/share/plymouth/themes
@@ -98,10 +98,10 @@ then
 fi
 
 # Add RoboxPro file if required. Detect this by checking if the display_rotate value is 1
-if [ ! -e /boot/RoboxPro ]
+if [[ ! -e /boot/RoboxPro ]]
 then
 	dr=`sed -n -e 's/display_rotate=\(.*\)/\1/p' /boot/config.txt`
-	if [ $dr = "1" ]
+	if [[ $dr = "1" ]]
 	then
 		echo "Adding RoboxPro file ..."
 		sudo touch /boot/RoboxPro
@@ -117,7 +117,7 @@ fi
 
 # Copy the ssh public key if it is not already there.
 mkdir -p /home/pi/.ssh
-if [ -e /home/pi/.ssh/authorized_keys ]
+if [[ -e /home/pi/.ssh/authorized_keys ]]
 then
 	# Backup the original keys.
 	cp /home/pi/.ssh/authorized_keys /home/pi/.ssh/authorized_keys~
@@ -129,10 +129,10 @@ fi
 cat ${ROOT_HOME}/upgrade_data/authorized_keys >> /home/pi/.ssh/authorized_keys
 chmod 600 /home/pi/.ssh/authorized_keys
 
-if [ -e ${GROOT_HOME} ]
+if [[ -e ${GROOT_HOME} ]]
 then
 	echo "Updating GRoot ..."
-	if [ -e /etc/systemd/system/roboxgroot.service ]
+	if [[ -e /etc/systemd/system/roboxgroot.service ]]
 	then
 		# Restart GRoot service.
 		sudo ${GROOT_HOME}/restartGRoot.sh
@@ -148,6 +148,14 @@ then
 		# the Web-based interface to Root.
 		sudo raspi-config nonint do_boot_behaviour B2
 		
+		# Suppress text output to the screen during bootup
+		# by disabling the login service
+		systemctl --quiet is-enabled getty@tty1.service
+		if [[ $? -eq 0 ]]
+		then
+			sudo systemctl --quiet disable getty@tty1.service
+		fi
+
 		# Calling script will reboot.
 	fi
 fi
