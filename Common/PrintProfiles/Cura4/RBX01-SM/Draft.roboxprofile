@@ -21,6 +21,7 @@ topSolidFillExtrusionWidth_mm=0.6
 supportExtrusionWidth_mm=0.35
 perimeterNozzle=1
 fillNozzle=1
+skinNozzle=1
 
 //==============
 //Valves
