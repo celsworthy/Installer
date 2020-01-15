@@ -1,4 +1,5 @@
 M83					;Set Extruder to Relative moves
+M140 D				;Set post layer 1 target from reel.
 M139 D				;Set & heat first layer Bed temp.
 M170 D				;Set Ambient temp.
 
