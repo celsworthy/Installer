@@ -59,7 +59,6 @@ doPackage()
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
-        cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
         cp -R ${origindir}/www ${packagedir}/${applicationname}
