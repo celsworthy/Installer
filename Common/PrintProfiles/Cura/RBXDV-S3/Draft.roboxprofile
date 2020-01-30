@@ -14,8 +14,8 @@ fillDensity_normalised=0.2
 //Nozzles
 //==============
 perimeterExtrusionWidth_mm=0.8
-fillExtrusionWidth_mm=0.8
-solidFillExtrusionWidth_mm=0.8
+fillExtrusionWidth_mm=0.6
+solidFillExtrusionWidth_mm=0.6
 topSolidFillExtrusionWidth_mm=0.6
 
 //==============

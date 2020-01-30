@@ -19,11 +19,11 @@ numberOfPerimeters=2
 //==============
 //Nozzles
 //==============
-firstLayerExtrusionWidth_mm=0.8
-perimeterExtrusionWidth_mm=0.6
-fillExtrusionWidth_mm=0.6
-solidFillExtrusionWidth_mm=0.6
-topSolidFillExtrusionWidth_mm=0.5
+firstLayerExtrusionWidth_mm=0.6
+perimeterExtrusionWidth_mm=0.45
+fillExtrusionWidth_mm=0.45
+solidFillExtrusionWidth_mm=0.45
+topSolidFillExtrusionWidth_mm=0.45
 supportExtrusionWidth_mm=0.5
 firstLayerNozzle=0
 perimeterNozzle=0

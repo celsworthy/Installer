@@ -79,7 +79,7 @@ minFanSpeed_percent=10
 maxFanSpeed_percent=100
 bridgeFanSpeed_percent=100
 disableFanFirstNLayers=0
-coolIfLayerTimeLessThan_secs=30
+coolIfLayerTimeLessThan_secs=20
 slowDownIfLayerTimeLessThan_secs=20
 minPrintSpeed_mm_per_s=8
 
