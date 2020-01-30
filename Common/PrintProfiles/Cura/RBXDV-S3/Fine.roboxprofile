@@ -16,12 +16,12 @@ numberOfPerimeters=3
 //==============
 //Nozzles
 //==============
-firstLayerExtrusionWidth_mm=0.6
-perimeterExtrusionWidth_mm=0.5
-fillExtrusionWidth_mm=0.6
-solidFillExtrusionWidth_mm=0.6
-topSolidFillExtrusionWidth_mm=0.5
-supportExtrusionWidth_mm=0.5
+firstLayerExtrusionWidth_mm=0.5
+perimeterExtrusionWidth_mm=0.4
+fillExtrusionWidth_mm=0.4
+solidFillExtrusionWidth_mm=0.4
+topSolidFillExtrusionWidth_mm=0.4
+supportExtrusionWidth_mm=0.45
 
 //==============
 //Valves
