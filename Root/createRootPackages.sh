@@ -1,7 +1,9 @@
 #!/bin/bash
 origindir=`pwd`
 installerdir=$(dirname ${origindir})
-applicationdir=${installerdir}/../application
+parentdir=$(dirname ${installerdir})
+applicationdir=${parentdir}/RoboxRoot
+
 FINAL_BUILD_LABEL=$1
 
 doPackage()
