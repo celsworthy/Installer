@@ -3,6 +3,9 @@ The installer repository contains the required files to build the install packag
 
 > Note: The information on the files in the Installer repository is often refering to the copies of these files in the AutoMaker installation or the Root installation. In order to test changes to these files in a development environment it is often useful to edit the files within the installation directory.
 
+## AutoMaker
+The AutoMaker directory contains files for the AutoMaker installation directory, some files are OS specific and are sorted by the install builder.
+
 ## Common
 The common directory contains several other directories
 
