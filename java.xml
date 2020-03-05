@@ -15,7 +15,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/home/wildfly/.jenkins/javaDistros11/linux-x32/jdk-11.0.2/*</origin>
+                    <origin>${java_distro_dir}/linux-x32/jdk-11.0.2/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -30,7 +30,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/home/wildfly/.jenkins/javaDistros11/linux-x64/jdk-11.0.2/*</origin>
+                    <origin>${java_distro_dir}/linux-x64/jdk-11.0.2/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -45,7 +45,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/home/wildfly/.jenkins/javaDistros11/osx-x64/jdk-11.0.2/*</origin>
+                    <origin>${java_distro_dir}/osx-x64/jdk-11.0.2/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -60,7 +60,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/home/wildfly/.jenkins/javaDistros11/windows-x32/jdk-11.0.2/*</origin>
+                    <origin>${java_distro_dir}/windows-x32/jdk-11.0.2/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -80,7 +80,7 @@
             <distributionFileList>
                 <distributionFile>
                     <allowWildcards>1</allowWildcards>
-                    <origin>/home/wildfly/.jenkins/javaDistros11/windows-x64/jdk-11.0.2/*</origin>
+                    <origin>${java_distro_dir}/windows-x64/jdk-11.0.2/*</origin>
                 </distributionFile>
             </distributionFileList>
             <shouldPackRuleList>
@@ -168,6 +168,12 @@
             <default></default>
         </booleanParameter>
     </parameterList>
+	<initializationActionList>
+        <setInstallerVariable>
+            <name>java_distro_dir</name>
+            <value>/var/jenkins_home/java/javaDistros11</value>
+        </setInstallerVariable>
+    </initializationActionList>
     <postInstallationActionList>
         <!-- change permissions of all binaries -->
         <changePermissions abortOnError="0" files="${automakerdir}/java/bin/*" permissions="0755" showMessageOnError="0">
