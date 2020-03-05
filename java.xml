@@ -168,12 +168,9 @@
             <default></default>
         </booleanParameter>
     </parameterList>
-	<initializationActionList>
-        <setInstallerVariable>
-            <name>java_distro_dir</name>
-            <value>/var/jenkins_home/java/javaDistros11</value>
-        </setInstallerVariable>
-    </initializationActionList>
+    <preBuildActionList>
+        <setInstallerVariable name="java_distro_dir" value="/var/jenkins_home/java/javaDistros11"/>
+    </preBuildActionList>
     <postInstallationActionList>
         <!-- change permissions of all binaries -->
         <changePermissions abortOnError="0" files="${automakerdir}/java/bin/*" permissions="0755" showMessageOnError="0">
