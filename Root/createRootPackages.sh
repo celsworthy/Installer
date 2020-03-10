@@ -68,7 +68,7 @@ doPackage()
 		chmod ug+x ${packagedir}/${applicationname}/*.sh
 		
         mkdir -p ${packagedir}/${applicationname}/java
-        cp -R /home/wildfly/.jenkins/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
+        cp -R /var/jenkins_home/java/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
 
 		# Copy GRoot (Gui for Root) application
         cp -R ${installerdir}/GRoot ${packagedir}/GRoot
