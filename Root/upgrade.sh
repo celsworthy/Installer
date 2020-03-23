@@ -8,7 +8,7 @@ UPGRADE_SCRIPT=${ROOT_HOME}/upgrade_worker.sh
 UPGRADE_LOG=${ROOT_HOME}/upgrade.log
 
 cd ${ROOT_HOME}
-if [ -e ${UPGRADE_LOG} ]
+if [[ -e ${UPGRADE_LOG} ]]
 then
 	rm -f ${UPGRADE_LOG}
 fi

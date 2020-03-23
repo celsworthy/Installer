@@ -16,7 +16,7 @@ TMP_UPGRADE_DIR="/tmp/root-upgrade"
 TMP_UPGRADE_HOME=${TMP_UPGRADE_DIR}/${ROOT_ARM}
 
 # Expand the root file system if the expand required file exists.
-if [ -e ${EXPAND_REQUIRED_FILE} ]
+if [[ -e ${EXPAND_REQUIRED_FILE} ]]
 then
 	logger Expanding root file system.
 	# Delete the file first, so the expansion is done once only.
@@ -27,7 +27,7 @@ fi
 
 # Handle pre-run upgrade
 for f in ${ROOT_UPGRADE_FILE_BASE}; do
-	if [ -e "$f" ]
+	if [[ -e "$f" ]]
 	then
 	
 		upgradeFile=$(ls -t ${ROOT_UPGRADE_FILE_BASE} | head -1)
@@ -37,13 +37,13 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 		pkill chromium
 
 		# Display CEL logo gif.
-		if [ ! -z "$DISPLAY" ] && [ -e /usr/bin/xsetroot ] && [ -e ${ROOT_HOME}/Root/cel.xbm ]
+		if [[ ! -z "$DISPLAY" && -e /usr/bin/xsetroot && -e ${ROOT_HOME}/Root/cel.xbm ]]
 		then
 			xsetroot -bitmap ${ROOT_HOME}/Root/cel.xbm
 		fi
 
 		# Unpack into temporary directory.
-		if [ -e $TMP_UPGRADE_DIR ]
+		if [[ -e $TMP_UPGRADE_DIR ]]
 		then
 			rm -rf  $TMP_UPGRADE_DIR
 		fi
@@ -51,18 +51,18 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 
 		# Check that upgrade is valid.
 		validUpgrade=0
-		if [ -e ${TMP_UPGRADE_HOME}/Root/Root.md5 ]
+		if [[ -e ${TMP_UPGRADE_HOME}/Root/Root.md5 ]]
 		then
 			pushd ${TMP_UPGRADE_HOME}/Root
 			md5sum -c --quiet Root.md5 > /dev/null 2>&1
-			if [ $? -eq 0 ]
+			if [[ $? -eq 0 ]]
 			then
 				validUpgrade=1
 			fi
 			popd
 		fi
 
-		if [ ${validUpgrade} -eq 1 ]
+		if [[ ${validUpgrade} -eq 1 ]]
 		then
 			logger Archive valid - upgrading Robox Root
 
@@ -70,7 +70,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			rm -f ${ROOT_UPGRADE_FILE_BASE}
 
 			# Delete any old Root installation.
-			if [ -e ${ROOT_HOME}-1 ]
+			if [[ -e ${ROOT_HOME}-1 ]]
 			then
 				rm -rf ${ROOT_HOME}-1
 			fi
@@ -91,7 +91,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			rm -rf ~/.cache/chromium/Default
 			
 			# Run the upgrade script if one exists.
-			if [ -e ${ROOT_UPGRADE_SCRIPT} ]
+			if [[ -e ${ROOT_UPGRADE_SCRIPT} ]]
 			then
 				logger Running upgrade script ${ROOT_UPGRADE_SCRIPT}
 				${ROOT_UPGRADE_SCRIPT}
@@ -108,7 +108,7 @@ for f in ${ROOT_UPGRADE_FILE_BASE}; do
 			# Delete the invalid zip.
 			rm -rf ${ROOT_UPGRADE_FILE_BASE} $TMP_UPGRADE_DIR
 			
-			if [ ! -e /etc/systemd/system/roboxgroot.service ]
+			if [[ ! -e /etc/systemd/system/roboxgroot.service ]]
 			then
 				# Restart Chrome if no GRoot service.
 				/home/pi/ARM-32bit/Root/launchBrowser.sh &
