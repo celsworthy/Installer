@@ -1,7 +1,9 @@
 #!/bin/bash
 origindir=`pwd`
 installerdir=$(dirname ${origindir})
-applicationdir=${installerdir}/../application
+parentdir=$(dirname ${installerdir})
+applicationdir=${parentdir}/RoboxRoot
+
 FINAL_BUILD_LABEL=$1
 
 doPackage()
@@ -57,7 +59,6 @@ doPackage()
         cp ${origindir}/install${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
-        cp ${origindir}/unclutter.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
 		cp ${origindir}/startMotion.sh ${packagedir}/${applicationname}
 		cp ${origindir}/takePhoto.sh ${packagedir}/${applicationname}
@@ -71,7 +72,7 @@ doPackage()
 		chmod ugo+x ${packagedir}/${applicationname}/*.sh
 		
         mkdir -p ${packagedir}/${applicationname}/java
-        cp -R /home/wildfly/.jenkins/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
+        cp -R /var/jenkins_home/java/javaDistros11/${javaversion}/* ${packagedir}/${applicationname}/java
 
 		# Copy GRoot (Gui for Root) application
         cp -R ${installerdir}/GRoot ${packagedir}/GRoot

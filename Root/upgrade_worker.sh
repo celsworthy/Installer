@@ -129,7 +129,7 @@ fi
 if [[ ! -e /boot/RoboxPro ]]
 then
 	dr=`sed -n -e 's/display_rotate=\(.*\)/\1/p' /boot/config.txt`
-	if [[ $dr = "1" ]]
+	if [[ "${dr}" == "1" ]]
 	then
 		echo "Adding RoboxPro file ..."
 		sudo touch /boot/RoboxPro

@@ -1,7 +1,16 @@
 #!/bin/bash
 ROBOX_PRO_FILE=/boot/RoboxPro
 
-if [ -e "$ROBOX_PRO_FILE" ]
+ROBOX_LARGE=/boot/RoboxLarge
+
+if [ -e "$ROBOX_LARGE" ]
+then
+        # This is a Root with a large touch screen.
+        X_MIN=800
+        X_MAX=300
+        Y_MIN=0
+        Y_MAX=750
+elif [ -e "$ROBOX_PRO_FILE" ]
 then
 	# This is a RoboxPro
 	X_MIN=3895
