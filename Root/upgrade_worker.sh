@@ -72,7 +72,7 @@ if [[ ! -e ${PI_HOME}/.config/lxsession/LXDE-pi ]]
 then
 	mkdir -p ${PI_HOME}/.config/lxsession/LXDE-pi
 fi
-cp -f ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
+cp -bf ${ROOT_HOME}/upgrade_data/autostart ${PI_HOME}/.config/lxsession/LXDE-pi
 
 # Add robox device
 if [[ ! -e /etc/udev/rules.d/robox.rules ]]
@@ -93,7 +93,7 @@ then
 	sudo cp -f /boot/cmdline.txt /boot/cmdline-backup.txt
 	rootfs_dev=`blkid -L rootfs`
 	partuuid=`blkid $rootfs_dev -s PARTUUID | sed -e 's/.*=\"\(.*\)\"/\1/'`
-	sed -i -e "s/root=PARTUUID=\(.*\) rootfs/root=PARTUUID=${partuuid} rootfs/" ${ROOT_HOME}/upgrade_data/cmdline.txt
+	sudo sed -i -e "s/root=PARTUUID=\(.*\) rootfs/root=PARTUUID=${partuuid} rootfs/" ${ROOT_HOME}/upgrade_data/cmdline.txt
 	sudo cp -f ${ROOT_HOME}/upgrade_data/cmdline.txt /boot
 fi
 
