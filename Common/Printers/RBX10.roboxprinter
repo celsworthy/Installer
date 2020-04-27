@@ -15,7 +15,8 @@
 	"RBX01-SM",
 	"RBX01-DM",
 	"RBX01-S2",
-	"RBXDV-S1"
+	"RBXDV-S1",
+	"RBXDV-S3"
   ],
   "printVolumeWidth" : 300,
   "printVolumeDepth" : 210,
