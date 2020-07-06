@@ -6,7 +6,7 @@
         <ApplicationShortName>Root</ApplicationShortName>
         <ApplicationDataStorageDirectory>$APPDATA_HOME$/#ApplicationConfiguration:AppFolderName#/</ApplicationDataStorageDirectory>
         <UserDataStorageDirectory>$USER_HOME$/</UserDataStorageDirectory>
-        <requiredFirmwareVersion>775</requiredFirmwareVersion>
+        <requiredFirmwareVersion>780</requiredFirmwareVersion>
         <DefaultMode>Normal</DefaultMode>
         <DefaultLocaleLanguageTag>en</DefaultLocaleLanguageTag>
     </ApplicationConfiguration>

@@ -273,7 +273,7 @@
                     <name>programfilesosx</name>
                     <platforms>osx</platforms>
                     <actionList>
-                        <changePermissions files="${automakerdir}/AutoMaker-update-osx.app/Contents/MacOS/*.sh" permissions="0755"/>
+                        <changePermissions files="${automakerdir}/AutoMaker-update-osx.app/Contents/MacOS/*" permissions="0755"/>
                     </actionList>
                     <distributionFileList>
                         <distributionFile>
@@ -360,16 +360,8 @@
                     <platforms>all</platforms>
                     <distributionFileList>
 						<distributionFile>
-                            <origin>../Common/Heads/Single Material 0.3mm 0.8mm.roboxhead</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/Heads/Single Material v2 0.3mm 0.8mm.roboxhead</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/Heads/Dual Material 0.4mm 0.4mm.roboxhead</origin>
-                        </distributionFile>
-						<distributionFile>
-                            <origin>../Common/Heads/SingleX Experimental 0.6mm.roboxhead</origin>
+                            <allowWildcards>1</allowWildcards>
+                            <origin>../Common/Heads/*.roboxhead</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
