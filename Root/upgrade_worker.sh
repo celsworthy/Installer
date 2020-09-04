@@ -63,34 +63,17 @@ then
 	sudo cp -f ${ROOT_HOME}/upgrade_data/usb_mount/cpmount /usr/local/bin
 fi
 
-#==============================
-# install motion and overwrite config file
-#==============================
-if [ ! -e /usr/bin/motion ]
+#=================
+# install fswebcam
+#=================
+if [ ! -e /usr/bin/fswebcam ]
 then
-	echo "Installing motion ..."
-	pushd ${ROOT_HOME}/upgrade_data/offline/motion
-	${ROOT_HOME}/upgrade_data/offline/motion/install.sh
+	echo "Installing fswebcam ..."
+	pushd ${ROOT_HOME}/upgrade_data/offline/fswebcam
+	${ROOT_HOME}/upgrade_data/offline/fswebcam/install.sh
 	popd
 fi
 
-if [ -e /etc/motion/motion.conf ]
-then
-	echo "Adding motion.conf ..."
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/motion.conf /etc/motion/motion.conf
-fi
-
-if [ ! -e /etc/udev/rules.d/00-webcam.rules ]
-then
-	echo "Adding webcam rules ..."
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/00-webcam.rules /etc/udev/rules.d
-fi
-
-if [ ! -e /lib/systemd/system/start-motion.service ]
-then
-	echo "Adding start motion service ..."
-	sudo cp -f ${ROOT_HOME}/upgrade_data/motion/start-motion.service /lib/systemd/system
-fi
 
 # Remove the old touch screen calibration scripts
 rm -rf ${PI_HOME}/scripts
