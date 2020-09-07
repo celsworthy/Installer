@@ -351,6 +351,8 @@
                         <distributionDirectory>
                             <origin>../Common/Language</origin>
                         </distributionDirectory>
+                            <origin>../Common/CameraProfiles</origin>
+                        </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
