@@ -60,8 +60,8 @@ doPackage()
         cp ${origindir}/uninstall${applicationname}.sh ${packagedir}/${applicationname}
         cp ${origindir}/startBrowser.sh ${packagedir}/${applicationname}
         cp ${origindir}/swapTSAxes.sh ${packagedir}/${applicationname}
-		cp ${origindir}/startMotion.sh ${packagedir}/${applicationname}
 		cp ${origindir}/takePhoto.sh ${packagedir}/${applicationname}
+		cp ${origindir}/takeSnapshot.sh ${packagedir}/${applicationname}
 		cp ${origindir}/cameraDetector.sh ${packagedir}/${applicationname}
 		cp ${origindir}/findCameraInfo.sh ${packagedir}/${applicationname}
         cp ${origindir}/cel.xbm ${packagedir}/${applicationname}
