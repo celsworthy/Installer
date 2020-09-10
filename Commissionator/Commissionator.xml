@@ -557,6 +557,7 @@ enable = 0
     </postUninstallationActionList>
     <allowedLanguages>en zh_CN</allowedLanguages>
     <compressionAlgorithm>lzma</compressionAlgorithm>
+	<createOsxBundleDmg>1</createOsxBundleDmg>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
