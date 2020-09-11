@@ -18,7 +18,7 @@ then
     SNAP_DIR="$USB_DIR/$PRINTER_NAME/$JOB_ID"
 else
     # If we don't have a USB then we make a project folder in the User folder
-    SNAP_DIR="/home/pi/CEL Root/Timelapse/$PRINTER_NAME/$JOB_ID"
+    SNAP_DIR="/home/pi/CEL Root/timelapse/$PRINTER_NAME/$JOB_ID"
 fi
 sudo mkdir -p "$SNAP_DIR"
 
