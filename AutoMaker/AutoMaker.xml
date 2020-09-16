@@ -855,8 +855,8 @@ enable = 0
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
     <osxApplicationBundleIcon>AutoMaker.icns</osxApplicationBundleIcon>
-    <osxSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert.p12</osxSigningPkcs12File>
-    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
+    <osxSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert-2025.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>B9DR2ZkrChwO</osxSigningPkcs12Password>
     <osxUninstallerApplicationBundleIcon>AutoMaker.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/AutoMaker.ico</productDisplayIcon>
@@ -871,8 +871,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>AutoMaker.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCertificate-Exp-20_05_20.pfx</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>I35gNmjHyqFM</windowsSigningPkcs12Password>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert-2025.p12</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>B9DR2ZkrChwO</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>AutoMakerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>
         <language>
