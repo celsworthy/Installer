@@ -562,8 +562,8 @@ enable = 0
     <enableTimestamp>1</enableTimestamp>
     <installationScope>user</installationScope>
     <osxApplicationBundleIcon>Commissionator.icns</osxApplicationBundleIcon>
-    <osxSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert.p12</osxSigningPkcs12File>
-    <osxSigningPkcs12Password>5TQZ@a6n:b</osxSigningPkcs12Password>
+    <osxSigningPkcs12File>${build_project_directory}/../build_tools/osx-cert-2025.p12</osxSigningPkcs12File>
+    <osxSigningPkcs12Password>B9DR2ZkrChwO</osxSigningPkcs12Password>
     <osxUninstallerApplicationBundleIcon>Commissionator.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>LatestBuilds</outputDirectory>
     <productDisplayIcon>${automakerdir}/Commissionator.ico</productDisplayIcon>
