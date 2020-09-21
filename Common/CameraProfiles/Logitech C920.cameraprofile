@@ -1,7 +1,7 @@
 {
   "profileName" : "Logitech C920",
-  "captureHeight" : 720,
-  "captureWidth" : 1080,
+  "captureHeight" : 1080,
+  "captureWidth" : 1920,
   "headLightOff" : true,
   "ambientLightOff" : true,
   "moveBeforeCapture" : true,
