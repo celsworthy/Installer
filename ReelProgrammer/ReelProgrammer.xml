@@ -190,9 +190,6 @@
                         <distributionFile>
                             <origin>ReelProgrammerUninstallIcon.ico</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>../binaries/linux/librxtxSerial.so</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -209,9 +206,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>ReelProgrammerUninstallIcon.ico</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../binaries/linux/librxtxSerial.so</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -233,9 +227,6 @@
                         <distributionFile>
                             <origin>ReelProgrammerUninstallIcon.ico</origin>
                         </distributionFile>
-                        <distributionFile>
-                            <origin>../binaries/windows/rxtxSerial.dll</origin>
-                        </distributionFile>
                     </distributionFileList>
                 </folder>
                 <folder>
@@ -255,9 +246,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>ReelProgrammerUninstallIcon.ico</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../binaries/windows/rxtxSerial64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -281,9 +269,6 @@
                         </distributionFile>
                         <distributionFile>
                             <origin>ReelProgrammer.png</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>../binaries/osx/librxtxSerial.jnilib</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -850,8 +835,8 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>ReelProgrammer.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/CELCodeSigningCertificate-Exp-20_05_20.pfx</windowsSigningPkcs12File>
-    <windowsSigningPkcs12Password>I35gNmjHyqFM</windowsSigningPkcs12Password>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/sectigo-csc-exp-2020-09-22-Exp-20_05_20.pfx</windowsSigningPkcs12File>
+    <windowsSigningPkcs12Password>FDZRYpLJPoup</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>ReelProgrammerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>
         <language>
