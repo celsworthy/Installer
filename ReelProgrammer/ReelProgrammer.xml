@@ -835,7 +835,7 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>ReelProgrammer.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/sectigo-csc-exp-2020-09-22-Exp-20_05_20.pfx</windowsSigningPkcs12File>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/sectigo-csc-exp-2021-09-22-Exp-20_05_20.pfx</windowsSigningPkcs12File>
     <windowsSigningPkcs12Password>FDZRYpLJPoup</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>ReelProgrammerUninstallIcon.ico</windowsUninstallerExecutableIcon>
     <customLanguageFileList>

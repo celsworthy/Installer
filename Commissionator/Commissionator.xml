@@ -563,7 +563,7 @@ enable = 0
     <width>600</width>
     <windows64bitMode>1</windows64bitMode>
     <windowsExecutableIcon>Commissionator.ico</windowsExecutableIcon>
-    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/sectigo-csc-exp-2020-09-22.pfx</windowsSigningPkcs12File>
+    <windowsSigningPkcs12File>${build_project_directory}/../build_tools/sectigo-csc-exp-2021-09-22.pfx</windowsSigningPkcs12File>
     <windowsSigningPkcs12Password>FDZRYpLJPoup</windowsSigningPkcs12Password>
     <windowsUninstallerExecutableIcon>CommissionatorUninstallIcon.ico</windowsUninstallerExecutableIcon>
   <customLanguageFileList>
